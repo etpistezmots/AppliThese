@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    <meta charset="UTF-8">
+     <style>
+        .marge {
+            margin-left: 3em;}
+        .marge2 {
+            margin-left: 6em;}
+        .suite {
+            font-style: italic;
+            text-align: right;}
+        .mypara {
+            text-align: justify;}
+    </style>
+    <title>Trait {{ objet }} Home</title>
+</head>
+<body>
+
+
+
+    <h3> Interface traitement automatisé {{ RenduPluriel }}</h3>
+
+
+
+    {% if CorpusExist %}
+
+        <label class="marge" for="reduc">- Corpus d'études disponibles :</label>
+        <select onchange="location = this.value;" id="reduc">
+
+
+        {% if reduction_id == 0 %}
+
+             <option selected>--ci-dessous--</option>
+
+            {% for reduction in reductions %}
+                    <option value="{% url 'AmeliorText:TraitHome' objet reduction.id %}">{{ reduction.nom }}</option>
+            {% endfor %}
+
+        {% else %}
+
+            {% for reduction in reductions %}
+                {% if reduction.id == reduction_id %}
+                    <option selected>{{ reduction.nom }}</option>
+                {% else %}
+                    <option value="{% url 'AmeliorText:TraitHome' objet reduction.id %}">{{ reduction.nom }}</option>
+                {% endif %}
+            {% endfor %}
+
+        {% endif %}
+
+        </select>
+
+    <br>
+    <br>
+
+        {% if reduction_id != 0 %}
+            {% if PossibleChange and reduction_id != 0 %}
+                {% if ChangeExist %}
+                <p class="marge"> Les valeurs du formulaire ci-dessous sont celles utilisées pour ce corpus
+                    d'étude.</p>
+                {% else %}
+                <p class="marge"> Il n'existe pas de traitement encore réalisé. <br>
+                    Vous pouvez utiliser le formulaire ci-dessous pour réaliser ce traitement des
+                    {{ RenduPluriel }}.</p>
+                {% endif %}
+            {% else %}
+                {% if ChangeExist %}
+                <p class="marge"> Les valeurs du formulaire ci-dessous sont celles utilisées pour ce corpus
+                    d'étude.</p>
+                {% else %}
+                <p class="marge"> Il n'existe pas de traitement encore réalisé pour ce corpus.
+                {% endif %}
+            {% endif %}
+        {% endif %}
+
+
+        <form action="" method="post">
+
+            {% csrf_token %}
+                <fieldset class="marge2 grisemoi">
+                {{ form.as_p }}
+                </fieldset>
+
+            {% if PossibleChange and ChangeExist %}
+            <p class="marge"> Attention, Vous pouvez ré-effectuer ce traitement avec des nouveaux paramètres ou
+                l'annuler avec les boutons ci-dessous. Cependant, pour prendre en compte ces changements si
+                vous avez déjà effectué la chaîne de traitement, vous devez la reprendre (extraction des textes
+                --> Corpus Complet --> Corpus
+                Fin --> Expériences)</p>
+            {% endif %}
+
+            {% if PossibleChange and reduction_id != 0 %}
+                {% if ChangeExist %}
+                    <input class="marge2" type="submit" name="Effectuer" id="Effectuer"
+                           value="Effectuer">
+                    <input type="submit" name="Supprimer" id="Supprimer"
+                           value="Supprimer">
+                {% else %}
+                    <input class="marge2" type="submit" name="Effectuer" id="Effectuer"
+                           value="Effectuer">
+                {% endif %}
+
+            {% endif %}
+
+        </form>
+
+
+
+    {% else %}
+
+    <p> Vous n'avez pas de corpus d'étude sur lequel faire ce travail d'amélioration des textes.</p>
+    <p> Un travail de délimitation doit déjà être effectué</p>
+
+    {% endif %}
+
+
+     <br>
+    <br>
+
+{% block content %}
+{% endblock %}
+
+
+
+
+</body>
+</html>

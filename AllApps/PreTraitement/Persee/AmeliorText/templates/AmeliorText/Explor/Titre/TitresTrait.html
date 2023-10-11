@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    {% load static %}
+
+    <meta charset="UTF-8">
+    <title>Titres Trait de la réduction: {{reduction}}</title>
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    .div-1 {
+        background-color: #FF3C3C;
+    }
+
+    .div-2 {
+    	background-color: #FFB340;
+    }
+
+    .div-3 {
+    	background-color: #FFFA44;
+    }
+
+    .div-4 {
+    	background-color: #A2FF44;
+    }
+    </style>
+</head>
+<br>
+
+   <p class="suite">
+            <a  href="{% url 'AmeliorText:home' %}#ExploTitreTrait">Retour Texte</a>
+    </p>
+
+    {% if user.is_superuser %}
+    <p class="suite">
+        <a href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Titre' %}"> Retour Interface </a>
+    </p>
+     {% endif %}
+
+
+<h2>Titres traités du corpus {{reduction}} pour la revue {{revuerealname}} </h2>
+
+
+    <br>
+    <span style="background:#FF3C3C">En rouge : erreur totale par rapport au titre présumé</span><br>
+    <span style="background:#FFB340">En orange, erreur partielle</span><br>
+    <span style="background:#FFFA44">En jaune, erreur mineure</span><br>
+    <span style="background:#A2FF44">En vert, pas d'erreur</span><br>
+
+
+    <ul>
+    <li>Identifiant document Persée (lien portail)</li>
+    <li>Score de ressemblance (mesure de Ratcliff/Obershelp)</li>
+    <li>Chaîne de caractère trouvée dans l'OCR présumée la plus correspondre au titre</li>
+    <li>Titre métadonnées (documenté par Persée)</li>
+    <li>Index Début - Index Fin de la chaîne de caractère présumée être le titre --> Index corrigés (+
+        commentaire)</li>
+    </ul>
+
+    {% for titretrait in ResultListElt%}
+        {% for elt in titretrait %}
+            {% if forloop.counter0 == 0 %}
+                {% if elt == "rouge" %}
+                    <div class="div-1"> <ul>
+                {% endif %}
+                {% if elt == "orange" %}
+                    <div class="div-2"> <ul>
+                {% endif %}
+                {% if elt == "jaune" %}
+                    <div class="div-3"> <ul>
+                {% endif %}
+                {% if elt == "vert" %}
+                    <div class="div-4"> <ul>
+                {% endif %}
+            {% elif forloop.counter0 == 1 %}
+                <li>{{ elt|safe }}</li>
+            {% else %}
+                <li>{{ elt }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    </div>
+
+
+    {% endfor %}
+    </ul>
+
+
+
+    <br>
+    <br>
+    <p class="suite">
+            <a  href="{% url 'AmeliorText:home' %}#ExploTitreTrait">Retour Texte</a>
+    </p>
+
+    {% if user.is_superuser %}
+    <p class="suite">
+        <a href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Titre' %}"> Retour Interface </a>
+    </p>
+     {% endif %}
+
+
+    <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+    <script type="text/javascript">
+        EnArrEnAvt("{% url 'AmeliorText:home' %}#ExploTitreTrait",
+        "{% url 'AmeliorText:home' %}#ExploTitreTrait");
+    </script>
+
+
+</body>
+</html>
+
+

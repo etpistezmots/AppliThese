@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>CategArticle de la revue : {{revueperseeref}}</title>
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+        .mystyle {
+            font-size: 11pt;
+            font-family: Arial;
+            border-collapse: collapse;
+            border: 1px solid silver;
+            text-align:center;
+            }
+
+        .mystyle td, th {
+            padding: 5px;
+            }
+
+        .mystyle thead th {
+            text-align:center;
+            }
+
+        .mystyle tr:nth-child(even) {
+            background: #E0E0E0;
+            }
+
+        .mystyle tr:hover {
+            background: silver;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+   <p class="suite">
+    <a  href="{% url 'DelimitCorpus:home' %}#III7">Retour texte : Chap4)III)7)</a>
+    </p>
+    <br>
+
+
+
+    <h2>Catégories
+        {% if mode == "agreg" %}
+    agrégées
+        {% endif %}
+    des articles de la revue : {{revuerealname}}</h2>
+
+    {{ tableauhtml|safe }}
+
+
+   <p class="suite">
+    <a  href="{% url 'DelimitCorpus:home' %}#III7">Retour texte : Chap4)III)7)</a>
+    </p>
+    <br>
+
+
+</body>
+</html>

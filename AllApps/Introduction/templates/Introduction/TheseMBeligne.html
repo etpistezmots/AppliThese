@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    {% load static %}
+
+    <meta charset="UTF-8">
+    <title>These MBeligne A Venir</title>
+        <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+<body>
+<p> Pour l'instant, la thèse de Max Beligné n'est pas soutenue et publiée. </p>
+<p> Dès qu'elle le sera, ce lien permmettra de la consulter. <p>
+<br>
+<p class="suite">
+    <a href="{% url 'Introduction:home' %}">Retour vers l'introduction</a>
+</p>
+
+
+
+<script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+<script type="text/javascript">
+ EnArrEnAvt("{% url 'Introduction:home' %}", "{% url 'Introduction:home' %}");
+</script>
+
+
+
+</body>
+</html>

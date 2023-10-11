@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>home count occ</title>
+    </head>
+    <body>
+
+        <label class="marge" for="mode">- Mode comptage des occurences :</label>
+    <select onchange="location = this.value;" id="mode">
+        <option selected > A choisir ci-dessous</option>
+        <option value="{% url 'TableauOcc:Interface' 'Simple' %}">Simple</option>
+        <option value="{% url 'TableauOcc:Interface' 'Auteur' %}">Par auteurs</option>
+    </select>
+        
+    </body>
+</html>

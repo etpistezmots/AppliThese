@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    {% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mots fréquents dans les titres des figures de la réduction: {{reduction}}</title>
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+<body>
+
+
+    <p class="suite">
+    <a  href="{% url 'AmeliorText:home' %}#IV11a">Retour texte</a>
+    </p>
+    <br>
+
+    <p class="suite">
+            <a  href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Figure' %}">Retour Exploration figures</a>
+    </p>
+    <br>
+
+
+
+    <h2>Termes d'annonce de figures classés par ordre décroissant de fréquence de la réduction
+        {{ reduction }} dans la revue : {{  revuerealname }}</h2>
+
+    <h3>Nombres d'éléments : {{ NbresResult }}</h3>
+
+    <ul>
+    {% for mot in Result %}
+        {% if forloop.counter0 == 0 %}
+                <li>{{ mot }}</li>
+                <br>
+            {% else %}
+                <li>{{ mot }}</li>
+            {% endif %}
+    {% endfor %}
+    </ul>
+
+
+    <br>
+    <br>
+
+
+    <p class="suite">
+    <a  href="{% url 'AmeliorText:home' %}#IV11a">Retour texte</a>
+    </p>
+    <br>
+
+    <p class="suite">
+            <a  href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Figure' %}">Retour : Part1)II)4)k)i)
+                Exploration figures</a>
+    </p>
+    <br>
+
+    <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+    <script type="text/javascript">
+        EnArrEnAvt("{% url 'AmeliorText:home' %}#IV11a","{% url 'AmeliorText:home' %}#IV11a");
+    </script>
+
+
+</body>
+</html>

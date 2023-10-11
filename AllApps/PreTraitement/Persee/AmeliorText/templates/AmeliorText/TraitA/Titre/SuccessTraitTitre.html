@@ -1,0 +1,19 @@
+{% extends 'AmeliorText/TraitA/TraitBase/SuccessTraitBase.html' %}
+
+{% block content %}
+
+    avec le seuil {{ donnees.seuil }} <br>
+
+    {% if donnees.NewSupprSlashSecondPart %}
+        en chosissant d'enlever la seconde partie des titres avec slash (partie anglais)<br>
+    {% else %}
+        sans enlever la seconde partie des titres avec slash (partie anglais)<br>
+    {% endif %}
+
+    {% if donnees.NewSupprBeforeTitre %}
+        et en enlevant la partie avant les titres<br>
+    {% else %}
+        et sans enlever la partie avant les titres<br>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'AmeliorText/TraitA/TraitBase/AnnuleTraitBase.html' %}
+
+{% block content %}
+
+
+    avec le seuil suivant : {{ AncienneReductionElt.seuil }} <br>
+
+    {% if AncienneReductionElt.SupprSlashSecondPart %}
+        en chosissant d'enlever la seconde partie des titres avec slash (partie anglais)<br>
+    {% else %}
+        sans enlever la seconde partie des titres avec slash (partie anglais)<br>
+    {% endif %}
+
+    {% if AncienneReductionElt.SupprBeforeTitre %}
+        et en enlevant la partie avant les titres<br>
+    {% else %}
+        et sans enlever la partie avant les titres<br>
+    {% endif %}
+
+{% endblock %}
+
+
+

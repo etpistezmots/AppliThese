@@ -1,0 +1,19 @@
+{% extends 'AmeliorText/TraitA/TraitBase/SuccessTraitBase.html' %}
+
+{% block content %}
+
+    avec les mots suivants :<br>
+        {% for mot in ListMots %}
+                - {{ mot }} <br>
+            {% endfor %}
+        <br>
+    en recherchant dans une zone de {{ donnees.zone }} mots avants <br>
+
+    {% if donnees.AjoutResumeFr %}
+        et en ajoutant les résumés en français dans le texte final <br>
+    {% else %}
+        et en retirant les résumés dans le texte final <br>
+    {% endif %}
+
+
+{% endblock %}

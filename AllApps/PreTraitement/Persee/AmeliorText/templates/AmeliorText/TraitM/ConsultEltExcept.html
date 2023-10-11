@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ objet }}</title>
+        <style>
+        .marge {
+            margin-left: 3em;}
+        </style>
+</head>
+<body>
+<a class="btn btn-primary" href="{% url 'AmeliorText:home'  %}">Retour home AmeliorText</a>
+<a class="btn btn-primary marge" href="{% url 'AmeliorText:RemoveTransformer' reduction objet %}">Interface retrait</a>
+<a class="btn btn-primary marge" href="{% url 'AmeliorText:AddTransformer' reduction objet %}">Interface ajout</a>
+<br>
+
+{% if addall %}
+
+    <h3> Liste des AJOUTS manuels de correction {{ objet }} pour la réduction {{ reduction }}</h3>
+
+        <table border="1">
+        <thead>
+            <tr>
+                <th>fichier doc initial</th>
+                <th>index deb</th>
+                <th>index fin</th>
+                <th>text</th>
+                <th>comment</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for except in addall %}
+            <tr>
+                <td> {{ except.DocReferenceRef.DocReferenceRef.TextRef }} </td>
+                <td> {{ except.IndexDeb }} </td>
+                <td> {{ except.IndexFin }} </td>
+                <td> {{ except.TextField }} </td>
+                <td> {{ except.comment }} </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+
+    <br>
+    <br>
+{% else %}
+
+    <h3> Pas d'AJOUT manuel de correction {{ objet }} pour la réduction {{ reduction }}</h3>
+
+{% endif %}
+
+{% if removeall %}
+
+<h3> Liste des RETRAITS manuels de correction {{ objet }} pour la réduction {{ reduction }}</h3>
+
+    <table border="1">
+    <thead>
+        <tr>
+            <th>fichier doc initial</th>
+            <th>index deb</th>
+            <th>index fin</th>
+            <th>text</th>
+            <th>comment</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for except in removeall %}
+        <tr>
+            <td> {{ except.DocTransformeRef.DocReferenceRef.TextRef }} </td>
+		    <td> {{ except.IndexDeb }} </td>
+            <td> {{ except.IndexFin }} </td>
+            <td> {{ except.TextField }} </td>
+            <td> {{ except.comment }} </td>
+	    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+
+{% else %}
+
+    <h3> Pas de RETRAIT manuels de correction {{ objet }} pour la réduction {{ reduction }}</h3>
+
+{% endif %}
+
+
+
+
+
+
+
+</body>
+</html>

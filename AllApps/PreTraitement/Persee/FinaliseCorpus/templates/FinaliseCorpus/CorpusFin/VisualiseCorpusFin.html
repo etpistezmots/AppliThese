@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    {% load static %}
+
+    <head>
+        <meta charset="UTF-8">
+        <title>VisualiseCorpus</title>
+    </head>
+    <body>
+
+        Les choix réalisés pour le corpus {{ CorpusFinToVisualise.nom }} sont les suivants :
+        <br>
+        <br>
+
+
+        <form action="" method="post">
+
+            <div class="container">
+                <fieldset class="grisemoi">
+                {{  FormCorpusFinToVisualise.as_p }}
+                </fieldset>
+            </div>
+        </form>
+
+
+        <script src="{% static 'Tableau/js/jquery-3.4.1.min.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+        <script type = 'text/javascript'>
+
+    window.onload=function() {
+            $(".grisemoi").prop("disabled",true)
+        }
+
+ </script>
+        
+    </body>
+</html>

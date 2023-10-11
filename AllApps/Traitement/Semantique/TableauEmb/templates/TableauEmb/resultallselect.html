@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Result TableauEmb</title>
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+<body>
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li class="{{ message.tags }}">{{ message|linebreaks }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+<p class="suite">
+<a  href="{% url 'TxtTheseConstructResult:home' %}#TableauEmb1"> Retour Texte </a>
+</p>
+
+
+<form action="" method="post">
+
+    {% csrf_token %}
+
+    {% for mode, result in ZipModeResult %}
+
+        {% if mode == "word2vec" %}
+
+            <h3> Liste experiences "Word2Vec"</h3>
+
+                <table border="1" width="1200">
+                <thead>
+                    <tr>
+                        <th>select</th>
+                        <th>nom</th>
+                        <th>corpus</th>
+                        <th>revue</th>
+                        <th>epoque</th>
+                        <th>architecture</th>
+                        <th>embed-size</th>
+                        <th>context-size</th>
+                        <th>min-occur</th>
+                        <th>n_epochs</th>
+                        <th>terme</th>
+                        <th>nresult</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for expe in result %}
+                    <tr>
+                        <td><input type="checkbox" name="selected_word2vec" value="{{ expe.id }}"></td>
+                        <td> <a href="{% url 'TableauEmb:result' 'word2vec' expe.modelc.id expe.id %}"> {{expe.nomresult}}</a> </td>
+                        <td> {{ expe.modelc.CorpusFinRef.nom }} </td>
+                        <td> {{ expe.modelc.revue }} </td>
+                        <td> {{ expe.modelc.epoque }} </td>
+                        <td> {{ expe.modelc.architecture }} </td>
+                        <td> {{ expe.modelc.embedding_size }} </td>
+                        <td> {{ expe.modelc.context_size }} </td>
+                        <td> {{ expe.modelc.min_occurrences }} </td>
+                        <td> {{ expe.modelc.num_epochs }} </td>
+                        <td> {{ expe.terme }} </td>
+                        <td> {{ expe.nresult }} </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+                </table>
+
+        {% endif %}
+
+        {% if mode == "glove" %}
+
+            <h3> Liste experiences "GloVe"</h3>
+
+            <table border="1" width="1100">
+            <thead>
+                <tr>
+                    <th>select</th>
+                    <th>nom</th>
+                    <th>corpus</th>
+                    <th>revue</th>
+                    <th>epoque</th>
+                    <th>embed-size</th>
+                    <th>context-size</th>
+                    <th>min-occur</th>
+                    <th>n_epochs</th>
+                    <th>terme</th>
+                    <th>nresult</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for expe in result %}
+                <tr>
+                    <td><input type="checkbox" name="selected_glove" value="{{ expe.id }}"></td>
+                    <td> <a href="{% url 'TableauEmb:result' 'glove' expe.modelc.id expe.id %}"> {{expe.nomresult}}</a> </td>
+                    <td> {{ expe.modelc.CorpusFinRef.nom }} </td>
+                    <td> {{ expe.modelc.revue }} </td>
+                    <td> {{ expe.modelc.epoque }} </td>
+                    <td> {{ expe.modelc.embedding_size }} </td>
+                    <td> {{ expe.modelc.context_size }} </td>
+                    <td> {{ expe.modelc.min_occurrences }} </td>
+                    <td> {{ expe.modelc.num_epochs }} </td>
+                    <td> {{ expe.terme }} </td>
+                    <td> {{ expe.nresult }} </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+            </table>
+
+        {% endif %}
+
+        {% if mode == "fasttext" %}
+
+            <h3> Liste experiences "FastText"</h3>
+
+            <table border="1" width="1300">
+            <thead>
+                <tr>
+                    <th>select</th>
+                    <th>nom</th>
+                    <th>corpus</th>
+                    <th>revue</th>
+                    <th>epoque</th>
+                    <th>architecture</th>
+                    <th>embed-size</th>
+                    <th>context-size</th>
+                    <th>min-occur</th>
+                    <th>n_epochs</th>
+                    <th>min_n</th>
+                    <th>max_n</th>
+                    <th>terme</th>
+                    <th>nresult</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for expe in result %}
+                <tr>
+                    <td><input type="checkbox" name="selected_fasttext" value="{{ expe.id }}"></td>
+                    <td> <a href="{% url 'TableauEmb:result' 'fasttext' expe.modelc.id expe.id %}"> {{expe.nomresult}}</a> </td>
+                    <td> {{ expe.modelc.CorpusFinRef.nom }} </td>
+                    <td> {{ expe.modelc.revue }} </td>
+                    <td> {{ expe.modelc.epoque }} </td>
+                    <td> {{ expe.modelc.architecture }} </td>
+                    <td> {{ expe.modelc.embedding_size }} </td>
+                    <td> {{ expe.modelc.context_size }} </td>
+                    <td> {{ expe.modelc.min_occurrences }} </td>
+                    <td> {{ expe.modelc.num_epochs }} </td>
+                    <td> {{ expe.modelc.min_n }} </td>
+                    <td> {{ expe.modelc.max_n }} </td>
+                    <td> {{ expe.terme }} </td>
+                    <td> {{ expe.nresult }} </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+            </table>
+
+        {% endif %}
+
+    {% endfor %}
+
+    </br>
+    <input type="submit" name="Visualise" id="Visualise" value="Visualiser les expériences cochées">
+    <input type="submit" name="VisualiseColorQuanti" id="VisualiseColorQuanti"
+           value="Visualiser les ressemblances (couleurs et quanti) des expériences cochées">
+    <input type="button" value="Retour" onclick="history.go(-1)">
+
+
+</form>
+
+</body>
+</html>

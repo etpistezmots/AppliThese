@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    {% load static %}
+    {% load crispy_forms_tags %}
+
+    <head>
+        <meta charset="UTF-8">
+
+        {% if mode == 'Simple' %}
+            <title>CountOccResult</title>
+        {% else %}
+            <title>CountOccResultByAuthor</title>
+        {% endif %}
+
+        <title>CountOccResult</title>
+        <style>
+            .asteriskField {
+                display: none;
+            }
+            .marge {
+                margin-left: 1em;
+            }
+            .marge2 {
+                margin-left: 3em;
+            }
+
+             h3 {
+            text-decoration:underline;
+            }
+
+        </style>
+
+        <link rel="stylesheet" href="{% static 'TableauEmb/css/Tableau_style.css' %}">
+        <link rel="stylesheet" href= "{% static 'TableauEmb/css/bootstrap.min.css' %}">
+    </head>
+
+    <body>
+
+        <br>
+
+        <label class="marge" for="mode">- Mode comptage des occurences :</label>
+           <select onchange="location = this.value;" id="mode">
+               {% if mode == 'Simple' %}
+                <option selected>Simple</option>
+                <option value="{% url 'TableauOcc:Interface' 'Auteur' %}">Par auteurs</option>
+              {% else %}
+                <option selected>Par auteurs</option>
+                <option value="{% url 'TableauOcc:Interface' 'Simple' %}">Simple</option>
+              {% endif %}
+          </select>
+
+         <br>
+         <br>
+
+        {% if mode == 'Simple' %}
+             <h3 class="marge">Résultat de l'interface : "Nombre d'occurences"</h3>
+        {% else %}
+            <h3 class="marge">Résultat de l'interface : "Nombre d'occurences par auteurs"</h3>
+        {% endif %}
+
+            <!--
+            <br>
+            <p class="marge2">Avec les paramètres suivants :</p>
+
+            <div class="container">
+                <fieldset class="grisemoi">
+                    {% crispy MyForm %}
+                </fieldset>
+            </div>
+            -->
+
+
+        <br>
+        <br>
+
+        {% if UnSeulTerme %}
+
+            {% if mode == 'Simple' %}
+                 <p class="marge2"> Les occurrences du terme "{{ Terme }}" dans le corpus {{ corpus}}
+                     pour les périodes et revues choisies sont :</p>
+            {% else %}
+                <p class="marge2"> Les occurrences du terme "{{ Terme }}" par les auteurs utilisant le plus
+                    ce terme dans le corpus {{ corpus}}  pour les périodes et revues choisies sont : </p>
+            {% endif %}
+
+
+        {% else %}
+            <p class="marge2">
+            Les occurrences cumulés des termes
+            {% for term in termesList %}
+                {% if forloop.first %}
+                    "{{term}}"
+                {% elif forloop.last %}
+                    et "{{term}}"
+                {% else %}
+                    , "{{term}}"
+                {% endif %}
+            {% endfor %}
+
+        {% if mode == 'Simple' %}
+              dans le corpus {{ corpus }} sont :
+        {% else %}
+                par les auteurs utilisant le plus ces termes dans le corpus {{ corpus }} sont :
+        {% endif %}
+
+         </p>
+        {% endif %}
+
+        <br>
+        <div class="marge2">
+        {{ table|safe }}
+        </div>
+            <br>
+            <br>
+
+        {% if AutreResult %}
+
+          <label class="marge2" for="result">- Autres résultats disponibles :</label>
+                <select onchange="location = this.value;" id="result">
+                    <option selected> Choix ci-dessous</option>
+                    {% for result in results %}
+                        {% if result.id != resultid %}
+                            <option value="{% url 'TableauOcc:Result' mode result.id %}">
+                                 {{ result.nomresult }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+        <br>
+        <br>
+        {% endif %}
+
+
+
+        <form action="" method="post">
+
+        {% csrf_token %}
+        <input class="marge2" type="submit" name="NewResult"  id="NewResult" value="Nouveau résultat">
+
+        {% if user.is_superuser or ResultSpeUser%}
+            <input  type="submit" onclick="return confirm('Confirmer la suppression ?')"
+                   name="SupprimerOneResult"
+                   id="SupprimerOneResult" value="Supprimer ce résultat">
+        {% endif %}
+        {% if user.is_superuser %}
+            <input type="submit" name="SupprimerMultiResults" id="SupprimerMultiResults"
+                   value="Supprimer des résultats">
+        {% endif %}
+
+       </form>
+
+        <script src="{% static 'TableauEmb/js/jquery-3.4.1.min.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+        <script type="text/javascript">
+
+    window.onload=function() {
+        {% if not user.is_superuser %}
+            var userrestrict = document.getElementById('div_id_user_restrict');
+            userrestrict.style.display = 'none';
+        {% endif %}
+
+        $(".grisemoi").prop("disabled",true)
+
+        }
+
+</script>
+
+
+
+    </body>
+</html>

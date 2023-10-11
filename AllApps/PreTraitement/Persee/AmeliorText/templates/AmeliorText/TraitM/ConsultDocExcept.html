@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ objet }}</title>
+        <style>
+        .marge {
+            margin-left: 3em;}
+        </style>
+</head>
+<body>
+<a class="btn btn-primary" href="{% url 'AmeliorText:home'  %}">Retour home AmeliorText</a>
+<a class="btn btn-primary marge" href="{% url 'AmeliorText:RemoveDoc' reduction objet %}">Interface
+    retrait</a>
+<br>
+
+{% if docremove %}
+
+<h3> Liste des retraits de documents du corpus {{ reduction }} dans le cadre du traitement de {{ objet }}</h3>
+
+        <ul>
+        {% for except in docremove %}
+                <li> {{ except.DocExtractRef.DocReferenceRef.TextRef }} </li>
+       {% endfor %}
+       </ul>
+
+{% else %}
+
+    <h3> Pas de retrait de document du corpus {{ reduction }} dans le cadre du traitement de {{ objet }}</h3>
+
+{% endif %}
+
+
+
+
+</body>
+</html>

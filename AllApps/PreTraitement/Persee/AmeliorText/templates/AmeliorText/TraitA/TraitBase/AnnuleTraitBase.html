@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> AnnuleTrait{{ objet }}</title>
+</head>
+<body>
+
+Vous ne pouvez pas modifier ce traitement pour les {{ RenduPluriel }}
+avec votre statut d'utilisateur <br>
+<br>
+
+Il a déjà été effectué :<br>
+
+{% block content %}
+{% endblock %}
+
+pour la réduction : {{ reduction }} <br>
+
+<a class="btn btn-primary" href="{% url 'users:signup' %}">S'inscrire</a>
+<a class="btn btn-primary" href="{% url 'login' %}">S'identifier</a>
+
+</body>
+</html>

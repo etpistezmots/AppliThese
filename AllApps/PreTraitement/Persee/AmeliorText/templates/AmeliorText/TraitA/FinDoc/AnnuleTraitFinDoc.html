@@ -1,0 +1,23 @@
+{% extends 'AmeliorText/TraitA/TraitBase/AnnuleTraitBase.html' %}
+
+{% block content %}
+
+     {% if AncienneReductionElt.ContenuCentreRemove %}
+            en supprimant les passage dans l'Espace Géographique après une ligne centrée contenant un des
+termes suivants :
+        {% endif %}
+
+        {% if ListMots %}
+                <br>
+                 {% for mot in ListMots %}
+                    - {{ mot }} <br>
+                {% endfor %}
+                <br>
+        {% endif %}
+
+        {% if AncienneReductionElt.ManuscritRemove %}
+            et en supprimant ligne commençant par 'Manuscrit' et les lignes d'arpès dans l'Espace
+Géographique.
+        {% endif %}
+
+{% endblock %}

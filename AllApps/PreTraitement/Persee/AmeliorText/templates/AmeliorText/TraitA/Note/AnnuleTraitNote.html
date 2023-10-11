@@ -1,0 +1,23 @@
+{% extends 'AmeliorText/TraitA/TraitBase/AnnuleTraitBase.html' %}
+
+{% block content %}
+
+    {% if AncienneReductionElt.SupprNoteBio %}
+                en choisissant d'enlever les notes biographiques<br>
+            {% else %}
+                sans enlever les notes biographiques<br>
+            {% endif %}
+
+            {% if AncienneReductionElt.SupprNoteEdito %}
+                et en enlevant les notes éditoriales<br>
+            {% else %}
+                et sans enlever les notes éditoriales<br>
+            {% endif %}
+
+            {% if AncienneReductionElt.SupprNoteBasDePage %}
+                et en enlevant les notes de bas de pages<br>
+            {% else %}
+                et sans enlever les notes de bas de pages<br>
+            {% endif %}
+
+{% endblock %}

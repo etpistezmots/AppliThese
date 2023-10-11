@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+     {% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>ChercheMotFichier</title>
+    <style>
+        .marge {
+            margin-left: 3em;}
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+
+
+<body>
+
+     <p class="suite">
+            <a  href="{% url 'AmeliorText:home' %}ExploMotCleAll">Retour Texte</a>
+    </p>
+
+
+    <p class="suite">
+            <a href="{% url 'AmeliorText:ReDispatch' 'Explor' 'MotCle' %}">Retour : Part1)II)4)d)i)
+                Explorations mots-clés </a>
+    </p>
+    <p class="suite">
+            <a
+                    href="{% url 'AmeliorText:PresenceMotAvantObjetInterface' reduction revue 'MotCle'%}">
+                Retour exploration spécifique mot avant mots-clés</a>
+    </p>
+
+
+    <h2> Résultat avec un seuil de recherche de {{ SeuilEnCours }} pour {{ motponctu }}
+        sur la revue
+            {% if revue == "geo" %}
+                des <em>Annales de Géographie</em>
+            {% endif %}
+            {% if revue == "spgeo" %}
+                <em>L'Espace Géographique</em>
+            {% endif %}
+         dans le corpus {{ reduction }} </h2>
+
+
+    <ul>
+    {% for mot in MotSpe %}
+        {% for elt in mot %}
+            {% if forloop.counter0 == 0 %}
+                <li>{{ elt|safe }}</li>
+            {% else %}
+                <li>{{ elt }}</li>
+            {% endif %}
+        {% endfor %}
+        <br>
+    {% endfor %}
+    </ul>
+
+
+    <br>
+    <br>
+
+    <p class="suite">
+            <a  href="{% url 'AmeliorText:home' %}ExploMotCleMotAvant">Retour Texte</a>
+    </p>
+
+
+    <p class="suite">
+            <a href="{% url 'AmeliorText:ReDispatch' 'Explor' 'MotCle' %}">Retour explorations mots-clés</a>
+    </p>
+
+    <p class="suite">
+            <a
+                    href="{% url 'AmeliorText:PresenceMotAvantObjetInterface' reduction revue 'MotCle' %}">Retour
+                Retour exploration spécifique mot avant mots-clés</a>
+    </p>
+    <br>
+
+
+      <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+    <script type="text/javascript">
+        EnArrEnAvt("{% url 'AmeliorText:home' %}ExploMotCleMotAvant","{% url 'AmeliorText:home' %}ExploMotCleMotAvant");
+    </script>
+
+
+
+
+</body>
+</html>

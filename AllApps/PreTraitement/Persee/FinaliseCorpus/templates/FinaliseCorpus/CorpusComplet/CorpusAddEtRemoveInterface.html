@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    {% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Interface Mot Avant Resume</title>
+    <style>
+    .marge {
+            margin-left: 3em;}
+    .marge2 {
+        margin-left: 6em;}
+    .suite {
+        font-style: italic;
+        text-align: right;}
+    td {
+      text-align: center;
+      vertical-align: middle;}
+    </style>
+</head>
+
+<body>
+
+<h2> Interface de construction de corpus complet à partir du corpus {{ reduction }}</h2>
+
+
+    <form action="" method="post">
+           {% csrf_token %}
+
+        {{ form }}
+
+        <input type="submit" name="Effectuer" id="Effectuer" value="Effectuer">
+
+    </form>
+
+
+
+
+</body>
+</html>

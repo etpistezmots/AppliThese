@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>TypesDocArticle de la revue : {{revueperseeref}}</title>
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+<body>
+
+
+
+<h3>Types des documents "Article" pour la revue : {{revuerealname}}</h3>
+
+    <ul>
+    {% for type in Result %}
+        <li>{{ type }}</li>
+    {% endfor %}
+    </ul>
+
+<br>
+    <br>
+
+
+    <p class="suite">
+    <a  href="{% url 'DelimitCorpus:home' %}#III4">Retour texte : Chap4)III)4)</a>
+    </p>
+    <br>
+
+
+</body>
+</html>

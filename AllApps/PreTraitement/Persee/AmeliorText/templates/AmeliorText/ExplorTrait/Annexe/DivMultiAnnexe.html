@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    {% load static %}
+
+    <meta charset="UTF-8">
+    <title>Annexe de la réduction: {{reduction}}</title>
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+<body>
+
+
+   <p class="suite">
+    <a  href="{% url 'AmeliorText:home' %}#IV9">Retour texte : Chap5)IV)9)</a>
+    </p>
+    <br>
+
+    <p class="suite">
+            <a  href="{% url 'AmeliorText:ReDispatch' 'ExplorTrait' 'Annexe' %}">Retour exploration Annexe</a>
+    </p>
+    <br>
+
+
+
+
+<h2>Annexes sur plusierus pages du corpus {{reduction}} pour la revue {{ revuerealname }}</h2>
+
+
+<ul>
+{% for elt in Result %}
+    {% for elt1 in elt %}
+        {% if forloop.counter0 == 0 %}
+                <li>{{ elt1|safe }}</li>
+            {% else %}
+                <li>{{ elt1 }}</li>
+            {% endif %}
+    {% endfor %}
+    <br>
+{% endfor %}
+</ul>
+
+
+
+    <br>
+    <br>
+
+
+    <p class="suite">
+    <a  href="{% url 'AmeliorText:home' %}#IV9">Retour texte : Chap5)IV)9)</a>
+    </p>
+    <br>
+
+    <p class="suite">
+            <a  href="{% url 'AmeliorText:ReDispatch' 'ExplorTrait' 'Annexe' %}">Retour exploration Annexe</a>
+    </p>
+    <br>
+
+
+    <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+    <script type="text/javascript">
+        EnArrEnAvt("{% url 'AmeliorText:home' %}#IV9","{% url 'AmeliorText:home' %}#IV9");
+    </script>
+
+
+</body>
+</html>

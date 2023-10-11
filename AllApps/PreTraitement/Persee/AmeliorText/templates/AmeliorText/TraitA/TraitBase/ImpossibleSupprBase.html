@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ImpossibleSuppr{{ objet }}</title>
+    <style>
+    .marge {
+            margin-left: 3em;}
+    </style>
+</head>
+<body>
+Vous ne pouvez pas supprimer ce traitement pour les {{ RenduPluriel }}
+avec votre statut d'utilisateur <br>
+
+<a class="btn btn-primary" href="{% url 'users:signup' %}">S'inscrire</a>
+<a class="btn btn-primary marge" href="{% url 'login' %}">S'identifier</a>
+
+
+</body>
+</html>

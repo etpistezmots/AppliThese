@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SyntheseTrait{{ reduction }}</title>
+    <style>
+    h1,h2 {
+	        text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Résumés des traitements effectués pour la réduction : {{reduction}}</h1>
+
+{% for objet, red, pluriel, CheckTransform, Transform, EltRemove, EltAdd, DocRemove in MegaZip %}
+
+    <h2> Traitement des {{ pluriel }}</h2>
+
+    {% if CheckTransform %}
+
+        - Un traitement automatisé des {{ pluriel }} a été effectué pour cette réduction <br>
+
+            {% if red != 'FinMot' %}
+
+            avec les paramètres suivants :
+
+                {% for instance in Transform %}
+                    <ul>
+                        {% for key, value in instance.items %}
+                            {% if key != 'user' and key != 'id' and key != 'CorpusEtudeRef_id' %}
+                                <li><b>{{ key }}:</b>  {{ value }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                {% endfor %}
+            {% endif %}
+    {% else %}
+        - Aucun traitement automatisé n'a été effectué pour les {{ pluriel }} sur cette réduction <br>
+    {% endif %}
+
+    {% if EltRemove or EltAdd %}
+        - Des traitements manuels (retraits ou ajouts) ont été réalisées pour les {{ pluriel }} :
+        <a href="{% url 'AmeliorText:ConsultEltExcept' reduction objet %}">consulter</a>
+    {% else %}
+        - Aucun traitement manuel n'a été effectué pour les {{ pluriel }} sur cette réduction <br>
+    {% endif %}
+     <br>
+    {% if DocRemove %}
+        - Des documents ont été enlevés du corpus suite au traitement de cette partie :
+        <a href="{% url 'AmeliorText:ConsultDocExcept' reduction objet %}">consulter</a>
+    {% endif %}
+
+{% endfor %}
+
+
+
+
+</body>
+</html>

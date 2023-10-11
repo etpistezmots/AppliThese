@@ -1,0 +1,12 @@
+{% extends 'AmeliorText/TraitA/TraitBase/AnnuleTraitBase.html' %}
+
+{% block content %}
+
+       {% if AncienneReductionElt.remplace %}
+            en remplaçant les titres secondaires par leurs corrections <br>
+    {% else %}
+            sans remplacer les titres secondaires par leurs corrections <br>
+    {% endif %}
+
+
+{% endblock %}

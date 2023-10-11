@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Reduction de corpus</title>
+        <link rel="stylesheet" href= "{% static 'TableauEmb/css/bootstrap.min.css' %}">
+    <style>
+        .asteriskField {
+            display: none;
+        }
+        .marge {
+            margin-left: 3em;}
+
+        .btn-link.btn-anchor {
+            outline: none !important;
+            padding: 0;
+            border: 0;
+            vertical-align: baseline;
+            color: blue;
+            text-decoration: underline;}
+
+        .btn-link.btn-anchor:visited {
+            color: purple;
+            text-decoration: underline;}
+        .suite {
+            font-style: italic;
+            text-align: right;}
+
+        .testcolorlink {
+            color: #0000EE;
+            text-decoration: underline;}
+
+        .testcolorlink:visited {
+            color: #551A8B;
+            text-decoration: underline;}
+
+    </style>
+
+</head>
+<body>
+
+
+<!-- message d'information si ce n'est pas un superutilisateur
+ne peut pas effectuer de réduction -->
+{% if not user.is_superuser %}
+    <br>
+    La boite de sélection ci-dessous permet de consulter les corpus déjà construits avec la mention de tous
+    les paramètres utilisés.<br>
+{% else %}
+    <br>
+    La boite de sélection ci-dessous permet de consulter les corpus déjà construits avec la mention de tous
+    les paramètres utilisés.
+    <br>
+    <br>
+    Attention, la virgule est utilisée comme délimiteur <br>
+    sauf pour les catégories, c'est *<br>
+<br>
+{% endif %}
+
+<!-- Deuxième message info si jamais la réduction demandée a échouée -->
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+<br>
+
+<!-- 1er select sur les réductions disponibles   -->
+<label for="reduc">- Corpus d'études disponibles :</label>
+<select onchange="location = this.value;" id="reduc">
+    <!-- Différents cas suivant statut et demande -->
+    {% if user.is_superuser and reduction_id == 0 %}
+        <option selected>Nouveau corpus d'étude</option>
+    {% endif %}
+
+    {% if user.is_superuser and reduction_id != 0 %}
+        <option value="{% url 'DelimitCorpus:reduction' 0 %}">Nouveau corpus d'étude</option>
+    {% endif %}
+
+    {% for reduction in reductions%}
+        {% if reduction.id == reduction_id %}
+            <option selected>{{ reduction.nom }}</option>
+        {% else %}
+            <option value="{% url 'DelimitCorpus:reduction' reduction.id %}">{{ reduction.nom }}</option>
+        {% endif %}
+    {% endfor %}
+</select>
+
+<!-- formulaire   -->
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="container">
+        <fieldset class="grisemoi">
+            {% crispy form %}
+        </fieldset>
+    </div>
+
+    {% if user.is_superuser and reduction_id == 0 %}
+    <input class="marge" type="submit" name="Effectuer" id="Effectuer" value="Effectuer nouveau corpus d'étude">
+    {% endif %}
+</form>
+
+<br>
+
+
+{% if user.is_superuser %}
+    <a class="btn btn-primary marge" href="{% url 'DelimitCorpus:SupprReduc' %}">Supprimer un corpus d'étude</a>
+    <br>
+    <br>
+
+    {% endif %}
+
+
+
+<p class="suite">
+    <a  href="{% url 'DelimitCorpus:home' %}#IV3">Retour texte : Chap4)IV)3)</a>
+    </p>
+    <br>
+    <br>
+
+
+
+
+<script src="{% static 'TableauEmb/js/jquery-3.4.1.min.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+<script>
+
+    window.onload=function() {
+        {% if not user.is_superuser %}
+            var dateexclu = document.getElementById('div_id_date');
+            dateexclu.style.display = 'none';
+            $(".grisemoi").prop("disabled",true);
+        {% else %}
+            {% if reduction_id == 0 %}
+                $(".grisemoi").prop("disabled",false);
+            {% else %}
+                $(".grisemoi").prop("disabled",true)
+            {% endif %}
+        {% endif %}
+    }
+
+
+ </script>
+
+</body>
+</html>

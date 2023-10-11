@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    {% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>BasdePageOrder{{reduction}}</title>
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+<body>
+
+
+    <p class="suite">
+        <a  href="{% url 'AmeliorText:home' %}#BasdePageOrder">Retour Texte</a>
+    </p>
+
+    {% if user.is_superuser %}
+    <p class="suite">
+        <a href="{% url 'AmeliorText:ReDispatch' 'Explor' 'BasDePage' %}"> Retour Interface </a>
+    </p>
+    {% endif %}
+
+    <br>
+
+
+    <a class="btn btn-primary marge"
+       href="{% url 'AmeliorText:Download' 'BasDePageOrder' reduction revue 'txt' %}">Télecharger fichier</a>
+
+
+
+
+<h1>Bas de page ordonnés de la réduction {{reduction}} pour la revue
+    {{ revuerealname }}</h1>
+
+{% if MarqueurLimitePage %}
+    <br>
+    En raison de nombre d'éléments : {{NbresBasdePagesOrder}} articles <br>
+    présentant au moins un bas de page sans nombre au début ou à la fin <br>
+    en enlevant les cas où le bas de page fait partie d'une note ou d'une figure <br>
+    <br>
+    Seulement les bas de page des 100 premier articles concernés <br>
+    et des 100 derniers articles concernés ont été affichés. <br>
+    Vous pouvez télécharger l'ensemble des résultats en fichier .txt <br>
+    dans le lien tout à droite <br>
+    <br>
+    <br>
+
+    Les 100 premiers articles :
+
+    <ul>
+    {% for item1, item2, item3, item4 in RedListDeb %}
+        <li>{{ item1|safe  }}</li>
+        <li>{{ item2 }}</li>
+        <li>{{ item3 }}</li>
+        <li>{{ item4 }}</li>
+        <br>
+    {% endfor %}
+    </ul>
+
+    <br>
+    ...
+    Les 100 derniers articles :
+    <br>
+    <br>
+
+    <ul>
+    {% for item1, item2, item3, item4 in RedListFin %}
+        <li>{{ item1|safe  }}</li>
+        <li>{{ item2 }}</li>
+        <li>{{ item3 }}</li>
+        <li>{{ item4 }}</li>
+        <br>
+    {% endfor %}
+    </ul>
+
+
+
+{% else %}
+
+    <ul>
+    {% for item1, item2, item3, item4 in Result %}
+        <li>{{ item1|safe  }}</li>
+        <li>{{ item2 }}</li>
+        <li>{{ item3 }}</li>
+        <li>{{ item4 }}</li>
+        <br>
+    {% endfor %}
+    </ul>
+
+{% endif %}
+
+    <br>
+    <br>
+
+    <a class="btn btn-primary marge"
+       href="{% url 'AmeliorText:Download' 'BasDePageOrder' reduction revue 'txt' %}">Télecharger fichier</a>
+
+    <br>
+    <br>
+    <p class="suite">
+        <a  href="{% url 'AmeliorText:home' %}#BasdePageOrder">Retour Texte</a>
+    </p>
+
+    {% if user.is_superuser %}
+    <p class="suite">
+        <a href="{% url 'AmeliorText:ReDispatch' 'Explor' 'BasDePage' %}"> Retour Interface </a>
+    </p>
+    {% endif %}
+
+    <br>
+
+    <script type="text/javascript">
+        EnArrEnAvt("{% url 'AmeliorText:home' %}#BasdePageOrder","{% url 'AmeliorText:home' %}#BasdePageOrder");
+    </script>
+
+
+
+</body>
+</html>

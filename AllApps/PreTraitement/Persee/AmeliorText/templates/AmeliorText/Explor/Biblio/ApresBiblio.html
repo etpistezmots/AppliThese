@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    {% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>AprèsDernièreBiblio {{reduction}} </title>
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+<body>
+
+
+    <p class="suite">
+        <a  href="{% url 'AmeliorText:home' %}#ApresBiblio">Retour Texte</a>
+    </p>
+
+    {% if user.is_superuser %}
+    <p class="suite">
+        <a href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Biblio' %}"> Retour Interface </a>
+    </p>
+    {% endif %}
+
+    <br>
+
+
+        <h1>Articles avec des éléments textuels après la dernière bibliographie du corpus :
+            {{reduction}} et la revue {{revuerealname}}</h1>
+
+    <h2>Nombres d'éléments : {{ NbresResult }}</h2>
+
+        <ul>
+        {% for art in Result %}
+            {% for elt in art %}
+                {% if forloop.counter0 == 0 %}
+                    <li>{{ elt|safe }}</li>
+                {% else %}
+                    <li>{{ elt }}</li>
+                {% endif %}
+            {% endfor %}
+            <br>
+        {% endfor %}
+        </ul>
+
+
+     <br>
+    <br>
+    <p class="suite">
+        <a  href="{% url 'AmeliorText:home' %}#ApresBiblio">Retour Texte</a>
+    </p>
+
+    {% if user.is_superuser %}
+    <p class="suite">
+        <a href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Biblio' %}"> Retour Interface </a>
+    </p>
+    {% endif %}
+
+    <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+    <script type="text/javascript">
+        EnArrEnAvt("{% url 'AmeliorText:home' %}#ApresBiblio","{% url 'AmeliorText:home' %}#ApresBiblio");
+    </script>
+
+</body>
+</html>

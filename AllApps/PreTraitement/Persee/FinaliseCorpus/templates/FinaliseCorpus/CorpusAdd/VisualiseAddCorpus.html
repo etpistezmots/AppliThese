@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    {% load static %}
+
+    <head>
+        <meta charset="UTF-8">
+        <title>VisualiseAddCorpus</title>
+            <style>
+        .marge {
+            margin-left: 3em;}
+        .marge2 {
+            margin-left: 6em;}
+	    .suite {
+            font-style: italic;
+            text-align: right;}
+        .mypara {
+            text-align: justify;}
+    </style>
+
+    </head>
+    <body>
+        Le corpus {{ Cadd.nom }} est composé de {{ nbredocs }} documents :
+        <ul>
+            {% for doc in docs %}
+                   <li>- "{{ doc.titre }}" de "{{ doc.auteurs }}" paru dans la revue "{{ doc.revue }}" sous la
+                       forme d'un "{{ doc.type }}" en "{{ doc.annee }}". </li>
+            {% endfor %}
+        </ul>
+        <br>
+          <br>
+    <br>
+    <p class="suite">
+            <a  href="{% url 'FinaliseCorpus:AjoutEtRetrait'  %}">Retour : III)1) Ajouts et retraits de documents</a>
+    </p>
+    <br>
+
+
+    <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+    <script type="text/javascript">
+        EnArrEnAvt("{% url 'FinaliseCorpus:AjoutEtRetrait'  %}",
+        "{% url 'FinaliseCorpus:AjoutEtRetrait' %}");
+    </script>>
+        
+    </body>
+</html>

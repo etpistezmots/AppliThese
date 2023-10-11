@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Comparateur d'expe</title>
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+
+        * {
+          box-sizing: border-box;
+        }
+
+        /* Create two equal columns that floats next to each other */
+        .column {
+          float: left;
+          width: 50%;
+          padding: 5px;
+          border: solid #5B6DCD 1px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+
+        textarea {
+          width: 100%;
+          height: 100px;
+        }
+
+
+</style>
+</head>
+<body>
+
+    <p class="suite">
+      <a  href="{% url 'TxtTheseConstructResult:home' %}#III1"> Retour Texte </a>
+    </p>
+
+
+    <label for="paraselect">Affichage paramètres :</label>
+    <select onchange="location = this.value;" id="paraselect" name="paraselect" >
+        {% for parachoice in parachoices %}
+            {% if parachoice == paraselect %}
+                <option selected>{{ parachoice }}</option>
+            {% else %}
+                <option value="{% url 'ReseauExplore:resultallvisu' listexpesvisibles listexpesstock parachoice formselect tailleselect %}">{{ parachoice }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;
+
+  <label for="formselect">Format :</label>
+    <select onchange="location = this.value;" id="formselect" name="formselect" >
+        {% for formchoice in formchoices %}
+            {% if formchoice == formselect %}
+                <option selected>{{ formchoice }}</option>
+            {% else %}
+                <option value="{% url 'ReseauExplore:resultallvisu' listexpesvisibles listexpesstock paraselect formchoice tailleselect %}">{{ formchoice }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <label for="tailleselect">Taille image :</label>
+    <select onchange="location = this.value;" id="tailleselect" name="tailleselect">
+        {% for taillechoice in taillechoices %}
+            {% if taillechoice == tailleselect %}
+                <option selected>{{ taillechoice }}</option>
+            {% else %}
+                <option value="{% url 'ReseauExplore:resultallvisu' listexpesvisibles listexpesstock paraselect formselect taillechoice %}">{{ taillechoice }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+
+<div class="row">
+
+    <div class="column">
+
+<label for="expe1"> Choix de l'expe 1 :</label>
+<select onchange="location = this.value;" id="expe1">
+    {% for expeR,ListExpeVisR in ZipExpe1 %}
+        {% if expeR == expe1R %}
+        <option selected>{{ expeR.nomresult }}</option>
+        {% else %}
+        <option value="{% url 'ReseauExplore:resultallvisu' ListExpeVisR listexpesstock paraselect formselect tailleselect %}">{{ expeR.nomresult }}</option>
+        {% endif %}
+    {% endfor %}
+</select>
+
+        {% if paraselect == "All" or paraselect == "Diff" %}
+            <textarea id="dict1" name="dict1" rows="3" cols="150">Paramètre de l'expe 1 : {{ dict1 }}</textarea>
+        {% endif %}
+
+<input type="hidden" id="IndexNode" name="IndexNode" value="{{ expe1R.indexnode }}">
+<input type="hidden" id="IndexEdge" name="IndexEdge" value="{{ expe1R.indexedge }}">
+<input type="hidden" id="dejaouvert" name="dejaouvert" value="{{ dejaouvert }}">
+<input type="hidden" id="dejaouvertindex" name="dejaouvertindex" value="{{ dejaouvertindex }}">
+<input type="hidden" id="allactions" name="allactions" value="{{ allactions }}">
+<input type="hidden" id="testnoderecup" name="testnoderecup" value="{{ nodes_list|safe }}">
+  <input type="hidden" id="testedgerecup" name="testedgerecup" value="{{ edges_list|safe }}">
+  <input type="hidden" id="oriented1" name="oriented1" value="{{ expe1R.oriented }}">
+
+<input type="hidden" name="graph" id="graph" value="{{ graph }}">
+<div id="mynetwork"></div>
+
+</div>
+
+
+    <div class="column">
+<label for="expe2"> Choix de l'expe 2 :</label>
+<select onchange="location = this.value;" id="expe2">
+    {% for expeR,ListExpeVisR in ZipExpe2 %}
+        {% if expeR == expe2R %}
+        <option selected>{{ expeR.nomresult }}</option>
+        {% else %}
+        <option value="{% url 'ReseauExplore:resultallvisu' ListExpeVisR listexpesstock paraselect formselect tailleselect %}">{{ expeR.nomresult }}</option>
+        {% endif %}
+    {% endfor %}
+</select>
+
+        {% if paraselect == "All" or paraselect == "Diff" %}
+            <textarea id="dict2" name="dict2" rows="3" cols="150">Paramètre de l'expe 2 : {{ dict2 }}</textarea>
+        {% endif %}
+
+<input type="hidden" id="IndexNode2" name="IndexNode2" value="{{ expe2R.indexnode }}">
+<input type="hidden" id="IndexEdge2" name="IndexEdge2" value="{{ expe2R.indexedge }}">
+<input type="hidden" id="dejaouvert2" name="dejaouvert2" value="{{ dejaouvert2 }}">
+<input type="hidden" id="dejaouvertindex2" name="dejaouvertindex2" value="{{ dejaouvertindex2 }}">
+<input type="hidden" id="allactions2" name="allactions2" value="{{ allactions2 }}">
+<input type="hidden" id="testnoderecup2" name="testnoderecup2" value="{{ nodes_list2|safe }}">
+<input type="hidden" id="testedgerecup2" name="testedgerecup2" value="{{ edges_list2|safe }}">
+  <input type="hidden" id="oriented2" name="oriented2" value="{{ expe2R.oriented }}">
+
+
+<input type="hidden" name="graph2" id="graph2" value="{{ graph2 }}">
+<div id="mynetwork2"></div>
+
+        </div>
+</div>
+
+    <script src="{% static 'TableauEmb/js/jquery-3.4.1.min.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+<script src="{% static 'ReseauExplore/js/vis.min.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+ <script type="text/javascript">
+
+
+ nodes = new vis.DataSet({{ nodes_list|safe }});
+ edges = new vis.DataSet({{ edges_list|safe }});
+ var container = document.getElementById('mynetwork');
+ var oriented1 = document.getElementById('oriented1').value;
+ var taille = document.getElementById('tailleselect').value;
+
+ var data = {
+      nodes: nodes,
+       edges: edges
+            };
+
+if(oriented1=="no") {
+ var options = {
+     height: taille,
+     width: '100%',
+     nodes: {
+         size:15,
+         font:{strokeWidth: 1.5, "size": 20},
+           },
+     edges: {
+          color: {
+             inherit: "both"
+                 }
+             }
+     };
+ } else {
+ var options = {
+     height: taille,
+     width: '100%',
+     nodes: {
+         size:15,
+         font:{strokeWidth: 1.5, "size": 20},
+           },
+     edges: {
+          arrows: {
+                    to: {enabled: true, scaleFactor:0.5, type:'arrow'}
+                  },
+          color: {
+             inherit: "both"
+                 }
+             }
+     };
+ };
+
+
+ network = new vis.Network(container, data, options);
+
+
+ nodes2 = new vis.DataSet({{ nodes_list2|safe }});
+ edges2 = new vis.DataSet({{ edges_list2|safe }});
+ var container2 = document.getElementById('mynetwork2');
+ var oriented2 = document.getElementById('oriented2').value;
+
+ var data2 = {
+      nodes: nodes2,
+      edges: edges2
+            };
+
+ if(oriented2=="no") {
+ var options2 = {
+     height: taille,
+     width: '100%',
+     nodes: {
+         size:15,
+         font:{strokeWidth: 1.5, "size": 20},
+           },
+     edges: {
+          color: {
+             inherit: "both"
+                 }
+             }
+     };
+ } else {
+ var options2 = {
+     height: taille,
+     width: '100%',
+     nodes: {
+         size:15,
+         font:{strokeWidth: 1.5, "size": 20},
+           },
+     edges: {
+           arrows: {
+                    to: {enabled: true, scaleFactor:0.5, type:'arrow'}
+                  },
+          color: {
+             inherit: "both"
+                 }
+             }
+     };
+ };
+
+
+ network2 = new vis.Network(container2, data2, options2);
+
+ $.ajaxSetup({
+        headers: { "X-CSRFToken": '{{csrf_token}}' }
+        });
+
+    if(oriented1=="no") {
+        network.on( 'click', function(params) {
+            if (params.nodes.length > 0) {
+                var modele = {{ expe1R.modelc.id }};
+                var numberopen = {{ expe1R.nresult }};
+                var modeencours = "{{ expe1R.modelc.polymorphic_ctype.model}}";
+                var nomencours = "{{ expe1R.modelc.nom}}";
+                var epoqueencours = "{{ expe1R.modelc.epoque}}";
+                var revueencours = "{{ expe1R.modelc.revue}}";
+                var choixepoqueencours = "{{ expe1R.choixepoque}}";
+                var choixrevueencours = "{{ expe1R.choixrevue}}";
+                var nodeId = params.nodes[0];
+                var nodelabel = nodes.get(nodeId).label;
+                var indexnode = document.getElementById('IndexNode').value;
+                var indexedge = document.getElementById('IndexEdge').value;
+                var dejaouvert = document.getElementById('dejaouvert').value;
+                var dejaouvertindex = document.getElementById('dejaouvertindex').value;
+                var allactions = document.getElementById('allactions').value;
+            $.ajax({
+                 type:"POST",
+                 url:"/semreseauexplo/graphnonoriente",
+                 data: {'modeencours': modeencours,
+                        'nomencours': nomencours,
+                        'epoqueencours': epoqueencours,
+                        'revueencours': revueencours,
+                        'choixepoqueencours': choixepoqueencours,
+                        'choixrevueencours': choixrevueencours,
+                        'nodeId': nodeId,
+                        'nodelabel': nodelabel,
+                        'modele' : modele,
+                        'numberopen' : numberopen,
+                        'indexnode' : indexnode,
+                        'indexedge' : indexedge,
+                        'dejaouvert' : dejaouvert,
+                        'dejaouvertindex' : dejaouvertindex,
+                        'allactions' : allactions,
+                        // peut porter a confusion : renvoie au data du network (var data)
+                        'testdata' : JSON.stringify(data)
+                        },
+                 success: function(datat){
+                     console.log(datat['marqueurafermer']);
+                     if (datat['marqueurafermer']==true) {
+                        nodes.remove(datat['nodes_test']);
+                        edges.remove(datat['edges_test']);
+                     } else {
+                        nodes.add(datat['nodes_test']);
+                        edges.add(datat['edges_test']);
+                     }
+                     $('#IndexNode').val(datat['indexnode']);
+                     $('#IndexEdge').val(datat['indexedge']);
+                     $('#dejaouvert').val(datat['dejaouvert']);
+                     $('#dejaouvertindex').val(datat['dejaouvertindex']);
+                     $('#allactions').val(datat['allactions']);
+                     $('#testnoderecup').val(JSON.stringify(data.nodes._data));
+                     $('#testedgerecup').val(JSON.stringify(data.edges._data));
+                    }
+            });
+         };
+       });
+
+    } else {
+
+        network.on( 'click', function(params) {
+            if (params.nodes.length > 0) {
+                var modele = {{ expe1R.modelc.id }};
+                var numberopen = {{ expe1R.nresult }};
+                var modeencours = "{{ expe1R.modelc.polymorphic_ctype.model}}";
+                var nomencours = "{{ expe1R.modelc.nom}}";
+                var epoqueencours = "{{ expe1R.modelc.epoque}}";
+                var revueencours = "{{ expe1R.modelc.revue}}";
+                var choixepoqueencours = "{{ expe1R.choixepoque}}";
+                var choixrevueencours = "{{ expe1R.choixrevue}}";
+                var nodeId = params.nodes[0];
+                var nodelabel = nodes.get(nodeId).label;
+                var indexnode = document.getElementById('IndexNode').value;
+                var indexedge = document.getElementById('IndexEdge').value;
+                var dejaouvert = document.getElementById('dejaouvert').value;
+                var dejaouvertindex = document.getElementById('dejaouvertindex').value;
+                var allactions = document.getElementById('allactions').value;
+            $.ajax({
+                 type:"POST",
+                 url:"/semreseauexplo/graphoriente",
+                 data: {'modeencours': modeencours,
+                        'nomencours': nomencours,
+                        'epoqueencours': epoqueencours,
+                        'revueencours': revueencours,
+                        'choixepoqueencours': choixepoqueencours,
+                        'choixrevueencours': choixrevueencours,
+                        'nodeId': nodeId,
+                        'nodelabel': nodelabel,
+                        'modele' : modele,
+                        'numberopen' : numberopen,
+                        'indexnode' : indexnode,
+                        'indexedge' : indexedge,
+                        'dejaouvert' : dejaouvert,
+                        'dejaouvertindex' : dejaouvertindex,
+                        'allactions' : allactions,
+                        // peut porter a confusion : renvoie au data du network (var data)
+                        'testdata' : JSON.stringify(data)
+                        },
+                 success: function(datat){
+                     console.log(datat['marqueurafermer']);
+                     if (datat['marqueurafermer']==true) {
+                        nodes.remove(datat['nodes_test']);
+                        edges.remove(datat['edges_test']);
+                     } else {
+                        nodes.add(datat['nodes_test']);
+                        edges.add(datat['edges_test']);
+                     }
+                     $('#IndexNode').val(datat['indexnode']);
+                     $('#IndexEdge').val(datat['indexedge']);
+                     $('#dejaouvert').val(datat['dejaouvert']);
+                     $('#dejaouvertindex').val(datat['dejaouvertindex']);
+                     $('#allactions').val(datat['allactions']);
+                     $('#testnoderecup').val(JSON.stringify(data.nodes._data));
+                     $('#testedgerecup').val(JSON.stringify(data.edges._data));
+                    }
+            });
+         };
+       });
+    };
+
+
+ if(oriented2=="no") {
+
+   network2.on( 'click', function(params2) {
+            if (params2.nodes.length > 0) {
+                var modele2 = {{ expe2R.modelc.id }};
+                var numberopen2 = {{ expe2R.nresult }};
+                var modeencours2 = "{{ expe2R.modelc.polymorphic_ctype.model}}";
+                var nomencours2 = "{{ expe2R.modelc.nom}}";
+                var epoqueencours2 = "{{ expe2R.modelc.epoque}}";
+                var revueencours2 = "{{ expe2R.modelc.revue}}";
+                var choixepoqueencours2 = "{{ expe2R.choixepoque}}";
+                var choixrevueencours2 = "{{ expe2R.choixrevue}}";
+                var nodeId2 = params2.nodes[0];
+                var nodelabel2 = nodes2.get(nodeId2).label;
+                var indexnode2 = document.getElementById('IndexNode2').value;
+                var indexedge2 = document.getElementById('IndexEdge2').value;
+                var dejaouvert2 = document.getElementById('dejaouvert2').value;
+                var dejaouvertindex2 = document.getElementById('dejaouvertindex2').value;
+                var allactions2 = document.getElementById('allactions2').value;
+            $.ajax({
+                 type:"POST",
+                 url:"/semreseauexplo/graphnonoriente",
+                 data: {'modeencours': modeencours2,
+                        'nomencours': nomencours2,
+                        'epoqueencours': epoqueencours2,
+                        'revueencours': revueencours2,
+                        'choixepoqueencours': choixepoqueencours2,
+                        'choixrevueencours': choixrevueencours2,
+                        'nodeId': nodeId2,
+                        'nodelabel': nodelabel2,
+                        'modele' : modele2,
+                        'numberopen' : numberopen2,
+                        'indexnode' : indexnode2,
+                        'indexedge' : indexedge2,
+                        'dejaouvert' : dejaouvert2,
+                        'dejaouvertindex' : dejaouvertindex2,
+                        'allactions' : allactions2,
+                        // peut porter a confusion : renvoie au data du network (var data)
+                        'testdata' : JSON.stringify(data2)
+                        },
+                 success: function(datat){
+                     console.log(datat['marqueurafermer']);
+                     if (datat['marqueurafermer']==true) {
+                        nodes2.remove(datat['nodes_test']);
+                        edges2.remove(datat['edges_test']);
+                     } else {
+                        nodes2.add(datat['nodes_test']);
+                        edges2.add(datat['edges_test']);
+                     }
+                     $('#IndexNode2').val(datat['indexnode']);
+                     $('#IndexEdge2').val(datat['indexedge']);
+                     $('#dejaouvert2').val(datat['dejaouvert']);
+                     $('#dejaouvertindex2').val(datat['dejaouvertindex']);
+                     $('#allactions2').val(datat['allactions']);
+                     $('#testnoderecup2').val(JSON.stringify(data2.nodes._data));
+                     $('#testedgerecup2').val(JSON.stringify(data2.edges._data));
+                    }
+            });
+         };
+       });
+
+  } else {
+
+ network2.on( 'click', function(params2) {
+            if (params2.nodes.length > 0) {
+                var modele2 = {{ expe2R.modelc.id }};
+                var numberopen2 = {{ expe2R.nresult }};
+                var modeencours2 = "{{ expe2R.modelc.polymorphic_ctype.model}}";
+                var nomencours2 = "{{ expe2R.modelc.nom}}";
+                var epoqueencours2 = "{{ expe2R.modelc.epoque}}";
+                var revueencours2 = "{{ expe2R.modelc.revue}}";
+                var choixepoqueencours2 = "{{ expe2R.choixepoque}}";
+                var choixrevueencours2 = "{{ expe2R.choixrevue}}";
+                var nodeId2 = params2.nodes[0];
+                var nodelabel2 = nodes2.get(nodeId2).label;
+                var indexnode2 = document.getElementById('IndexNode2').value;
+                var indexedge2 = document.getElementById('IndexEdge2').value;
+                var dejaouvert2 = document.getElementById('dejaouvert2').value;
+                var dejaouvertindex2 = document.getElementById('dejaouvertindex2').value;
+                var allactions2 = document.getElementById('allactions2').value;
+            $.ajax({
+                 type:"POST",
+                 url:"/semreseauexplo/graphoriente",
+                 data: {'modeencours': modeencours2,
+                        'nomencours': nomencours2,
+                        'epoqueencours': epoqueencours2,
+                        'revueencours': revueencours2,
+                        'choixepoqueencours': choixepoqueencours2,
+                        'choixrevueencours': choixrevueencours2,
+                        'nodeId': nodeId2,
+                        'nodelabel': nodelabel2,
+                        'modele' : modele2,
+                        'numberopen' : numberopen2,
+                        'indexnode' : indexnode2,
+                        'indexedge' : indexedge2,
+                        'dejaouvert' : dejaouvert2,
+                        'dejaouvertindex' : dejaouvertindex2,
+                        'allactions' : allactions2,
+                        // peut porter a confusion : renvoie au data du network (var data)
+                        'testdata' : JSON.stringify(data2)
+                        },
+                 success: function(datat){
+                     console.log(datat['marqueurafermer']);
+                     if (datat['marqueurafermer']==true) {
+                        nodes2.remove(datat['nodes_test']);
+                        edges2.remove(datat['edges_test']);
+                     } else {
+                        nodes2.add(datat['nodes_test']);
+                        edges2.add(datat['edges_test']);
+                     }
+                     $('#IndexNode2').val(datat['indexnode']);
+                     $('#IndexEdge2').val(datat['indexedge']);
+                     $('#dejaouvert2').val(datat['dejaouvert']);
+                     $('#dejaouvertindex2').val(datat['dejaouvertindex']);
+                     $('#allactions2').val(datat['allactions']);
+                     $('#testnoderecup2').val(JSON.stringify(data2.nodes._data));
+                     $('#testedgerecup2').val(JSON.stringify(data2.edges._data));
+                    }
+            });
+         };
+       });
+  };
+
+
+ </script>
+
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>InvalidForm</title>
+    </head>
+    <body>
+        Le formulaire d'enregitrement ci-dessous n'est pas valide
+        </br>
+        </br>
+        {{ form.as_p}}
+        </br>
+        </br>
+         <button onclick="goBack()">Retour</button>
+
+    <script>
+    function goBack() {
+      window.history.back();
+    }
+    </script>
+
+    </body>
+</html>

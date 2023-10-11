@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>RemoveCorpusFin</title>
+     <style>
+        .marge {
+            margin-left: 3em;}
+
+    </style>
+</head>
+<body>
+
+
+<form action="" method="post">
+
+    {% csrf_token %}
+
+        {% if user.is_superuser %}
+
+            {% if AllCorpusAddEnCours %}
+
+                {% for corpusadd in AllCorpusAddEnCours %}
+                    <label for="nom">- Choix corpus additionnel à supprimer:</label>
+                        <select  id="nom" name="nom">
+                            <option value="{{ corpusadd.nom }}">{{ corpusadd.nom }}</option>
+                        </select>
+
+                {% endfor %}
+                <br>
+                <br>
+
+                <button  type="submit"  onclick="return confirm('Confirmer la suppression ?')" name="Supprimer" id="Supprimer"> Supprimer </button>
+
+            {% else %}
+
+                <p> Il n'existe pas de corpus de fin à supprimer !</p>
+
+            {% endif %}
+
+
+        {% else %}
+
+            Vous n'avez pas les droits pour effectuer des suppressions de corpus de fin.
+
+        {% endif %}
+
+    <br>
+    <br>
+
+    <a class="btn btn-primary" href="{% url 'FinaliseCorpus:home' %}">Retour home FinaliseCorpus</a> <br>
+    <a class="btn btn-primary" href="{% url 'general:home' %}">Retour home général</a>
+
+</form>
+
+</body>
+</html>

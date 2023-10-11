@@ -1,0 +1,6 @@
+"mais le véritable développement de cette voie de recherche ne s’est réalisé qu’après les travaux de Mikolov et al. "	"(2013)"	" avec la diffusion de la méthode Word2Vec"	"EtatDesLieux"	"SyntagAPlong"	"Mik1a"
+"La méthode Word2Vec a été développée par "	"(Mikolov et al. 2013)"	". Cette partie présente dans un premier temps de manière simplifiée le modèle CBOW."	"EtatDesLieux"	"Word2Vec"	"Mik1b"
+"Figure n°2 : Fonctionnement du modèle CBOW "	"(Mikolov et al. 2013)"	" "	"EtatDesLieux"	"Word2Vec"	"Figure2"
+"Ce graphique extrait de la publication originelle de  "	"(Mikolov et al. 2013)"	" est trop synthétique pour comprendre même de manière simplifiée ce qui est réalisé par l’algorithme."	"EtatDesLieux"	"Word2Vec"	"Mik1d"
+"Pour plus de détails techniques sur l’ensemble du processus d’optimisation qui est aussi appelé phase d’apprentissage ou d’entraînement, nous renvoyons le lecteur intéressé à l’article original "	"(Mikolov et al. 2013)"	"."	"EtatDesLieux"	"Word2Vec"	"Mik1e"
+"Figure n°4 : Fonctionnement du modèle Skip-Gram "	"(Mikolov et al. 2013)"	" "	"EtatDesLieux"	"Word2Vec"	"Mik1f"

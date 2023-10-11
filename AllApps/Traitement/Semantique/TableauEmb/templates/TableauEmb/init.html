@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    {% if modeactuel == "word2vec" %}
+        <title>Init Word2Vec</title>
+    {% elif modeactuel == "glove" %}
+        <title>Init glove</title>
+    {% elif modeactuel == "fasttext" %}
+        <title>Init FastText</title>
+    {% endif %}
+
+    <style>
+        .asteriskField {
+            display: none;
+        }
+        .marge {
+            margin-left: 1em;
+        }
+        .marge2 {
+            margin-left: 3em;
+        }
+        h4 {
+        text-decoration:underline;
+        }
+
+    </style>
+
+    <link rel="stylesheet" href= "{% static 'TableauEmb/css/bootstrap.min.css' %}">
+
+</head>
+
+
+<body>
+    </br>
+
+    <h4 class="marge">Générer des résultats :</h4>
+
+
+    <label class="marge2" for="mode">- Choix du mode d'expérimentation :</label>
+    <select onchange="location = this.value;" id="mode">
+        {% for mode in allmodes %}
+            {% if mode == modeactuel %}
+                <option selected>{{ mode }}</option>
+            {% else %}
+                <option value="{% url 'TableauEmb:home' mode %}">{{ mode }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+
+    </br>
+
+<!-- permission superuser : calcul nouveau modele -->
+    {% if user.is_superuser %}
+
+        <label class="marge2" for="modele">- Nouveau modèle ou partir d'un modèle disponible :</label>
+        <select onchange="location = this.value;" id="modele">
+            {% if modelscalcul %}
+                <option selected>Nouveau modèle</option>
+                {% for model in modelscalcul %}
+                    <option value="{% url 'TableauEmb:modele' modeactuel model.id %}">{{ model.nom }}</option>
+                {% endfor %}
+            {% else %}
+                <option selected>Pas de modèle disponible</option>
+            {% endif %}
+        </select>
+
+    {% else %}
+
+        <label class="marge2" for="modele">- Partir d'un modèle disponible :</label>
+        <select onchange="location = this.value;" id="modele">
+            {% if modelscalcul %}
+                <option selected>A choisir ci-dessous</option>
+                {% for model in modelscalcul %}
+                    <option value="{% url 'TableauEmb:modele' modeactuel model.id %}">{{ model.nom }}</option>
+                {% endfor %}
+            {% else %}
+                <option selected>Pas de modèle disponible</option>
+            {% endif %}
+        </select>
+
+    {% endif %}
+
+    </br>
+
+    <form action="" method="post">
+
+        {% csrf_token %}
+
+        <div class="container">
+        {% crispy form %}
+        </div>
+
+        </br>
+        <!-- permission superuser : calcul nouveau modele -->
+        {% if user.is_superuser %}
+            <input class="marge2" type="submit" name="Calculer" id="Calculer" value="Calcul nouveau modele">
+        {% endif %}
+
+        </br>
+        </br>
+        </br>
+
+        <h4 class="marge">Comparer des résultats déjà existants:</h4>
+            <input class="marge2" type="submit" name="Consulter" id="Consulter" value="Comparateur">
+
+    </form>
+
+
+
+<script type="text/javascript">
+
+{% if not user.is_superuser %}
+    var nom = document.getElementById('div_id_nom');
+    nom.style.display = 'none';
+    var user = document.getElementById('div_id_user_restrict');
+    user.style.display = 'none';
+    var path = document.getElementById('div_id_CorpusFinRef');
+    path.style.display = 'none';
+{% endif %}
+
+
+</script>
+
+</body>
+
+</html>

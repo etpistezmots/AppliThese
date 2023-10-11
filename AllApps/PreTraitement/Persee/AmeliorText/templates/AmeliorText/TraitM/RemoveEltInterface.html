@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ objetred }}</title>
+</head>
+<body>
+
+<form action="" method="post">
+       {% csrf_token %}
+
+    Deux formes d'entrée sont possibles :<br>
+    <br>
+    - soit un doublet d'info séparé par une virgules de la forme :<br>
+    nomdoc1, correctindexdeb(c'est à dire l'index de debut de la correction {{ objetred }} que vous voulez enlever<br>
+    - soit un triplet d'info sous la forme :<br>
+    nomdoc1, correctindexdeb1,correctitreindexfin1(c'est à dire l'index de fin de la correction à enlever)<br>
+    <br>
+    Il est possible de faire un traitement de groupe : une correction par ligne <br>
+    en mixant des doublets et des triplets<br>
+    <br>
+    Attention si ça marche pas (bien vérifier le nombre de virgule par ligne (deux ou trois)<br>
+    en particulier qu'il n'y ait pas une dernière ligne vide par inattention<br>
+    <br>
+
+    <textarea name="Text1" cols="100" rows="7"></textarea>
+    <br>
+
+    <input type="submit" name="Retour" id="Retour" value="Retour">
+    <input type="submit" name="Effectuer" id="Effectuer" value="Effectuer">
+    <br>
+</form>
+
+</body>
+</html>

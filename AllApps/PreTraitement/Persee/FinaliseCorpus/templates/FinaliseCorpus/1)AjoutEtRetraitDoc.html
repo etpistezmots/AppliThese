@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>AjoutEtRetrait</title>
+    <style>
+	    .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+<body>
+
+
+
+    {% if user.is_superuser %}
+    <a href="{% url 'FinaliseCorpus:CorpusAddFct' %}">CorpusAddFct</a>
+    <br>
+    <br>
+    <a href="{% url 'FinaliseCorpus:RemoveCorpusAdd' %}">CorpusAddRemove</a>
+    <br>
+    <br>
+    {% endif %}
+
+
+
+ <!-- permet d'afficher les corpus constuits hors thèse s'ils existent  -->
+    <br>
+    {% for reduction in reductions %}
+                <a href="{% url 'FinaliseCorpus:LangueDetectFct' reduction.nom  %}">
+                    Resultat de détection automatique des documents n'étant pas en français pour le corpus
+                    {{ reduction.nom }}</a>
+                <br>
+                <br>
+                    <a href="{% url 'FinaliseCorpus:CorpusAddEtRemoveInterface' reduction.nom %}">
+                        Inteface Ajout et Retrait corpus {{ reduction.nom }}</a>
+                <br>
+                <br>
+    {% endfor %}
+
+    {% if user.is_superuser %}
+    <br>
+    <a href="{% url 'FinaliseCorpus:RemoveCorpusComplet' %}">CorpusCompletRemove</a>
+    <br>
+    <br>
+    {% endif %}
+
+<!-- TEXT DEB -->
+
+ <p class="suite">
+    <a  href="{% url 'FinaliseCorpus:home' %}#addremove">Retour texte : Chap6)I)1)</a>
+    </p>
+    <br>
+
+
+
+        
+    </body>
+</html>

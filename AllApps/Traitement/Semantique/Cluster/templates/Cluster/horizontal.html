@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Comparateur d'expe</title>
+    <style>
+
+        .suite {
+            font-style: italic;
+            text-align: right;}
+
+        * {
+          box-sizing: border-box;
+        }
+
+        /* Create two equal columns that floats next to each other */
+        .column {
+          float: left;
+          width: 50%;
+          padding: 5px;
+          border: solid #5B6DCD 1px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+
+        textarea {
+          width: 100%;
+          height: 100px;
+        }
+
+
+</style>
+</head>
+<body>
+
+<p class="suite">
+  <a  href="{% url 'TxtTheseConstructResult:home' %}#III2"> Retour Texte </a>
+</p>
+
+
+    <label for="paraselect">Affichage paramètres :</label>
+    <select onchange="location = this.value;" id="paraselect" name="paraselect" >
+        {% for parachoice in parachoices %}
+            {% if parachoice == paraselect %}
+                <option selected>{{ parachoice }}</option>
+            {% else %}
+                <option
+                        value="{% url 'Cluster:resultallvisu' listexpesvisibles listexpesstock parachoice formselect tailleselect %}">{{ parachoice }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;
+
+  <label for="formselect">Format :</label>
+    <select onchange="location = this.value;" id="formselect" name="formselect" >
+        {% for formchoice in formchoices %}
+            {% if formchoice == formselect %}
+                <option selected>{{ formchoice }}</option>
+            {% else %}
+                <option value="{% url 'Cluster:resultallvisu' listexpesvisibles listexpesstock paraselect formchoice tailleselect %}">{{ formchoice }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <label for="tailleselect">Taille image :</label>
+    <select onchange="location = this.value;" id="tailleselect" name="tailleselect">
+        {% for taillechoice in taillechoices %}
+            {% if taillechoice == tailleselect %}
+                <option selected>{{ taillechoice }}</option>
+            {% else %}
+                <option value="{% url 'Cluster:resultallvisu' listexpesvisibles listexpesstock paraselect formselect taillechoice %}">{{ taillechoice }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+
+<div class="row">
+
+    <div class="column">
+
+<label for="expe1"> Choix de l'expe 1 :</label>
+<select onchange="location = this.value;" id="expe1">
+    {% for expeR,ListExpeVisR in ZipExpe1 %}
+        {% if expeR == expe1R %}
+        <option selected>{{ expeR.nomresult }}</option>
+        {% else %}
+        <option value="{% url 'Cluster:resultallvisu' ListExpeVisR listexpesstock paraselect formselect tailleselect %}">{{ expeR.nomresult }}</option>
+        {% endif %}
+    {% endfor %}
+</select>
+
+        {% if paraselect == "All" or paraselect == "Diff" %}
+            <textarea id="dict1" name="dict1" rows="3" cols="150">Paramètre de l'expe 1 : {{ dict1 }}</textarea>
+        {% endif %}
+
+    <input type="hidden" id="testnoderecup" name="testnoderecup" value="{{ nodes_list|safe }}">
+    <input type="hidden" id="testedgerecup" name="testedgerecup" value="{{ edges_list|safe }}">
+
+    <div id="mynetwork"></div>
+
+    {% if expe1R.methode_clustering == "saut moyen" or expe1R.methode_clustering == "saut minimal" or expe1R.methode_clustering == "saut maximal" %}
+
+    <img  id="dendroExpe1" src="{% url 'Cluster:image' expe1R.modelc.polymorphic_ctype.model expe1R.nomresult %}" width="100%" height="{{ taillediagramme1 }}">
+
+    {% endif %}
+
+
+</div>
+
+
+    <div class="column">
+<label for="expe2"> Choix de l'expe 2 :</label>
+<select onchange="location = this.value;" id="expe2">
+    {% for expeR,ListExpeVisR in ZipExpe2 %}
+        {% if expeR == expe2R %}
+        <option selected>{{ expeR.nomresult }}</option>
+        {% else %}
+        <option value="{% url 'Cluster:resultallvisu' ListExpeVisR listexpesstock paraselect formselect tailleselect %}">{{ expeR.nomresult }}</option>
+        {% endif %}
+    {% endfor %}
+</select>
+
+        {% if paraselect == "All" or paraselect == "Diff" %}
+            <textarea id="dict2" name="dict2" rows="3" cols="150">Paramètre de l'expe 2 : {{ dict2 }}</textarea>
+        {% endif %}
+
+    <input type="hidden" id="testnoderecup2" name="testnoderecup2" value="{{ nodes_list2|safe }}">
+    <input type="hidden" id="testedgerecup2" name="testedgerecup2" value="{{ edges_list2|safe }}">
+
+    <div id="mynetwork2"></div>
+
+    {% if expe1R.methode_clustering == "saut moyen" or expe1R.methode_clustering == "saut minimal" or expe1R.methode_clustering == "saut maximal" %}
+
+    <img  id="dendroExpe2" src="{% url 'Cluster:image' expe2R.modelc.polymorphic_ctype.model expe2R.nomresult %}" width="100%" height="{{ taillediagramme2 }}">
+
+    {% endif %}
+
+        </div>
+</div>
+
+<script src="{% static 'ReseauExplore/js/vis.min.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+<script type="text/javascript">
+
+        nodes1 = new vis.DataSet({{ nodes_list1|safe }});
+        edges1 = new vis.DataSet({{ edges_list1|safe }});
+        var container = document.getElementById('mynetwork');
+        var taille = document.getElementById('tailleselect').value;
+
+        var data = {
+                nodes: nodes1,
+                edges: edges1
+            };
+
+        var options = {
+             height: taille,
+             width: '100%',
+             nodes: {
+                 size:15,
+                 font:{strokeWidth: 1.5, size: 20,  multi: 'html', bold: '18px arial black'},
+                   },
+             edges: {
+                  color: {
+                     inherit: "both"
+                         }
+                     },
+         groups: {
+1: {color:{background:'#81BEF7'}},
+2: {color:{background:'#FFFF00'}},
+3: {color:{background:'#F78181'}},
+4: {color:{background:'#3ADF00'}},
+5: {color:{background:'#D358F7'}},
+6: {color:{background:'#B09603'}},
+7: {color:{background:'#FAAC58'}},
+8: {color:{background:'#0040FF'}},
+9: {color:{background:'#F8ADD6'}},
+10: {color:{background:'#9EFDCB'}},
+11: {color:{background:'#DF0101'}},
+12: {color:{background:'#FE2E9A'}},
+13: {color:{background:'#0080FF'}},
+14: {color:{background:'#0B6121'}},
+15: {color:{background:'#DF01A5'}},
+16: {color:{background:'#D8CEF6'}}
+}
+             };
+
+        network = new vis.Network(container, data, options);
+
+
+
+
+        nodes2 = new vis.DataSet({{ nodes_list2|safe }});
+        edges2 = new vis.DataSet({{ edges_list2|safe }});
+        var container2 = document.getElementById('mynetwork2');
+
+        var data2 = {
+                nodes: nodes2,
+                edges: edges2
+            };
+
+        var options2 = {
+             height: taille,
+             width: '100%',
+             nodes: {
+                 size:15,
+                 font:{strokeWidth: 1.5, size: 20,  multi: 'html', bold: '18px arial black'},
+                   },
+             edges: {
+                  color: {
+                     inherit: "both"
+                         }
+                     },
+         groups: {
+1: {color:{background:'#81BEF7'}},
+2: {color:{background:'#FFFF00'}},
+3: {color:{background:'#F78181'}},
+4: {color:{background:'#3ADF00'}},
+5: {color:{background:'#D358F7'}},
+6: {color:{background:'#B09603'}},
+7: {color:{background:'#FAAC58'}},
+8: {color:{background:'#0040FF'}},
+9: {color:{background:'#F8ADD6'}},
+10: {color:{background:'#9EFDCB'}},
+11: {color:{background:'#DF0101'}},
+12: {color:{background:'#FE2E9A'}},
+13: {color:{background:'#0080FF'}},
+14: {color:{background:'#0B6121'}},
+15: {color:{background:'#DF01A5'}},
+16: {color:{background:'#D8CEF6'}}
+}
+             };
+
+        network2 = new vis.Network(container2, data2, options2);
+
+
+
+
+
+ </script>
+
+
+</body>
+</html>

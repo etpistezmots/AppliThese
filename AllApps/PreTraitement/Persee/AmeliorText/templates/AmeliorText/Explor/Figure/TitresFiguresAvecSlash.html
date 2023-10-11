@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    {% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Titres des figures qvec un slash de la réduction: {{reduction}}</title>
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+<body>
+
+
+    <p class="suite">
+    <a  href="{% url 'AmeliorText:home' %}#FigureTitreSlash">Retour texte</a>
+    </p>
+    <br>
+
+    <p class="suite">
+            <a  href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Figure' %}">Retour Exploration figures</a>
+    </p>
+    <br>
+
+
+
+    <h2>Titres de figures avec un slash classés chronologiquement de la revue: {{ revuerealname }}</h2>
+
+    <br>
+    <ul>
+    {% for TitreSlash in Result %}
+        {% for elt in TitreSlash%}
+            {% if forloop.counter0 == 0 %}
+                <li>{{ elt|safe }}</li>
+            {% else %}
+                <li>{{ elt }}</li>
+            {% endif %}
+        {% endfor %}
+        </br>
+    {% endfor %}
+    </ul>
+
+
+    <br>
+    <br>
+
+    <p class="suite">
+    <a  href="{% url 'AmeliorText:home' %}#FigureTitreSlash">Retour texte</a>
+    </p>
+    <br>
+
+    <p class="suite">
+            <a  href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Figure' %}">Retour Explorations figures</a>
+    </p>
+    <br>
+
+    <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+    <script type="text/javascript">
+        EnArrEnAvt("{% url 'AmeliorText:home' %}#FigureTitreSlash","{% url 'AmeliorText:home' %}#FigureTitreSlash");
+    </script>
+
+
+</body>
+</html>

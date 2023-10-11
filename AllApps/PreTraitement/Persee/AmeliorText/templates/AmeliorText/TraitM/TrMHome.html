@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    {% load static %}
+
+    <meta charset="UTF-8">
+     <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+        .mypara {
+            text-align: justify;}
+    </style>
+    <title>TraitM Titre Home</title>
+</head>
+<body>
+
+
+
+
+    <h3> Vers interface et consultation des traitements manuels</h3>
+
+    {% if reductions %}
+
+        <form action="" method="post">
+        {% csrf_token %}
+
+            <label class="marge" for="reduc">Corpus d'études disponibles :</label>
+            <select name="reduc" id="reduc">
+                {% for reduction in reductions%}
+                        <option value="{{ reduction.nom }}">{{ reduction.nom }}</option>
+                {% endfor %}
+            </select>
+
+            <br>
+
+            <label class="marge" for="choice">Choix disponibles :</label>
+            <select name="choice" id="choice">
+                <option value="RemoveTransformer">Enlever des éléments {{ ObjetPluriel }} qui ont été
+                    précédemment ajoutés automatiquement</option>
+                <option value="AddTransformer">Ajouter des éléments {{ ObjetPluriel }} manuellement</option>
+                <option value="ConsultEltExcept">Consulter tous les éléments {{ ObjetPluriel }} enlevés ou
+                    ajoutés</option>
+                <option value="RemoveDoc">Enlever des documents pour ce corpus</option>
+                <option value="ConsultDocExcept">Consulter toutes les documents enlevées dans le cadre du
+                    traitement des {{ ObjetPluriel }}</option>
+            </select>
+
+
+            <br>
+
+            <input class="marge2" type="submit" name="Effectuer" id="Effectuer"
+                   value="Effectuer">
+
+         </form>
+
+
+    {% else %}
+
+        <p> Vous n'avez pas de corpus d'étude sur lequel faire ce travail d'amélioration des textes.</p>
+        <p> Un travail de délimitation doit déjà être effectué</p>
+
+    {% endif %}
+
+
+    <h3> Texte présentation Thèse</h3>
+
+
+        {% if objet == "Titre" %}
+
+            <br>
+            <p class="suite">
+                <a  href="{% url 'AmeliorText:home' %}#IV2c"> Retour Text : Chap5)IV)2)c)</a>
+            </p>
+
+
+            <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                            charset="utf-8"></script>
+            <script type="text/javascript">
+             EnArrEnAvt("{% url 'AmeliorText:home' %}#IV2c","{% url 'AmeliorText:home' %}#IV2c");
+            </script>
+
+
+
+
+        {% elif objet == "HautDePage" %}
+
+
+            <br>
+            <p class="suite">
+                <a  href="{% url 'AmeliorText:home' %}#IV5c"> Retour Text : Chap5)IV)5)c)</a>
+            </p>
+
+            <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                            charset="utf-8"></script>
+            <script type="text/javascript">
+             EnArrEnAvt("{% url 'AmeliorText:home' %}#IV5c","{% url 'AmeliorText:home' %}#IV5c");
+            </script>
+
+
+
+        {% elif objet == "BasDePage" %}
+
+            <br>
+            <p class="suite">
+                <a  href="{% url 'AmeliorText:home' %}#IV6c"> Retour Text : Chap5)IV)6)c)</a>
+            </p>
+
+            <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                            charset="utf-8"></script>
+            <script type="text/javascript">
+             EnArrEnAvt("{% url 'AmeliorText:home' %}#IV6c","{% url 'AmeliorText:home' %}#IV6c");
+            </script>
+
+
+
+        {% elif objet == "Note" %}
+
+            <br>
+            <p class="suite">
+                <a  href="{% url 'AmeliorText:home' %}#IV7c"> Retour Text : Chap5)IV)7)c)</a>
+            </p>
+
+            <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                            charset="utf-8"></script>
+            <script type="text/javascript">
+             EnArrEnAvt("{% url 'AmeliorText:home' %}#IV7c","{% url 'AmeliorText:home' %}#IV7c");
+            </script>
+
+
+
+        {% elif objet == "Biblio" %}
+
+
+            <p class="suite">
+                <a  href="{% url 'AmeliorText:home' %}#IV8c"> Retour Text : Chap5)IV)8)c)</a>
+            </p>
+                <br>
+
+            <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                            charset="utf-8"></script>
+            <script type="text/javascript">
+             EnArrEnAvt("{% url 'AmeliorText:home' %}#IV8c","{% url 'AmeliorText:home' %}#IV8c");
+            </script>
+
+        {% else %}
+
+            Cette section n'a pas de texte de présentation dans la thèse.
+
+        {% endif %}
+
+
+
+
+</body>
+</html>

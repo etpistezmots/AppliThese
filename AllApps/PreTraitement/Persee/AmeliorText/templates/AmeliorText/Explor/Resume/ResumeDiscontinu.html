@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    {% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Résumés discontinus de la réduction: {{reduction}}</title>
+    <style>
+
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+<body>
+
+    <a href="{% url 'general:home' %}">Retour au sommaire</a> <br>
+    <br>
+    <span class="titresouligne">Ma localisation actuelle dans l'interface :</span>
+    <br>
+    <span class="margetitre1"> Part 1) Prétraitement et évaluation des données </span>
+    <br>
+    <span class="margetitre2">&gt;</span>
+    <a href="{% url 'AmeliorText:home' %}" class="titreital" >II) L’amélioration des contenus textuels</a> 	<br>
+    <span class="margetitre3">&gt;</span>
+    <span class="titreital">4) Améliorations réalisées grâce à l’examen des parties des documents</span>
+  	<br>
+	<span class="margetitre4">&gt;</span>
+    <span class="titreital">c) Résumés</span>
+    <br>
+	<span class="margetitre5">&gt;</span>
+	<a href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Resume' %}" class="titreital" >i) Exploration</a>
+    <br>
+    <span class="margetitre6">&gt;</span>
+    <span class="titreital"> Affiche résumés discontinus {{ revue }}</span>
+    <br>
+    <br>
+
+
+
+
+    <br>
+    <br>
+    <p class="suite">
+            <a  href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Resume' %}">Retour : Part1)II)4)c)i)
+                Explorations résumés</a>
+    </p>
+    <br>
+
+
+
+    <h1>Résumés discontinus de la réduction : {{reduction}}</h1>
+    <h2>Nombres d'éléments : {{NbresResumes}}</h2>
+
+    <h2>Pourcentage par rapport au total : {{PourcentDiscon}}</h2>
+
+
+
+    <ul>
+    {% for resume in RefResumes%}
+        {% for elt in resume %}
+        <li>{{ elt }}</li>
+        {% endfor %}
+        <br>
+    {% endfor %}
+    </ul>
+
+
+    <br>
+    <br>
+    <p class="suite">
+            <a  href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Resume' %}">Retour : Part1)II)4)c)i)
+                Explorations résumés</a>
+    </p>
+    <br>
+
+    <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+    <script type="text/javascript">
+        EnArrEnAvt("{% url 'AmeliorText:ReDispatch' 'Explor' 'Resume' %}",
+        "{% url 'AmeliorText:ReDispatch' 'Explor' 'Resume' %}");
+    </script>
+
+</body>
+</html>

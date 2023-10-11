@@ -1,0 +1,3704 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+
+    {% load static %}
+
+    <title>Construction Home</title>
+    <style>
+        .marge {
+            margin-left: 3em;}
+        .marge2 {
+            margin-left: 6em;}
+        .marge3 {
+            margin-left: 9em;}
+        .suite {
+            font-style: italic;
+            text-align: right;}
+        .present {
+            text-decoration: underline;
+            font-weight:bold;}
+        .a {
+            text-align: center;}
+        .cite {
+            text-align: justify;
+            margin-right: 9em;
+            margin-left: 9em;
+            font-size: 0.9em;}
+        .note {
+            text-decoration: none;
+            }
+        .completlegend {
+            font-size: 80%;
+            }
+        p {
+            text-align: justify;}
+        h1 {
+            text-align: center;}
+        h2 {
+            margin-left: 3em;
+            margin-top: 1.5em;
+            margin-bottom: 1.5em;}
+        h3 {
+            margin-left: 6em;
+            margin-top: 1.5em;
+            margin-bottom: 1.5em;}
+        h4 {
+            margin-left: 9em;
+            margin-top: 1.5em;
+            margin-bottom: 1.5em;}
+        li {
+            margin-left: 3em;
+            margin-top:15px;
+            text-align: justify;}
+       table{
+              border-collapse: collapse;
+              margin: auto;
+            }
+        td {
+          border: 1px solid black;
+          padding: 10px;
+          text-align :center;
+        }
+        .jaune {
+            background-color:yellow;
+            }
+        div.a {
+            text-align: center;}
+    </style>
+</head>
+<body>
+
+<p class="suite"> Retour :
+    <a  href="{% url 'general:home' %}">Page d'accueil</a>
+</p>
+<br>
+
+    <h1>Chapitre 7 : Exploration et construction des résultats
+ </h1>
+
+    <br>
+    <br>
+
+<p class="present">Plan du chapitre :</p>
+
+
+<a class="marge" id="I-ref" href="#I">I) Choix de la méthode et des paramètres</a>
+<br>
+<br>
+<a class="marge2" id="I1-ref" href="#I1">1) Choix initial des données et des paramètres</a>
+<br>
+<br>
+<a class="marge2" id="I2-ref" href="#I2">2) Premiers résultats obtenus à partir des cinq variantes
+    méthodologiques</a>
+<br>
+<br>
+<a class="marge2" id="I3-ref" href="#I3">3) Deuxième phase d’expérimentation sur les paramètres</a>
+<br>
+<br>
+<a class="marge3" id="I3a-ref" href="#I3a">a) Minimum du nombre d’occurrences</a>
+<br>
+<br>
+<a class="marge3" id="I3b-ref" href="#I3b">b) Nombre d’itérations</a>
+<br>
+<br>
+<a class="marge3" id="I3c-ref" href="#I3c">c) Taille du contexte</a>
+<br>
+<br>
+<a class="marge3" id="I3d-ref" href="#I3d">d) Taille des plongements</a>
+<br>
+<br>
+ <a class="marge" id="II-ref" href="#II">II) Premiers résultats et leurs analyses</a>
+<br>
+<br>
+ <a class="marge2" id="II1-ref" href="#II1">1) Evolution sémantique du lemme « espace » et ses deux
+     interprétations</a>
+<br>
+<br>
+ <a class="marge2" id="II2-ref" href="#II2">2) Résultat avec un découpage temporel plus fin</a>
+<br>
+<br>
+<a class="marge2" id="II3-ref" href="#II3">3) Réflexions à partir de la dynamique sémantique d’« espaces »</a>
+<br>
+<br>
+<a class="marge2" id="II4-ref" href="#II4">4) Réflexion à partir de l’évolution sémantique de « spatial » </a>
+<br>
+<br>
+<a class="marge2" id="II5-ref" href="#II5">5) Réflexions à partir de la dynamique sémantique d’« espaces »</a>
+<br>
+<br>
+<a class="marge" id="III-ref" href="#III">III) Approche réticulaire et évolution de groupes sémantiques</a>
+<br>
+<br>
+<a class="marge2" id="III1-ref" href="#III1">1) Première exploration privilégiant une forme réticulaire</a>
+<br>
+<br>
+<a class="marge2" id="III2-ref" href="#III2">2) Seconde phase d’explorations sur les méthodes de
+    clustering</a>
+<br>
+<br>
+<a class="marge2" id="III3-ref" href="#III3">3) Exploration diachronique de suivi des clusters</a>
+<br>
+<br>
+<a class="marge3" id="III3a-ref" href="#III3a">a) Le modèle originel et ses variantes</a>
+<br>
+<br>
+<a class="marge3" id="III3b-ref" href="#III3b">b) Changements dans la visualisation</a>
+<br>
+<br>
+<a class="marge3" id="III3c-ref" href="#III3c">c) Explication des paramètres</a>
+<br>
+<br>
+<a class="marge" id="IV-ref" href="#IV">IV)	Évolutions sémantiques d’ « espace » et de « milieu »</a>
+<br>
+<br>
+<a class="marge2" id="IV1-ref" href="#IV1">1) Évolution sémantique d’ « espace »</a>
+<br>
+<br>
+<a class="marge2" id="IV2-ref" href="#IV2">2) Évolution sémantique de « milieu »</a>
+<br>
+<br>
+<br>
+
+    <p class="present">Texte du chapitre</p>
+
+
+<p class="mypara">
+    <span class="marge">
+    Rappelons que l’objectif poursuivi est d’analyser les évolutions sémantiques de plusieurs termes (notamment «
+        espace » et « milieu ») pour mettre à l’épreuve les affirmations de la thèse d’Olivier Orain à ce propos (cf.
+        Manuscrit Chap2.I.2.c). L’enjeu est <em>in fine</em> d’éprouver la lecture kuhnienne de la géographie
+        française soutenue par
+        cet auteur. En effet, Olivier Orain défend l’idée dans sa thèse que la mise en évidence des évolutions
+        sémantiques dont il affirme l’existence, permettrait d’accréditer la validité de sa lecture kuhnienne. En
+        s’appuyant sur une approche quantitative objectivée, il y a donc dans la confirmation ou la réfutation de ces
+        évolutions sémantiques, un enjeu majeur pour donner un appui (ou non) à la lecture épistémologique proposée
+        par Olivier Orain.
+    </span>
+</p>
+
+<p class="mypara">
+    <span class="marge">
+    Toutefois, la production des résultats et leurs analyses ont été loin d’être simples et immédiates. De nombreuses
+        expérimentations empiriques et réflexions ont été effectuées lors de cette phase de recherche. Il m’a semblé
+        important de ne pas seulement présenter les résultats finaux mais aussi de rendre compte du processus et des
+        interrogations ayant participé à leurs élaborations. Il y a là la poursuite de la même perspective que celle
+        revendiquée et suivie pour les la construction de la problématique et l’amélioration des corpus. Ce choix
+        s’inscrit donc dans une forme de cohérence par rapport aux parties précédentes.
+    </span>
+</p>
+
+
+<p class="mypara">
+    <span class="marge">
+        L’état des lieux précédemment réalisé (<em>cf.</em>
+        <a href="{% url 'EtatDesLieux:home' %}">Chap 3</a>)
+        a orienté le choix méthodologique vers trois techniques
+        différentes de plongements de mots : <em>Word2Vec</em>, <em>Glove</em> et <em>FastText</em>. Sachant que les méthodes Word2Vec et FastText
+        présentent deux variantes différentes (<em>CBOW</em> et <em>Skip-gram</em>), cinq variantes méthodologiques sont dès lors
+        envisageables. De plus, comme chacune de ces méthodes oblige à choisir un nombre de paramètres non négligeables
+        (taille du contexte, taille des plongements,
+        nombre d’itérations…)<sup><a id="fn1-ref" class="note" href="#fn1">1</a></sup>, il existe par
+        conséquent un grand nombre
+        de traitements possibles. Assez rapidement, la question s’est donc posée de savoir quelle méthode et quels
+        paramètres permettaient d’obtenir les résultats les plus intéressants.
+     </span>
+</p>
+
+
+<h2 id="I">I) Choix de la méthode et des paramètres <a href="#I-ref">&#8617;</a> </h2>
+
+    <p class="mypara"> <span class="marge">	La stratégie suivie a été celle d’une décomposition de ce problème en deux sous-problèmes.
+        Dans un premier temps, des paramètres ont été choisis sans qu’il y ait aucune recherche d’optimisation. Les résultats
+        obtenus, avec ces paramètres et en utilisant successivement les 5 variantes méthodologiques, ont été ensuite
+        comparés pour essayer de choisir la meilleure méthode. Dans un second temps, plusieurs expérimentations ont été réalisées
+        avec la méthode retenue en faisant varier les principaux paramètres les uns après les autres pour mieux comprendre
+        leurs effets et tenter de choisir les valeurs optimales.</span></p>
+
+    <p class="mypara"> <span class="marge">	La section suivante présente et justifie en amont quelques choix réalisés
+        avant d’aborder les deux sous-problèmes explicités.</span></p>
+
+
+<h3 id="I1">1) Choix initial des données et des paramètres <a href="#I1-ref">&#8617;</a> </h3>
+
+    <p class="mypara"> <span class="marge">	Le corpus
+    « ArticleLem »<sup><a id="fn2-ref" class="note" href="#fn2">2</a></sup> et le terme « espace » ont été
+        choisis pour réaliser cette première expérimentation. Le choix d’étudier en priorité l’évolution
+        sémantique de ce
+    terme s’explique par l’importance qu’Olivier Orain lui accorde dans la conclusion de sa thèse (<em>cf
+        .</em> section Manuscrit Chap2.II.3.c)</span></p>
+
+    <p class="mypara"> <span class="marge">	Une réflexion a été menée pour définir le découpage temporel
+    semblant le plus approprié. Sur ce sujet, il faut souligner que le chapitre « La révolution dans les
+    textes » de la thèse d’Olivier Orain met en avant la date de 1971 du fait d’une ébauche de <em>L'Espace
+        Géographique</em>, appelée « numéro zéro » qui a servi à annoncer la revue à venir. Toutefois, les
+    corpus constitués ne contenant pas ce numéro
+        zéro<sup><a id="fn3-ref" class="note" href="#fn3">3</a></sup>, il a
+    paru pertinent de choisir 1972 comme date de rupture dans le découpage temporel. Cette date se justifie
+    pleinement du fait de la structure des corpus construits : une seule revue (Les <em>Annales de
+            géographie</em>) compose les corpus avant 1972 ; deux revues (
+        à partir de cette date, deux revues (Les <em>Annales de géographie</em>
+        el <em>L'Espace Géographique</em>)à partir de cette date.</span></p>
+
+    <p class="mypara"> <span class="marge">	Ensuite, une rupture autour des années
+    1960-1961 a été privilégiée car Olivier Orain mentionne les années 1960 comme période de l’importation
+    du terme « espace » tout en
+    affirmant qu’il n’y a pas eu de changement sémantique durant cette décennie. La sémantique du terme
+    « espace » est selon lui restée proche du terme « milieu ». Ensuite, après avoir identifié cette zone
+    d’intérêt pour des années 1960, il m’a paru pertinent d’avoir un point de comparaison avec la période
+    antérieure. Cette réflexion a abouti à la construction de la période 1950-1960. La date de 1950 ne
+    correspond pas à un changement majeur. Elle n’a été retenue que pour créer une période comparable à
+    1961-1971.</span></p>
+
+    <div id="Orain1a"><p class="mypara"> <span class="marge">
+        Après 1972, le milieu des années 1980 est ensuite cité par Olivier Orain comme marquant la
+    fin de la « phase révolutionnaire » avec « la généralisation d’une sémantique particulière sur les
+    bases du répertoire adopté depuis déjà quelque temps »
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Orain1">(Orain 2003, 354)</a>.
+    La prise en compte de cette réflexion a conduit à la création d’une période 1972-1984. Dans un processus
+    symétrique (par rapport à la justification de la période 1950-1960 après avoir construit 1961-1971), il
+    m’a paru intéressant de créer la période 1985-1995 pour avoir un point de comparaison par rapport à
+    1972-1984. Comme précédemment pour 1950, 1995 ne correspond pas à une rupture avancée par Olivier
+    Orain. C’est le pas de temps des autres
+        périodes<sup><a id="fn4-ref" class="note" href="#fn4">4</a></sup> qui permet
+    de comprendre cette dernière date.</span></p></div>
+
+    <p class="mypara"> <span class="marge">	Ce découpage temporel (1950-1960,1961-1971,1972-1984,1985-1995)
+    défini, il a fallu déterminer les paramètres utilisés pour chacune des méthodes de plongement de mots.
+    Les travaux déjà existants ne sont pas d’une grande utilité sur la question. Ils sont nombreux et ne
+    présentent pas une grande homogénéité. La taille des plongements varie souvent de 50 à 300. La taille
+    du contexte et le nombre d’itérations sont aussi très variables. Un seul paramètre proposé par ces
+    méthodes m’a semblé pouvoir être fixé à l’aide d’un argument se référant à la construction des corpus.
+    Il s’agit du choix d’un seuil permettant de ne pas prendre en compte les mots en dessous d’un certain
+    nombre d’occurrences. Le traitement des formes non reconnues ayant été précédemment effectué jusqu’aux
+    formes apparaissant au moins 15 fois (<em>cf.</em> section
+        <a href="{% url 'FinaliseCorpus:home'%}#I2b">Chap6.I.2.b</a>),
+         cette valeur pour ce paramètre a été choisie.</span></p>
+
+    <p class="mypara"> <span class="marge">	Pour les autres paramètres, les choix n’ont pas pu être justifiés
+    aussi précisément. Par exemple, il a été privilégié dans un premier temps une taille de contexte ni
+    trop grande, ni trop petite. C’est ainsi que la taille de 10 a été retenue pour ce paramètre. De la
+    même manière, sans justification raffinée, le nombre d’itérations a été fixé à 100 et la taille des
+    plongements à 50. Il s’agit là bien entendu de choix pour une première expérimentation. L’impact de ces
+    différents paramètres sera discuté par la suite
+        (<em>cf.</em> section <a href="#I3">I.3</a>).</span></p>
+
+    <p class="mypara"> <span class="marge">Pour la méthode <em>FastText</em>,
+        il est nécessaire de fixer en plus
+        deux autres paramètres définissant la taille minimale
+    et maximale des n-grams. Les valeurs par défaut de la librairie utilisée ont été employées pour cette
+    première expérimentation : 3 pour la valeur minimale et 6 pour la valeur maximale. Une fois les
+    plongements réalisés, la mesure de similarité cosinus a été utilisée pour comparer les différents
+    vecteurs. En effet, contrairement aux autres paramètres, il y a une certaine convergence dans la
+    littérature existante autour de l’emploi de cette mesure pour détecter les termes les plus proches d’un
+    terme donné à partir des vecteurs obtenus.</span></p>
+
+    <p class="mypara"> <span class="marge">	Avant de présenter les résultats, il est nécessaire de rappeler que
+    les plongements sont calculés indépendamment pour chaque période et revue. Il y a par conséquent des
+    situations très différentes au niveau du nombre d’occurrences du lemme « espace » dans les corpus
+    distingués<sup><a id="fn5-ref" class="note" href="#fn5">5</a></sup>.</span></p>
+
+<table>
+<tr>
+<td></td>
+<td>1950-1960</td>
+<td>1961-1971</td>
+<td>1972-1984</td>
+<td>1985-1995</td>
+</tr>
+<tr>
+<td><em>Annales de Géographie</em></td>
+<td>214</td>
+<td>861</td>
+<td>2195</td>
+<td>2291</td>
+</tr>
+<tr>
+<td><em>L'Espace géographique</em></td>
+<td></td>
+<td></td>
+<td>6452</td>
+<td>5147</td>
+</tr>
+</table>
+<br>
+
+    <div class="a" id="Tableau6" >Tableau n°6 : Nombre d’occurrences du lemme « espace » dans le corpus
+        ArticleLem.</div>
+
+<br>
+
+    <p class="mypara"> <span class="marge">	L’émergence et la montée en puissance du lemme « espace » fortement
+    promu par la revue <em>L'Espace Géographique</em> sont indiscutables. Il est possible à partir de ce
+    tableau de penser également une certaine stagnation dans l’usage de ce lemme sur la dernière période.
+    Cet usage reste toutefois élevé. De plus, il faut préciser que la mise en avant d’une baisse sur la
+    période 1985-1995 dans <em>L'Espace Géographique</em> doit être relativisée puisqu’une partie
+    importante de l’infériorité observée provient de l’intervalle temporel plus réduit de cette période par
+    rapport à celui de 1972-1984<sup><a id="fn6-ref" class="note" href="#fn6">6</a></sup>.</span></p>
+
+
+
+<h3 id="I2">2) Premiers résultats obtenus à partir des cinq variantes méthodologiques
+    <a href="#I2-ref">&#8617;</a> </h3>
+
+
+    <p class="mypara"> <span class="marge">	Les cinq tableaux suivants (n°
+        <a href="#Tab7">7</a>,
+        <a href="#Tab8">8</a>,
+        <a href="#Tab9">9</a>,
+        <a href="#Tab10">10</a> et
+        <a href="#Tab11">11</a>)
+        présentent les lemmes les plus proches
+    d’« espace » selon les calculs de similarité cosinus réalisés à partir des plongements avec les cinq
+    variantes méthodologiques : <em>Word2vec CBOW</em>, <em>Word2vec Skip-gram</em>, <em>GloVe</em>,
+        <em>FastText CBOW</em> et <em>FastText Skip-gram</em>.
+        Les paramètres précédemment explicités<sup><a id="fn7-ref" class="note" href="#fn7">7</a></sup> ont
+        été
+    utilisés. Après chaque lemme, entre parenthèses, la similarité cosinus obtenue entre le vecteur de ce
+    lemme et le vecteur du lemme « espace » est indiquée. Pour des raisons de place, les résultats
+    présentés ont été ici limités aux dix premiers
+        lemmes<sup><a id="fn8-ref" class="note" href="#fn8">8</a></sup>.
+</span></p>
+
+<table id="Tab7">
+<tr>
+<td></td>
+<td>1950-1960</td>
+<td>1961-1971</td>
+<td>1972-1984</td>
+<td>1985-1995</td>
+</tr>
+<tr>
+<td><em>Annales de Géographie</em></td>
+<td>stationnement (0.58)<br>
+rempart (0.56)<br>
+bâtir (0.51)<br>
+incendie (0.51)<br>
+voirie (0.51)<br>
+enceinte (0.5)<br>
+boulevard (0.49)<br>
+palais (0.49)<br>
+quartier (0.47)<br>
+urbanisme (0.46)</td>
+<td>périmètre (0.61)<br>
+territoire (0.55)<br>
+organisation (0.55)<br>
+fonctionnel (0.53)<br>
+spatial (0.51)<br>
+tissu (0.51)<br>
+unité (0.49)<br>
+structurer (0.49)<br>
+intégrer (0.49)<br>
+aire (0.49)</td>
+<td>interdépendance (0.59)<br>
+entité (0.58)<br>
+spécificité (0.55)<br>
+dialectique (0.54)<br>
+territoire (0.52)<br>
+aire (0.51)<br>
+spatialement (0.51)<br>
+conception (0.5)<br>
+adéquation (0.5)<br>
+vision (0.5)</td>
+<td>territoire (0.64)<br>
+spatial (0.56)<br>
+abstrait (0.54)<br>
+noyau (0.52)<br>
+tissu (0.52)<br>
+acteur (0.52)<br>
+com (0.52)<br>
+aire (0.52)<br>
+milieu (0.51)<br>
+pratique (0.51)</td>
+</tr>
+<tr>
+<td><em>L’Espace Géographique</em></td>
+<td></td>
+<td></td>
+<td>territoire (0.6)<br>
+support (0.54)<br>
+optique (0.54)<br>
+territorialité (0.53)<br>
+articulation (0.53)<br>
+enveloppe (0.51)<br>
+organisation (0.5)<br>
+univers (0.5)<br>
+social (0.49)<br>
+mode (0.48)</td>
+<td>territoire (0.61)<br>
+social (0.52)<br>
+univers (0.5)<br>
+mode (0.5)<br>
+notion (0.5)<br>
+champ (0.5)<br>
+société (0.5)<br>
+contexte (0.49)<br>
+représentation (0.49)<br>
+milieu (0.49)</td>
+</tr>
+</table>
+
+<br>
+<div class="a" id="Tableau7" >Tableau n°7 : Lemmes dont les vecteurs sont les plus proches du vecteur du
+    lemme « espace »<br>
+    d’après la méthode <em>Word2vec CBOW</em> et les paramètres spécifiés.</div>
+<br>
+<br>
+<br>
+
+<table id="Tab8">
+<tr>
+<td></td>
+<td>1950-1960</td>
+<td>1961-1971</td>
+<td>1972-1984</td>
+<td>1985-1995</td>
+</tr>
+<tr>
+<td><em>Annales de Géographie</em></td>
+<td>bâtir (0.71)<br>
+vert (0.67)<br>
+jardin (0.61)<br>
+quartier (0.61)<br>
+vaste (0.6)<br>
+enceinte (0.6)<br>
+boulevard (0.59)<br>
+pavillon (0.58)<br>
+stationnement (0.58)<br>
+voirie (0.58)</td>
+<td>organisation (0.71)<br>
+fonctionnel (0.71)<br>
+urbain (0.7)<br>
+intégrer (0.68)<br>
+spatial (0.68)<br>
+structurer (0.67)<br>
+vacance (0.65)<br>
+humaniser (0.64)<br>
+harmonieux (0.64)<br>
+parc (0.63)</td>
+<td>spatial (0.68)<br>
+géographique (0.67)<br>
+structuration (0.66)<br>
+organisation (0.64)<br>
+fonctionnel (0.64)<br>
+définir (0.63)<br>
+vision (0.63)<br>
+concevoir (0.63)<br>
+territoire (0.62)<br>
+urbain (0.61)</td>
+<td>spatial (0.68)<br>
+territoire (0.66)<br>
+tendre (0.65)<br>
+organisation (0.63)<br>
+paysage (0.62)<br>
+social (0.62)<br>
+territorialité (0.62)<br>
+urbain (0.61)<br>
+imaginaire (0.61)<br>
+perception (0.61)</td>
+</tr>
+<tr>
+<td><em>L’Espace Géographique</em></td>
+<td><br>
+
+
+</td>
+<td><br>
+
+</td>
+<td>organisation (0.74)<br>
+concevoir (0.73)<br>
+fonctionnel (0.71)<br>
+notion (0.7)<br>
+spatial (0.69)<br>
+dimension (0.68)<br>
+inscrire (0.68)<br>
+vivre (0.68)<br>
+organiser (0.68)<br>
+définir (0.67)</td>
+<td>façonner (0.73)<br>
+représentation (0.72)<br>
+organiser (0.7)<br>
+inscrire (0.69)<br>
+spatial (0.68)<br>
+vivre (0.68)<br>
+définir (0.67)<br>
+société (0.67)<br>
+territoire (0.67)<br>
+structurer (0.67)</td>
+</tr>
+</table>
+
+<br>
+<div class="a" id="Tableau8" >Tableau n°8 : Lemmes dont les vecteurs sont les plus proches du vecteur du
+    lemme « espace »<br>
+    d’après la méthode <em>Word2vec Skip-gram</em> et les paramètres spécifiés.</div>
+<br>
+<br>
+<br>
+
+<table id="Tab9">
+<tr>
+<td></td>
+<td>1950-1960</td>
+<td>1961-1971</td>
+<td>1972-1984</td>
+<td>1985-1995</td>
+</tr>
+<tr>
+<td><em>Annales de Géographie</em></td>
+<td>espacé (0.83)<br>
+espacement (0.74)<br>
+champs_élysées (0.52)<br>
+enceinte (0.49)<br>
+bâtir (0.48)<br>
+herbacé (0.46)<br>
+rue (0.45)<br>
+tuile (0.45)<br>
+rempart (0.43)<br>
+terre (0.43)</td>
+<td>espacé (0.81)<br>
+organisation (0.58)<br>
+ensemble (0.54)<br>
+harmonie (0.54)<br>
+unité (0.53)<br>
+spatial (0.52)<br>
+densément (0.52)<br>
+intégration (0.52)<br>
+armature (0.5)<br>
+périmètre (0.5)</td>
+<td>espacé (0.79)<br>
+territoire (0.57)<br>
+spatialement (0.57)<br>
+interdépendance (0.56)<br>
+spatial (0.53)<br>
+interrelation (0.52)<br>
+interurbain (0.51)<br>
+conception (0.5)<br>
+entité (0.5)<br>
+dimension (0.5)</td>
+<td>espacé (0.71)<br>
+territoire (0.61)<br>
+spatialement (0.58)<br>
+socio_spatial (0.58)<br>
+territorialité (0.55)<br>
+spatial (0.55)<br>
+entité (0.55)<br>
+modalité (0.55)<br>
+milieu (0.54)<br>
+tissu (0.52)</td>
+</tr>
+<tr>
+<td><em>L’Espace Géographique</em></td>
+<td></td>
+<td></td>
+<td>sous_espace (0.73)<br>
+espace_temps (0.7)<br>
+sous_espaces (0.62)<br>
+territoire (0.58)<br>
+notion (0.54)<br>
+territorialité (0.54)<br>
+archétype (0.52)<br>
+trame (0.51)<br>
+forme (0.5)<br>
+concrètement (0.5)</td>
+<td>espace_temps (0.72)<br>
+sous_espaces (0.7)<br>
+spatialité (0.69)<br>
+espacement (0.65)<br>
+sociétal (0.59)<br>
+spatialement (0.57)<br>
+territoire (0.57)<br>
+territorialité (0.56)<br>
+métastructure (0.55)<br>
+matérialité (0.54)</td>
+</tr>
+</table>
+
+<br>
+<div class="a" id="Tableau9" >Tableau n°9 : Lemmes dont les vecteurs sont les plus proches du vecteur du
+    lemme « espace »<br>
+    d’après la méthode <em>FastText CBOW</em> et les paramètres spécifiés</div>
+<br>
+<br>
+<br>
+
+<table id="Tab10">
+<tr>
+<td></td>
+<td>1950-1960</td>
+<td>1961-1971</td>
+<td>1972-1984</td>
+<td>1985-1995</td>
+</tr>
+<tr>
+<td><em>Annales de Géographie</em></td>
+<td>bâtir (0.68)<br>
+vert (0.63)<br>
+quartier (0.63)<br>
+implantation (0.62)<br>
+pavillon (0.62)<br>
+parcellaire (0.62)<br>
+parc (0.62)<br>
+rue (0.61)<br>
+libre (0.61)<br>
+palais (0.61)</td>
+<td>intégrer (0.76)<br>
+organisation (0.76)<br>
+fonctionnel (0.71)<br>
+structurer (0.71)<br>
+urbain (0.69)<br>
+aménagement (0.67)<br>
+harmonieux (0.67)<br>
+concevoir (0.67)<br>
+urbaniste (0.66)<br>
+spatial (0.66)</td>
+<td>relationnel (0.76)<br>
+structurer (0.76)<br>
+structuration (0.75)<br>
+vision (0.74)<br>
+spatial (0.74)<br>
+concevoir (0.73)<br>
+géographique (0.73)<br>
+entité (0.72)<br>
+dialectique (0.71)<br>
+spatialement (0.7)</td>
+<td>territoire (0.75)<br>
+relationnel (0.72)<br>
+structurer (0.71)<br>
+authentique (0.71)<br>
+territorialité (0.69)<br>
+représentation (0.68)<br>
+tendre (0.68)<br>
+fonctionnel (0.67)<br>
+perception (0.67)<br>
+spatial (0.67)</td>
+</tr>
+<tr>
+<td><em>L’Espace Géographique</em></td>
+<td><br>
+
+
+</td>
+<td><br>
+
+
+</td>
+<td>indissociable (0.79)<br>
+notion (0.79)<br>
+concevoir (0.79)<br>
+fonctionnel (0.78)<br>
+organisation (0.78)<br>
+travers (0.77)<br>
+vivre (0.76)<br>
+relationnel (0.75)<br>
+territorialité (0.75)<br>
+transposition (0.74)</td>
+<td>inscrire (0.79)<br>
+façonner (0.78)<br>
+société (0.78)<br>
+représentation (0.77)<br>
+organisation (0.76)<br>
+spatial (0.76)<br>
+vivre (0.76)<br>
+appropriation (0.75)<br>
+territoire (0.75)<br>
+champ (0.74)</td>
+</tr>
+</table>
+
+<br>
+<div class="a" id="Tableau10" >Tableau n°10 : Lemmes dont les vecteurs sont les plus proches du vecteur du
+    lemme « espace »<br>
+    d’après la méthode <em>FastText Skip-gram</em> et les paramètres spécifiés</div>
+<br>
+<br>
+<br>
+
+<table id="Tab11">
+<tr>
+<td></td>
+<td>1950-1960</td>
+<td>1961-1971</td>
+<td>1972-1984</td>
+<td>1985-1995</td>
+</tr>
+<tr>
+<td><em>Annales de Géographie</em></td>
+<td>bâtir (0.66)<br>
+vert (0.55)<br>
+vaste (0.51)<br>
+libre (0.49)<br>
+urbain (0.47)<br>
+reconstruction (0.47)<br>
+extension (0.46)<br>
+occuper (0.46)<br>
+entourer (0.46)<br>
+quartier (0.45)</td>
+<td>organisation (0.69)<br>
+urbain (0.62)<br>
+fonctionnel (0.6)<br>
+ensemble (0.51)<br>
+aménagement (0.5)<br>
+vaste (0.5)<br>
+unité (0.49)<br>
+définir (0.48)<br>
+territoire (0.48)<br>
+touristique (0.47)</td>
+<td>urbain (0.64)<br>
+définir (0.63)<br>
+géographique (0.63)<br>
+spatial (0.6)<br>
+humain (0.57)<br>
+social (0.56)<br>
+relation (0.56)<br>
+organisation (0.55)<br>
+dimension (0.54)<br>
+aménagement (0.54)</td>
+<td>territoire (0.65)<br>
+tant (0.62)<br>
+urbain (0.61)<br>
+spatial (0.6)<br>
+social (0.6)<br>
+pratique (0.57)<br>
+définir (0.57)<br>
+nouveau (0.55)<br>
+géographique (0.54)<br>
+rapport (0.53)</td>
+</tr>
+<tr>
+<td><em>L’Espace Géographique</em></td>
+<td><br>
+
+</td>
+<td></td>
+<td>urbain (0.64)<br>
+organisation (0.6)<br>
+vivre (0.57)<br>
+spatial (0.57)<br>
+définir (0.57)<br>
+forme (0.56)<br>
+social (0.56)<br>
+notion (0.55)<br>
+territoire (0.54)<br>
+considérer (0.53)</td>
+<td>représentation (0.65)<br>
+territoire (0.65)<br>
+organisation (0.63)<br>
+géographique (0.61)<br>
+spatial (0.61)<br>
+agir (0.6)<br>
+définir (0.57)<br>
+vivre (0.56)<br>
+pratique (0.55)<br>
+ainsi (0.55)</td>
+</tr>
+</table>
+
+<br>
+<div class="a" id="Tableau11" >Tableau n°11 : Lemmes dont les vecteurs sont les plus proches du vecteur du
+    lemme « espace »<br> d’après la méthode <em>GloVe</em> et les paramètres spécifiés</div>
+<br>
+<br>
+
+
+    <div id="TableauEmb1"><p class="mypara"> <span class="marge">	Pour ne pas limiter la visualisation de
+        ces résultats à 10 lemmes (ou 10 termes)
+    et pour faciliter les comparaisons, un module de visualisation a été construit dans l’application :
+        <a href="{% url 'TableauEmb:resultallselect' %}">@CompareExpeGeneral</a>.
+    Pour les cinq expérimentations précédentes, il faut suivre le lien suivant :
+        <a href="https://analytics.huma-num.fr/EtPistezMots/semtablemb/resultallvisu/w3-w4-g1-f1-f2/w3-w4-g1-f1-f2/All/AnnEsp/0">@CompareExpe1</a>.
+    L’utilisateur a alors
+    accès aux résultats précédents avec une extension jusqu’à 50 lemmes (ou termes) et la possibilité de comparer
+    facilement les différentes périodes. Une option a été ajoutée pour limiter la visualisation à une seule revue
+    permettant d’avoir un accès plus simple à la barre de défilement horizontal pour passer d’une période à une autre.
+    Le nombre de lemmes (ou termes) peut également être réduit pour privilégier une comparaison entre les
+        revues, si nécessaire. Le nombre de tableaux affichés peut enfin être réduit pour s’adapter à des
+        écrans plus petits ou favoriser la visualisation simultanée de plusieurs périodes.</span></p></div>
+
+    <div id="Orain1h"><p class="mypara"> <span class="marge">Dans les résultats obtenus, ceux de la méthode
+        <em>FastText
+        CBOW</em> se différencient
+    assez nettement des autres. En effet, c’est la seule méthode où ressort explicitement dans les premiers résultats
+    des formes graphiques très proches d’espace comme « espacé » ou « sous-espace ».
+    Il est exact que ces formes sont sémantiquement proches d’« espace » mais ce n’est pas ce sémantisme de forme
+    qui est important par rapport à la recherche menée. En effet, les évolutions mises en avant par Olivier Orain
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Orain1">(2003)</a> portent
+    plus sur un sémantisme qui est indépendant de ses proximités de formes. Un des objectifs de cette recherche étant
+    de suivre dans le temps les évolutions sémantiques, il est possible de penser que ce sémantisme de forme, en répétant
+    les mêmes lemmes à chaque époque, risque de générer des continuités non pertinentes pour cette recherche.
+    Comme il est difficile de discriminer un sémantisme de fond et de forme, l’ensemble de ces réflexions m’a conduit à
+        ne pas retenir cette méthode.</span></p></div>
+
+    <p class="mypara"> <span class="marge">	L’analyse des résultats m’a conduit également à exclure la méthode
+        <em>Word2Vec CBOW</em>.
+    Ce qui a été décisif dans cette décision, ce sont surtout les résultats obtenus pour
+        <em>L'Espace Géographique</em>
+    sur 1972-1984. Les premiers lemmes obtenus (« territoire », « support », « optique », « territorialité »,
+    « articulation », « enveloppe ») sont, à mon avis, moins représentatifs des notions liées au lemme « espace »
+        pour cette période et cette revue que ceux obtenus par exemple avec <em>GloVe</em>
+        (« urbain », « définir », « géographique »,
+    « spatial », « humain », « social »). La montée en puissance du terme « territoire » est postérieure à
+    cette époque<sup><a id="fn9-ref" class="note" href="#fn9">9</a></sup>. Ce-faisant, il faut reconnaître
+        qu’un tel argument
+    introduit un autre facteur que la seule proximité sémantique.</span></p>
+
+    <p class="mypara"> <span class="marge">	Cette réflexion m’a conduit à réfléchir à la construction d’une évaluation
+        plus objectivée. Plutôt qu’une comparaison des résultats les uns par rapport aux autres, la technique la plus
+        sûre serait de fixer une référence permettant d’évaluer indépendamment chacun des résultats. Le problème est
+        que cette référence n’existe pas. En effet, il n’existe pas de recensement des significations d’« espace »
+        permettant d’évaluer quantitativement et de manière indépendante les résultats obtenus. D’un point de vue théorique,
+        cette affirmation est en adéquation avec le choix du cadre théorique précédemment réalisé : un positionnement
+        affirmé dans des sémantiques différentielles et non dans des sémantiques référentielles ou componentielles
+        (<em>cf.</em> section <a href="{% url 'EtatDesLieux:home' %}#I">Chap3.I</a>)</span></p>
+
+    <p class="mypara"> <span class="marge">	Cette réflexion sur l’absence de référence et ses conséquences d’un point de
+        vue épistémologique peut être développée avec les analyses du philosophe Ludwig Wittgenstein et des penseurs du
+        cercle de Vienne<sup><a id="fn10-ref" class="note" href="#fn10">10</a></sup>. En effet, le problème
+        ici rencontré est une
+        conséquence logique de la difficulté des êtres humains à objectiver le langage puisque leurs pensées sont prises
+        dans ce même langage. Otto Neurath a proposé dans cette optique une métaphore qui peut être résumée ainsi :
+        « il faut réparer le bateau en pleine mer et au coup par
+        coup »<sup><a id="fn11-ref" class="note" href="#fn11">11</a></sup>.
+        Cette perspective remet en cause de façon profonde une épistémologie cherchant et revendiquant traditionnellement
+        une fondation stable des connaissances.</span></p>
+
+    <div id="Ras1b"><p class="mypara"> <span class="marge">	Face à ces réflexions qui pourraient être
+        critiquées comme une façon de s’en
+        sortir à moindres frais, il est nécessaire de rappeler que ce qui est ici revendiqué est un positionnement fort,
+        loin d’être sans conséquence dans la problématique d’analyse de la thèse d’Olivier Orain. En effet, l’argument qui
+        soutient la lecture kuhnienne de cet auteur est l’affirmation d’une rupture dans le rapport connaissance / réalité
+        signant la fin d’un paradigme réaliste. Or, toutes les réflexions précédentes concernent, sur le fond, ce rapport
+        connaissance / réalité. Elles sont même d’une certaine manière favorables à l’évolution promue par Olivier Orain,
+        dans la mesure précisément où la sémantique référentielle est intrinsèquement liée à une approche réaliste.
+        La citation de François Rastier, précédemment développée, mettant en avant un durcissement des sémantiques référentielles
+        « par le positivisme logique qui exprime un idéal de correspondance si l’on peut dire terme à terme entre un mot,
+        un concept et un objet » <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Ras1">(Rastier 1995)</a>.
+    </span></p></div>
+
+    <p class="mypara"> <span class="marge">	Est-ce qu’en affirmant ce positionnement je quitte le paradigme
+        réaliste ? Ici, il est important de signaler que quand j’ai exclu précédemment la méthode
+        <em>Word2Vec CBOW </em> considérant ses résultats comme moins représentatifs que la méthode
+        <em>GloVe</em>, j’ai convoqué à mon sens un argument réaliste. En effet, la qualité de la représentation se réfère certes à ma
+        connaissance, mais en deçà présuppose que cette connaissance n’est pas totalement erronée. Ce n’est
+        donc pas un saut hors du réalisme que j’effectue ici, mais bien plutôt un positionnement complexe
+        pour gérer au mieux une difficulté.</span></p>
+
+
+    <p class="mypara"><span class="marge"> Affirmer l’impossibilité d’une évaluation directe par rapport à un référentiel
+        n’empêche en rien de réaliser des évaluations indirectes. Pour essayer d’étayer le choix entre les
+        trois méthodes restantes (<em>Word2Vec Skip-gram</em>, <em>FastText Skip-gram</em> et
+        <em>GloVe</em>), une fonctionnalité a
+        été construite dans l’application permettant de mieux visualiser et comparer quantitativement les
+        lemmes (ou termes) communs entre différents résultats. Pour cela, l’utilisateur choisit en amont
+        n-expérimentations. Si n est inférieur à 5, les n résultats peuvent être directement visualisés.
+        Pour chaque période et revue, les lemmes en communs des résultats affichés sont surlignés en gris.
+        Par exemple, en comparant les méthodes <em>Word2Vec Skip-gram</em> et <em>FastText Skip-gram</em> à
+        partir les résultats précédemment obtenus sur <em>les Annnales de Géographie</em>, les trois
+        tableaux suivants (n°
+        <a href="#Tab12">12</a>,
+        <a href="#Tab13">13</a>,
+        <a href="#Tab14">14</a>) sont produits :
+        </span></p>
+<br>
+
+<table id="Tab12">
+<tr>
+<td></td>
+<td>1950-1960</td>
+<td>1961-1971</td>
+<td>1972-1984</td>
+<td>1985-1995</td>
+</tr>
+<tr>
+<td><em>Annales de Géographie</em></td>
+<td><spam class="jaune">bâtir (0.71)</spam><br>
+<spam class="jaune">vert (0.67)</spam><br>
+jardin (0.61)<br>
+<spam class="jaune">quartier (0.61)</spam><br>
+vaste (0.6)<br>
+enceinte (0.6)<br>
+boulevard (0.59)<br>
+<spam class="jaune">pavillon (0.58)</spam><br>
+stationnement (0.58)<br>
+voirie (0.58)</td>
+<td><spam class="jaune">organisation (0.71)</spam><br>
+<spam class="jaune">fonctionnel (0.71)</spam><br>
+<spam class="jaune">urbain (0.7)</spam><br>
+<spam class="jaune">intégrer (0.68)</spam><br>
+<spam class="jaune">spatial (0.68)</spam><br>
+<spam class="jaune">structurer (0.67)</spam><br>
+vacance (0.65)<br>
+humaniser (0.64)<br>
+<spam class="jaune">harmonieux (0.64)</spam><br>
+parc (0.63)</td>
+<td><spam class="jaune">spatial (0.68)</spam><br>
+<spam class="jaune">géographique (0.67)</spam><br>
+<spam class="jaune">structuration (0.66)</spam><br>
+organisation (0.64)<br>
+fonctionnel (0.64)<br>
+définir (0.63)<br>
+<spam class="jaune">vision (0.63)</spam><br>
+<spam class="jaune">concevoir (0.63)</spam><br>
+territoire (0.62)<br>
+urbain (0.61)</td>
+<td><spam class="jaune">spatial (0.68)</spam><br>
+<spam class="jaune">territoire (0.66)</spam><br>
+<spam class="jaune">tendre (0.65)</spam><br>
+organisation (0.63)<br>
+paysage (0.62)<br>
+social (0.62)<br>
+<spam class="jaune">territorialité (0.65)</spam><br>
+urbain (0.61)<br>
+imaginaire (0.61)<br>
+<spam class="jaune">perception (0.61)</spam><br></td>
+</tr>
+</table>
+
+<br>
+<div class="a" id="Tableau12" >Tableau n°12 : Lemmes dont les vecteurs sont les plus proches du vecteur du
+    lemme « espace » <br>d’après la méthode <em>Word2vec Skip-gram</em> et les paramètres spécifiés.<br>
+    <spam class="completlegend">(Coloration des lemmes en commun par rapport aux résultats suivants)</spam></div>
+<br>
+<br>
+
+<table id="Tab13">
+<tr>
+<td></td>
+<td>1950-1960</td>
+<td>1961-1971</td>
+<td>1972-1984</td>
+<td>1985-1995</td>
+</tr>
+<tr>
+<td><em>Annales de Géographie</em></td>
+<td>
+<spam class="jaune">bâtir (0.68)</spam><br>
+<spam class="jaune">vert (0.63)</spam><br>
+<spam class="jaune">quartier (0.63)</spam><br>
+implantation (0.62)<br>
+<spam class="jaune">pavillon (0.62)</spam><br>
+parcellaire (0.62)<br>
+parc (0.62)<br>
+rue (0.61)<br>
+libre (0.61)<br>
+palais (0.61)</td>
+<td><spam class="jaune">intégrer (0.76)</spam><br>
+<spam class="jaune">organisation (0.76)</spam><br>
+<spam class="jaune">fonctionnel (0.71)</spam><br>
+<spam class="jaune">structurer (0.71)</spam><br>
+<spam class="jaune">urbain (0.69)</spam><br>
+aménagement (0.67)<br>
+<spam class="jaune">harmonieux (0.67)</spam><br>
+concevoir (0.67)<br>
+urbaniste (0.66)<br>
+<spam class="jaune">spatial (0.66)</spam><br></td>
+<td>relationnel (0.76)<br>
+structurer (0.76)<br>
+<spam class="jaune">structuration (0.75)</spam><br>
+<spam class="jaune">vision (0.74)</spam><br>
+<spam class="jaune">spatial (0.74)</spam><br>
+<spam class="jaune">concevoir (0.73)</spam><br>
+<spam class="jaune">géographique (0.73)</spam><br>
+entité (0.72)<br>
+dialectique (0.71)<br>
+spatialement (0.7)</td>
+<td><spam class="jaune">territoire (0.75)</spam><br>
+relationnel (0.72)<br>
+structurer (0.71)<br>
+authentique (0.71)<br>
+<spam class="jaune">territorialité (0.69)</spam><br>
+représentation (0.68)<br>
+<spam class="jaune">tendre (0.68)</spam><br>
+fonctionnel (0.67)<br>
+<spam class="jaune">perception (0.67)</spam><br>
+<spam class="jaune">spatial (0.67)</spam><br></td>
+</tr>
+</table>
+
+<br>
+<div class="a" id="Tableau13" >Tableau n°13 : Lemmes dont les vecteurs sont les plus proches du vecteur du
+    lemme « espace » <br>d’après la méthode <em>FastText Skip-gram</em> et les paramètres spécifiés.<br>
+    <spam class="completlegend">(Coloration des lemmes en commun par rapport aux résultats précédents)</spam></div>
+<br>
+<br>
+
+
+<table id="Tab14">
+<tr>
+<td></td>
+<td>1950-1960</td>
+<td>1961-1971</td>
+<td>1972-1984</td>
+<td>1985-1995</td>
+</tr>
+<tr>
+<td><em>Annales de Géographie</em></td>
+<td>0,4 </td>
+<td>0,7 </td>
+<td>0,5 </td>
+<td>0,5 </td>
+</tr>
+</table>
+
+<br>
+<div class="a" id="Tableau14" >Tableau n°14 : Rapport entre le nombre de lemmes en commun et le nombre
+    total de lemmes <br>pour chaque époque entre les deux résultats précédents.</div>
+<br>
+
+    <p class="mypara"> <span class="marge">	Dans le Tableau n°14,pour
+        les <em>Annales de Géographie </em>sur la période 1950-1960, le résultat « 0,4 » s’explique par le fait
+        qu’il y a 4 lemmes en commun sur 10 en comparant les deux méthodes précédentes (<em>cf.</em>
+        Tableau n°<a href="#Tab12">12</a> et
+        <a href="#Tab13">13</a>).
+        Il est possible de calculer une moyenne sur l’ensemble des périodes, ici
+        0,525<sup><a id="fn12-ref" class="note" href="#fn12">12</a></sup>, soit 52,5 %</span></p>
+
+    <div id="TableauEmb2"><p class="mypara"> <span class="marge">	Le lien suivant
+        <a href="https://analytics.huma-num.fr/EtPistezMots/semtablemb/resultallvisucolor/w4-f1/w4-f1/All/AnnEsp/0">@CompareExpe1a</a>
+        permet de comparer les résultats obtenus
+        lors de cette première expérimentation avec un affichage de 50 lemmes pour les méthodes
+        <em>Word2Vec Skip-gram</em> et <em>FastText Skip-gram</em>. Il existe une proximité de ces deux
+        résultats (plus de 60 % en moyenne de lemmes en commun).
+        Les similarités des résultats entre <em>GloVe</em> et <em>Word2vec Skip-gram</em>
+        (<a href="https://analytics.huma-num.fr/EtPistezMots/semtablemb/resultallvisucolor/w4-g1/w4-g1/All/AnnEsp/0">@CompareExpe1b</a>)
+        ainsi que <em>GloVe</em> et <em>FastText Skip-gram</em>
+        (<a href="https://analytics.huma-num.fr/EtPistezMots/semtablemb/resultallvisucolor/g1-f1/g1-f1/All/AnnEsp/0">@CompareExpe1c</a>)
+        sont bien moindres, avec en moyenne 45 % pour la première comparaison et 30 % pour la seconde.
+        Un fait marquant dans une comparaison entre ces trois méthodes est que les premiers lemmes obtenus avec la méthode
+        <em>GloVe</em> font beaucoup plus souvent partie des ressemblances que ceux obtenus avec les
+        méthodes <em>Word2vec Skip-gram</em> ou <em>FastText Skip-gram</em>. Le tableau suivant reproduit les
+        résultats obtenus pour les <em>Annales de Géographie</em> 1950-1960.
+        Pour des raisons de place, seuls les 10 premiers lemmes sont présentés mais la coloration correspond à une comparaison
+        des résultats entre les trois résultats (<em>Word2Vec Skip-gram</em>, <em>FastText Skip-gram</em>
+        et <em>GloVe</em>)sur 50 lemmes.</span></p></div>
+
+<table>
+<tr>
+<td><em>Word2Vec Skip-gram</em></td>
+<td><em>FastText Skip-gram</em></td>
+<td><em>GloVe</em></td>
+</tr>
+<tr>
+<td><spam class="jaune">bâtir (0.71)</spam><br>
+<spam class="jaune">vert (0.67)</spam><br>
+jardin (0.61)<br>
+<spam class="jaune">quartier (0.61)</spam><br>
+vaste (0.6)<br>
+enceinte (0.6)<br>
+boulevard (0.59)<br>
+<spam class="jaune">pavillon (0.58)</spam><br>
+stationnement (0.58)<br>
+voirie (0.58)</td>
+<td><spam class="jaune">bâtir (0.68)</spam><br>
+<spam class="jaune">vert (0.63)</spam><br>
+<spam class="jaune">quartier (0.63)</spam><br>
+implantation (0.62)<br>
+<spam class="jaune">pavillon (0.62)</spam><br>
+parcellaire (0.62)<br>
+parc (0.62)<br>
+rue (0.61)<br>
+libre (0.61)<br>
+palais (0.61)</td>
+<td><spam class="jaune">bâtir (0.66)</spam><br>
+<spam class="jaune">vert (0.55)</spam><br>
+<spam class="jaune">vaste (0.51)</spam><br>
+<spam class="jaune">libre (0.49)</spam><br>
+<spam class="jaune">urbain (0.47)</spam><br>
+reconstruction (0.47)<br>
+<spam class="jaune">extension (0.46)</spam><br>
+occuper (0.46)<br>
+<spam class="jaune">entourer (0.46)</spam><br>
+<spam class="jaune">quartier (0.45)</spam><br>
+</td>
+</tr>
+</table>
+
+    <br>
+
+<div class="a" id="Tableau15">Tableau n°15 : Lemmes dont les vecteurs sont les plus proches du vecteur du
+    lemme « espace » <br> dans les <em>Annales de Géographie</em> sur la période 1950-1960<br>
+    en utilisant <em>Word2Vec Skip-gram</em>, <em>FastText Skip-gram</em> et <em>GloVe</em>
+        et les paramètres spécifiés.<br>
+    <spam class="completlegend">Les lemmes en communs (sur 50 lemmes retenus pour chaque méthode
+        ont été surlignés).</spam></div>
+
+    <br>
+
+    <p class="mypara"> <span class="marge">	Le Tableau n°15 montre que les premiers lemmes obtenus à partir
+        de la méthode <em>GloVe</em> intègrent dans ce cas une plus grande partie de l’ensemble des lemmes
+        obtenus avec les trois méthodes. Ce
+        fait n’est certes pas aussi toujours aussi marqué suivant les époques, les revues et le nombre de lemmes choisis.
+        Cependant, les expérimentations réalisées m’ont conduit à observer que ce pourcentage de lemmes en commun (dès
+        les premiers lemmes par rapport à l’ensemble des lemmes obtenus) est plus souvent supérieur avec la
+        méthode <em>GloVe</em>.
+        Cette observation, couplée à l’idée que les lemmes obtenus étaient globalement plus représentatifs (car moins
+        spécifiques d’une seule méthode), permet de comprendre pourquoi la méthode <em>GloVe</em> a été
+        privilégiée.</span></p>
+
+    <p class="mypara"> <span class="marge">	La justification de ce choix reste de mon point de vue assez faible. C’est plus
+        la nécessité pratique de sélectionner quelques résultats à analyser qui a été déterminante. En effet, j’ai multiplié
+        les expérimentations jusqu’à identifier un argument jugé assez pertinent pour justifier un choix. Toutefois, il
+        m’est impossible d’affirmer que les résultats des deux autres méthodes (<em>Word2vec Skip-gram</em>
+        et <em>FastText Skip-gram</em>)
+        sont moins pertinents que les résultats issus de <em>GloVe</em>. L’application créée, en permettant
+        de consulter les résultats
+        qui auraient été obtenus si ces deux autres méthodes avaient été privilégiées, doit aussi être pensée comme une cause
+        et une conséquence<sup><a id="fn13-ref" class="note" href="#fn13">13</a></sup> de la reconnaissance
+        qui vient d’être effectuée.
+        Même si les résultats de ces deux autres méthodes ne seront pas analysés dans cette thèse, ils peuvent être
+        facilement être produits et analysés. Cette application donc ainsi aussi de laisser ouvertes les
+        expérimentations et les réflexions.
+    </span></p>
+
+    <p class="mypara"> <span class="marge">	À cette première phase d’expérimentations succède une deuxième phase pour
+        déterminer les paramètres à privilégier au sein de la méthode retenue.</span></p>
+
+
+ <h3 id="I3">3) Deuxième phase d’expérimentation sur les paramètres <a href="#I3-ref">&#8617;</a> </h3>
+
+    <p class="mypara"> <span class="marge">	La technique utilisée a été de faire varier plusieurs paramètres de la méthode
+        GloVe l’un après l’autre et d’examiner les effets sur les résultats obtenus.
+        Le premier paramètre testé est le minimum du nombre d’occurrences.</span></p>
+
+
+<h4 id="I3a">a) Minimum du nombre d’occurrences <a href="#I3a-ref">&#8617;</a> </h4>
+
+    <div id="TableauEmb3"><p class="mypara"> <span class="marge">	L’expérimentation menée a consisté à faire varier ce paramètre
+    entre 5 et 20 avec un pas de 5. Toutes les valeurs n’ont donc pas été testées. L’objectif est surtout
+    de déterminer si un choix optimal peut être revendiqué au sein des valeurs testées. Le lien suivant
+    (<a href="https://analytics.huma-num.fr/EtPistezMots/semtablemb/resultallvisucolor/g1-g2-g3-g4/g1-g2-g3-g4/Diff/AnnEsp/0">@CompareExpe2a50</a>)
+        présente les résultats obtenus pour 50 lemmes affichés en conservant pour les autres
+        paramètres les valeurs adoptées pour la première expérimentation.</span></p></div>
+
+    <p class="mypara"> <span class="marge">	Nous reproduisons ci-dessous les pourcentages de lemmes en commun
+    entre les différents résultats obtenus pour chaque période et revue :</span></p>
+
+    <br>
+<table>
+<tr>
+<td></td>
+<td>1950-1960</td>
+<td>1961-1971</td>
+<td>1972-1984</td>
+<td>1985-1995</td>
+</tr>
+<tr>
+<td><em>Annales de Géographie</em></td>
+<td>0,42</td>
+<td>0,6</td>
+<td>0,72</td>
+<td>0,7</td>
+</tr>
+<tr>
+<td><em>L'Espace Géographique</em></td>
+<td></td>
+<td></td>
+<td>0,64</td>
+<td>0,7</td>
+</tr>
+</table>
+
+<br>
+   <div class="a" id="Tableau16">Tableau n°16 : Rapport entre le nombre de lemmes en commun et le nombre
+       total de lemmes <br>en faisant varier le minimum d’occurrences (5,10,15,20).<br>
+       <spam class="completlegend">(Méthode <em>GloVe</em> avec nombre d’itérations : 100 ; taille du contexte : 10 et taille des
+           plongements : 50)</spam></div>
+    <br>
+
+    <p class="mypara"> <span class="marge">	Dans ce tableau, par exemple, pour les <em>Annales de
+    Géographie</em> sur la période 1985-1995, « 0,7 » signifie qu’il y a 70 % des lemmes qui se retrouvent
+    dans les résultats que le minimum d’occurrence soit fixé à 5, 10, 15 ou 20 (pour cette époque et revue
+    avec la méthode et les valeurs spécifiées pour les autres paramètres)</span></p>
+
+    <div id="TableauEmb4"><p class="mypara"> <span class="marge">	Ce tableau permet de constater un
+        pourcentage de lemmes en commun
+    bien inférieur pour la période 1950-1960. Ceci réduite s’explique facilement par le nombre beaucoup
+    plus faible d’occurrences du lemme « espace » sur cette période. Une faible variation comme le retrait
+    plus ou moins important des mots de basses fréquences engendre alors plus de modifications dans les
+    résultats. En rentrant dans le détail des résultats à partir du lien
+        (<a href="https://analytics.huma-num.fr/EtPistezMots/semtablemb/resultallvisucolor/g1-g2-g3-g4/g1-g2-g3-g4/Diff/AnnEsp/0">@CompareExpe2a50</a>)
+        , il est possible de
+    caractériser cette spécificité de la période 1950-1960 d’une autre manière : alors que les lemmes en
+    commun<sup><a id="fn14-ref" class="note" href="#fn14">14</a></sup> deviennent beaucoup plus rares après
+        le quinzième lemme, ils se maintiennent au contraire pour les autres périodes et revues jusqu’au
+        trentième, voire au
+    quarantième lemme. Ces scores dépendent bien entendu du nombre de lemme retenus mais des
+    expérimentations avec 25 ou 75 lemmes
+        (<a href="https://analytics.huma-num.fr/EtPistezMots/semtablemb/resultallvisucolor/g1-g2-g3-g4/g1-g2-g3-g4/Diff/AnnEsp/25">@CompareExpe2a25</a>
+        et <a  href="https://analytics.huma-num.fr/EtPistezMots/semtablemb/resultallvisucolor/g1-g2-g3-g4/g1-g2-g3-g4/Diff/AnnEsp/75">@CompareExpe2a75</a>)
+        montrent une spécificité similaire de la période 1950-1960 lors de la variation du minimum du
+        nombre d’occurrences.</span></p></div>
+
+    <p class="mypara"> <span class="marge">	Concernant le problème initial, à savoir le choix d’une valeur
+    optimale du nombre d’occurence, l’observation dans le détail des résultats (à l’aide des liens et que
+    ce soit pour 25, 50 ou 75 termes retenus) ne permet pas de répondre de manière satisfaisante. Tout
+    d’abord, à la différence de l’argumentation qui a conduit précédemment à exclure la méthode <em>Word2Vec
+    CBOW</em>, il n’y a pas un lemme ou un ensemble de lemmes obtenus permettant d’affirmer qu’une valeur
+        testée pour le minimum d’occurrences semble plus pertinente que les autres. Ensuite, à la
+        différence de l’argumentation qui a conduit précédemment à retenir plutôt la méthode GloVe par
+        rapport à <em>Word2vec Skip-gram</em> et <em>FastText Skip-gram</em>, il n’y a pas un ensemble de lemmes
+            en commun plus important pour une
+    valeur spécifique sur plusieurs époques et revues permettant de justifier un choix. J’ai donc pris la
+    décision par la suite de garder ce paramètre fixé à 15 comme il avait été fixé initialement.</span></p>
+
+    <p class="mypara"> <span class="marge">	Le second paramètre testé est le nombre d’itérations.</span></p>
+
+<h4 id="I3b">b) Nombre d’itérations <a href="#I3b-ref">&#8617;</a> </h4>
+
+    <p class="mypara"> <span class="marge">	De la même manière que ce qui a été effectué précédemment pour le
+    minimum d’occurrences, une variation du nombre d’itérations a été réalisée entre 100 et 250 avec un pas
+    de 50. Les pourcentages suivants de lemmes en commun sont obtenus :</span></p>
+<br>
+<table>
+<tr>
+<td></td>
+<td>1950-1960</td>
+<td>1961-1971</td>
+<td>1972-1984</td>
+<td>1985-1995</td>
+</tr>
+<tr>
+<td><em>Annales de Géographie</em></td>
+<td>0,8</td>
+<td>0,9</td>
+<td>0,94</td>
+<td>0,92</td>
+</tr>
+<tr>
+<td><em>L'Espace Géographique</em></td>
+<td></td>
+<td></td>
+<td>0,92</td>
+<td>0,84</td>
+</tr>
+</table>
+
+<br>
+    <div class="a" id="Tableau17">Tableau n°17 : Rapport entre le nombre de lemmes en commun et le nombre
+        total de lemmes <br>en faisant varier le nombre d’itérations (100,150,200,250).<br>
+        <spam class="completlegend">(Méthode <em>GloVe</em>, min nombre d’occurrences : 15, taille du contexte : 10 et taille des
+            plongements : 50)</spam>
+    </div>
+
+<br>
+    <p class="mypara"> <span class="marge">	Ce tableau se lit de la même manière que ce qui a été explicité
+    pour le Tableau n°<a href="#Tableau16">16</a>. De plus, le même
+        phénomène est observable avec la présence d’une valeur plus
+    faible pour les <em>Annales de Géographie</em> 1950-1960. L’explication précédemment avancée, à savoir
+    une quantité de données moindre<sup><a id="fn15-ref" class="note" href="#fn15">15</a></sup> pour cette
+        revue et époque, permettant de comprendre une plus grande instabilité des résultats, est valable.
+        Globalement, les scores obtenus pour ce paramètre sont très élevés ce qui montre une bonne
+        convergence de l’algorithme.</span></p>
+
+
+<div id="TableauEmb5"><p class="mypara"> <span class="marge">	Enfin, de la même manière que précédemment,
+    un examen dans le
+    détail des résultats
+        (<a href="https://analytics.huma-num.fr/EtPistezMots/semtablemb/resultallvisucolor/g1-g5-g6-g7/g1-g5-g6-g7/Diff/AnnEsp/25">@CompareExpe2b25</a>,
+        <a href="https://analytics.huma-num.fr/EtPistezMots/semtablemb/resultallvisucolor/g1-g5-g6-g7/g1-g5-g6-g7/Diff/AnnEsp/0">@CompareExpe2b50</a>,
+        <a  href="https://analytics.huma-num.fr/EtPistezMots/semtablemb/resultallvisucolor/g1-g5-g6-g7/g1-g5-g6-g7/Diff/AnnEsp/75">@CompareExpe2b75</a>),
+        en s’appuyant sur le contenu des lemmes ou en utilisant le nombre de
+    lemmes en commun, ne permet pas d’identifier une valeur optimale, La valeur de ce paramètre a donc été
+    maintenue à 100 pour les prochaines expérimentations.</span></p></div>
+
+<h4 id="I3c">c) Taille du contexte <a href="#I3c-ref">&#8617;</a> </h4>
+<br>
+    <p class="mypara"> <span class="marge">	De la même manière que précédemment, pour une variation de ce
+    paramètre entre 5 et 20 avec un pas de 5, les pourcentages suivant de lemmes en commun sont
+    obtenus :</span></p>
+
+<br>
+<table>
+<tr>
+<td></td>
+<td>1950-1960</td>
+<td>1961-1971</td>
+<td>1972-1984</td>
+<td>1985-1995</td>
+</tr>
+<tr>
+<td><em>Annales de Géographie</em></td>
+<td>0,3</td>
+<td>0,48</td>
+<td>0,54</td>
+<td>0,6</td>
+</tr>
+<tr>
+<td><em>L'Espace géographique</em></td>
+<td></td>
+<td></td>
+<td>0,62</td>
+<td>0,66</td>
+</tr>
+</table>
+
+<br>
+    <div class="a" id="Tableau18">Tableau n°18 : Rapport entre le nombre de lemmes en commun et le nombre
+        total de lemmes <br>en faisant varier la taille du contexte (5,10,15,20)<br>
+        <spam class="completlegend">(Méthode <em>GloVe</em>, min nombre d’occurrences : 15, nombre d’itérations : 100 et taille des
+            plongements : 50)</spam>
+    </div>
+<br>
+    <div id="TableauEmb6"><p class="mypara"> <span class="marge">	Même si ces résultats quantitatifs montrent des variations
+    importantes suivant le choix de ce paramètre, il est difficile d’identifier après un examen en détail
+        des résultats,
+        (<a href="https://analytics.huma-num.fr/EtPistezMots/semtablemb/resultallvisucolor/g1-g8-g9-g10/g1-g8-g9-g10/Diff/AnnEsp/25">@CompareExpe2c25</a>,
+        <a href="https://analytics.huma-num.fr/EtPistezMots/semtablemb/resultallvisucolor/g1-g8-g9-g10/g1-g8-g9-g10/Diff/AnnEsp/0">@CompareExpe2c50</a>,
+        <a href="https://analytics.huma-num.fr/EtPistezMots/semtablemb/resultallvisucolor/g1-g8-g9-g10/g1-g8-g9-g10/Diff/AnnEsp/75">@CompareExpe2c75</a>)
+    la répétition de cette situation m’a conduit à essayer de proposer une
+    explication pour essayer de mieux comprendre les causes de cette indétermination. Une difficulté
+    majeure, à mon avis, est qu’il n’y a pas eu UN sens du terme « espace » qui s’est maintenu dans la
+    durée, puis qui a été remplacé de manière nette et durable par un autre sens. Il y a plutôt une
+    multiplicité de sens évoluant dans le temps. Cette plasticité sémantique, au-delà du fait qu’elle est
+    un résultat intéressant en soi, permet de mieux comprendre un aspect de la difficulté d’évaluation.
+    Comme il y a beaucoup de lemmes proches sémantiquement d’« espace » avec des orientations sémantiques
+    variées, il est difficile d’établir une discrimination entre des lemmes pertinents et non-pertinents
+        .</span></p></div>
+
+    <p class="mypara"> <span class="marge">	Suite à ces observations et ces analyses, la valeur de 10,
+    initialement choisie comme taille de contexte, a été conservée pour les prochaines expérimentations
+    .</span></p>
+
+<h4 id="I3d">d) Taille des plongements <a href="#I3d-ref">&#8617;</a> </h4>
+
+
+    <p class="mypara"> <span class="marge">	Dans les mêmes conditions que les trois expériences précédentes et
+    pour une variation de ce paramètre entre 50 et 200 avec un pas de 50, les pourcentages suivants de
+    lemmes en commun ont été obtenus : </span></p>
+<br>
+
+<table>
+<tr>
+<td></td>
+<td>1950-1960</td>
+<td>1961-1971</td>
+<td>1972-1984</td>
+<td>1985-1995</td>
+</tr>
+<tr>
+<td><em>Annales de Géographie</em></td>
+<td>0,32</td>
+<td>0,54</td>
+<td>0,6</td>
+<td>0,66</td>
+</tr>
+<tr>
+<td><em>L'Espace Géographique</em></td>
+<td></td>
+<td></td>
+<td>0,68</td>
+<td>0,7</td>
+</tr>
+</table>
+
+<br>
+    <div class="a" id="Tableau19">Tableau n°19 : Rapport entre le nombre de lemmes en commun et le nombre
+        total de lemmes <br>en faisant varier la taille des plongements (50,100,150,200) <br>
+    (Méthode <em>GloVe</em>, min nombre d’occurrences : 15, nombre d’itérations : 100 et taille du contexte : 10) </div>
+<br>
+
+    <div id="TableauEmb7"><p class="mypara"> <span class="marge">	L’examen en détail des résultats
+        (<a href="https://analytics.huma-num.fr/EtPistezMots/semtablemb/resultallvisucolor/g1-g11-g12-g13/g1-g11-g12-g13/Diff/AnnEsp/25">@CompareExpe2d25</a>,
+        <a href="https://analytics.huma-num.fr/EtPistezMots/semtablemb/resultallvisucolor/g1-g11-g12-g13/g1-g11-g12-g13/Diff/AnnEsp/0">@CompareExpe2d50</a>,
+        <a href="https://analytics.huma-num.fr/EtPistezMots/semtablemb/resultallvisucolor/g1-g11-g12-g13/g1-g11-g12-g13/Diff/AnnEsp/75">@CompareExpe2d75</a>)
+        permet d’observer que
+    l’augmentation de la taille du plongement au-delà de 50 permet aux lemmes « structure » et « fonction »
+    d’être beaucoup mieux placés<sup><a id="fn16-ref" class="note" href="#fn16">16</a></sup> pour la
+        période 1972-1984 dans
+    <em>L'Espace Géographique.</em> L’importance de ces concepts à cette période et dans cette revue m’a
+    amené à privilégier une taille de plongement supérieure à 50. Il est possible également d’observer sur
+    ces mêmes résultats que le passage d’une taille de plongement de 100 à 150 (ou 200) a pour effet de
+    faire monter le lemme « temps » de la trente-cinquième position à la douzième position mais également
+    dans le même temps de provoquer une baisse du lemme « échelle ». Faut-il alors plutôt privilégier une
+        taille de plongement de 150 ou 200 ? La question peut être à mon avis largement débattue.</span></p></div>
+
+    <p class="mypara"> <span class="marge">	Si le gain en passant d’une taille de plongement de 50 à 100 me
+    semble tout à fait justifiable, le passage de 100 à 150 reste plus discutable. Pour cette raison, j’ai
+    choisi de retenir la valeur 100 pour ce paramètre. Sur le fond, au-delà des interrogations sur la
+    pertinence des montées/descentes de quelques lemmes, se pose la question du risque d’une sélection des
+    résultats attendus à travers le choix des paramètres. Il y a là une réelle tension entre la volonté de
+    faire émerger les résultats du corpus et la reconnaissance que ces résultats dépendent de paramètres
+    fixés de manière réfléchie sans qu’une nécessité forte puisse justifier de manière décisive ces choix
+    .</span></p>
+
+    <p class="mypara"> <span class="marge">	De plus, il faut mentionner qu’il est bien entendu possible de tester
+        également l’effet des variations combinées de plusieurs de ces paramètres. Par conséquent, cette thèse
+        reconnaît un travail incomplet d’optimisation. Les choix réalisés doivent par conséquent être compris, non pas
+        comme une optimisation totale, mais comme une amélioration partielle.</span></p>
+
+    <p class="mypara"> <span class="marge">	Suite à ces choix de valeurs pour les paramètres, la partie
+    suivante présente et analyse les premiers résultats obtenus.</span></p>
+
+
+<h2 id="II">II) Premiers résultats et leurs analyses <a href="#II-ref">&#8617;</a> </h2>
+
+ <h3 id="II1">1) Evolution sémantique du lemme « espace » et ses deux interprétations
+     <a href="#II1-ref">&#8617;</a> </h3>
+
+
+    <p class="mypara"> <span class="marge">	Le premier résultat présenté s’appuie du fait du travail précédent
+        sur la méthode <em>GloVe</em> et les valeurs des paramètres retenues.
+</span></p>
+
+<table>
+<tr>
+<td></td>
+<td>1950-1960</td>
+<td>1961-1971</td>
+<td>1972-1984</td>
+<td>1985-1995</td>
+</tr>
+<tr>
+<td><em>Annales de Géographie</em></td>
+<td>bâtir (0.55)<br>
+vert (0.49)<br>
+vaste (0.47)<br>
+libre (0.44)<br>
+extension (0.41)<br>
+urbain (0.4)<br>
+occuper (0.39)<br>
+temps (0,39) <br>
+vide (0.37)<br>
+paysage (0.36)<br>
+entourer (0.34)<br>
+quartier (0.34)<br>
+limite (0,34)<br>
+immense (0,34)<br>
+reconstruction (0,33)</td>
+<td>organisation (0.63)<br>
+urbain (0.5)<br>
+vaste (0.48)<br>
+ensemble (0.45)<br>
+aménagement (0.43)<br>
+fonctionnel (0.43<br>
+définir (0.43)<br>
+territoire (0,43) <br>
+régional (0.43)<br>
+fonction (0.4)<br>
+touristique (0.4)<br>
+organiser (0,4)<br>
+intégrer (0.39)<br>
+temps (0.39)<br>
+géographique (0,38)</td>
+<td>géographique (0.61)<br>
+urbain (0.55)<br>
+organisation (0.54)<br>
+définir (0.53)<br>
+spatial (0.49)<br>
+aménagement (0.48)<br>
+humain (0.48)<br>
+territoire (0.48)<br>
+social (0.48)<br>
+dimension (0.47)<br>
+rural (0.47)<br>
+milieu (0.46)<br>
+relation (0.45)<br>
+régional (0.45)<br>
+nouvelle (0.45)</td>
+<td>spatial (0.57)<br>
+territoire (0.56)<br>
+social (0.55)<br>
+tant (0.54)<br>
+urbain (0.53)<br>
+géographique (0.5)<br>
+nouveau (0.5)<br>
+organisation (0.49)<br>
+rural (0.46)<br>
+rapport (0.46)<br>
+pratique (0.45)<br>
+aussi (0.44)<br>
+forme (0.44)<br>
+représentation (0.44)<br>
+société (0.43)</td>
+</tr>
+<tr>
+<td><em>L'Espace Géographique</em></td>
+<td></td>
+<td></td>
+<td>organisation (0.54)<br>
+urbain (0.51)<br>
+social (0.51)<br>
+spatial (0.5)<br>
+géographique (0.5)<br>
+vivre (0.49)<br>
+définir (0.48)<br>
+rural (0.46)<br>
+territoire (0.46)<br>
+organiser (0.46)<br>
+ainsi (0.45)<br>
+notion (0.45)<br>
+économique (0.44)<br>
+ensemble (0.44)<br>
+considérer (0.44)</td>
+<td>géographique (0.59)<br>
+organisation (0.56)<br>
+vivre (0.55)<br>
+territoire (0.51)<br>
+spatial 0.5)<br>
+représentation (0.5)<br>
+définir (0.49)<br>
+ainsi (0.49)<br>
+agir (0.48)<br>
+organiser (0.46)<br>
+social (0.46)<br>
+société (0.46)<br>
+pouvoir (0.45)<br>
+urbain (0.45)<br>
+monde (0.45)</td>
+</tr>
+</table>
+<br>
+    <div class="a" id="Tableau20" >Tableau n°20 : Lemmes dont les vecteurs sont les plus proches du vecteur
+        du lemme « espace » <br>par époques et revues avec la méthode  et les paramètres spécifiés. <br>
+        <spam class="completlegend">(Méthode <em>GloVe</em> avec minimum nombre d’occurrences : 15 ; nombre d’itérations : 100, taille
+            du  contexte : 10 et taille des plongements : 100)</spam></div>
+
+<br>
+    <p class="mypara"> <span class="marge">	Ce premier résultat est caractérisé pour la période 1950-1960 des
+    <em>Annales de géographie </em>par deux pôles sémantiques. Le premier est lié aux espaces bâtis. Ce
+    pôle est évidemment marqué par la présence du lemme « bâtir » en première position mais aussi ensuite
+    par les lemmes « urbain », « quartier », « reconstruction »… Le second pôle est lié aux espaces
+    naturels ou agricoles avec les lemmes « vert », « vide » ou encore « champs »,
+        « doline »<sup><a id="17-ref" class="note" href="#fn17">17</a></sup>.
+        Par rapport à ces deux pôles, il faut souligner que
+    plusieurs lemmes peuvent appartenir à l’un et à l’autre comme « libre », « extension », « occuper »… De
+    plus, il serait possible de considérer que le lemme « temps » relève par exemple d’un autre pôle
+    sémantique. Toutefois, il n’y a pas vraiment, de mon point de vue, de lemmes sémantiquement proches
+    formant un agrégat facilement identifiable.</span></p>
+
+    <p class="mypara"> <span class="marge"> En passant de 1950-1960 à 1961-1971, un changement
+    sémantique important est observable<em>.</em> De nouveaux lemmes s’affirment comme « organisation »,
+    « aménagement » ou « fonctionnel », transformant une partie du pôle sémantique lié aux espaces
+    « bâtis ». De plus, il y a un net recul du pôle sémantique liés aux espaces naturels et agricoles. De
+    nouveaux lemmes apparaissent comme « touristique » et l’échelon « régional » s’affirme. Enfin, il est
+    possible de remarquer que toute cette sémantique liée au lemme « espace » est moins concrète et plus
+    conceptuel qu’en 1950-1960. Les lemmes comme « vert », « entourer », « quartier » reculent et des
+    lemmes comme « fonction », « définir », « intégrer » deviennent plus présents.</span></p>
+
+    <p class="mypara"> <span class="marge">	Les années 1970-1984 confirment ce changement sémantique. Dans les
+    deux revues, il y a une montée en puissance des lemmes « géographique », « spatial » et « social ». Un
+    nouveau trait sémantique apparaît dans <em>L'Espace Géographique </em>avec le verbe « vivre » qui
+    renvoie à l’ « espace vécu ». Toujours dans cette revue, une conceptualisation plus importante est
+    notable avec des lemmes comme « notion » ou encore « forme », « relation », « concept », « structure »
+    et « type »<sup><a id="fn18-ref" class="note" href="#fn18">18</a></sup>. La sémantique liée aux espaces
+        naturels et
+    agricoles se maintient dans les <em>Annales de Géographie</em> avec « rural », « nature » et
+    « milieu ». Elle est moins présente dans <em>L'Espace Géographique</em> à l’exception du lemme
+    « rural ».</span></p>
+
+    <p class="mypara"> <span class="marge">	La période suivante, 1985-1995, marque une certaine continuité avec
+    l’importance des lemmes « organisation », « géographique », « spatial », « social » mais aussi
+    l’affirmation de nouveaux traits avec les lemmes « territoire », « représentation », « système » et
+    « pratique » dans les deux revues. Le terme « rural » se maintient dans les <em>Annales de
+        Géographie</em> (ainsi que « nature ») mais décline dans <em>L'Espace Géographique</em>.</span></p>
+
+
+    <p class="mypara"> <span class="marge">	Ces résultats peuvent donner lieu à deux grandes interprétations
+    opposées par rapport à la thèse d’Olivier Orain :</span></p>
+
+    <ul>
+    <li>La première remet en cause de manière importante les analyses
+        développées par cet auteur. En effet, Olivier Orain affirme l’importation d’une nouvelle
+        terminologie dans les années 1960 sans qu’il y ait de changement sémantique. Or, les résultats
+        tendent à montrer le contraire. Une grande partie du changement sémantique a déjà eu lieu au sein
+        même des <em>Annales de Géographie</em> dès 1961-1971. Cette observation est loin d’être
+        anecdotique, car
+        elle tend à accréditer la thèse d’un changement plus continu et moins révolutionnaire. Une telle
+        perspective s’accorde mieux avec les résultats obtenus. Il est en effet particulièrement difficile
+        de réduire les résultats obtenus au passage d’un premier ensemble de sens bien défini par un
+        paradigme à un nouvel ensemble de sens significatif d’un nouveau paradigme.</li>
+
+    <li>La seconde interprétation met en avant au contraire une
+    adéquation entre les résultats obtenus et les analyses développées par Olivier Orain. En effet, ce
+    dernier affirme l’importance d’une « anomalie » dans les années 1960 liée à la rencontre de la
+    géographie avec la scène « aménagementiste ». Cette « anomalie » pourrait être incarnée et justifiée
+    par le changement sémantique observé sur cette décennie. La « crise » des années 1970, au sens kuhnien
+    du terme, développée par Olivier Orain peut alors être reliée à l’approfondissement du changement
+    sémantique observé lors de la période 1972-1984. La progression de la conceptualisation qui a été
+    soulignée peut alors servir à accréditer la thèse d’une modification d’un rapport au « réel » chez les
+    géographes. L’essor du terme « représentation » sur la période 1985-1995 peut être aussi utilisée pour
+    affirmer la fin du « plain-pied » caractéristique pour Olivier Orain de la géographie post-vidalienne
+    .<br>
+    Dans cette perspective, une objection aisée à la première interprétation concerne la temporalité du
+        changement sémantique. En effet, la modification sémantique qui est observée sur la période
+        1961-1971 n’est peut-être qu’un effet de la fin des années 1960 et du début des années 1970. Dans
+        ce cas, l’argumentation de la première interprétation s’en retrouve affaiblie, car il est possible
+        de relier l’évolution sémantique au début de la « crise de la géographie » (assimilée par Olivier
+        Orain à une « crise » kuhnienne). </li>
+
+    </ul>
+
+    <p class="mypara"> <span class="marge">	Ces réflexions et ce questionnement explique la production et la
+    présentation d’un résultat à partir d’un découpage temporel plus fin.</span></p>
+
+<h3 id="II2">2) Résultat avec un découpage temporel plus fin <a href="#II2-ref">&#8617;</a> </h3>
+
+
+    <p class="mypara"> <span class="marge">	Le même corpus (ArticleLem) et les mêmes paramètres ont été
+    conservés par rapport au résultat précédent à l’exception du découpage temporel. L’objectif étant de
+    préciser la date du changement sémantique précédemment caractérisé, la division suivante a été
+    privilégiée : 1950-1955, 1956-1960, 1961-1965, 1966-1971, 1972-1976</span></p>
+
+<br>
+
+<table>
+<tr>
+<td></td>
+<td>1950-1955</td>
+<td>1956-1960</td>
+<td>1961-1965</td>
+<td>1966-1971</td>
+<td>1972-1976</td>
+</tr>
+<tr>
+<td><em>Annales de Géographie</em></td>
+<td>libre (0.49)<br>
+bâtir (0.46)<br>
+vaste (0.41)<br>
+urbain (0.4)<br>
+vert (0.39)<br>
+temps (0.35)<br>
+vide (0.34)<br>
+occuper (0.33)<br>
+progression (0.33)<br>
+rapidité (0.31)<br>
+ouvert (0.31)<br>
+perfectionner (0.31)<br>
+banlieue (0.3)<br>
+cultivé (0.3)<br>
+ville (0.3)</td>
+<td>bâtir (0.53)<br>
+vert (0.49)<br>
+vaste (0.44)<br>
+libre (0.4)<br>
+temps (0.39)<br>
+extension (0.37)<br>
+détruire (0.36)<br>
+plan (0.36)<br>
+débouché (0.35)<br>
+pratiquement (0.35)<br>
+demeuré (0.33)<br>
+immense (0.33)<br>
+sinistré (0.33)<br>
+rayon (0.32)<br>
+largement (0.32)</td>
+<td>urbaniste (0.47)<br>
+urbain (0.47)<br>
+concevoir (0.46)<br>
+organisation (0.45)<br>
+vaste (0.45)<br>
+régional (0.44)<br>
+échelle (0.43)<br>
+occupation (0.42)<br>
+fonctionnel (0.42)<br>
+géographique (0.41)<br>
+ensemble (0.4)<br>
+aménagement (0.4)<br>
+relation (0.39)<br>
+temps (0.39)<br>
+territoire (0.38)</td>
+<td>organisation (0.65)<br>
+urbain (0.48)<br>
+aménagement (0.46)<br>
+fonctionnel (0.45)<br>
+vert (0.44)<br>
+vaste (0.43)<br>
+fonction (0.42)<br>
+territoire (0.41)<br>
+bâtir (0.41)<br>
+touristique (0.4)<br>
+social (0.4)<br>
+économique (0.4)<br>
+créer (0.39)<br>
+régional (0.39)<br>
+temps (0.39)</td>
+<td>organisation (0.56)<br>
+géographique (0.52)<br>
+régional (0.5)<br>
+territoire (0.49)<br>
+urbain (0.48)<br>
+vaste (0.47)<br>
+aménagement (0.45)<br>
+relation (0.44)<br>
+politique (0.43)<br>
+homme (0.42)<br>
+système (0.41)<br>
+planification (0.4)<br>
+fonction (0.4)<br>
+étudier (0.4)<br>
+organiser (0.4)</td>
+</tr>
+</table>
+
+<br>
+<div class="a" id="Tableau21" >Tableau n°21 : Lemmes dont les vecteurs sont les plus proches du vecteur du
+    lemme « espace » <br>pour les <em>Annales de Géographie</em> 1950-1976 avec un découpage tous les 4,5 ans.
+    <br> <spam class="completlegend">(Méthode <em>GloVe</em> avec minimum nombre d’occurrences : 15 ; nombre d’itérations : 100,
+        taille du contexte : 10 et taille des plongements : 100)</spam>
+</div>
+<br>
+
+    <p class="mypara"> <span class="marge">	Ces
+        résultats<sup><a id="fn19-ref" class="note" href="#fn19">19</a></sup>
+        montrent que les premiers lemmes obtenus sont très
+    proches dans les années 1950-1955 et 1956-1960. Cette observation permet de penser qu’il existe une
+    certaine continuité sémantique du lemme « espace » sur ces deux périodes. À l’inverse, une
+    discontinuité est notable entre 1956-1960 et 1961-1965 avec un changement notable des lemmes obtenus
+    témoignant d’un changement sémantique important. Enfin, une nouvelle continuité est observable entre
+    les années 1961-1965, 1966-1971 et 1972-1976. Par conséquent, l’argument précédent qui consistait à
+    penser que le changement sémantique était surtout lié à la fin des années 1960 et au début des années
+    1970, ne tient pas. Il y a lors de la période 1960-1965, considérée par Olivier Orain comme la phase
+    d’« anomalie », un net changement sémantique du lemme « espace ». Cette observation est
+    particulièrement problématique car, comme cela a été précédemment développé, la « bascule sémantique »
+    est attendue dans le cas d’une déclinaison sémantique simple du schéma kuhnien pendant la « crise » et
+    même plutôt en sortie de « crise »</span></p>
+
+
+    <div id="Orain1b"><p class="mypara"> <span class="marge">	La lecture de la thèse d’Olivier Orain ne
+    permet pas, à mon avis, de comprendre directement l’origine de cette affirmation d’un changement
+    sémantique tardif autour du terme « espace ». La formule qu’il emploie par exemple dans sa conclusion :
+    « C’est ainsi que j’ai montré dans cette thèse qu’ ‘espace’ a désigné pendant longtemps la même chose
+    que ‘milieu’ ou ‘paysage’ précédemment » <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Orain1">(Orain,
+            2003, 353)</a> ne renvoie pas
+    à un point précis de sa thèse. Il est sûrement possible d’évoquer la petite partie quantitative
+        mobilisée au milieu de sa thèse où des calculs de rapport entre les occurrences du terme « espace »
+        et celles du terme « milieu » sont réalisés dans plusieurs ouvrages. Toutefois cet appui est
+        relativement fragile. La composition du corpus et la méthodologie employée sont très peu
+        interrogées. Cette insatisfaction pour comprendre l’origine des affirmations sémantique d’Olivier
+        Orain, m’a conduit à une recherche allant au-delà de ce qui est directement exprimé dans sa thèse
+        .</span></p></div>
+
+    <div id="Pin1"> <p class="mypara"> <span class="marge">	L’élément trouvé le plus intéressant provient
+    de ma lecture de plusieurs articles de Philippe Pinchemel. Rappelons rapidement que ce géographe a
+    fondé le Centre de géohistoire en 1969, centre qui est à l’origine de l’équipe « Épistémologie et
+    histoire de la géographie » (E.H.GO). Cette équipe a été ensuite dirigée à partir de 1991 par
+    Marie-Claire Robic, c’est-à-dire la directrice de thèse d’Olivier Orain. Ce dernier est lui-même
+    maintenant co-directeur de l’équipe d’E.H.GO depuis 2018. Si la filiation institutionnelle est
+    indéniable, celle des idées est plus complexe. En effet, Philippe Pinchemel
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Pin1">(1988)</a> est à l’origine d’un
+    projet de refondation disciplinaire, formalisé dans <em>La Face de la Terre</em>, qui vise l’unité de la
+    géographie par une synthèse d’une partie des méthodologies historiques qu’il identifie comme centrées
+    sur le concept de « milieu » et une partie des nouvelles démarches centrées sur le concept d’
+    « espace ». Ce contexte permet de mieux comprendre cette affirmation d’Olivier Orain sur une sémantique
+    d’ « espace » longtemps indistincte, ou au moins combinée à celle de « milieu ».</span></p></div>
+
+    <p class="mypara"> <span class="marge">	En rentrant plus en détail dans la pensée de Philippe Pinchemel,
+    une certaine ironie dans la reprise de ses réflexions par Olivier Orain se fait jour. En effet, il y
+    avait une volonté forte de la part de Philippe Pinchemel de ne pas opposer mais de proposer une
+    synthèse entre la géographie post-vidalienne et la « nouvelle géographie ». Olivier Orain, en
+    s’appuyant sur le schéma kuhnien, se place à l’opposé de cette position. La « révolution scientifique »
+    et l’ « incommensurabilité » n’est pas conciliable avec une « synthèse » des deux approches. Il est
+    vrai que l’insuccès du projet unitaire de <em>La Face de la Terre</em> par rapport à la hauteur des
+    espoirs entretenus par Philippe Pinchemel quant à la refondation de la
+        discipline<sup><a id="fn20-ref" class="note" href="#fn20">20</a></sup>, est déjà acté au moment de
+        la thèse d’Olivier Orain. Toutefois, les résultats quantitatifs
+    que j’ai obtenus, m’amène à être sceptique sur cette affirmation d’une correspondance sémantique entre
+    « milieu » et « espace ». Cette dernière doit à mon avis être fortement recontextualisée et comprise
+    par rapport à la volonté de Philippe Pinchemel de défendre son projet intellectuel d’unité de la
+    géographie.</span></p>
+
+    <p class="mypara"> <span class="marge">Tout ce développement permet de mieux comprendre, mais aussi de
+        mieux remettre en cause, les affirmations sémantiques d’Olivier Orain puisque celles-ci peuvent
+        être considérées comme le fruit d’un contexte spécifique. Si ces réflexions permettent d’interroger
+        sa lecture kuhnienne, elles ne la remettent pas directement en cause. Il est en effet possible de
+        reconnaître la faiblesse de la déclinaison sémantique qu’effectue Olivier Orain du schéma kuhnien
+        tout en affirmant que cela n’invalide pas le reste de sa lecture kuhnienne.</span></p>
+
+    <div id="Lef2"> <p class="mypara"> <span class="marge">	La section suivante développe un élément
+        favorable à la thèse d’Olivier Orain. </span></p></div>
+
+<h3 id="II3">3) Réflexions à partir de la dynamique sémantique d’« espaces »
+    <a href="#II3-ref">&#8617;</a></h3>
+
+
+    <div id="TableauEmb8"><p class="mypara"> <span class="marge">	Le fait d’avoir construit précédemment plusieurs corpus m’a conduit
+    à expérimenter sur les autres corpus qu’ « ArticleLem ». L’objectif a été tout d’abord d’éprouver
+    l’observation qui vient d’être détaillée et analysée, à savoir un changement sémantique du lemme
+    « espace »<sup><a id="fn21-ref" class="note" href="#fn21">21</a></sup> beaucoup plus précoce que ce
+        qu’avait affirmé
+    Olivier Orain. Les liens suivants
+        (<a href="https://analytics.huma-num.fr/EtPistezMots/semtablemb/result/glove/19/19">
+            @ResultArtNonLemEspace50</a> et
+        <a href="https://analytics.huma-num.fr/EtPistezMots/semtablemb/result/glove/22/21">
+            @ResultArtPlusCrLem2Espace50</a>) montrent que cette observation n’est pas remise en cause par
+        les corpus « ArticleNonLem » et « ArticlePlusCrLem2 ».</span></p></div>
+
+    <p class="mypara"> <span class="marge">	Toutefois, les expérimentations réalisées sur le corpus
+    « ArticleNonLem » m’ont conduit à changer de position sur un point. Il s’agit du choix du corpus
+    « ArticleLem » comme référence. Cette remise en cause est due à une spécificité liée à l’étude de la
+    sémantique d’ « espace ». Pour expliciter ce point, il faut détailler les résultats d’une
+    expérimentation menée portant sur le terme « espaces » (au pluriel) dans le corpus « ArticleNonLem »
+    toujours avec la méthode <em>GloVe</em> et les paramètres précédemment
+        utilisés. Au niveau du découpage temporel, j’ai
+        alors privilégié celui utilisé initialement car l’objectif n’est pas ici de préciser l’époque d’une
+        discontinuité spécifique. Les résultats
+        obtenus<sup><a id="fn22-ref" class="note" href="#fn22">22</a></sup> sont les suivants :</span></p>
+
+<br>
+<table id="Tab22">
+<tr>
+<td></td>
+<td>1950-1960</td>
+<td>1961-1971</td>
+<td>1972-1984</td>
+<td>1985-1995</td>
+</tr>
+<tr>
+    <td><em>Annales de Géographie</em></td>
+<td>libres (0.59)<br>
+verts (0.58)<br>
+territoires (0.49)<br>
+bâtis (0.47)<br>
+vastes (0.47)<br>
+vides (0.45)<br>
+troncs (0.41)<br>
+étendues (0.41)<br>
+immenses (0.4)<br>
+genève (0.4)</td>
+<td>verts (0.77)<br>
+vastes (0.64)<br>
+secteurs (0.48)<br>
+étendues (0.47)<br>
+périphériques (0.47)<br>
+libres (0.46)<br>
+parcs (0.46)<br>
+grands (0.45)<br>
+terrains (0.44)<br>
+disponibles (0.43)</td>
+<td>verts (0.61)<br>
+ensembles (0.58)<br>
+ruraux (0.57)<br>
+vastes (0.55)<br>
+urbains (0.54)<br>
+milieux (0.53)<br>
+piétonniers (0.51)<br>
+géographiques (0.51)<br>
+périurbains (0.51)<br>
+régionaux (0.49)</td>
+<td>ruraux (0.59)<br>
+nouveaux (0.57)<br>
+secteurs (0.53)<br>
+urbains (0.52)<br>
+certains (0.52)<br>
+vastes (0.52)<br>
+naturels (0.51)<br>
+industriels (0.5)<br>
+quartiers (0.49)<br>
+géographiques (0.49)</td>
+</tr>
+<tr>
+<td><em>L’Espace Géographique</em></td>
+<td><br>
+
+</td>
+<td></td>
+<td>ruraux (0.77)<br>
+types (0.65)<br>
+urbains (0.6)<br>
+régionaux (0.6)<br>
+différents (0.58)<br>
+vécus (0.58)<br>
+paysages (0.57)<br>
+milieux (0.56)<br>
+ensembles (0.54)<br>
+homogènes (0.52)</td>
+<td>systèmes (0.62)<br>
+types (0.61)<br>
+urbains (0.6)<br>
+industriels (0.57)<br>
+milieux (0.57)<br>
+périphériques (0.55)<br>
+verts (0.55)<br>
+naturels (0.54)<br>
+territoires (0.54)<br>
+ruraux (0.53)</td>
+</tr>
+</table>
+    <br>
+<div class="a" id="Tableau22" >Tableau n°22 : Termes dont les vecteurs sont les plus proches du vecteur du
+    terme « espaces » <br>dans le corpus « ArticleNonLem »<br> <spam class="completlegend">(Méthode <em>GloVe</em>
+        avec nombre minimum  d’occurrences : 15 ; nombre d’itérations : 100, taille du contexte : 10 et
+        taille des plongements : 100)</spam>
+</div>
+
+<br>
+    <p class="mypara"> <span class="marge">	Les résultats pour les <em>Annales de Géographie</em> 1950-1960 montrent une
+    proximité avec les résultats précédemment obtenus pour le lemme « espace » sur le corpus lemmatisé.
+    Autrement dit, à cette période, soit les deux dynamiques sémantiques des termes « espaces » et
+    « espace » sont très proches, soit la sémantique du terme « espaces » domine et occulte celle du terme
+    « espace ». Le lien
+        <a href="https://analytics.huma-num.fr/EtPistezMots/semtablemb/result/glove/19/19">@ResultArtNonLemEspace50</a>
+        permet de consulter les résultats obtenus pour le terme « espace »
+    dans le corpus « ArticleNonLem » avec la méthode <em>GloVe</em> et les mêmes paramètres. Ces résultats
+    permettent d’affirmer qu’en 1950-1960 dans les <em>Annales de Géographie</em>, il y a bien une proximité
+    sémantique des termes « espaces » et « espace ». À partir des années 1961-1971, la sémantique d’
+    « espace » se différencie et s’affirme nettement en quittant cette base sémantique liée aux espaces
+    naturels et bâtis sur laquelle reste globalement le terme « espaces ».</span></p>
+
+    <p class="mypara"> <span class="marge">	L’emploi précédent du corpus « ArticleLem » n’était donc pas dans ce cas
+        optimal, car il y avait l’agrégation de ces deux dynamiques sémantiques méritant d’être différenciées. Il faut
+        souligner que dans les cas où il y a assez peu d’occurrences du terme étudié et où les dynamiques sémantiques
+        des formes au singulier et au pluriel sont proches, il y a à l’inverse un intérêt à utiliser le corpus
+        lemmatisé puisqu’il y a une augmentation des données permettant d’avoir a priori des résultats plus signifiants.
+        Il y a eu par conséquent sur cet aspect de l’usage des corpus une évolution de ma pratique de recherche avec le
+        passage d’une conception marquée par une dichotomie « corpus de référence / autres corpus » à une approche plus
+        réflexive tentant de sélectionner le corpus le plus adapté en fonction de la situation.</span></p>
+
+    <div id="Ric1"><p class="mypara"> <span class="marge">	Peu après cette observation des dynamiques
+    sémantiques différenciées d’ « espace » et d’ « espaces », j’ai lu <u>Temps et récit</u> de Paul
+    Ricoeur. Dans le troisième tome, Le temps raconté, cet auteur revient sur l’évolution qu’a connu « le
+    vocabulaire de l’histoire dans la deuxième moitié du XVIII<sup>ème</sup> allemand ». Un fait marquant est le passage
+    des « histoires de » à l’ « histoire ». Paul Ricoeur souligne l’importance de ce processus en
+    écrivant : « Les significations nouvelles souvent attribuées à des mots anciens vont servir
+    ultérieurement à identifier l’articulation en profondeur de la nouvelle expérience historique, marquée
+    par un rapport nouveau entre espace d’expérience et horizon d’attente » <a
+                href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Ric1">(Ricoeur 1985, 377)</a>. Une analogie
+        avec le passage d’ « espaces » à « espace » est
+        réalisable<sup><a id="fn23-ref" class="note" href="#fn23">23</a></sup>.
+        Cette analogie révèle toute l’importance de ce
+    changement sémantique. En la poursuivant (et en reprenant les formules de Paul Ricoeur), il est
+    possible de penser que ces nouvelles significations ont pu servir ultérieurement à définir une nouvelle
+    expérience géographique, marquée par un rapport nouveau entre espace d’expérience et horizon
+    d’attente<sup><a id="fn24-ref" class="note" href="#fn24">24</a></sup>. Il existe bien entendu des
+        limites à cette analogie au sens où les études sur « les espaces de » n’étaient sûrement pas aussi
+        développées que
+    « les histoires de ». Toutefois, il y a dans cette analogie un fort potentiel pour redonner de la force
+        à l’hypothèse sémantique réalisée par Olivier Orain en affirmant une révolution de la discipline
+        qui s’appuie sur un « rapport nouveau entre espace d’expérience et horizon d’attente » pour
+        reprendre les termes de Paul Ricoeur.</span></p></div>
+
+    <p class="mypara"> <span class="marge"> Cette citation mérite à mon avis d’être mise au pluriel en
+        affirmant plutôt : « des rapports nouveaux entre espaces d’expériences et horizons d’attentes ». Le
+        conflit entre les tenants de la géographie appliquée et ceux de la géographie active illustre bien
+        cette conception plurielle, aussi bien des espaces d’expériences que des horizons d’attentes. Cette
+        remarque minore le caractère révolutionnaire, car il ne s’agit pas d’un remplacement d’une matrice
+        par une autre, mais plutôt d’une multiplication des manières de penser, de faire et de revendiquer
+        la géographie. De plus, ce rapprochement avec les réflexions de Paul Ricoeur sur l’histoire, ne
+        valide en rien le transfert du schéma kuhnien. Les analogies développées n’ont pas valeur de
+        « preuve ». Il
+    n’est pas possible par exemple d’affirmer qu’il y a une « anomalie » telle que Thomas Kuhn la
+    développe. Il n’est pas possible non plus à partir de ces analogies de soutenir que les quatre grands
+    éléments de la matrice kuhnienne (les généralisations symboliques, la métaphysique, les valeurs et les
+    exercices types : <em>cf</em>. Manuscrit chap2.II.1.b) sont présents dans la géographie
+        post-vidalienne.</span></p>
+
+    <p class="mypara"> <span class="marge">	Avant d’aborder ces points plus qualitativement (<em>cf.</em>Manuscrit Part3),
+        il m’importe de développer d’autres résultats : ceux obtenus par exemple sur l’adjectif « spatial »
+        permettent de mettre en évidence une modification sémantique quelque peu ultérieure à celle
+        d’« espace ».</span></p>
+
+<h3 id="II4">4) Réflexion à partir de l’évolution sémantique de « spatial » <a href="#II4-ref">&#8617;</a>
+</h3>
+
+
+<p class="mypara"> <span class="marge">	Le corpus « ArticleLem » a été privilégié, car il y a dans les
+    premières périodes (1960-1965 et 1966-1971) peu d’occurrences du lemme « spatial » et les
+    différenciations sémantiques entre les formes au singulier et au pluriel sont peu significatives. La
+    méthode <em>GloVe</em> et les paramètres précédemment utilisés ont été repris.</span></p>
+
+<br>
+<table id="Tab23">
+<tr>
+<td></td>
+<td>1960-1965</td>
+<td>1966-1971</td>
+<td>1972-1975</td>
+<td>1976-1982</td>
+<td>1983-1988</td>
+</tr>
+<tr>
+<td><em>Annales de Géographie</em></td>
+<td>fonctionnel (0.37)<br>
+expansion (0.36)<br>
+répartition (0.35)<br>
+maintien (0.35)<br>
+uniformité (0.35)<br>
+commission(0.34)<br>
+particule (0.34)<br>
+vide (0.34)<br>
+arrosage (0.33)<br>
+sécurité (0.32)</td>
+<td>structure (0.5)<br>
+répartition (0.45)<br>
+modèle (0.44)<br>
+signification (0.42)<br>
+complexe (0.39)<br>
+analyser (0.39)<br>
+géographique (0.37)<br>
+analyse (0.37)<br>
+cohésion (0.36)<br>
+circonscription (0.36)</td>
+<td>organisation (0.53)<br>
+structure (0.52)<br>
+politique (0.51)<br>
+processus (0.5)<br>
+géographique (0.48)<br>
+analyse (0.46)<br>
+conséquence (0.45)<br>
+économique (0.43)<br>
+modèle (0.42)<br>
+approcher (0.41)</td>
+<td>certaine (0.54)<br>
+concentration (0.54)<br>
+géographique (0.53)<br>
+espace (0.52)<br>
+répartition (0.51)<br>
+différent (0.51)<br>
+dimension (0.5)<br>
+structure (0.5)<br>
+distribution (0.49)<br>
+diverses (0.49)</td>
+<td>organisation (0.63)<br>
+structure (0.58)<br>
+modèle (0.56)<br>
+analyse (0.55)<br>
+espace (0.51)<br>
+distribution (0.49)<br>
+social (0.48)<br>
+échelle (0.47)<br>
+forme (0.46)<br>
+répartition (0.45)</td>
+</tr>
+<tr>
+<td><em>L'Espace géographique</em></td>
+<td><br>
+
+
+</td>
+<td></td>
+<td>structure (0.59)<br>
+géographique (0.51)<br>
+attribut (0.5)<br>
+analyse (0.49)<br>
+considérer (0.48)<br>
+phénomène (0.47)<br>
+échelle (0.47)<br>
+ensemble (0.47)<br>
+organisation (0.47)<br>
+économique (0.45)</td>
+<td>géographique (0.54)<br>
+social (0.54)<br>
+échelle (0.53)<br>
+dimension (0.51)<br>
+modèle (0.51)<br>
+structure (0.5)<br>
+processus (0.49)<br>
+phénomène (0.49)<br>
+problème (0.48)<br>
+analyse (0.47)<br>
+effet (0.47)</td>
+<td>structure (0.59)<br>
+organisation (0.56)<br>
+comportement (0.53)<br>
+espace (0.51)<br>
+système (0.5)<br>
+modèle (0.49)<br>
+dynamique (0.49)<br>
+analyse (0.48)<br>
+interaction (0.47)<br>
+géographique (0.47)<br>
+social (0.46)</td>
+</tr>
+</table>
+<br>
+
+<div class="a" id="Tableau23">Tableau n°23 : Lemmes dont les vecteurs sont les plus proches du vecteur du
+    lemme « spatial » dans le corpus ArticleLem<br>
+    <spam class="completlegend">(Méthode <em>GloVe</em> avec nombre minimum d’occurrences : 15 ; nombre d’itérations : 100, taille du
+        contexte : 10 et taille des plongements : 100)</spam></div>
+<br>
+
+<p class="mypara"> <span class="marge">	Ces
+    résultats<sup><a id="fn25-ref" class="note" href="#fn25">25</a></sup>
+    montrent qu’il y a un changement sémantique important
+    du lemme « spatial » dans les <em>Annales de Géographie</em> pendant les années 1966-1971. Ce
+    changement est postérieur à celui observé pour « espace ». Pendant les années 1960-1965, « organisation
+    de l’espace », « aménagement de l’espace », « espace urbain », « espace régional » sont des syntagmes
+    utilisés sans que plusieurs termes liés à l’ « analyse spatiale » s’affirment. L’expression d’
+    « organisation spatiale » se développe plus tardivement (1972-1975) par rapport à « organisation de
+    l’espace ». Il y a sûrement dans ces observations des explications de ce qu’Olivier Orain souhaitait
+    mettre en avant quand il parlait d’une période de changement lexical sans changement sémantique.</span></p>
+
+<p class="mypara"> <span class="marge">	Toutes les expérimentations menées n’ont pas permis de mettre en
+    évidence un changement sémantique important du milieu des années 1980 qui marquerait le passage d’un
+    paradigme « réaliste » à des démarches constructivistes et nominalistes. Pour conclure cette première
+    présentation de résultats, il est possible de remarquer dans la « conjecture socio-sémantique »
+    réalisée par Olivier Orain, il y a l’adjectif « socio ». Or, ce qui a été développé jusqu’ici est
+    uniquement la dimension sémantique. Le dernier résultat présenté dans cette partie vise à combler cette
+    lacune.</span></p>
+
+
+<h3 id="II5">5) Réflexions à partir des auteurs ayant le plus utilisé « espace » et « spatial »
+    <a href="#II5-ref">&#8617;</a> </h3>
+
+
+
+<p class="mypara"> <span class="marge">	Comme cela a été précédemment justifié, la sémantique du terme
+    « espace » a été étudié à partir du corpus « ArticleNonLem » (pour ne pas prendre en compte les usages
+    d’ « espaces » qui relèvent d’une autre dynamique) alors que le lemme « spatial » a été étudié à partir
+    du corpus « ArticleLem » (pour regrouper les différentes formes de l’adjectif). Si un article a été
+    écrit par plusieurs auteurs, le nombre d’occurrences d’ « espace » ou de « spatial » dans le document a
+    été affecté à chaque auteur. Dans les tableaux suivants ,
+    n°<a  href="#Tab24">24</a> et
+    <a href="#Tab25">25</a>, les chiffres entre
+    parenthèse après chaque auteur indiquent le nombre total d’occurrences trouvé pour cet auteur à la
+    période et dans
+    la revue en question. Les tableaux ci-dessous reproduisent les résultats seulement pour les Annales de
+    Géographie. Ce choix de présentation a été réalisé pour essayer de mieux comprendre ce qui explique la
+    précocité des dynamiques sémantiques d’ « espace » et de « spatial », notamment par rapport à ce qui
+    est affirmé dans la thèse d’Olivier Orain.</span></p>
+
+<table id="Tab24">
+<tr>
+<td></td>
+<td>1960-1965</td>
+<td>1966-1971</td>
+<td>1972-1975</td>
+<td>1976-1982</td>
+<td>1983-1988</td>
+</tr>
+<tr>
+<td>Annales de Géographie</td>
+<td>P George (52)<br>
+E Juillard (33)<br>
+M Santos (10)<br>
+C Chaline (9)<br>
+M Rochefort (9)<br>
+F Durand-Dastès (8)<br>
+J Bastié (7)<br>
+R Rochefort (6)<br>
+R Lebeau (5)<br>
+M Dubois (5)</td>
+<td>B Kayser (55)<br>
+Y Barbaza (53)<br>
+J-B Racine (36)<br>
+P Georges (26)<br>
+P Claval (23)<br>
+M Santos (20)<br>
+C Chaline (18)<br>
+F Cribier (15)<br>
+C Camara (13)<br>
+P Pinchemel (12)</td>
+<td>H Isnard (69)<br>
+W Hartke (43)<br>
+A-L Sanguin (32)<br>
+B Bret (32)<br>
+M Grésillon (31)<br>
+A Thibault (30)<br>
+P Claval (27)<br>
+J B-Garnier (24)<br>
+C Manzagol (23)<br>
+B Greer-Wootten  (16)</td>
+<td>H Isnard (108)<br>
+A-L Sanguin (108)<br>
+P George (92)<br>
+J-O Simonetti (77)<br>
+P Limouzin (65)<br>
+H Bakis (49)<br>
+G Schneier (48)<br>
+A Fischer (40)<br>
+R Lambert (33)<br>
+S Liszewski (32)</td>
+<td>G Di Méo (183)<br>
+H Isnard (61)<br>
+M Michel (44)<br>
+M Sebti (40)<br>
+V Rey (39)<br>
+M-C Robic (39)<br>
+F Doumenge (30)<br>
+P Claval (25)<br>
+R Pébayle (24)<br>
+A Bourgey (24)</td>
+</tr>
+</table>
+
+<br>
+<div class="a" id="Tableau24">Tableau n°24 : Auteurs ayant le plus utilisé le terme « espace » dans les
+    <em>Annales de géographie</em></div>
+<br>
+<br>
+<br>
+<table id="Tab25">
+<tr>
+<td></td>
+<td>1960-1965</td>
+<td>1966-1971</td>
+<td>1972-1975</td>
+<td>1976-1982</td>
+<td>1983-1988</td>
+</tr>
+<tr>
+    <td><em>Annales de Géographie</em></td>
+<td>E Juillard (6)<br>
+J Bastié (5)<br>
+W Steigenga (5)<br>
+J Labasse (4)<br>
+Y Lacoste (4)<br>
+M Rochefort (3)<br>
+P George (3)<br>
+P Riquet (2)<br>
+P Georges (2)<br>
+J Hautreux (2)</td>
+<td>F Cribier (23)<br>
+J-B Racine (18)<br>
+P Georges (5)<br>
+E Brutzkus (5)<br>
+P Pinchemel (5)<br>
+J Labasse (4)<br>
+Y Lacoste (4)<br>
+HSmotkine (3)<br>
+M Santos (3)<br>
+J Soppelsa (3)</td>
+<td>A-L Sanguin (24)<br>
+B Greer-Wootten (23)<br>
+G M Gilmour (23)<br>
+P George (11)<br>
+J Dresch (10)<br>
+J Beaujeu-Garnier (9)<br>
+J-P Besancenot (9)<br>
+M Rousset-Deschamps (9)<br>
+M Santos (7)<br>
+H Isnard (7)</td>
+<td>A Fischer (75)<br>
+M-C Maurel (34)<br>
+J-O Simonetti (26)<br>
+A-L Sanguin (21)<br>
+P George (17)<br>
+P Riquet (17)<br>
+H Isnard (16)<br>
+M Michel (13)<br>
+A Bernard (11)<br>
+G Schneier (10)</td>
+<td>G Di Méo (40)<br>
+V Rey (35)<br>
+M-C Robic (35)<br>
+M Michel (34)<br>
+R Pébayle (30)<br>
+M Sebti (29)<br>
+J-P Donnay (22)<br>
+A-S Bailly (15)<br>
+B Marchand (14)<br>
+J Malézieux (13)</td>
+</tr>
+</table>
+
+<br>
+<div class="a" id="Tableau25">Tableau n°25 : Auteurs ayant le plus utilisé le lemme « spatial » dans les
+    <em>Annales de géographie</em></div>
+<br>
+ <br>
+
+    <div id="Geor1a"><p class="mypara"> <span class="marge">	Pour la période 1960-1965, dans les
+        <em>Annales de Géographie</em>, Pierre George, et dans une plus faible mesure Etienne Juillard,
+        apparaissent comme les deux
+    principaux utilisateurs du terme « espace ». En regardant dans le détail, pour Pierre George, plus des
+    trois quarts des occurrences sont situées dans un seul article paru en 1965 intitulé : <em>Géographie et
+        urbanisme</em>. Dans ce papier, Pierre George rapproche la conception de l’espace des urbanistes de
+    celle des géographes<sup><a id="fn26-ref" class="note" href="#fn26">26</a></sup>, tout en soulignant
+        une différence
+    importante : « Il reste qu’hétérogène par nature, l’espace est un pour l’urbaniste ». Au contraire,
+    pour les géographes, l’héritage d’une conception basée sur une approche différenciée des espaces est
+    revendiqué. Dans le détail, la distinction entre l’espace géographique et urbanistique n’est pas si
+    évidente. Pierre Georges développe et revendique un travail analytique et synthétique du géographe plus
+        important<sup><a id="fn27-ref" class="note" href="#fn27">27</a></sup>.
+    L’urbaniste est présenté par comparaison, de manière assez caricaturale, comme saisissant l’espace dans
+    « la globalité une de ses données » <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Geor1">(George
+        1965, 644)</a>. Cette opposition n’est pas plus développée pour insister sur la complémentarité
+    des deux approches. Le travail préalable du géographe assure « la transmission dans les meilleures
+    conditions du "témoin" dans la course de relais entre géographie et urbanisme » <a
+            href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Geor1">(<em>Ibid</em> 1965, 648)</a>.</span></p></div>
+
+    <div id="Jui1"><p class="mypara"> <span class="marge">	De la même manière, pour Etienne Juillard, la très
+    grande majorité des occurrences d’ « espace » provient d’un seul article : <em>La région, essai de
+        définition</em> publié en 1962. Cet auteur détaille l’évolution conceptuelle se jouant alors autour
+    du concept de « région ». Son introduction est une bonne illustration de la notion de plain-pied
+    défendue par Olivier Orain autant sous la forme d’une critique de la géographie
+        passée<sup><a id="fn28-ref" class="note" href="#fn28">28</a></sup>  que d’un désir pour la géographie à
+        venir<sup><a id="fn29-ref" class="note" href="#fn29">29</a></sup>. L’importance des réflexions
+        menées en
+        aménagement et en  économie est soulignée dans l’évolution conceptuelle qui sort de la
+        « région-paysage » pour aller vers
+    la région fonctionnelle. Les perspectives inverses de l’économie et de la géographie sont soulignées.
+    La première part d’une modélisation qui se complexifie au fur et à mesure pour tenter de comprendre le
+    particulier. L’économiste « aborde finalement, avec quelque gêne, un cas concret »
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Jui1">(Juillard 1962, 484)</a>. La seconde
+    prend appui sur des cas particuliers et essaye au fur et à mesure de généraliser et d’aller vers une
+    forme d’abstraction. Le géographe peut alors avoir l’impression « qu’il sort de son rôle »
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Jui1">(<em>Ibid</em> 1962, 484)</a>. Même si les
+        difficultés sont reconnues<sup><a id="fn30-ref" class="note" href="#fn30">30</a></sup>, c’est
+        plutôt l’horizon d’une collaboration qui est présenté.</span></p></div>
+
+    <p class="mypara"> <span class="marge">	Il faut souligner que cette collaboration n’est pas exactement
+        la même que celle présentée par Pierre George à propos de l’urbanisme. En effet, dans le cas
+        d’Etienne Juillard, il y a à la fois la reconnaissance et le désir de transformation d’un concept
+        central de la géographie traditionnelle, celui de « région ». À l’inverse, dans le cas de Pierre
+        George, la perspective de coopération ne remet pas en cause l’outillage conceptuel de la
+        géographie. </span></p>
+
+    <p class="mypara"> <span class="marge">	En allant dans le sens de la distinction réalisée précédemment entre
+        « espace » et « spatial », il serait avantageux de faire remarquer qu’Etienne Juillard utilise de
+        manière précoce cette forme adjectivale annonciatrice et cristallisatrice d’évolutions plus importantes à venir.
+        Le faible nombre d’occurrences en question (6) et le danger d’interpréter trop le passé avec la connaissance de
+        ce qui est advenu par la suite, m’empêche d’en faire une mention plus qu’anecdotique. Les occurrences de « spatial »
+        pour F Cribier (23) et J-B Racine (18) sur la période suivante (1966-1971) sont plus
+        représentatives. Elles sont d’autant plus intéressantes à analyser qu’elles représentent des
+        situations restant marginales comme le montrent les nombres d’occurrences beaucoup plus réduits
+        pour les auteurs suivants. Il est intéressant de remarquer que ces deux articles datent de 1971 et
+        traitent tous deux de la sphère anglo-saxonne. Pour Françoise Cribier, l'article s'intitule <em>La
+            géographie de la récréation en Amérique anglo-saxonne </em>et pour Jean-Bernard Racine, <em>Le
+            modèle urbain américain, les mots et les choses</em>.</span></p>
+
+    <div id="Rac1"><p class="mypara"> <span class="marge">	Ces deux articles présentent aussi des
+    positionnements différenciés dans leurs conclusions. Françoise Cribier reconnaît plusieurs avantages
+    aux approches anglo-saxonnes<sup><a id="fn31-ref" class="note" href="#fn31">31</a></sup>  mais
+        développe en contrepoint
+    un nombre important de défauts : la « sécheresse » des approches, la faiblesse des études de cas et des
+    descriptions ainsi que le manque de prise en compte des aspects sociaux et politiques. À l’inverse,
+    l’approche de J-B Racine est moins critique et met en avant le changement de paradigme qui a eu lieu de
+    son point de vue aux États-Unis avec « l’ensemble des travaux particulièrement stimulants récemment fécondés par
+        l’apparition de l’ordinateur » <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Rac1">(Racine 1971,
+            425)</a>.
+        Un parallèle avec les changements d’ « épistémè » chez Michel Foucault est réalisé, bien souligné par le
+        sous-titre choisi. Jean-Bernard Racine en appelle au développement des modèles en concluant : « Pour une
+        fois, pourquoi ne pas prendre le train en marche ? ». Remis dans le contexte des Annales de Géographie en
+        1971, le discours est très critique. Il est fort probable que la parution imminente de
+        <em>L’Espace Géographique</em> ne
+        soit pas étrangère au laissez-passer d’une telle charge critique. La différence de positionnement entre Françoise
+        Cribier et Jean-Bernard Racine permet de comprendre ce qui a constitué le changement et ce faisant une partie
+        de la thèse d’Olivier Orain.</span></p></div>
+
+<p class="mypara"> <span class="marge">	Une part importante du discours sur l’ « espace »
+    dans les <em>Annales de géographie</em> pour cette période 1966-1971 provient de sources différentes :
+                      l’aménagement rural
+    avec Bernard Kayser, le tourisme avec Yvette Barbaza. Les géographes qui participeront de manière forte à la
+    « rénovation » de la géographie sont présents mais faiblement représentés : Jean-Bernard Racine, Paul Claval,
+    Yves Lacoste et François Durand-Dastès. Les sémantiques d’ « espace » sur la période 1961-1965 et 1966-1971 et
+    de « spatial » sur 1966-1971 ne sont donc pas uniquement portés par leurs discours. Mise à part l’exception
+    notable de Jean-Bernard Racine précédemment développée, ce discours de la « nouvelle géographie » n’est d’ailleurs
+    pas présent sur ces périodes dans cette revue. Il faut souligner que la méthode utilisée arrive à extraire des termes
+    proches d’ « espace » de manière assez convaincante à partir de quelques cas. Revenir aux textes même permet
+    de mieux comprendre que la sémantique autour de l’ « organisation de l’espace » n’est pas si développée sans
+    relever toutefois de l’exceptionnel. Le mouvement de rénovation des études régionales (René Lebeau, Michel Rechefort…)
+    et de l’aménagement du territoire (Etienne Juillard, Bernard Kayser…) a été pris en compte par les
+    <em>Annales de géographie</em>.</span></p>
+
+    <div id="Bai2a"><p class="mypara"> <span class="marge">	Sur la période 1972-1975, le cas d’Hildebert Isnard
+    mérite d’être
+    développé car son positionnement sur ce concept d’espace a abouti à la parution d’un livre intitulé
+    <em>L’espace géographique</em> paru en 1978. Son positionnement est celui d’une relecture de la
+    géographie humaine traditionnelle, non pas dans une perspective théorico-quantitativiste mais dans une
+    orientation systémique de réactualisation de la combinaison vidalienne. La prise de position est
+    d’autant plus intéressante qu’Hildebert Isnard a dirigé des travaux quantitatifs et théoriques. Il
+    s’agit d’une position réfléchie qui est discutée par Jean-Bernard Racine et Antoine S Bailly dans un
+    article paru en 1979 dans <em>L’Espace Géographique</em>. Dans l’expression de leurs différences se
+        retrouve un point faisant incontestablement partie de la thèse d’Olivier Orain :
+        </span></p></div>
+
+    <p class="mypara cite">
+        « N’oublions pas
+        en effet
+    l’essentiel des approches nouvelles : un changement d’attitude face au monde étudié, l’adoption d’une
+    démarche qui ne se réduit pas à la seule observation, mais qui suppose d’abord une interrogation
+    d’ordre théorique puis l’emploi d’une démarche transparente et rigoureuse s’appuyant au besoin sur la
+    formalisation mathématique et le test statistique des hypothèses » <a
+            href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Bai2">(Bailly et Racine 1979, 290)</a></p>
+
+    <div id="Bai2b"><p class="mypara"> <span class="marge">	Toutefois, la fin insiste sur les qualités de
+    l’ouvrage d’Hildebert Isnard, notamment la présence des nuances « grâce au choix des exemples et à la
+    finesse des observations géographiques ». Les auteurs concluent alors : « Même si nous parcourons
+    actuellement d’autres horizons, nous ne dirons jamais assez à quel point nous encore besoin de ces
+    qualités-là. L’affirmer, n’est-ce pas avouer que nous les avons peut-être perdues, faute de les
+    pratiquer ? » <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Bai2">(Bailly et Racine 1979, 291)</a>.
+        Cette reconnaissance finale remet partiellement en question l’« incommensurabilité » des deux
+        approches. Il est en effet difficile d’imaginer qu’un nouveau paradigme reconnaisse si ouvertement
+        les qualités de ce qui est censé fonder le paradigme précédent. Imagine-t-on un physicien
+        einsteinien dire qu’il regrette les bases perdues de la physique newtonienne ?</span></p></div>
+
+    <div id="Bat1"><p class="mypara"> <span class="marge">	Sur les autres auteurs utilisant le plus
+        « espace » en 1972-1975
+        dans les <em>Annales de géographie</em>, soulignons que Wolgang Hartke et André-Louis Sanguin
+        enseignent alors
+    hors de France. Une remarque similaire peut être réalisée avec les auteurs utilisant le plus le lemme
+    « spatial » dans cette revue à la même époque. Au-delà de ces auteurs étrangers ou enseignants à
+    l’étranger, les utilisations de ce lemme restent assez faibles ce qui relativise le poids de
+    l’évolution sémantique précédemment observée. Un début de changement intervient à la période suivante,
+    notamment avec le cas assez isolé d’André Fischer (géographe économiste). Les années 1983-1988 se
+    caractérise par un renouvellement avec l’arrivée en tête de classement de nouveaux auteurs comme Guy Di
+    Méo (prometteur important d’une géographie sociale) et Violette Rey. Ces acteurs ne font plus partie de
+        la génération 1930 <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Bat1">(Bataillon 2009)</a> qui a porté
+            et revendiqué le changement. L’idée d’un apaisement
+    des conflits avec le début d’une nouvelle période telle que la promeut Olivier Orain peut ici se
+        retrouver.</span></p></div>
+
+    <div id="Cla1a"><p class="mypara"> <span class="marge">	Ces analyses mobilisant les textes-mêmes montrent que
+    les résultats
+    précédemment obtenus doivent être quelque peu relativisés. Les changements sémantiques du terme
+    « espace » sur la période 1961-1965 et du lemme « spatial » sur la période 1966-1971 dans les <em>Annales
+            de géographie</em> reposent sur assez peu d’auteurs et de textes. Une hypothèse très probable, mais qui
+    n’est pas démontrée dans cette thèse, est que cette observation provient des corpus utilisés. Les
+    évolutions mises en avant s’expliquent alors plus largement par des dynamiques marquant la géographie
+    française des années 1960 <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Cla1">(Claval et
+            Sanguin 1996)</a>. Parmi ces dernières, il est possible de citer :</span></p></div>
+
+ <ul>
+<li>Un renouvellement fort des thèses régionales avec notamment celles de Michel Rochefort en 1960 et de Raymond Dugrand en 1963.</li>
+<li>L’essor de l’ « économie spatiale » avec le travail par exemple de Paul Claval sur la <em>Géographie
+    générale des marchés</em> en 1962.</li>
+<li>Le développement des pensées aménagementistes durant l’ensemble des Trente glorieuses (1945-1975).</li>
+</ul>
+
+
+    <p class="mypara"> <span class="marge">	Une petite partie de ces évolutions a percolé dans les <em>Annales
+    de Géographie.</em> Malgré cette percolation réduite, la méthode utilisée est assez efficace pour
+    rendre compte tout de même des changements sémantiques liés à ces évolutions. Par conséquent, même si
+    en remontant aux textes, il peut être objecté que les évolutions sémantiques mises en avant ne tiennent
+    qu’à quelques textes et auteurs, l’hypothèse avancée (et étayée à partir des grandes dynamiques
+    précédemment citées) est que ces évolutions sémantiques sont représentatives d’évolutions importantes
+    qui ne sont qu’en partie restituées par les <em>Annales de Géographie</em>.</span></p>
+
+    <p class="mypara"> <span class="marge">	Face à cette hypothèse, il est probable qu’un partisan d’une vision
+    kuhnienne de la géographie française, ne manquerait pas de faire remarquer que l’idée de percolation
+    peut être remplacée de manière assez pertinente par celle d’un « filtre » rapprochable une résistance
+    de l’ « ancien paradigme ». Sur ce point, il y a eu sans conteste des oppositions qui ont pu jouer un
+    tel rôle de « filtre mais cette reconnaissance ne valide pas pour autant une lecture kuhnienne de la
+    géographie française. De plus, il est possible d’objecter que le « filtre » a tout de même laissé
+    passer suffisamment d’informations permettant de lire de détecter des changements sémantiques.</span></p>
+
+    <p class="mypara"> <span class="marge">	Par rapport à un tel échange d’arguments<sup><a id="fn32-ref" class="note" href="#fn32">32
+        </a></sup>, , la conclusion à laquelle je suis arrivé est qu’il n’est possible de venir à bout de
+        la controverse initiale à partir des analyses quantitatives réalisées. </span></p>
+
+    <p class="mypara"> <span class="marge">	Le problème rencontré est formalisable sous la forme d’une triple inférence :</span></p>
+
+    <div id="Gon1">
+        <ul>
+            <li> La première repose sur le passage de l’observation des
+    termes ayant les vecteurs les plus proches d’un terme donné, à la mise en évidence de continuités ou de
+    ruptures sémantiques. Cette inférence a été très peu discutée dans cette thèse. Elle s’appuie tout
+    d’abord sur une pratique commune qui consiste à induire d’une proximité entre les vecteurs issus d’un
+    même plongement de mots, une proximité sémantique des termes représentés par ces vecteurs. Le terme
+    « induction » est ici utilisé car il n’existe pas de démonstration d’une telle relation. Ensuite, la
+    mise en évidence de continuités ou de ruptures sémantiques repose sur l’observation d’un changement ou
+    d’un maintien des termes obtenus d’une époque sur l’autre. Cette approche a été formalisée par Gonen
+    <em>et al. </em> <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Gon1">(2020)</a> en termes
+    d’intersection des k plus proches voisins mais à la différence de leur travail, cette thèse a jusqu’ici
+    utilisé une approche très qualitative. La raison expliquant cette approche qualitative, est qu’il
+    existe parfois des termes proches sémantiquement mais qui ne sont pas exactement les mêmes. L’analyse
+    qualitative permet alors de faire face plus facilement à ce problème. Par exemple, des termes comme
+    « urbain », « quartier » et « immeuble » peuvent être ainsi regroupés dans un ensemble commun « lié aux
+    espace bâtis ». Si à l’époque suivante, un groupe sémantique est composé de termes différents mais
+    reste globalement lié aux espaces bâtis, l’analyse qualitative permet de facilement établir une
+    continuité en mettant en avant le changement de vocabulaire. Une question qui peut être légitimement
+    posée est celle de remplacement de ces analyses qualitatives par des approches quantitatives permettant
+    de se passer de la subjectivité de l’analyste et d’objectiver encore plus les continuités et les
+    discontinuités. Cet objectif est abordé dans les parties suivantes (<em>cf.</em> sections
+                <a href="#III2">III.2</a>
+                et <a href="#III3">3</a>).</li>
+
+    <li>La deuxième inférence consiste à partir des évolutions
+    sémantiques (continuité ou rupture) précédemment inférées et à affirmer des évolutions cognitives.
+    Cette inférence a été discutée dans les analyses déjà réalisées des résultats, notamment avec la
+    reconnaissance que l’hypothèse sémantique pouvait être invalidée sans forcément discréditer les
+    évolutions cognitives mises en avant par Olivier Orain. Il y a là un problème majeur car si l’évolution
+    du sens des mots n’est pas sans lien avec celles des idées, il n’y a pas d’un point de vue formel de
+    déduction possible permettant d’affirmer à partir de l’ampleur d’un changement sémantique, l’importance
+    d’un changement cognitif (simple continuité, évolution, rupture…). Il y a toujours discussion pour
+    induire à partir des changements sémantiques des évolutions cognitives probables en essayant de
+    comparer et de revenir aux textes</li>
+
+    <li>	La troisième inférence consiste à passer des évolutions
+    cognitives inférées à la validation du schéma kuhnien. Cette inférence a fait l’objet d’un scepticisme
+    et d’une critique de fond dans ce travail. S’il y a indéniablement certains points de la thèse
+    d’Olivier Orain qui peuvent être soutenus à partir des résultats obtenus, les utiliser pour valider une
+    lecture kuhnienne reste toujours problématique. Par exemple, l’importance de la rencontre avec la scène
+    aménagementiste pour comprendre l’évolution sémantique du terme « espace » est facilement soutenable à
+    partir du texte d’Etienne Juillard précédemment analysé. <em>A contrario</em>, l’idée de rapprocher
+    l’importance de cette rencontre avec la scène aménagementiste avec une « anomalie » kuhnienne, est tout
+    à fait discutable et indémontrable.</li>
+        </ul>
+    </div>
+
+
+    <p class="mypara"> <span class="marge">	Cette triple inférence permet de comprendre la reconnaissance
+    d’indéterminations. Les résultats précédents permettent d’appréhender tout de même plusieurs évolutions
+    sémantiques différenciées (« espaces », « espace » et « spatial ») qui ne concordent pas et ne valident
+    pas la « bascule sémantique » mise en avant par Olivier Orain. Toutefois, ces résultats quantitatifs ne
+    permettent pas de conclure directement à la validité ou l’invalidité de la lecture kuhnienne.</span></p>
+
+
+    <p class="mypara"> <span class="marge">	La section suivante s’appuie sur les limites précédemment
+        développées de la première inférence. L’objectif poursuivi est celui de l’objectivation de la
+        reconnaissance des groupes sémantiques et de leurs évolutions. Cette formulation résulte d’un long
+        processus qui mérite d’être détaillé, car il permet de comprendre la suite de la recherche
+        effectuée.
+</span></p>
+
+<h2 id="III">III) Approche réticulaire et évolution de groupes sémantiques
+    <a href="#III-ref">&#8617;</a></h2>
+
+    <p class="mypara"> <span class="marge">	Une évolution majeure dans la forme des résultats produits pour ce
+    doctorat est liée à un travail<sup><a id="fn33-ref" class="note" href="#fn33">33</a></sup> mené au
+        laboratoire ERIC
+    pour visualiser les plongements de mots sous forme réticulaire et interactive.</span></p>
+
+<h3 id="III1">1) Première exploration privilégiant une forme réticulaire <a href="#III1-ref">&#8617;</a> </h3>
+
+
+    <p class="mypara"> <span class="marge">	En m’inspirant de ce travail, j’ai construit un module dans
+    l’application permettant de choisir les résultats d’un plongement, un terme et un paramètre n. Les
+    n-termes (ou n-lemmes suivant le corpus) dont les vecteurs sont les plus proches du terme choisi dans
+    les résultats sélectionnés sont affichés sous forme d’un réseau avec au centre le terme de référence et
+    un lien pour chacun des n-termes. Par exemple, à partir des résultats issus du corpus
+    « ArticleLem »<sup><a id="fn34-ref" class="note" href="#fn34">34</a></sup> et de la méthode GloVe avec
+        les paramètres
+    précédemment utilisés<sup><a id="fn35-ref" class="note" href="#fn35">35</a></sup>, en choisissant la
+        période 1950-1961
+    des <em>Annales de Géographie,</em> le lemme « espace » et une valeur de 10 pour le paramètre n, la
+    représentation obtenue est la suivante.</span></p>
+
+<br>
+<div class="a" id="Figure12">
+<img src="{% static 'Cluster/image/RetiEspace1.png' %}" alt="Cluster/image/RetiEspace1">
+</div>
+<br>
+
+
+<div class="a">Figure n°12 : Exemple de représentation réticulaire des lemmes <br>dont les vecteurs sont les
+    plus proches du vecteur du lemme « espace ».</div>
+<br>
+
+
+    <p class="mypara"> <span class="marge">	L’intérêt est que cette représentation peut être répétée pour
+    chacun des nouveaux lemmes. Par exemple, si à partir de la Figure n°12, la représentation est développée
+    pour les lemmes « bâtir », « urbain », « occuper » et « vaste », la figure suivante est obtenue.</span></p>
+<br>
+<div class="a" id="Figure13">
+<img src="{% static 'Cluster/image/RetiEspace2.png' %}" alt="Cluster/image/RetiEspace2">
+</div>
+<br>
+
+
+<div class="a">Figure n°13 : Exemple de représentation de lemmes <br>dont les vecteurs sont les plus proches des
+    vecteurs des lemmes « espace », « urbain »,  « bâtir », « occuper » et « vaste ».</div>
+<br>
+
+
+    <p class="mypara"> <span class="marge">	Sur cette figure, deux ensembles sémantiques reliant les termes
+    ouverts peuvent être identifiés. D’un côté, « quartier » reliant « bâtir » et « urbain ». De l’autre,
+    « étendre », « couvrir », « étendue » reliant « occuper » et « vaste ». Le premier ensemble est
+    directement lié à l’espace bâti. Le deuxième peut être rapproché de l’espace « naturel » en observant
+    les termes périphériques (notamment « plaine », « plateau », « marécageux »). Si cette observation est
+    en adéquation avec ce qui est précédemment affirmé, elle est scientifiquement faible car rien ne
+    justifie en amont l’ouverture de ces lemmes spécifiques.</span></p>
+
+    <p class="mypara"> <span class="marge">	Il faut souligner qu’une telle exploration est particulièrement
+    interactive puisqu’il est possible en cliquant sur des lemmes ouverts de les refermer.</span></p>
+
+
+    <p class="mypara"> <span class="marge">Deux raisons
+    m’ont conduit à reprendre ce travail pour l’adapter à l’application construite pour cette
+    thèse :</span></p>
+    <ul>
+    <li>La première est d’offrir au lecteur la possibilité de choisir son
+    propre terme de départ et d’explorer les réseaux à sa guise. L’exemple précédemment développé est
+    accessible avec le lien suivant :
+        <a href="https://analytics.huma-num.fr/EtPistezMots/semreseauexplo/glove/result/15/2/no">
+            @ExFigureRetiDev</a>.</li>
+
+    <li id="Orain1c">La seconde raison est qu’Olivier Orain
+    utilise dans sa thèse la formule de « constellations terminologiques »
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Orain1">(Orain 2003, 355)</a>. Il est
+    évident que ces formes réticulaires se rapprochent beaucoup plus de cette idée que les précédents
+    tableaux. Cette réflexion m’a conduit à essayer d’approfondir cette direction de recherche. Une piste
+    que j’ai suivie est d’ouvrir tous les premiers lemmes obtenus et de comparer les graphiques à
+    différentes époques pour les deux revues. Par exemple, en partant de la Figure n°
+        <a href="https://analytics.huma-num.fr/EtPistezMots/txtconstructresult/home#Figure13">13</a>,
+    la figure alors obtenue est la suivante :
+        <a href="https://analytics.huma-num.fr/EtPistezMots/semreseauexplo/glove/result/15/3/no">@ExFigureRetiDevPlus</a>.</li>
+    </ul>
+
+    <p class="mypara"> <span class="marge">Mais, j’ai abandonné cette piste pour plusieurs raisons. Tout
+    d’abord, d’un point de vue méthodologique, il n’était pas facile d’analyser et de comparer les figures
+    alors obtenues à différentes époques pour les deux revues. Ensuite, le mode de construction (qui
+    valorise les n plus proches voisins, puis les n plus proches voisins de ces n plus proches voisins) ne
+    m’a pas semblé optimal et difficilement justifiable. En effet, ce mode de construction repose sur un
+    motif de base<sup><a id="fn36-ref" class="note" href="#fn36">36</a></sup>. L’objectif étant de mettre à
+        jour des
+    structures sémantiques, il y a un risque de biais car rien n’indique que ce motif de base soit
+    pertinent au-delà des visualisations interactives qu’il permet. Cette réflexion m’a conduit à
+    m’orienter plutôt vers des méthodes de clustering (regroupement) appliquées aux résultats seulement de
+    premier ordre (les n plus proches voisins) et non de second ordre (les n plus proches voisins des n
+    plus proches voisins)<sup><a id="fn37-ref" class="note" href="#fn37">37</a></sup>.</span></p>
+
+    <p class="mypara"> <span class="marge">L’objectif, en réalisant un clustering sur les vecteurs (issus d’une
+    méthode de plongement de mots) des n plus proches voisins d’un terme choisi, est d’obtenir sans
+    l’intermédiaire d’analyses qualitatives, différents groupes sémantiques caractéristiques du terme
+    choisi. Par exemple, si les 6 termes obtenus les plus proches d’ « espace » sont « urbain », « rural »,
+    « immeuble », « champ », « quartier », « agriculture », l’objectif est d’obtenir deux groupes : le
+    premier rassemblant «les termes « urbain », « immeuble » et « quartier » ; le deuxième regroupant
+    « rural », « champ » et « agriculture »</span></p>
+
+
+<h3 id="III2">2) Seconde phase d’explorations sur les méthodes de clustering
+    <a href="#III2-ref">&#8617;</a></h3>
+
+
+    <p class="mypara"> <span class="marge">	Il existe un très grand nombre de méthodes de clustering. Mes
+        recherches pour déterminer la méthode la plus adéquate de clustering m’ont reconduit au double
+        problème de l’évaluation et de l’absence de consensus dans la littérature. De la même manière que
+        pour le choix de la méthode de plongement, il m’est impossible de pouvoir revendiquer l’obtention
+        des meilleures « constellations sémantiques », si tant est que ces dernières
+        existent<sup><a id="fn38-ref" class="note" href="#fn38">38</a></sup>. Ce
+    travail reconnaît par conséquent un travail très incomplet sur l’optimisation des méthodes de
+    clustering. Le choix de la Classification Ascendante Hiérarchique (CAH).</span></p>
+
+    <p class="mypara"> <span class="marge">	Au départ d’une CAH, il y autant de
+        clusters<sup><a id="fn39-ref" class="note" href="#fn39">39</a></sup> que de termes. À chaque
+        itération,
+        les deux clusters les plus proches sont agglomérés dans
+    un cluster composite. À la fin de l’algorithme, il n’y a plus qu’un seul cluster avec tous les termes.
+    Cette méthode nécessite donc à chaque itération de calculer la distance entre les clusters, qu’ils
+    soient composés d’un seul terme ou de plusieurs. Le calcul ici utilisé pour les distances est celui des
+    similarité-cosinus entre les vecteurs des termes. Quand au moins un des deux clusters comparés est
+    composé de plusieurs termes, plusieurs stratégies sont possibles pour définir la distance entre les
+    deux clusters :</span></p>
+
+
+    <p class="mypara"> <span class="marge">	- Celle du « saut minimal » privilégie la distance entre les deux
+    termes les plus proches et peut être représenté ainsi :</span></p>
+
+
+<br>
+<div class="a" id="Figure14">
+<img src="{% static 'Cluster/image/SautMin.png' %}" alt="Cluster/image/SautMin">
+</div>
+<br>
+
+
+<div class="a">Figure n°14 : Représentation simplifiée du « saut minimal ».</div>
+<br>
+<br>
+
+<p class="mypara"> <span class="marge">	- Celle du « saut maximal » privilégie la distance entre les deux termes les plus éloignés :</span></p>
+<br>
+<div class="a" id="Figure15">
+<img src="{% static 'Cluster/image/SautMax.png' %}" alt="Cluster/image/SautMax">
+</div>
+<br>
+
+
+<div class="a">Figure n°15 : Représentation simplifiée du « saut maximal ».</div>
+<br>
+<br>
+
+
+
+<p class="mypara"> <span class="marge">	-Celle du « saut moyen » privilégie la distance moyenne entre les deux clusters :</span></p>
+
+
+<br>
+<div class="a" id="Figure16">
+<img src="{% static 'Cluster/image/SautMoyen.png' %}" alt="Cluster/image/SautMoyen">
+</div>
+<br>
+
+
+<div class="a">Figure n°16 : Représentation simplifiée du « saut moyen ».</div>
+<br>
+<p class="mypara"> <span class="marge">	Le résultat des agglomérations successives peut être présenté sous la forme d’un
+    dendrogramme. En fonction du nombre de clusters souhaité par l’utilisateur, l’arbre du dendrogramme peut être
+    « coupé » à la hauteur voulue et chaque branche colorée en fonction du cluster auquel elle appartient.
+    Par exemple, la figure suivante présente le résultat en prenant comme base les 15 premiers lemmes les plus proches
+    d’ « espace » avec le corpus « ArticleLem » sur les <em>Annales de Géographie</em> 1950-1960
+    (obtenus avec la méthode GloVe et les paramètres
+    précédemment privilégiés) avec l’utilisation du « saut maximal » et comme requête 3 clusters en sortie.</span></p>
+
+
+
+
+
+<br>
+<div class="a" id="Figure17">
+<img src="{% static 'Cluster/image/Dendro1.png' %}" alt="Cluster/image/Dendro1.">
+</div>
+<br>
+
+
+<div class="a">Figure n°17 : Partition en 3 clusters des 10 premiers lemmes <br>dont les vecteurs sont les
+    plus
+    proches d’« espace » en utilisant le « saut maximal »<br>
+    <spam class="completlegend">(sur les <em>Annales de Géographie</em> 1950-1960 avec la méthode <em>GloVe</em> avec nombre minimum
+        d’occurrences : 15 ; nombre d’itérations : 100, taille du contexte : 10 et taille des plongements : 100)</spam>
+    </div>
+<br>
+
+    <p class="mypara"> <span class="marge">Dans cette
+        figure<sup><a id="fn40-ref" class="note" href="#fn40">40</a></sup>, la distinction entre un pôle
+        lié aux
+        « espaces bâtis » et un pôle lié aux « espaces naturels ou agricoles » précédemment mis en avant
+        (<em>cf.</em> section <a href="#III1">III.1</a>) ne se
+        retrouve pas. Un retour dans les textes permet de comprendre cette situation.
+        Les études rurales traitent souvent du « bâti ». De plus, les études urbaines peuvent utiliser les
+        adjectifs « libre » et « vaste » pour désigner certaines zones. Ainsi, les deux pôles précédemment
+        construits sont moins sémantiquement disjoints que cela pouvait être initialement pensé. Il est
+        possible de trouver une spécificité sémantique au cluster formé par les lemmes « temps »,
+        « occuper », « paysage » et « vide ». Le rapprochement notamment des lemmes « temps » et
+        « paysage » est intéressant, au sens où, comme l’affirme Jean-Charles Filleron
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Fil1">(2008)</a>, les deux
+        concepts sont intimement liés. Toutefois, là encore, le registre sémantique de ce cluster est loin
+        d’être totalement disjoint des deux autres.</span></p>
+
+    <p class="mypara"> <span class="marge">	Cette figure permet également d’observer ce qui aurait été
+        obtenu si un nombre supérieur ou inférieur de clusters avait été
+        demandé<sup><a id="fn41-ref" class="note" href="#fn41">41</a></sup>. Cette réflexion pose la
+        question du
+    nombre optimal de classe. Il existe sur ce sujet une pluralité de méthodes (<em>Cubic Clustering
+            Criteria</em>, <em>pseudo-t²</em>, <em>pseudo-F</em>...). Elles produisent dans certains cas des résultats
+        concordants ; dans
+    d’autres cas, elles produisent des résultats différents reposant le problème de l’évaluation.
+    L’ensemble des réflexions précédentes à ce propos permet de comprendre que l’objectivation souhaitée
+    par tout ce développement méthodologique, ne peut être que partielle. Dans le cas de la sémantique, il
+    existe de nombreuses zones d’indéterminations et d’interpénétrations où l’établissement de classes est
+    particulièrement complexe et peut donner lieu à des propositions multiples. Face à cette situation,
+    j’ai décidé de ne pas accorder trop d’importance aux résultats d’une détection automatique du nombre
+    optimal de clusters mais plutôt de laisser la prise de décision à utilisateur avec un accès au
+    dendrogramme de construction pour qu’il puisse disposer d’un outil de réflexion.</span></p>
+
+
+    <p class="mypara"> <span class="marge">	L’objectif de cette section étant de justifier le choix réalisé
+        dans cette thèse par rapport aux trois stratégies possibles d’agrégation (saut « maximal »,
+        « moyen » et « minimal »), les liens suivants permettent de consulter les dendrogrammes obtenus
+        pour 30 lemmes et 4 clusters suivant ces trois stratégies :
+        <a href="https://analytics.huma-num.fr/EtPistezMots/semcluster/glove/result/15/6">@SautMin30term4clust</a>,
+        <a href="https://analytics.huma-num.fr/EtPistezMots/semcluster/glove/result/15/7">@SautMoy30term4clust</a>,
+        <a href="https://analytics.huma-num.fr/EtPistezMots/semcluster/glove/result/15/8">@SautMax30term4clust</a>.
+        Pour des raisons de lisibilité et les conclusions étant les mêmes, la figure suivante présente le
+        résultat obtenu pour 10 lemmes et 3 clusters en utilisant cette fois-ci la stratégie du « saut
+        moyen ».</span></p>
+
+
+<br>
+<div class="a" id="Figure18">
+<img src="{% static 'Cluster/image/Dendro2.png' %}" alt="Cluster/image/Dendro2">
+</div>
+<br>
+
+
+<div class="a">Figure n°18 : Partition en 3 clusters des 10 premiers lemmes <br>dont les vecteurs sont les
+    plus
+    proches d’ « espace » en utilisant le saut moyen<br>
+    <spam class="completlegend">(toujours sur les <em>Annales de Géographie</em> 1950-1960 avec la méthode <em>GloVe</em>
+    avec minimum d’occurrences : 15 ; nombre d’itérations : 100, taille du contexte : 10 et taille des
+        plongements : 100)</spam>
+</div>
+<br>
+
+
+    <p class="mypara"> <span class="marge">	Dans ce
+        découpage<sup><a id="fn42-ref" class="note" href="#fn42">42</a></sup>, le lemme « bâtir » forme un
+        cluster à lui
+        tout seul. Il faut souligner que la valeur expliquant la différenciation des clusters « extension »
+        et « vert » d’un côté, et « bâtir » de l’autre, est très proche de celle qui aurait divisé ensuite
+        « libre », « vaste », « urbain » et « vide » d’un côté, et « temps », « occuper », « paysage » de
+        l’autre. Du fait de cette proximité, ce découpage peut être considéré comme plus fragile que celui
+        effectué précédemment.</span></p>
+
+    <p class="mypara"> <span class="marge">	Les expérimentations menées m’ont conduit à avancer un argument qui
+    ne repose pas sur la pertinence sémantique mais plutôt sur les profils des clusters obtenus. En effet,
+    la distance maximale tend à produire des clusters de taille proche (par exemple, dans le résultat
+    de la Figure n°<a href="#Figure17">17</a>, 3 à 6 lemmes par
+        clusters) alors que le « saut moyen » tend à produire des configurations plus
+    déséquilibrées (par exemple, dans Figure n°<a href="#Figure18">18</a>,
+        un cluster composé de 7
+        lemmes et deux petits clusters composés respectivement de deux et d’un seul lemme). Le « saut
+        minimal » tend à produire des configurations encore plus
+        déséquilibrées<sup><a id="fn43-ref" class="note" href="#fn43">43</a></sup>.</span></p>
+
+
+    <p class="mypara"> <span class="marge">Un tel profil est problématique pour la section suivante, à
+        savoir la comparaison des clusters dans le temps. En effet, ce profil déséquilibré a de grandes
+        chances de se répéter sur les autres époques. Le cluster composé d’un maximum de termes d’une
+        époque donnée a alors une probabilité importante de partager un lexique commun avec le cluster
+        composé d’un maximum de termes d’une époque de l’époque suivante. Pour les clusters composés d’un
+        seul terme : soit ce dernier se retrouve à l’époque suivante, la continuité est alors totale ; soit
+        ce dernier n’apparaît pas à l’époque suivante, la discontinuité est alors totale. L’avantage de
+        clusters plus équilibrés est de répartir plus équitablement les probabilités d’existence de lexique
+        en commun entre clusters d’époques successives. Ceci explique le choix de la distance maximale pour
+        le travail ultérieur de suivi des clusters dans le temps.</span></p>
+
+
+<h3 id="III3">3) Exploration diachronique de suivi des clusters <a href="#III3-ref">&#8617;</a> </h3>
+
+
+    <p class="mypara"> <span class="marge">	Cette exploration est basée sur un outil existant
+    (Diachronic’Explorer<sup><a id="fn44-ref" class="note" href="#fn44">44</a></sup>) mais l’a aussi
+        profondément adapté.
+    Pour comprendre les modifications apportées, il est nécessaire de remonter à la formulation originelle
+    de cet outil.</span></p>
+
+ <h4 id="III3a">a) Le modèle originel et ses variantes <a href="#III3a-ref">&#8617;</a> </h4>
+
+
+    <div id="Lam1"><p class="mypara"> <span class="marge">	La théorie sur laquelle est fondée cet outil a été
+    développée par Jean-Charles Lamirel et Shadi Al Shehabi
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Lam1">(2006)</a>. L’objectif est d’utiliser le
+        théorème
+    de Bayes pour suivre l’évolution de clusters dans le temps. Pour comprendre le fonctionnement,
+    imaginons un cluster 1 (C1) à une époque n défini par plusieurs mots (mi , mi +1 …)  avec pour chaque
+    mot  mi une probabilité associée pi . Dans l’implémentation de Diachronic’Explorer réalisée par Nicolas
+    Dugué, ces probabilités correspondent à des moyennes harmoniques des mesures de rappel et des mesures
+    de prédominance
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Dug2">(Dugué <em>et al</em> 2016b)</a>.
+        Ces calculs n’ayant pas été utilisés dans cette thèse, ils ne sont pas ici détaillés. </span></p></div>
+
+    <p class="mypara"> <span class="marge">À l’époque n+1, un cluster C2 est caractérisé par les mots (mj ,
+    motj+1 …) et par les probabilités suivantes : (pj , pj+1 …). La perspective bayésienne vise à
+    considérer une activation Act qui est réalisée par un cluster (qui est alors appelée la source) sur un
+    autre (qui devient la cible). Le théorème de Bayes permet d’écrire :</span></p>
+
+
+    <p> \[ P(Act \mid C) = { P(Act \cap C) \over P(C) } \] </p>
+
+
+
+    <p class="mypara"> <span class="marge">	Intuitivement, il est plus facile de penser à une activation de C2
+    par C1 (sens de la temporalité) mais le modèle théorique s’autorise à réaliser cette activation dans
+    les deux sens. En choisissant C2 comme cluster activé, le numérateur P(Act n C2) est égal à la somme
+    des probabilités dans C2 des mots présents à la fois dans C2 et C1. Le dénominateur est égal à P(C2),
+    c’est-à-dire la somme des probabilités de tous les mots présents dans C2. </span></p>
+
+
+    <div id="Dug1"><p class="mypara"> <span class="marge">	Le premier problème est que cette formulation
+    bayésienne originelle
+    n’a pas été strictement reprise pour concevoir et implémenter Diachronic’Explorer. Il y a une
+    reformulation de P(Act | C2)  en P (t | s), t étant le cluster cible et s le cluster source <a
+                href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Dug1">(Dugué <em>et al.</em> 2016a)</a>.
+        Une telle reformulation est certes possible. Il existe toutefois un second problème qui provient du
+        sens de la formule utilisée pas les auteurs </span></p></div>
+
+
+
+    <p> \[ P(t \mid s) = { P(t \cap s) \over P(t) } \] </p>
+
+
+    <p class="mypara"> <span class="marge">En effet, une application stricte du théorème de Bayes devrait aboutir à la formule suivante :</span></p>
+
+
+    <p> \[ P(t \mid s) = { P(t \cap s) \over P(s) } \] </p>
+
+
+    <p class="mypara"> <span class="marge">	Dans mon travail de thèse, je me suis tout d’abord basé de manière
+    théorique sur la formule initiale  <span> \( P(Act \mid C) = { P(Act \cap C) \over P(C) } \)</span>.
+    Toutefois, il est vrai que dans la pratique, cela conduit à réaliser des calculs qui sortent du cadre
+    théorique bayésien. Une hypothèse pour expliquer cette confusion est que la formule initiale aurait dû
+    s’écrire sous la forme <em>P(C|Act)</em> et non pas <em>P(Act|C)</em>. Cette hypothèse n’a pas été
+    travaillé de manière approfondie car mes explorations m’ont conduit à sortir d’une approche bayésienne
+    et à trouver une interprétation au calcul réalisé. En effet, la formule<span> \( P(t \cap s) \over P(t)
+        \)</span> peut être lu comme le calcul d’un indicateur s’interprétant comme le ratio du poids des
+    mots en commun entre les clusters source et cible par rapport au poids de l’ensemble des mots du
+    cluster cible.</span></p>
+
+
+    <p class="mypara"> <span class="marge">	La reformulation suivante en termes non plus de probabilité mais de poids
+        peut alors être effectuée:</span></p>
+<p> \[  I(s) = { \sum_{m_i \in (s \cap t)} w_i \over \sum_{m_i \in s} w_i } \] </p>
+<p>\[  I(t) = { \sum_{m_i \in (s \cap t)} w_i \over \sum_{m_i \in t} w_i } \]</p>
+
+
+
+<div id="Bel3"><p class="mypara"> <span class="marge">La notation <em>wi
+</em> a été utilisée pour bien marquer qu’il s’agit du poids du mi dans le cluster et non plus la
+    probabilité du mot dans le cluster. Le cluster source s fait dans cette formulation uniquement
+    référence à un des clusters de l’époque n et le cluster cible à un des clusters de l’époque n+1.
+    J’illustre ci-dessous le calcul des indicateurs I(s) et I(t) en utilisant un exemple tiré de l’article
+    <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Bel3">(Beligne <em>et al.</em> 2020a).</a></span></p></div>
+
+<div class="a" id="FigureAdd">
+<img width="80%" src="{% static 'DiachroGroup/image/ExBasiqueClusterDiachro.png' %}" alt="DiachroGroup/image/ExBasiqueClusterDiachro">
+</div>
+<br>
+
+<p class="mypara"> <span class="marge">En gras les mots en commun permettent de comprendre les calculs suivants :</span></p>
+<p class="mypara"> <span class="marge">I(s) = (0,18 +0,14) / (0,18 +0,16 +0,16 +0,14)= 0,32 /0,64 = 0,5</span></p>
+<p class="mypara"> <span class="marge">I(t) = (0,15 + 0,14) / (0,15 + 0, 14 + 0,13 + 0,11) = 0,29 / 0,53 = 0,56</span></p>
+
+
+
+    <p class="mypara"> <span class="marge">	Les résultats obtenus sont compris théoriquement entre 0 et 1. Il
+    faut souligner que dans la pratique, sur les exemples sur lesquels j’ai travaillé, les valeurs obtenues
+    pour I(s) et I(t) sont statistiquement le plus souvent faibles. Un score global de 0.53 (moyenne de
+    I(s) et de I(t)) témoigne d’une continuité assez importante entre deux clusters.</span></p>
+
+
+
+    <div id="Dug2a"><p class="mypara"> <span class="marge">	<em>Diachronic’Explorer</em> fournit ensuite une
+        méthode pour sélectionner les liens les plus
+        importants<sup><a id="fn45-ref" class="note" href="#fn45">45</a></sup>. Ces règles n’ayant pas
+        été retenues dans ma thèse, elles ne sont pas ici
+    détaillées. Le lecteur intéressé par ce sujet est invité à consulter la publication suivante :
+    <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Dug2">(Dugué <em>et al.</em> 2016b)</a>. Le
+        processus de
+        sélection des liens les plus importants qui a été choisi ici
+    repose sur la possibilité laissée à l’utilisateur au moment de la visualisation de choisir un seuil de
+    manière interactive. Si l’utilisateur baisse ou augmente ce seuil de sélection des liens, il peut voir
+    immédiatement le résultat généré.  Ce choix a été initialement réalisé car j’ai pu constater que la
+    méthode de sélection de <em>Diachronic’Explorer</em> était très restrictive (<em>cf.</em>
+        section <a href="#III3c">III.3.c</a>). Il a pour
+    conséquence de ne pas faire reposer la sélection des liens sur une technique statistique mais de faire
+    appel à l’analyse de l’utilisateur.</span></p></div>
+
+
+
+    <p class="mypara"> <span class="marge">	Ce qui a donc été gardé par rapport au modèle originel est
+    uniquement le calcul des liens reformulé sans les dimension probabilistes et bayésiennes. Tout le
+    processus de sélection des liens a été abandonné ce qui simplifie nettement le modèle. Ce dernier peut
+    à la suite de ces modifications être résumé ainsi : pour un cluster source d’une époque n et un cluster
+    cible d’une époque n+1, deux indicateurs sont calculés. Le premier I(s) correspond à la proportion de
+    la somme des poids dans le cluster source des termes en commun entre le cluster source et cible par
+    rapport à la somme de l’ensemble des poids des termes du cluster source. Le deuxième I(t) correspond à
+    la proportion de la somme des poids dans le cluster cible des termes en commun entre le cluster source
+    et cible par rapport à la somme de l’ensemble des poids des termes du cluster cible.</span></p>
+
+    <p class="mypara"> <span class="marge">	À ces premières modifications il faut en ajouter plusieurs qui ont
+    concerné l’étape de visualisation. Comme précédemment, il s’agit d’expliquer ce qui existe initialement
+    pour comprendre les raisons des modifications apportées.</span></p>
+
+
+ <h4 id="III3b">b) Changements dans la visualisation <a href="#III3b-ref">&#8617;</a> </h4>
+
+
+    <p class="mypara">
+        <span class="marge">La figure suivante présente une visualisation issue de <em>Diachronic’Explorer</em>.</span></p>
+
+
+<br>
+<div class="a" id="Figure19">
+<img src="{% static 'DiachroGroup/image/DiachroExploVisu.png' %}" alt="DiachroGroup/image/DiachroExploVisu">
+</div>
+<br>
+
+
+<div class="a">Figure n°19 : Exemple d’une représentation obtenue avec <em>Diachronic’Explorer</em></div>
+<br>
+
+
+
+
+    <p class="mypara"> <span class="marge">	Ce graphique est un diagramme de Sankey. La figure est peu lisible
+    mais son contenu détaillé n’a aucune importance pour cette thèse. L’objectif est seulement de faire
+    comprendre comment une telle figure se lit et pourquoi certains choix présents initialement dans
+    <em>Diachronic’Explorer</em> n’ont pas été retenus.</span></p>
+
+
+    <p class="mypara"> <span class="marge">	Chaque colonne (bleu, orange et vert) représente une période
+    différente. Au sein d’une période, chaque rectangle représente un cluster. Il est inutile de détailler
+    dans cette thèse comment ont été effectués en amont ces clusters et à quoi ils correspondent
+    exactement. Deux clusters sont reliés entre eux en
+        grisé<sup><a id="fn46-ref" class="note"  href="#fn46">46</a></sup> si
+    des liens ont été établis avec la méthode précédemment détaillée (<em>cf. </em>section
+        <a href="#III3a">III.3.a</a>).
+    Quand deux liens sont superposés, le grisé est plus foncé. Une grande partie de ces superpositions
+    provient du fait que des liens ont été également cherchés dans ce cas pour des périodes non successives
+    comme le montre la présence de liens entre la première et la troisième période. La largeur d’un lien
+    dépend de sa force calculée comme une moyenne entre P(Act | s) et P(Act | t).</span></p>
+
+
+    <div id="LienDiachro1"><p class="mypara"> <span class="marge">	La première modification rapidement
+        adoptée a été de ne pas
+    reprendre cette idée de liens entre époques non successives. Elle complique à mon avis grandement la
+    lecture des graphiques. Une étape importante a été marquée par la découverte de représentations
+    similaires issues de la plateforme
+        <em>CorText</em><sup><a id="fn47-ref" class="note" href="#fn47">47</a></sup>
+        jugées plus pertinentes. La force des liens n’est plus proportionnelle à leur taille. Cette force
+        est plutôt marquée par des niveaux de gris. Un réglage dynamique permet d’afficher plus ou moins de
+        liens en fonction de leur importance. Cette modification permet de faire dépendre la hauteur du
+        rectangle qui représente un cluster d’une autre variable (le nombre de mots qui les compose ou le
+        nombre d’occurrences de ces mots dans le corpus). Dans la Figure n°23, nous présentons une de ces
+    représentations dont la version dynamique est accessible avec le lien suivant :
+    <a href="https://analytics.huma-num.fr/EtPistezMots/semdiachro/glove/result/15/2">@Diachro1</a></span></p></div>
+
+
+<br>
+<div class="a" id="Figure20">
+<img width="80%" src="{% static 'DiachroGroup/image/Diachro1Ex.png' %}" alt="DiachroGroup/image/Diachro1Ex">
+</div>
+<br>
+
+
+<div class="a">Figure n°20 : Exemple d’une représentation obtenue avec l’application créée</div>
+
+    <p class="mypara"> <span class="marge">	Dans la version dynamique, il est possible de choisir d’afficher un
+    seul ou deux labels<sup><a id="fn48-ref" class="note" href="#fn48">48</a></sup> pour chaque cluster.
+        L’option « Un seul label » a ici été privilégiée, car en choisissant deux labels, il existe des
+        superpositions pour la période 1950-1960 (située en dessous de 1955). La version dynamique permet
+        aussi de régler le seuil de sélection des liens. Sur la version ici présentée, le seuil est réglé à
+        0,3. Si une valeur nulle est choisie pour ce dernier, tous les liens apparaissent, mais il y a une
+        saturation de la figure qui devient difficilement analysable. <em>A contrario</em>, si la valeur
+        de 0,5
+            est
+        privilégiée pour ce seuil, plus aucun lien n’apparaît. Pour cette raison, le seuil a été réglé à
+        une valeur de 0,3 pour enlever les liens dont les moyennes de I(s) et de I(t) sont les plus
+        faibles. Enfin, dans la version dynamique, il est possible en situant la souris sur chaque cluster
+        de faire apparaître plusieurs informations concernant le cluster en question, notamment les termes
+        composant le cluster et les auteurs ayant le plus utilisé ces termes dans la revue et la période
+        donnée. En cliquant sur un cluster, il est possible d’accéder aux liens des documents dans le
+        portail Persée qui présentent le maximum d’occurrences des termes constituant ce cluster (toujours
+        dans la revue et sur la période
+    concernée)<sup><a id="fn49-ref" class="note" href="#fn49">49</a></sup>. Un lien vers le dendrogramme
+        permettant de
+    comprendre la partition effectuée (<em>cf.</em> section <a href="#III2">III.2</a>)
+        est également accessible.
+    Pour finir, en passant sur les liens entre deux clusters, il est possible de voir sa force (moyenne
+    simple de I(s) et de I(t)), les termes partagés entre le cluster source et cible, les termes
+    spécifiques du cluster source et les termes spécifiques du cluster cible.</span></p>
+
+
+    <p class="mypara"> <span class="marge">	Ces fonctionnalités et ces choix de visualisation étant détaillés,
+    il s’agit de comprendre quels paramètres sont utilisés pour construire de telles figures.</span></p>
+
+
+<h4 id="III3c">c) Explication des paramètres <a href="#III3c-ref">&#8617;</a> </h4>
+
+
+    <p class="mypara"> <span class="marge">	Pour réaliser la Figure
+        n°<a href="#Figure20">20</a>, le corpus « ArticleLem » a été
+        utilisé. La méthode GloVe a été privilégiée avec les paramètres précédemment
+        spécifiés<sup><a id="fn50-ref" class="note" href="#fn50">50</a></sup>. Contrairement à la section
+        précédente où
+        seulement 10 lemmes avaient été retenus pour présenter des dendrogrammes simples (<em>cf.</em> section
+        <a href="#III2">Chap7.III.2</a>),
+        le seuil de 30 lemmes a été choisi pour avoir une couverture sémantique plus large. Le nombre de
+        groupes demandés a été augmenté à 4 en utilisant la stratégie du « saut maximum ». Par rapport à
+        ces valeurs de 30 lemmes et de 4 groupes, il n’y a pas eu dans un premier temps de recherche
+        d’optimisation.</span></p>
+
+    <p class="mypara"> <span class="marge"> Une question s’est posée à propos du poids à attribuer à chaque
+        terme au sein de chaque cluster. Au départ, la mesure de similarité-cosinus calculée par rapport au
+        vecteur du terme choisi (ici le lemme « espace ») a été utilisée. Toutefois, ce choix peut être
+        contesté. En effet, cette mesure de similarité-cosinus n’est pas représentative de l’importance du
+        terme à l’intérieur de son cluster. Pour faire face à ce problème, une proposition a été
+        implémentée en calculant pour chaque terme la somme des similarités-cosinus par rapport aux autres
+        termes du groupe auquel il appartient. Le résultat maximum obtenu détermine le label du groupe. Par
+        exemple, pour un cluster constitué des lemmes « vert », « quartier » et « urbain », trois sommes
+        sont effectuées :</span></p>
+    <ul>
+        <li>Pour le lemme « vert », la somme des similarités-cosinus entre les vecteurs des lemmes « vert »
+            et « quartier » et entre les vecteurs des lemmes « vert » et « urbain ».</li>
+        <li>Pour le lemme « quartier », entre « quartier » et « vert » et entre « quartier » et « urbain ».</li>
+        <li>Enfin, pour le lemme « urbain », entre « urbain » et « quartier » et entre « urbain » et « vert ».</li>
+    </ul>
+
+
+    <p class="mypara"> <span class="marge"> Du fait d’une plus grande proximité sémantique entre « urbain »
+        et « quartier » qu’entre « urbain » et « vert » (ou « quartier » et « vert »), les lemmes
+        « urbain » et « quartier » renvoyant plus directement à une sémantique urbaine obtiennent des
+        sommes des similarités-cosinus plus élevées. Cette méthode permet ainsi d’exclure « vert » et de
+        sélectionner une étiquette représentant l’orientation sémantique globale du cluster (« urbain » ou
+        « quartier »). Cette méthode fonctionne bien dans certains cas, mais les expérimentations menées
+        montrent qu’elle peut aussi conduire à mettre en avant des lemmes ou termes très génériques
+        sémantiquement. C’est par exemple le cas des adverbes ou des articles. En effet, ces derniers se
+        retrouvent proches de beaucoup de termes et sont donc favorisés par cette méthode quand ils n’ont
+        pas été écartés lors de la construction du corpus. Ceci explique que la création de ce paramètre
+        « Calcul PoidsLabel »<sup><a id="fn51-ref" class="note" href="#fn51">51</a></sup> a été accompagnée
+        par la mise
+        en place d’un autre paramètre appelé « stop mots ».</span></p>
+
+
+    <p class="mypara"> <span class="marge">	Ce paramètre permet d’enlever certains termes des résultats obtenus.
+        Deux listes, une pour le corpus
+    « ArticleLem »<sup><a id="fn52-ref" class="note" href="#fn52">52</a></sup> et une pour le corpus
+    « ArticleNonLem »<sup><a id="fn53-ref" class="note" href="#fn53">53</a></sup>,
+    ont été utilisés pour la génération de tous les résultats.
+    Cette technique permet d’éviter la création de filtre spécifique à chaque résultat. Il s’agit d’éviter
+        une sélection arrangeante des résultats grâce à un filtrage des « stop-mots » adapté à chaque
+        expérimentation.</span></p>
+
+
+    <p class="mypara"> <span class="marge">	Au niveau des autres paramètres, une option existe dans
+        l’application pour définir la taille des clusters avec deux modalités possibles : « Nombre de
+        termes constitutifs du cluster » ou le « Nombre d’occurrences des termes constitutifs du cluster ».
+        Dans la première modalité, si un cluster est constitué de 3 termes, la valeur de 3 est retenue
+        comme base pour calculer la hauteur du rectangle représentatif de ce cluster proportionnellement
+        aux valeurs retenues pour les autres clusters. Dans la seconde modalité, en reprenant l’exemple
+        d’un cluster constitué par les lemmes « urbain », « quartier » et « vert », l’application créée
+        sélectionne tout d’abord les textes où apparaît au moins une fois le terme originellement étudié
+        (« espace » par exemple pour la Figure n°<a href="#Figure20">20</a>)
+        dans la revue et sur la période du cluster. Ensuite,
+        des comptages dans les textes retenus du nombre d’occurrences pour chaque terme constituant le
+        cluster sont effectués. Enfin, la somme de ces nombres d’occurrences est calculée et retenue comme
+        résultat. C’est cette dernière option qui a été privilégiée dans cette thèse, car elle donne une
+        idée approximative de l’importance de l’usage des termes constitutifs d’un cluster (en comparant la
+        taille des différents clusters).</span></p>
+
+    <p class="mypara"> <span class="marge">	En ce qui concerne les liens entre clusters, un paramètre fait
+        référence aux différences précédemment explicitées entre la méthodologie liée à la théorie
+        initiale, celle correspondant à l’implémentation de Nicolas Dugué dans <em>Diachronic’Explorer</em> et celle
+        retenue pour cette thèse (<em>cf.</em> section <a href="#III3a">Chap7.III.3.a</a>).</span></p>
+
+
+    <p class="mypara"> <span class="marge">	Enfin, il existe deux dernières options. La première est purement visuelle.
+        Elle permet de choisir la couleur des clusters représentant les revues. Ici, bleu pour les <em>Annales de Géographie</em>
+        et rouge pour <em>L'Espace Géographique</em>. La deuxième appelée « CompareJustNew Revue » gère les
+        époques
+        comparées quand plusieurs revues sont présentes. Quand cette option est retenue, la comparaison entre les deux revues
+        s’effectue seulement lors de l’apparition de la nouvelle revue. Sinon, la comparaison entre les deux revues
+        s’effectue également par la suite. Par exemple, dans le cas de la Figure
+        n°<a href="#Figure20">20</a>, cette option a été retenue.
+        L’algorithme n’a effectué comme comparaison inter-revues que celle entre les <em>Annales de Géographie</em> 1960-1971
+        et <em>L'Espace Géographique</em> 1972-194. Si cette option n’avait pas été retenue, la comparaison
+        inter-revues aurait
+        également les <em>Annales de Géographie</em> 1972-1984 et <em>L'Espace Géographique</em> 1985-1995
+        ainsi que <em>L'Espace Géographique</em> 1972-1984 et les <em>Annales de Géographie</em> 1985-1995.
+        Par rapport à la problématique étudiée,
+        il m’a semblé que la comparaison inter-revues était surtout pertinente lors de l’apparition de <em>L’Espace Géographique</em>.</span></p>
+
+
+    <p class="mypara"> <span class="marge">	Tous ces paramètres sont présentés dans l’interface de l’application
+        en amont de chaque figure. Pour la Figure n°<a href="#Figure20">20</a>
+        , cette présentation est la suivante.</span></p>
+
+    <br>
+<div class="a" id="Figure21">
+<img src="{% static 'DiachroGroup/image/FormEx1.png' %}" alt="DiachroGroup/image/FormEx1">
+</div>
+<br>
+
+
+<div class="a">Figure n°21 : Ensemble des paramètres tels que présentés dans l’interface ayant permis la
+    construction de la figure n°20</div>
+<br>
+
+    <p class="mypara"> <span class="marge">	Tous les paramètres utilisés ayant été explicités, la section
+        suivante présente une analyse de deux résultats obtenus sur les termes les plus cruciaux par
+        rapport à la problématique de cette thèse : « espace » et « milieu » (<em>cf.</em> Manuscrit Chap2.II.3.c)
+        .</span></p>
+
+
+<h2 id="IV">IV) Évolutions sémantiques d’ « espace » et de « milieu » <a href="#IV-ref">&#8617;</a> </h2>
+
+<h3 id="IV1">1) Évolution sémantique d’ « espace » <a href="#IV1-ref">&#8617;</a> </h3>
+
+
+
+    <p class="mypara"> <span class="marge">De premières analyses peuvent bien entendu être réalisées à
+        partir de la Figure n°<a href="#Figure20">20</a>.
+        Afin de ne pas surinterpréter les résultats d’une seule figure, une
+        seconde est présentée (<em>cf.</em> Figure n°<a href="#Figure22">22</a>).
+        La construction de cette seconde figure a fait l’objet
+        d’une réflexion plus approfondie sur les paramètres utilisés. Les différences par rapport à la
+        Figure n°<a href="#Figure20">20</a> sont les suivantes :</span></p>
+
+    <ul>
+
+
+    <li>Le corpus « ArticleNonLem » a été privilégié pour prendre en compte l’observation
+        précédente<sup><a id="fn54-ref" class="note" href="#fn54">54</a></sup> de
+        dynamiques sémantiques différentes entre « espace » et « espaces ». Les mots éliminés (« stop
+        words ») ont été adaptés pour prendre en compte la non-lemmatisation du corpus.</li>
+
+    <li> Pour les termes retenus, il m’a semblé intéressant de différencier leur nombre en fonction des
+        revues et des époques. S’il semble pertinent de retenir les 50 premiers termes (dont les vecteurs
+        sont les plus proches du vecteur du terme « espace ») pour <em>L’Espace Géographique</em>
+        1972-1984, la
+        question se pose plutôt après 30 termes pour les <em>Annales de Géographie</em> 1950-1960. Cette
+            observation
+        empirique m’a conduit à implémenter la possibilité de définir en entrée un nombre de termes
+        différents selon les époques et les revues. Les observations précédentes m’ont conduit à retenir 30
+        termes pour les <em>Annales de Géographie</em> 1950-1960, 50 termes pour les <em>Annales de
+            Géographie</em>
+            1961-1971
+        et 60 termes pour toutes les autres périodes et revues.</li>
+
+
+    <li>Enfin, il a paru logique d’adapter le nombre de clusters demandés en fonction du nombre de termes
+        retenus. J’ai donc implémenté la possibilité de définir en entrée un nombre de clusters demandés
+        différents selon les époques et les revues. Proportionnellement aux nombres de termes retenus
+        précédemment, j’ai demandé 3 clusters pour les <em>Annales de Géographie</em> 1950-1960, 5 pour les
+        <em>Annales de Géographie</em> 1961-1971 et 6 pour toutes les autres périodes et revues.</li>
+
+    </ul>
+
+
+
+    <p class="mypara"> <span class="marge">	La représentation obtenue est alors la suivante.</span></p>
+
+
+<br>
+<div class="a" id="Figure22">
+<img  width="80%" src="{% static 'DiachroGroup/image/Diachro3Espace.png' %}"
+      alt="DiachroGroup/image/Diachro3Espace">
+</div>
+<br>
+
+
+<div class="a">Figure n°22 :  Évolution sémantique autour du terme « espace » entre 1950 et 1995 sur le
+    corpus ArticleNonLem avec des nombres différenciés de termes et de clusters.</div>
+
+
+    <div id="LienDiachro2"><p class="mypara"> <span class="marge">	La version dynamique est accessible
+        avec le lien suivant :
+        <a href="https://analytics.huma-num.fr/EtPistezMots/semdiachro/glove/result/19/4">@Diachro2</a>
+    </span></p></div>
+
+    <p class="mypara"> <span class="marge">	Le constat précédemment réalisé (<em>cf.</em> section
+        <a href="#II1">II.1</a>) d’une
+        discontinuité sémantique autour de ce lemme « espace » dans la revue les
+        <em>Annales de Géographie</em>
+        entre 1950-1960 et 1961-1971 se retrouve sur cette figure. Une transition entre les <em>Annales de
+        Géographie</em> 1961-1971 et <em>L’Espace Géographique</em> 1972-1984 est marquée par le lien entre
+        deux clusters partageant la même étiquette « urbain ». Les termes partagés entre ces deux clusters,
+        en plus d’ « urbain », sont : « organisation », « paysage », « milieu », « géographique ».
+        Toujours sur ces deux clusters, les termes non partagés sont :</span></p>
+    <ul>
+        <li>Du côté des <em>Annales de Géographie</em> 1961-1971 : « économique », « aménagement »
+            et  « caractère ».</li>
+        <li>Du côté de <em>L’Espace Géographique</em> 1972-1984 : « système », « environnement », « social »,
+            « vécu » et « objet ».</li>
+        <li>« cadre » et « régional » apparaissent aussi comme non partagé à l’échelle de ces deux
+            clusters, mais ils sont partagés par l’intermédiaire du cluster ayant pour étiquette « cadre »
+            sur <em>L’Espace Géographique</em> 1972-1984.</li>
+    </ul>
+
+    <p class="mypara"> <span class="marge">	Ces observations illustrent l’hypothèse d’une continuité entre
+        les dynamiques scientifiques des années 1960 précédemment
+        mentionnées<sup><a id="fn55-ref" class="note" href="#fn55">55</a></sup> (<em>cf.</em> section
+        <a href="#II5">II.5)</a> et le
+        mouvement de l’analyse spatiale promu par <em>L’Espace Géographique</em>. Si de nouvelles
+        dynamiques sont
+        effectivement visibles, elles ne forment pas une discontinuité majeure de type « changement de
+        paradigme » sur cette figure. Le cluster marqué par l’étiquette « réalité » peut être bien entendu
+        mis en rapport avec la thèse développée par Olivier Orain, mais des interprétations opposées sont
+        réalisables : d’un côté, il est possible d’insister sur la présence de ce cluster et sur sa
+        discontinuité avec l’époque précédente ; de l’autre, l’émergence réduite du mot « réalité » ne
+        signifie nullement une sortie du réalisme et peut même être vue et revendiquée comme étant dans une
+        continuité de perspective.</span></p>
+
+    <div id="LienDiachro3"><p class="mypara"> <span class="marge">	Enfin, le cluster « milieu » de
+        <em>L’Espace Géographique</em>
+        1985-1995
+        pose évidemment question par rapport à l’hypothèse sémantique d’Olivier Orain, d’autant plus que ce
+        cluster se retrouve également dans la Figure n°20sur la même revue et époque. Il me semble ici
+        important de mentionner que j’ai obtenu par ailleurs de nombreuses autres représentations où cette
+        étiquette de « milieu » n’apparait pas directement sur <em>L’Espace Géographique</em> 1985-1995. Par
+        exemple, la représentation accessible via ce lien
+        <a href="https://analytics.huma-num.fr/EtPistezMots/semdiachro/glove/result/15/3">@Diachro3</a> qui
+        privilégie le corpus
+        « ArticleLem », mais qui a été construit par rapport à la Figure n°20 en différenciant le nombre de
+        lemmes et de clusters (comme sur la Figure n°22).</span></p></div>
+
+
+    <br>
+<div class="a" id="Figure23">
+<img  width="80%" src="{% static 'DiachroGroup/image/Diachro3Espace2.png' %}"
+      alt="DiachroGroup/image/Diachro3Espace2">
+</div>
+<br>
+
+
+<div class="a">Figure n°23 : Évolution sémantique autour du terme "espace" entre 1950 et 1995 sur le corpus
+    ArticleLem avec des nombres différenciés de termes et de clusters.</div>
+
+    <p class="mypara"> <span class="marge">	Si « milieu » n’apparait pas directement comme étiquette de
+        cluster, il faut souligner que ce terme fait tout de même partie du cluster « spatial » de
+        <em>L’Espace Géographique</em> 1985-1995. Il reste par conséquent proche sémantiquement du lemme
+            « espace », ce qui
+        interroge profondément l’hypothèse sémantique d’Olivier Orain qui repose sur une différenciation
+        forte de ces deux termes.</span></p>
+
+
+    <p class="mypara"> <span class="marge">	L’ensemble des réflexions précédentes sur la construction du
+        corpus, le choix de la méthode, la réalisation des prétraitements, l’établissement des paramètres
+        et la possibilité des multiples visualisations me conduisent à être prudent et à considérer ces
+        résultats, non pas comme une preuve de remise en cause, mais bien plutôt comme un élément
+        questionnant fortement l’hypothèse socio-sémantique d’Olivier Orain. La reconnaissance de cette
+        fragilité démonstrative interroge aussi directement la notion de paradigme. Si toute recherche en
+        SHS dépend ainsi du corpus, de la méthode et de multiples choix, n’y a-t-il pas là une explication
+        au constat fait par Thomas Kuhn d’une instabilité de ces sciences qui par opposition l’a conduit à
+        forger la notion de paradigme pour mieux comprendre la dynamique des sciences dites dures ?</span></p>
+
+    <p class="mypara"> <span class="marge"> Avant de creuser cette piste, comme la signification de
+        « milieu » a également varié dans le temps, il est pertinent de l’étudier avec la méthodologie mise
+        en place.</span></p>
+
+
+<h3 id="IV2">2) Évolution sémantique de « milieu » <a href="#IV2-ref">&#8617;</a> </h3>
+
+
+<p class="mypara"> <span class="marge">	Il n’existe pas de différence notable entre les dynamiques sémantiques de
+    « milieu » et « milieux » telle que celle observée pour « espace » et « espaces »
+    (<em>cf.</em> section <a href="#II3">II.3)</a>.
+    Cette observation justifie l’utilisation d’un corpus lemmatisé. Le tableau
+    suivant présente le nombre d’occurrences du lemme « milieu » sur le temps long dans les deux revues étudiées.</span></p>
+
+
+<table>
+<tr>
+<td></td>
+<td>1890 -1910</td>
+<td>1911 -1931</td>
+<td>1932 -1952</td>
+<td>1961 -1971</td>
+<td>1972 -1985</td>
+<td>1986-2000</td>
+</tr>
+<tr>
+<td><em>Annales de Géographie</em></td>
+<td>814</td>
+<td>922</td>
+<td>761</td>
+<td>1104</td>
+<td>1321</td>
+<td>1619</td>
+</tr>
+<tr>
+<td><em>L'Espace Géographique</em></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>1795</td>
+<td>1479</td>
+</tr>
+</table>
+<br>
+
+<div class="a" id="Tableau26" >Tableau n°26 : Nombre d’occurrences du lemme « milieu » dans le corpus
+    ArticleLem</div>
+
+
+    <p class="mypara"> <span class="marge">	En m’appuyant sur des appréciations qualitatives comme précédemment pour le
+    lemme « espace » (<em>cf.</em> section <a href="#IV1">IV.1</a>),
+    le nombre de termes retenus a été fixé à 40 et le nombre de groupes à 4 pour les <em>Annales de Géographie</em> 1890-1910,
+    1911-1931, 1932-1952. Pour les <em>Annales de Géographie</em> 1953-1971, 1972-1985, 1986-2000, le nombre de termes
+        retenus est de 50 et le nombre de groupes à 5.</span></p>
+
+    <div id="LienDiachro4"><p class="mypara"> <span class="marge">	Concernant les autres paramètres, des
+        choix identiques à ceux précédemment
+        réalisés<sup><a id="fn56-ref" class="note" href="#fn56">56</a></sup>  ont été privilégiés. Le lien
+        suivant permet d’accéder au résultat obtenu :
+        <a href="https://analytics.huma-num.fr/EtPistezMots/semdiachro/glove/result/21/7">@Diachro4</a>.
+        Le seuil de 0,3 pour la sélection des liens et le choix d’une seule étiquette pour chaque cluster
+        ont été de nouveau retenus pour présenter la figure suivante.</span></p></div>
+
+
+<br>
+<div class="a" id="Figure24">
+<img width="80%" src="{% static 'DiachroGroup/image/Diachro4Milieu.png' %}"
+     alt="DiachroGroup/image/Diachro4Milieu">
+</div>
+<br>
+
+
+<div class="a">Figure n°24 : Évolution sémantique autour du lemme "milieu" entre 1890 et 2000 sur le corpus
+    ArticleLem avec des nombres adaptés de termes et de clusters.</div>
+<br>
+
+    <p class="mypara"> <span class="marge">	Cette figure permet d’appréhender à la fois des évolutions
+        sémantiques du terme « milieu » et plusieurs continuités entre époques successives. Par rapport à
+        la thèse d’Olivier Orain, il faut tout d’abord souligner que cette représentation ne permet pas de
+        mettre en évidence une rupture sémantique autour du terme « milieu » entre la période vidalienne
+        (1890-1910) et la suivante. Il y a plutôt une continuité entre plusieurs clusters. Un élément
+        intéressant qui est mobilisable dans le sens de la thèse d’Olivier Orain est cette présence des
+        deux clusters avec les étiquettes « voir » dans les <em>Annales de Géographie</em> 1890-1910 et
+            1911-1931.
+        Avant de surinterpréter le fait que ce verbe disparaisse sur la période suivante, il faudrait
+        effectuer des recherches plus approfondies dans les textes de ces époques pour mieux comprendre
+        cette observation. Cela n’a pas été réalisé, mais l’idée que cela puisse révéler une évolution
+        entre la première génération de vidaliens et les suivantes, est une hypothèse plausible.</span></p>
+
+    <p class="mypara"> <span class="marge">	Un élément à première vue intriguant est le fait que le cluster
+        avec l’étiquette « vie » des <em>Annales de Géographie</em> 1911-1931 ne soit pas relié avec celui
+        ayant la même étiquette sur les <em>Annales de Géographie</em> 1932-1952. En rentrant dans le détail de ces
+        deux clusters, cela s’explique facilement. Ces deux clusters ne partagent que ce lemme, ce qui aboutit à
+        un score de lien peu élevé. En 1911-1931, les lemmes dans les <em>Annales de Géographie</em> reliés
+        à ce  cluster « vie » sont très généraux : « siècle », « plaine », « sol », « village », « condition »,
+        « homme »… Le vocabulaire relié à ce cluster « vie » change dans cette revue en 1932-1952 avec les
+        lemmes : « élément », « véritable », « existence », « complexe », « combinaison », « adapter » et
+        « vivant ». Le premier auteur<sup><a id="fn57-ref" class="note" href="#fn57">57</a></sup> de ce
+        cluster est Maximilien Sorre. Le fait que ce cluster se
+        modifie ensuite et ne se poursuive pas dans le temps, correspond bien à la situation historique
+        d’un auteur dont l’œuvre n’a pas été directement reprise et poursuivie.</span></p>
+
+    <p class="mypara"> <span class="marge">	À partir de 1972, des changements sont observables avec la
+        montée des lemmes « élément », « système » et « environnement ». Globalement, l’idée d’une assiette
+        sémantique différente d’« espace », plus proche pour « milieu » de l’étude des relations hommes /
+        nature, est facilement repérable. Toutefois, l’hypothèse d’une dissociation nette des deux
+        dynamiques sémantiques d’« espace » et de « milieu » à partir du milieu des années 1980, n’a été
+        validée par aucun résultat obtenu lors de toutes mes expérimentations.</span></p>
+
+    <p class="mypara"> <span class="marge">	Si ces résultats interrogent sur les phénomènes de
+        continuités/discontinuités sémantiques et scientifiques, ils ne permettent pas de répondre à la
+        question de la pertinence d’une lecture kuhnienne. Une discussion élargie fait advenir et valoir
+        des éléments complémentaires et plus décisifs de mon point de vue.</span></p>
+
+
+
+<br>
+
+    <!-- NOTE DEB -->
+
+<p class="present">Notes du chapitre</p>
+
+<p id="fn1">[1] Pour les méthodes <em>Word2Vec</em> et <em>FastText</em> par exemple, l’ensemble des paramètres disponibles avec la
+    librairie utilisée (Gensim) est disponible à cette adresse : <a
+            href="https://radimrehurek.com/gensim/models/word2vec.html" target="_blank">https://radimrehurek.com/gensim/models/word2vec.html</a>.
+    Pour la méthode <em>GloVe</em>, c’est l’implémentation de l’université de Standford qui a été utilisée :
+    <a href="https://github.com/stanfordnlp/GloVe" target="_blank">https://github.com/stanfordnlp/GloVe</a> (consulté
+    aussi le 18/09/2023).
+<a href="#fn1-ref">&#8617;</a></p>
+  <p id="fn2">[2] Le choix de ce corpus s’explique aisément par la partie de construction des corpus
+      (<em>cf.</em> section <a href="{% url 'AmeliorText:home'%}">Chap5</a>) qui lui a conféré une certaine
+      primauté.
+<a href="#fn2-ref">&#8617;</a></p>
+<p id="fn3">[3] Ce numéro zéro n’est formé que de l’éditorial du premier numéro à paraître, d’une plaquette
+    de présentation et des sommaires des numéros à venir. Cette composition justifie le fait qu’il ne fasse
+    pas partie des corpus constitués.
+<a href="#fn3-ref">&#8617;</a></p>
+<p id="fn4">[4] Une dizaine d’années à l’exception de 1972-1984 (exception justifiée par la volonté d’être
+    proche des ruptures mises en avant par Olivier Orain).
+<a href="#fn4-ref">&#8617;</a></p>
+<p id="fn5">[5] Ce terme provient de la terminologie de Bénédicte Pincemin (<em>cf.</em> section
+    <a href="{% url 'DelimitCorpus:home'%}#II">Chap4.II</a>)
+<a href="#fn5-ref">&#8617;</a></p>
+<p id="fn6">[6] En réalisant le calcul sur la période 1985-1997 (pour avoir un pas de temps exactement
+    similaire à 1972-1984), les résultats suivants sont obtenus : 2727 pour les <em>Annales de
+        Géographie</em> et 6215 pour <em>L'Espace Géographique</em>. La baisse dans <em>L'Espace
+        Géographique</em> sur cette dernière période est par conséquent très réduite.
+<a href="#fn6-ref">&#8617;</a></p>
+<p id="fn7">[7] Minimum d’occurrences : 15 ; nombre d’itérations : 100 ; taille du contexte : 10 et taille
+    des plongements :50. Pour les deux variantes utilisant <em>FastText</em>, taille minimale des n-gram :
+    3 et taille maximale : 6.
+<a href="#fn7-ref">&#8617;</a></p>
+<p id="fn8">[8] Il n’existe pas dans la littérature de seuil permettant de discriminer à partir du calcul
+    de la similarité cosinus si deux termes sont sémantiquement proches ou non. Il est courant de présenter
+    les valeurs obtenues les plus grandes tout en précisant que le résultat d’un calcul de similarité
+    cosinus entre deux vecteurs est au maximum égal à 1.
+<a href="#fn8-ref">&#8617;</a></p>
+    <p id="fn9">[9] Levy <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Lev1">(2003, 907)</a> fait remonter l
+    « entrée officielle » du terme de « territoire » dans la
+    production francophone à 1982 avec la rencontre <em>Géopoint</em> intitulée <em>Les territoires de la vie
+    quotidienne</em>. Sa montée en puissance est par conséquent postérieure à cette date.
+<a href="#fn9-ref">&#8617;</a></p>
+<p id="fn10">[10] Le cercle de Vienne est un groupe de savants qui se sont réunis dans la capitale de
+    l’Autriche du début des années 1920 jusqu’en 1936. Il est composé notamment par Rudolf Carnap, Kurt
+    Gödel,, Otto Neurath… Leur objectif, la refondation de la métaphysique explique des réflexions poussées
+    sur ce problème de la référence. L’émigration de ces penseurs due à la montée du nazisme et à la
+    seconde guerre a nourri l’école pragmatique américaine, avec notamment les pensées d’Hilary Putnam dont
+    Olivier Orain se sert comme appui philosophique (Orain, 2003).
+<a href="#fn10-ref">&#8617;</a></p>
+    <p id="fn11">[11] Cette métaphore a été popularisée par W. V. O. Quine dans <em>Word And Object</em>
+    <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Qui1">(1960)</a>.
+<a href="#fn11-ref">&#8617;</a></p>
+<p id="fn12">[12]  (4 + 7 + 5 + 5 ) / 40
+<a href="#fn12-ref">&#8617;</a></p>
+<p id="fn13">[13] La possibilité de faire des liens vers l’application supprime l’obligation de présenter
+    seulement quelques résultats. J’emploie le terme de « cause » et de « conséquence » en même temps car
+    je pense avoir créé l’interface en étant partiellement conscient de ses effets épistémologiques. J’ai
+    été également, une fois celle-ci créée, « entraîné » par ses possibilités d’actions et de
+    présentations. La notion de milieu, telle que la définie Augustin Berque, à la fois comme « matrice »
+    et « empreinte » mérite à mon avis d’être invoquée. L’application est à la fois une « matrice » et une
+    « empreinte ». Une fois créée, elle n’a pas été qu’un outil technique mais a joué un rôle dans
+    l’affirmation du positionnement épistémologique.
+<a href="#fn13-ref">&#8617;</a></p>
+<p id="fn14">[14] Pour rappel, après avoir utilisé la méthode <em>GloVe</em>, fixé successivement le minimum
+    d’occurrences à 5,10,15 et 25 et retenu 50 lemmes.
+<a href="#fn14-ref">&#8617;</a></p>
+<p id="fn15">[15] Quantité de données moindre par rapport au lemme ici testé : « espace »
+<a href="#fn15-ref">&#8617;</a></p>
+<p id="fn16">[16] Entre la vingtième et la vingt-cinquième position.
+<a href="#fn2-ref">&#8617;</a></p>
+<p id="fn17">[17] En consultant les résultats jusqu’au cinquantième lemme avec le lien suivant : <a
+        href="https://analytics.huma-num.fr/EtPistezMots/semtablemb/result/glove/15/11">@Result1n50</a>.
+    « Champs » et « doline » sont situés respectivement à la … et … position. En effet, il est certain
+    qu’il n’est pas pertinent d’aller sur ce cas spécifique jusqu’à la cinquantième position car les
+    valeurs de similarité-cosinus deviennent assez faibles et les résultats peuvent être légitimement jugés
+    comme sémantiquement moins pertinents.
+<a href="#fn17-ref">&#8617;</a></p>
+<p id="fn18">[18] Ces derniers lemmes ne sont observables qu’à partir du lien précédemment cité.
+<a href="#fn18-ref">&#8617;</a></p>
+<p id="fn19">[19] Consultable de manière plus complète avec ce lien : <a
+        href="https://analytics.huma-num.fr/EtPistezMots/semtablemb/result/glove/18/14">@Result2n50</a>
+    <a href="#fn19-ref">&#8617;</a></p>
+<p id="fn20">[20] Dans une interview accordée en 1997, Philippe Pinchemel affirme : « Il n'y a pas de
+    science, de démarche, ni de travail scientifique sans une réflexion toujours plus profonde sur les
+    concepts. Or, à l'heure actuelle, la géographie utilise des concepts extrêmement flous et ambigus »
+    <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Pin2">(Pinchemel 1997, 48)</a>. Il est reconnu
+        par la même que les propositions intellectuelles effectuées dans
+    <em>La Face de la Terre</em> n’ont pas été reprises comme socle disciplinaire.
+<a href="#fn20-ref">&#8617;</a></p>
+<p id="fn21">[21] Du lemme ou du terme « espace » pour le corpus non lemmatisé « ArticleNonLem »
+<a href="#fn21-ref">&#8617;</a></p>
+<p id="fn22">[22] Consultable de manière plus complète avec ce lien : <a
+        href="https://analytics.huma-num.fr/EtPistezMots/semtablemb/result/glove/19/20">@Result4Espaces50</a>.
+<a href="#fn22-ref">&#8617;</a></p>
+<p id="fn23">[23] De surcroît parce que le temps et l’espace sont deux catégories structurantes et
+    problématiques dans le déploiement des SHS.
+<a href="#fn23-ref">&#8617;</a></p>
+<p id="fn24">[24] L’espace d’expérience désigne « une structure feuilletée qui fait échapper le passé ainsi
+    accumulé à la simple chronologie » (Ricoeur 1983, 376) ; quant à l’horizon d’attente, « c’est le
+    futur-rendu-présent, tourné vers le pas-encore » (<em>Ibid</em> 1983, 379). Ces concepts sont repris
+    par Paul
+    Ricoeur à l’historien Reinhart Koselleck.
+<a href="#fn24-ref">&#8617;</a></p>
+<p id="fn25">[25]  Consultables de manière plus complète avec ce lien : <a
+        href="https://analytics.huma-num.fr/EtPistezMots/semtablemb/result/glove/20/17">@Result5Spatial50</a>
+<a href="#fn25-ref">&#8617;</a></p>
+    <p id="fn26">[26]  « Il est sans discussion que l’urbaniste prend acte d’un espace actuel qui est un produit
+    de l’action des collectivités humaines sur un milieu naturel » <a
+                href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Geor1">(George, 1965, 644)</a>
+<a href="#fn26-ref">&#8617;</a></p>
+<p id="fn27">[27]  « chacun des éléments de l’espace est une donnée dont il [le géographe] doit tenir compte
+    séparément dans son analyse avant de procéder aux synthèses successives qui conduisent à une vue
+    globale de l’espace » <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Geor1">(<em>Ibid</em> 1965, 644)</a>
+<a href="#fn27-ref">&#8617;</a></p>
+<p id="fn28">[28]  « La région est le plus souvent conçue comme une sorte de "donné" dont on s’efforce au
+    seuil de l’étude de justifier les limites » <a
+            href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Jui1">(Juillard 1962, 483)</a>
+<a href="#fn28-ref">&#8617;</a></p>
+<p id="fn29">[29]  « Grâce à la géographie générale, on met maintenant des réalités précises derrière des
+    mots tels que pédiment, forêt-galerie, openfîeld, banlieue… On ne saurait en dire autant du mot région.
+    » <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Jui1">(<em>Ibid</em> 1962, 483)</a>
+<a href="#fn29-ref">&#8617;</a></p>
+<p id="fn30">[30] « [les] différences d’optique et de vocabulaire ont rendu difficile le dialogue »
+    <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Jui1">(Juillard 1962, 484)</a>
+<a href="#fn30-ref">&#8617;</a></p>
+<p id="fn31">[31]  « la clarté des exposés - on explique ce qu’on cherche, on explicite sans fausse pudeur
+    les hypothèses, les raisonnements -, la compétence dans l’utilisation des techniques de traitement des
+    informations. L’approche n’est pas facile mais elle vaut la peine et le profit qu’on en tirera est
+    indéniable » <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Cri1">(Cribier 1971, 660) </a>
+<a href="#fn31-ref">&#8617;</a></p>
+<p id="fn32">[32] Pouvant vite tourner autour du problème du verre à moitié vide ou à moitié plein.
+<a href="#fn32-ref">&#8617;</a></p>
+<p id="fn33">[33]  Il s’agit d’un stage réalisé par Masmoudi Abderrahemen sous la direction d’Adrien Guille. Son
+    travail est disponible à cette adresse : <a href="https://github.com/Hoshun112/PRe">https://github.com/Hoshun112/PRe</a>
+<a href="#fn33-ref">&#8617;</a></p>
+<p id="fn34">[34] Malgré le fait d’avoir affirmé précédemment qu’il était préférable d’utiliser le corpus
+    « ArticleNonLem » pour étudier la dynamique sémantique d’ « espace », le corpus « Article Lem » a
+    été privilégié pour cette présentation. En effet, en prenant le corpus « ArticleNonLem », des articles ou des
+    prépositions rendent les résultats moins évidents. L’objectif étant dans cette partie de présenter le parcours de
+    recherche et non d’analyser des résultats, j’ai privilégié ici le corpus « ArticleLem ».
+<a href="#fn34-ref">&#8617;</a></p>
+<p id="fn35">[35] 15 pour le minimum d’occurrence, 100 pour le nombre d’itérations, 10 pour la taille du contexte et 100 pour la taille du plongement.
+<a href="#fn35-ref">&#8617;</a></p>
+<p id="fn36">[36] Ce motif de base est un réseau basique en étoile à n branches.
+<a href="#fn36-ref">&#8617;</a></p>
+<p id="fn37">[37] Si les méthodes faisant appel à cet ordre de rang 2 se justifient tout à fait dans le
+    cadre de l’utilisation de méthodes de cooccurence pour saisir des rapprochements sur l’axe
+    paradigmatique (<em>cf.</em> section <a href="{% url 'EtatDesLieux:home'%}#IV1">Chap3.IV.1</a>), elles sont
+        beaucoup moins justifiables dans le cas de
+    plongements de mots qui prennent déjà en compte cet axe.
+<a href="#fn37-ref">&#8617;</a></p>
+<p id="fn38">[38] Dans des sémantiques différentielles comme celle de François Rastier, il y a la
+    reconnaissance d’une pluralité de configurations sémantiques. Il n’y a pas un ou plusieurs sens
+    pré-existants qu’il suffirait de trouver pour expliquer totalement un texte. A contrario, ces
+    sémantiques insistent sur la possibilité de trouver toujours des nouveaux sens en mettant à jour des
+    configurations encore peu remarquées.
+<a href="#fn38-ref">&#8617;</a></p>
+<p id="fn39">[39] Le terme de « cluster » est équivalent à celui de « classe ».
+<a href="#fn39-ref">&#8617;</a></p>
+<p id="fn40">[40] Consultable aussi à partir de ce lien (en bas de page) : <a
+        href="https://analytics.huma-num.fr/EtPistezMots/semcluster/glove/result/15/2">@PresentDendoSautMax</a> </p>
+<p id="fn41">[41] Il faut pour cela se déplacer dans le dendrogramme à partir de l’endroit où la « coupe »
+    a été effectuée. En allant vers la droite, il est possible de savoir quels clusters sont agrégés si une
+    demande inférieure en nombre est réalisée. À l’inverse, en allant vers la gauche, il est possible de
+    savoir quels clusters sont divisés si une demande supérieure en nombre est réalisée.
+<a href="#fn41-ref">&#8617;</a></p>
+<p id="fn42">[42] Consultable aussi à partir de ce lien (en bas de page) : <a
+        href="https://analytics.huma-num.fr/EtPistezMots/semcluster/glove/result/15/3">@PresentDendoSautMoyen</a>
+<a href="#fn42-ref">&#8617;</a></p>
+<p id="fn43">[43] Le résultat initialement obtenu <a
+        href="https://analytics.huma-num.fr/EtPistezMots/semcluster/glove/result/15/4">@PresentDendoSautMin</a>
+    a permis de s’apercevoir d’un défaut
+    de l’application. Il est en effet possible de penser en regardant le dendrogramme qu’il n’y a que deux
+    clusters. Or, cela provient d’une mauvaise coloration des groupes n’ayant qu’un lemme. En réalité,
+    « vide » et « paysage » forment deux clusters séparés. Une recherche a été réalisée pour supprimer cet
+    effet induit. Elle a donné lieu à un résultat (<a
+        href="https://analytics.huma-num.fr/EtPistezMots/semcluster/glove/result/15/5">
+        @PresentDendoSautMinColorSingleton</a>) qu’à moitié
+    satisfaisant. En effet, les branches des clusters constitués d’un seul terme sont bien colorisées, mais
+    un effet induit est facilement observable avec la colorisation (non souhaitée) de la liaison entre ces
+    clusters. Il aurait fallu un travail beaucoup plus important pour résoudre ce problème. Il n’a pas été
+    jugé prioritaire pour cette thèse, car l’objectif était avant tout d’étudier des continuités et des
+    discontinuités sémantiques dans le temps. La réflexion et le travail réalisés expliquent la présence de
+    l’option « ColorSingleton » dans l’application que l’utilisateur peut choisir s’il souhaite colorer les
+    branches qu’avec un seul terme tout en ayant connaissance de l’effet induit précédemment mentionné.
+<a href="#fn43-ref">&#8617;</a></p>
+<p id="fn44">[44] <a
+        href="https://github.com/nicolasdugue/istex-demonstrateur" target="_blank">https://github.com/nicolasdugue/istex-demonstrateur</a> (consulté le 18/09/2023).
+<a href="#fn44-ref">&#8617;</a></p>
+<p id="fn45">[45] Ces règles sont dans la fonction « getTargetClusterMatching » du fichier
+    « LabelDiachronism.java » hébergé sur
+    <a href="https://github.com/nicolasdugue/istex/blob/master/JAVA/CSR/src/model/diachronism/" target="_blank">https://github.com/nicolasdugue/istex/blob/master/JAVA/CSR/src/model/diachronism/</a>
+     (consulté le 18/09/2023).
+<a href="#fn45-ref">&#8617;</a></p>
+<p id="fn46">[46] Le fait qu’il existe des liens en grisé continu et en hachuré n’est pas ici détaillé car
+    il faudrait rentrer dans le processus de sélection des liens le plus importants réalisé par
+    Diachronic’Explorer pour une compréhension complète. Cela aurait complexifié nettement la partie
+    précédente sans présenter un grand intérêt pour cette thèse.
+<a href="#fn46-ref">&#8617;</a></p>
+<p id="fn47">[47] <a href="https://www.cortext.net/" target="_blank">https://www.cortext.net/</a>
+    (consulté le 18/09/2023).
+<a href="#fn47-ref">&#8617;</a></p>
+<p id="fn48">[48] La problématique de l’attribution du label est traitée dans la sous-partie suivante sur les paramètres.
+<a href="#fn48-ref">&#8617;</a></p>
+<p id="fn49">[49] Pour faire disparaître ces liens vers les documents et le dendrogramme, il suffit de
+    cliquer une nouvelle fois sur le cluster en question.
+<a href="#fn49-ref">&#8617;</a></p>
+<p id="fn50">[50] 15 pour le minimum d’occurrence, 100 pour le nombre d’itérations, 10 pour la taille du
+    contexte et 100 pour la taille du plongement.
+<a href="#fn50-ref">&#8617;</a></p>
+<p id="fn51">[51]  « Similarité cosinus par rapport à terme initial et label max », « 1 pour tous les
+    termes et maintien label max similarité cosinus »,et « 1 pour tous les termes et label max somme
+    similarité cosinus intra groupe ».
+<a href="#fn51-ref">&#8617;</a></p>
+<p id="fn52">[52] Liste constituée par les lemmes :tant, autant, ainsi, aussi, quelques, parfois, surtout,
+    toujours, encore, plus, moins, bien, peu, très, toute, plupart, certaines, alors, également, ici,
+    notamment, enfin, particulièrement, seulement, pas.
+<a href="#fn52-ref">&#8617;</a></p>
+<p id="fn53">[53] Liste constituée par les lemmes : autant, tant, ainsi, aussi, de, et, son, l,, un, c, si,
+    est, que, qu, tout, mais, même, donc, il, qui, dans, comme, elle, cet, sa, dont, celui-ci, celui, leur,
+    (ainsi que les signes de ponctuation point, virgule et point virgule).
+<a href="#fn53-ref">&#8617;</a></p>
+    <p id="fn54">[54] <em>Cf.</em> section <a href="#II3">II.3</a>
+<a href="#fn54-ref">&#8617;</a></p>
+<p id="fn55">[55] Ces dynamiques sont le renouvellement des études régionales, l’essor de l’économie spatiale
+    et le développement des réflexions aménagementistes.
+<a href="#fn55-ref">&#8617;</a></p>
+    <p id="fn56">[56] 15 pour le minimum d’occurrence, 100 pour le nombre d’itérations, 10 pour la taille
+        du contexte et 100 pour la taille du plongement ; Complete linkage ;1 pour tous les termes et label
+        max somme similarité cosinus intra groupe ; Nombre d’occurrences des termes constitutifs du
+        cluster.
+<a href="#fn56-ref">&#8617;</a></p>
+<p id="fn57">[57] au sens où cet auteur comptabilise un maximum d’occurrences des lemmes de ce cluster dans
+    les documents de cette revue sur cette période.
+<a href="#fn57-ref">&#8617;</a></p>
+
+<!-- NOTE FIN -->
+
+<br>
+<br>
+<p class="suite"> Suite :
+    <a  href="{% url 'TxtTheseDiscussion:home' %}"> Chapitre 8 : Discussion élargie à partir des
+    résultats et du processus de leurs productions </a>
+</p>
+<p class="suite"> Retour :
+    <a  href="{% url 'general:home' %}">Page d'accueil</a>
+</p>
+
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+
+<script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+<script type="text/javascript">
+ EnArrEnAvt("{% url 'FinaliseCorpus:home' %}", "{% url 'TxtTheseDiscussion:home' %}");
+</script>
+
+
+</body>
+</html>

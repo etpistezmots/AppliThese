@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Fichiers Hors Norme de la revue : {{revueperseeref}}</title>
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+<body>
+
+
+    <p class="suite">
+    <a  href="{% url 'DelimitCorpus:home' %}#III3">Retour texte : Chap4)III)3)</a>
+    </p>
+    <br>
+
+    <h2>Fichiers hors norme de la revue : {{revuerealname}}</h2>
+    <h3>Nombres d'éléments ne vérifiant pas l'expression régulière précedemmment définie : {{NbreResult}}</h3>
+
+    <ul>
+    {% for fichier in Result %}
+        <li>{{ fichier }}</li>
+    {% endfor %}
+    </ul>
+
+
+    <br>
+    <br>
+
+
+    <p class="suite">
+    <a  href="{% url 'DelimitCorpus:home' %}#III3">Retour texte : Chap4)III)3)</a>
+    </p>
+    <br>
+
+</body>
+</html>

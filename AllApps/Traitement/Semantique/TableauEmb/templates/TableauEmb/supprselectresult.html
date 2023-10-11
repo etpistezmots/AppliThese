@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="" method="post">
+
+    {% csrf_token %}
+
+
+{% if modeactuel == "glove" %}
+
+    <h3> Liste resultat "glove"</h3>
+
+    <table border="1" width="1100">
+    <thead>
+        <tr>
+            <th>select</th>
+            <th>nom</th>
+            <th>corpus</th>
+            <th>revue</th>
+            <th>epoque</th>
+            <th>embed-size</th>
+            <th>context-size</th>
+            <th>min-occur</th>
+            <th>learn_rate</th>
+            <th>n_epochs</th>
+            <th>terme</th>
+            <th>nresult</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for result in resultats %}
+        <tr>
+            <td><input type="checkbox" name="selected_resultat" value="{{ result.id }}"></td>
+            <td> <a href="{% url 'TableauEmb:result' 'glove' result.modelc.id result.id %}"> {{result.nomresult}}</a> </td>
+		    <td> {{ result.modelc.CorpusFinRef.nom }} </td>
+		    <td> {{ result.modelc.revue }} </td>
+		    <td> {{ result.modelc.epoque }} </td>
+            <td> {{ result.modelc.embedding_size }} </td>
+            <td> {{ result.modelc.context_size }} </td>
+            <td> {{ result.modelc.min_occurrences }} </td>
+            <td> {{ result.modelc.learning_rate }} </td>
+            <td> {{ result.modelc.num_epochs }} </td>
+            <td> {{ result.terme }} </td>
+            <td> {{ result.nresult }} </td>
+	    </tr>
+    {% endfor %}
+
+    </tbody>
+    </table>
+
+
+
+{% elif modeactuel == "word2vec" %}
+
+    <h3> Liste resultat "word2vec"</h3>
+
+    <table border="1" width="1200">
+    <thead>
+        <tr>
+            <th>select</th>
+            <th>nom</th>
+            <th>corpus</th>
+            <th>revue</th>
+            <th>epoque</th>
+            <th>architecture</th>
+            <th>embed-size</th>
+            <th>context-size</th>
+            <th>min-occur</th>
+            <th>learn_rate</th>
+            <th>sample</th>
+            <th>n_epochs</th>
+            <th>terme</th>
+            <th>nresult</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for result in resultats %}
+        <tr>
+            <td><input type="checkbox" name="selected_resultat" value="{{ result.id }}"></td>
+            <td> <a href="{% url 'TableauEmb:result' 'word2vec' result.modelc.id result.id %}"> {{result.nomresult}}</a> </td>
+		    <td> {{ result.modelc.CorpusFinRef.nom }} </td>
+		    <td> {{ result.modelc.revue }} </td>
+		    <td> {{ result.modelc.epoque }} </td>
+            <td> {{ result.modelc.architecture }} </td>
+            <td> {{ result.modelc.embedding_size }} </td>
+            <td> {{ result.modelc.context_size }} </td>
+            <td> {{ result.modelc.min_occurrences }} </td>
+            <td> {{ result.modelc.learning_rate }} </td>
+            <td> {{ result.modelc.sample }} </td>
+            <td> {{ result.modelc.num_epochs }} </td>
+            <td> {{ result.terme }} </td>
+            <td> {{ result.nresult }} </td>
+	    </tr>
+    {% endfor %}
+
+    </tbody>
+    </table>
+
+
+{% elif modeactuel == "fasttext" %}
+
+    <h3> Liste resultats "fasttext"</h3>
+
+    <table border="1" width="1300">
+    <thead>
+        <tr>
+            <th>select</th>
+            <th>nom</th>
+            <th>corpus</th>
+            <th>revue</th>
+            <th>epoque</th>
+            <th>architecture</th>
+            <th>embed-size</th>
+            <th>context-size</th>
+            <th>min-occur</th>
+            <th>learn_rate</th>
+            <th>sample</th>
+            <th>n_epochs</th>
+            <th>min_n</th>
+            <th>max_n</th>
+            <th>terme</th>
+            <th>nresult</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for result in resultats %}
+        <tr>
+            <td><input type="checkbox" name="selected_resultat" value="{{ result.id }}"></td>
+            <td> <a href="{% url 'TableauEmb:result' 'fasttext' result.modelc.id result.id %}"> {{result.nomresult}}</a> </td>
+		    <td> {{ result.modelc.CorpusFinRef.nom }} </td>
+		    <td> {{ result.modelc.revue }} </td>
+		    <td> {{ result.modelc.epoque }} </td>
+            <td> {{ result.modelc.architecture }} </td>
+            <td> {{ result.modelc.embedding_size }} </td>
+            <td> {{ result.modelc.context_size }} </td>
+            <td> {{ result.modelc.min_occurrences }} </td>
+            <td> {{ result.modelc.learning_rate }} </td>
+            <td> {{ result.modelc.sample }} </td>
+            <td> {{ result.modelc.num_epochs }} </td>
+            <td> {{ result.modelc.min_n }} </td>
+            <td> {{ result.modelc.max_n }} </td>
+            <td> {{ result.terme }} </td>
+            <td> {{ result.nresult }} </td>
+	    </tr>
+    {% endfor %}
+
+    </tbody>
+    </table>
+
+
+{% endif %}
+
+{% if resultats %}
+
+    <button  type="submit"  onclick="return confirm('Confirmer la suppression ?')"name="Supprimer" id="Supprimer"> Supprimer </button>
+    <button  type="submit" name="Retour" id="Retour"> Retour </button>
+
+{% else %}
+
+    <h3> Pas de résultat existant</h3>
+    <button  type="submit" name="Retour" id="Retour2"> Retour </button>
+
+{% endif %}
+
+</form>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    {% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>CasLitigesCedille</title>
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+<body>
+
+
+
+   <p class="suite">
+    <a  href="{% url 'AmeliorText:home' %}#V2b">Retour texte</a>
+    </p>
+    <br>
+
+    <p class="suite">
+            <a  href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Cedille' %}">Retour
+                Exploration cédilles </a>
+    </p>
+    <br>
+
+<h1>Mot avec cédille dont 1ère et 2ème partie dans dico</h1>
+<h2>Nombres d'éléments : {{NbreMotCedilleAvtApres}}</h2>
+
+<ul>
+    {% for mot in MotCedilleAvtApres %}
+        <li>{{ mot }}</li>
+    {% endfor %}
+</ul>
+
+    <br>
+    <br>
+     <p class="suite">
+    <a  href="{% url 'AmeliorText:home' %}#V2b">Retour texte</a>
+    </p>
+    <br>
+
+
+    <p class="suite">
+            <a  href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Cedille' %}">Retour
+                Exploration cédilles </a>
+    </p>
+    <br>
+
+    <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+    <script type="text/javascript">
+        EnArrEnAvt("{% url 'AmeliorText:home' %}#V2b","{% url 'AmeliorText:home' %}#V2b");
+    </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    {% load static %}
+
+    <meta charset="UTF-8">
+    <title>Titres de la réduction: {{reduction}}</title>
+
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+
+</head>
+<body>
+
+
+
+    <p class="suite">
+            <a  href="{% url 'AmeliorText:home' %}#ExploTitreAll">Retour Texte</a>
+    </p>
+
+    {% if user.is_superuser %}
+    <p class="suite">
+        <a href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Titre' %}"> Retour Interface </a>
+    </p>
+        {% endif %}
+
+
+
+<h2>Titres du corpus {{reduction}} pour la revue {{revuerealname}} </h2>
+
+
+<h3>Nombres d'éléments : {{ NbresResult }}</h3>
+<ul>
+{% for titre in Result %}
+    {% for elt in titre %}
+    <li>{{ elt }}</li>
+    {% endfor %}
+    <br>
+{% endfor %}
+</ul>
+
+
+    <br>
+    <br>
+    <p class="suite">
+            <a  href="{% url 'AmeliorText:home' %}#ExploTitreAll">Retour Texte</a>
+    </p>
+    <br>
+
+    {% if user.is_superuser %}
+    <p class="suite">
+        <a href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Titre' %}"> Retour Interface </a>
+    </p>
+        {% endif %}
+
+
+
+    <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+    <script type="text/javascript">
+        EnArrEnAvt("{% url 'AmeliorText:home' %}#ExploTitreAll",
+         "{% url 'AmeliorText:home' %}#ExploTitreAll");
+    </script>
+
+
+</body>
+</html>

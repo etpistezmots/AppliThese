@@ -1,0 +1,11 @@
+{% extends 'AmeliorText/TraitA/TraitBase/SuccessTraitBase.html' %}
+
+{% block content %}
+
+    {% if donnees.litigecedille %}
+        avec un essai de réduction des litiges <br>
+    {% else %}
+        sans essai de réduction des litige<br>
+    {% endif %}
+
+{% endblock %}

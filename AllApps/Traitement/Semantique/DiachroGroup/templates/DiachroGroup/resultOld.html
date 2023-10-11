@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+
+    {% if modeactuel == "glove" %}
+        <title>Result glove</title>
+    {% endif %}
+
+    <style>
+        .asteriskField {
+            display: none;
+        }
+        .marge {
+            margin-left: 1em;
+        }
+        .marge2 {
+            margin-left: 3em;
+        }
+
+
+        #chart {
+          height: 600px;
+        }
+
+        .node rect {
+          cursor: move;
+          fill-opacity: .8;
+          shape-rendering: crispEdges;
+
+        }
+
+        .node text {
+          font-size: 13px;
+          pointer-events: none;
+          /*text-shadow: 0 1px 0 #fff;*/
+        }
+
+        /*.link {
+          fill: #000;
+          opacity: .2;
+          stroke: #fff;
+          stroke-opacity: 0.;
+        }
+        */
+        .link {
+          fill: #000;
+          /*opacity: .1;*/
+          stroke: #f00;
+          stroke-opacity: .9;
+        }
+
+
+        .link:hover {
+          opacity: .5;
+        }
+
+        path.line {
+          fill: none;
+          stroke: #666;
+          stroke-width: 1.5px;
+        }
+
+        path.area {
+          fill: #e7e7e7;
+        }
+
+        .axis {
+          shape-rendering: crispEdges;
+        }
+
+        .x.axis line {
+          stroke: #000;
+          stroke-opacity: .2;
+        }
+
+        .x.axis .minor {
+          stroke-opacity: .5;
+        }
+
+        .x.axis path {
+          display: none;
+        }
+
+
+    </style>
+
+    <link rel="stylesheet" href= "{% static 'TableauEmb/css/bootstrap.min.css' %}">
+
+</head>
+
+<body>
+
+<label for="mode">- Choix du mode d'expérimentation :</label>
+<select onchange="location = this.value;" id="mode">
+    {% for mode in allmodes %}
+        {% if mode == modeactuel %}
+            <option selected>{{ mode }}</option>
+        {% else %}
+            <option value="{% url 'DiachroGroup:home' mode %}">{{ mode }}</option>
+        {% endif %}
+    {% endfor %}
+</select>
+
+</br>
+
+</br>
+
+{% if user.is_superuser %}
+    <label for="modele">- Nouveau modèle ou partir d'un modèle disponible :</label>
+    <select onchange="location = this.value;" id="modele">
+        <option value="{% url 'DiachroGroup:home' modeactuel %}">Nouveau modèle</option>
+        {% for model in models%}
+            {% if model.id == idmodeleactuel %}
+                <option selected >{{ model.nom }}</option>
+            {% else %}
+                <option value="{% url 'DiachroGroup:modele' modeactuel model.id %}">{{ model.nom }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+{% else %}
+    <label for="modele">- Partir d'un modèle disponible :</label>
+    <select onchange="location = this.value;" id="modele">
+        {% for model in models%}
+            {% if model.id == idmodeleactuel %}
+                <option selected >{{ model.nom }}</option>
+            {% else %}
+                <option value="{% url 'DiachroGroup:modele' modeactuel model.id %}">{{ model.nom }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+{% endif %}
+
+</br>
+
+
+<form action="" method="post">
+
+    {% csrf_token %}
+
+    <div class="container">
+        <fieldset class="grisemoi">
+        {% crispy form %}
+        </fieldset>
+     </div>
+
+
+    </br>
+    </br>
+
+
+    <input type="hidden" id="nomlast" name="nomlast" value="{{ form.nom.value }}">
+    <input type="hidden" id="revuelast" name="revuelast" value="{{ form.revue.value }}">
+    <input type="hidden" id="epoquelast" name="epoquelast" value="{{ form.epoque.value }}">
+
+
+
+
+    <label for="result">A partir modèle choisi, nouveau résultat ou afficher résultat disponible :</label>
+    <select onchange="location = this.value;" id="result">
+
+        {% if results %}
+            <option value="{% url 'DiachroGroup:modele' modeactuel idmodeleactuel %}"> Nouveau résultat</option>
+            {% for result in results %}
+                {% if result.id == idresultactuel %}
+                    <option selected >{{ result.nomresult }}</option>
+                {% else %}
+                    <option value="{% url 'DiachroGroup:result' modeactuel idmodeleactuel result.id %}">{{ result.nomresult }}</option>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <option selected>Pas de résultat disponible</option>
+        {% endif %}
+    </select>
+
+
+    <div class="container">
+    {% crispy form2 %}
+    </div>
+
+    </br>
+
+    {% if AccesToCalcul %}
+    <input type="submit" onclick="degriseField()" name="Calculer" id="Calculer" value="calculer">
+    {% endif %}
+
+    <input type="hidden" id="pathresultlast" name="pathresultlast" value="{{ path_result_transfo }}">
+    <input type="hidden" id="termelast" name="termelast" value="{{ form2.terme.value }}">
+    <input type="hidden" id="nresultlast" name="nresultlast" value="{{ form2.nresult.value }}">
+
+
+    <input type="hidden" id="mclusteringlast" name="mclusteringlast" value="{{ form2.methode_clustering.value }}">
+    <input type="hidden" id="nclusterlast" name="nclusterlast" value="{{ form2.ncluster.value }}">
+    <input type="hidden" id="indminclusterlast" name="indminclusterlast" value="{{ form2.nbre_ind_min_cluster.value }}">
+
+
+    <input type="hidden" id="calculPoidslast" name="calculPoidslast" value="{{ form2.calculPoids.value }}">
+    <input type="hidden" id="compareJustNewRevuelast" name="compareJustNewRevuelast" value="{{ form2.compareJustNewRevue.value }}">
+    <input type="hidden" id="diviAllMLlast" name="diviAllMLlast" value="{{ form2.diviAllML.value }}">
+    <input type="hidden" id="couleursRevueslast" name="couleursRevueslast" value="{{ form2.couleursRevues.value }}">
+    {% if user.is_superuser %}
+    <input type="hidden" id="user_restrict2last" name="user_restrict2last" value="{{ form2.user_restrict2.value }}">
+    {% endif %}
+
+    </br>
+
+
+
+    {% if graph == "yes" %}
+    </br>
+        <div id="navigation" onchange="run()">
+            <label for="data"> fichier : </label>
+            <select id="data" name="data">
+                <option selected>{{ ExpeAAfficher }}</option>
+            </select>
+            <label for="myRange"> seuil : </label>
+            <input type="range" id="myRange" name="myRange" min="0" max="1" value="0.15" step="0.05" class="slider">
+    <!-- voir la fonction updateTextInput pour mise à jour de la value-->
+            <input type="text" id="textInput" name="textInput" value="0.15">
+            <label for="assymetrie"> See Assymetrie : </label>
+            <input type="checkbox" id="assymetrie" name="assymetrie" >
+        </div>
+
+
+    <p id="chart"></p>
+     {% endif %}
+
+
+
+    {% if AccesToSave and user.is_authenticated %}
+        </br>
+        <input class="marge2" id="namesave" name="namesave" value="namesave">
+        <input type="submit" name="Sauver" id="Sauver" value="Sauver">
+    {% endif %}
+
+    {% if results and not AccesToSave and not AccesToCalcul %}
+        {% if user.is_superuser %}
+        <input class="marge2" type="submit" name="SupprimerOneResult" id="SupprimerOneResult" value="Supprimer ce résultat">
+        <input type="submit" name="SupprimerMultiResults" id="SupprimerMultiResults" value="Supprimer des résultats">
+        {% else %}
+            {% if ResultSpeUser %}
+                <input class="marge2" type="submit" name="SupprimerOneResult" id="SupprimerOneResult" value="Supprimer ce résultat">
+            {% endif %}
+        {% endif %}
+        </br>
+    {% endif %}
+
+    <h4>- Comparer des résultats déjà existants:</h4>
+       <input class="marge" type="submit" name="Consulter" id="Consulter" value="Comparateur">
+
+</form>
+
+<script src="{% static 'TableauEmb/js/jquery-3.4.1.min.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+<script src="{% static 'DiachroGroup/js/d3-v3-min.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+<script src="{% static 'DiachroGroup/js/sankey.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+<script type = 'text/javascript'>
+
+window.onload=function() {
+        {% if not user.is_superuser %}
+            var nom = document.getElementById('div_id_nom');
+            nom.style.display = 'none';
+            var userrestrict = document.getElementById('div_id_user_restrict');
+            userrestrict.style.display = 'none';
+            var userrestrict2 = document.getElementById('div_id_user_restrict2');
+            userrestrict2.style.display = 'none';
+
+        {% endif %}
+
+        $(".grisemoi").prop("disabled",true)
+
+        }
+
+function degriseField(){
+
+        $(".grisemoi").prop("disabled",false)
+        }
+
+
+
+{% if graph == "yes" %}
+
+        function updateTextInput(val) {
+                  document.getElementById('textInput').value=val;
+                };
+
+
+
+        var testseuil = document.getElementById("myRange").value;
+        updateTextInput(testseuil);
+
+        var e = document.getElementById("data");
+        var nom = e.options[e.selectedIndex].text;
+
+
+
+        try {
+            var term = location.search.split('?term=')[1].replace('%20'," ")
+            document.write(term);}
+        catch(err)
+            {
+            var term='dqdqsdsqdsq';
+            }
+
+
+
+        var margin = {top: 20, right: 20, bottom: 20, left: 20},
+            totalwidth=1100,
+            totalheight=600,
+            nodewidth=15,
+            width = totalwidth - margin.left - margin.right,
+            height = totalheight - margin.top - margin.bottom;
+
+        var formatNumber = d3.format(",.0f"),
+            format = function(d) { return formatNumber(d) + " records"; },
+            color = d3.scale.category20();
+
+        var formatNumberstrength = d3.format(",.2f"),
+            format = function(d) { return formatNumber(d) ; },
+            color = d3.scale.category20();
+
+
+
+        // Set the sankey diagram properties
+        var sankey = d3.sankey()
+            .nodeWidth(nodewidth)
+            .nodePadding(10)
+            .size([width, height]);
+
+        var path = sankey.link();
+
+        var minx;
+        var maxx;
+
+        corps(testseuil);
+
+
+        function corps(seuil) {
+
+        var totnom = "{% url 'DiachroGroup:jsonimport' modeactuel path_result_transfo %}";
+        // https://www.aspsnippets.com/Articles/Get-selected-Text-and-Value-of-DropDownList-in-OnChange-event-using-JavaScript-and-jQuery.aspx
+        // select by default
+
+        // load the data
+        d3.json(totnom, function(energy) {
+            metas= energy.metas;
+            minx = energy.metas.min_year;
+            maxx = energy.metas.max_year;
+            ticksnb = energy.metas.nb_ticks;
+            var minstre = seuil;
+            var maxstre = energy.metas.maxstre;
+            var deltastre = maxstre-minstre;
+            sankey
+              .nodes(energy.nodes)
+              .links(energy.links)
+              .layout(32);
+
+
+        // add in the links
+          var link = svg.append("g").selectAll(".link")
+              .data(energy.links)
+              .enter().append("path")
+              .attr("class", "link")
+              .attr("d", path)
+              // recherche modif color link
+              // https://stackoverflow.com/questions/36244075/d3-js-sankey-link-color
+              //.style("fill", "none")
+              //.style('stroke', function(d){return d.source.color;})
+              .style('stroke', function(d) { if (document.getElementById('assymetrie').checked) {
+                                                if (d.assymetrie == 1 || d.assymetrie == 2) {
+                                                        return "#2F682A";
+                                                } else if (d.assymetrie == -1 || d.assymetrie == -2) {
+                                                    return "#FF0000";
+                                                } else {
+                                                    return d.source.color;
+                                                }
+                                            } else {return d.source.color;}}) //{return d.source.color;})
+              .style("stroke-width", function(d) { if (document.getElementById('assymetrie').checked) {
+                                                        if (d.assymetrie == 2 || d.assymetrie == -2) {
+                                                            return 10;
+                                                        } else if (d.assymetrie == 1 || d.assymetrie == -1) {
+                                                            return 5;
+                                                        } else {return 0;}
+                                                    } else {return 1;}})
+              .style("fill", function(d) { if (document.getElementById('assymetrie').checked) {
+                                                if (d.assymetrie == 0)  {
+                                                    return "#000000";
+                                                } else { if (d.value >= seuil) {return "#A27B09";
+                                                         } else {return "#000000";}
+                                                }
+                                              } else {return "#000000";}})
+
+              .style("opacity", function(d) { if (document.getElementById('assymetrie').checked) {
+                                                if (d.assymetrie == 0)  {
+                                                    return (d.value - minstre)/(deltastre+0.2) / 2.3 +.05;
+                                                } else { if (d.value >= seuil) {return .5;
+                                                         } else {return (d.value - minstre)/(deltastre+0.2) / 2.3 +.05;}
+                                                }
+                                              } else {return (d.value - minstre)/(deltastre+0.2) / 2.3 +.05;}})
+              .sort(function(a, b) { return b.dy - a.dy; })
+              .on("mouseover", function(){d3.select(this).style("fill", "#8D31CB");})
+              .on("mouseout", function(d){ if (document.getElementById('assymetrie').checked) {
+                                              if (d.assymetrie == 0)  {
+                                                 d3.select(this).style("fill", "#000000");
+                                              } else { if (d.value >= seuil) {d3.select(this).style("fill", "#A27B09");
+                                                        } else {d3.select(this).style("fill", "#000000");}
+                                                }
+                                              } else {d3.select(this).style("fill", "#000000");}
+                              });
+
+
+        // add the link titles
+              link.append("title")
+              .text(function(d) { return d.source.name.split('-*-')[0] + "("+d.source.period + ")’ " + d.target.name.split('-*-')[0] + " ("+d.target.period + ")\nstrength: " + formatNumberstrength(d.value) + '\n' + 'assymetrie:' + formatNumber(d.assymetrie) + '\n' + 'shared:' + d.shared + '\n' + 'sourcesOnly:' + d.onlysource + '\n' + 'cibleOnly:' + d.onlycible; })
+
+
+        // add in the nodes
+          var node = svg.append("g").selectAll(".node")
+              .data(energy.nodes)
+              .enter().append("g")
+              .attr("class", "node")
+              .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+              .call(d3.behavior.drag()
+              .origin(function(d) { return d; })
+              .on("dragstart", function() { this.parentNode.appendChild(this); })
+              .on("drag", dragmove));
+
+
+
+
+
+        // add the rectangles for the nodes
+            node.append("rect")
+              .attr("height", function(d) { return d.dy; })
+              .attr("width", sankey.nodeWidth())
+              .attr('rx',1)
+              .attr('ry',1)
+              .style("fill", function(d) { return d.color;})// = color(d.name.replace(/ .*/, "")); })
+              .style("opacity", 0.8)
+              .style('stroke', "#000001")
+              .style("stroke-width", function(d) {  if (d.terms.search(term)>-1)  {return 5;} else {return 1;}} )
+              .append("title")
+              .text(function(d) { return d.name.split('-*-')[0] + "\n"+'period:'+d.period+ "\n" + formatNumber(d.value) + ' records' + "\n" + 'Terms:'+d.terms; });
+
+
+        // add in the title for the nodes
+            node.append("text")
+              .attr("x", -6)
+              .attr("y", function(d) { return d.dy / 2; })
+              .attr("dy", ".35em")
+              .attr("text-anchor", "end")
+              .attr("transform", null)
+              .text(function(d) { return d.name.split('-*-')[0];})
+              //.filter(function(d) { return d.x < width / 2; })
+              .attr("x", 6 + sankey.nodeWidth())
+              .attr("text-anchor", "start");
+
+          var x = d3.scale.linear().range([0+nodewidth/2, width-nodewidth/2]).domain([minx, maxx]);
+
+          var xAxis = d3.svg.axis().scale(x).ticks(ticksnb*2).tickSize(height).orient("top");
+
+          svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+
+
+        // the function for moving the nodes
+          function dragmove(d) {
+            d3.select(this).attr("transform", "translate(" + d.x + "," + (d.y = Math.max(0, Math.min(height - d.dy, d3.event.y))) + ")");
+            sankey.relayout();
+            link.attr("d", path);}
+
+        });
+
+
+        // append the svg canvas to the page
+        var svg = d3.select("#chart").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        };
+
+
+
+        function run() {
+
+        // efface le graphe précedent
+        d3.select("svg").remove();
+
+        nom = e.options[e.selectedIndex].text;
+
+        var testseuil= document.getElementById("myRange").value;
+        updateTextInput(testseuil);
+
+        console.log(testseuil);
+        corps(testseuil);
+
+        };
+
+{% endif %}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends 'AmeliorText/TraitA/TraitBase/AnnuleTraitBase.html' %}
+
+{% block content %}
+
+
+    avec le seuil suivant : {{ AncienneReductionElt.seuil }} <br>
+
+    {% if AncienneReductionElt.SupprChiffreDebFinAll %}
+        en chosissant d'enlever les bas de pages qui finissent ou commencent par un chiffre dans tous les cas<br>
+    {% else %}
+        sans enlever les bas de pages qui finissent ou commencent par un chiffre hors seuil <br>
+    {% endif %}
+
+    en choisissant comme date minimum : {{ AncienneReductionElt.DateMin }} <br>
+
+{% endblock %}

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+
+    {% load static %}
+
+    <title>Plan Intro</title>
+    <style>
+        .marge {
+            margin-left: 3em;}
+        .marge2 {
+            margin-left: 6em;}
+        .suite {
+            font-style: italic;
+            text-align: right;}
+        .present {
+            text-decoration: underline;
+            font-weight:bold;}
+        .note {
+            text-decoration: none;
+            }
+        p {
+            text-align: justify;}
+        h1 {
+            text-align: center;}
+        h2 {
+            margin-left: 3em;
+            margin-top: 1.5em;
+            margin-bottom: 1.5em;}
+        h3 {
+            margin-left: 6em;
+            margin-top: 1.5em;
+            margin-bottom: 1.5em;}
+        li {
+            margin-left: 3em;
+            margin-top:15px;
+            text-align: justify;}
+    </style>
+</head>
+<body>
+
+<p class="suite"> Retour :
+    <a  href="{% url 'general:home' %}">Page d'accueil</a>
+</p>
+
+    <h1>Introduction</h1>
+
+<p class="present">Plan du chapitre :</p>
+
+
+ <a class="marge" id="I-ref" href="#I">I) Préambule</a>
+<br>
+<br>
+ <a class="marge" id="II-ref" href="#II">II) Présentation de l'application Web</a>
+<br>
+<br>
+ <a class="marge2" id="II1-ref" href="#II1">1) Sa construction</a>
+<br>
+<br>
+ <a class="marge2" id="II2-ref" href="#II2">2) Différentes utilisations possibles </a>
+
+<br>
+<br>
+
+
+<p class="present">Texte du chapitre</p>
+
+
+    <h2 id="I">I) Préambule <a href="#I-ref">&#8617;</a> </h2>
+
+
+<!-- TEXT DEB -->
+<div id="Orain1g">
+    <p class="mypara">
+        <span class="marge">
+            Cette application Web accompagne le travail de thèse de Max Beligné
+        (<a href="{% url 'Introduction:VersTheseMBeligne' %}">lien a venir</a>).
+            L'objectif est de tester la thèse d'Olivier
+            Orain<sup><a id="fn1-ref" class="note" href="#fn1">1</a></sup>
+            qui revendique une approche kuhnienne
+            de la géographie française des années 1910 à 1985.
+            Cet auteur réalise une hypothèse
+            postulant qu'une étude des changements sémantiques, notamment
+            des termes "espace" et "milieu",
+            est susceptible de donner du corps, voire de valider sa lecture kuhnienne.
+            Durant la décennie 1960, qu'il considère comme pré-révolutionnaire (entendu ici dans un sens kuhnien),
+            Olivier Orain affirme
+            une équivalence sémantique des termes "espace" et "milieu".
+            Puis, pendant la phase révolutionnaire (années 1970 jusqu'au milieu des années 1980),
+            il postule un changement lexical avec un début de changement sémantique sans véritablement de
+            bascule. Cette dernière n'a lieu pour cet auteur qu'à partir du milieu des années 1980
+            marquant la fin de la phase révolutionnaire avec le retour
+            d'un « cadre paradigmatique à nouveau stable » et la généralisation d’une sémantique particulière,
+            sur les bases du répertoire adopté depuis déjà quelque temps »
+            <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Orain1">(Orain 2003, 354)</a>.
+        </span>
+    </p>
+</div>
+
+
+<div id="Pen1a">
+    <p class="mypara">
+    <span class="marge">
+        L'objectif de cette application Web est donc de tester cette hypothèse sémantique.
+        Le corpus est composé de deux revues majeures de la géographie française :
+        <em>Les Annales de Géographie</em> (qui peuvent être historiquement rattachées
+         à ce qu'Olivier Orain nomme le « paradigme post-validalien »)  et
+         <em>L’Espace Géographique</em> (qui a en grande partie porté ce qu'Olivier Orain désigne comme
+         le « paradigme spatialiste ou théorico-quantitativiste »).
+         Au niveau de la méthodologie, j’ai utilisé une technique de plongements de mots, <em>GloVe</em>,
+          mis au point par des chercheurs de l’université de Stanford
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Pen1">(Pennington, Socher et Manning 2014)</a>.
+         </span>
+</p>
+</div>
+
+<p class="mypara">
+    <span class="marge">
+        Nous renvoyons les lecteurs qui voudraient comprendre plus en détail
+        l'origine de cette problématique ainsi que les choix du corpus et la méthodologie
+        à la lecture du manuscrit de thèse, et plus précisèment à sa partie 1.
+    </span>
+</p>
+
+<p class="mypara">
+    <span class="marge">
+        Une fois passée cette introduction, les textes de la partie 2 et 3 du manuscrit et de
+        cette application Web sont identiques (à quelques exeptions près pour s'adapter à la spécificité des
+        supports). La numérotation des
+        chapitres et des figures est aussi semblable, ce qui permet de comprendre pourquoi cette application
+        présente des chapitres et des figures dont la numérotation ne commence pas au numéro 1.
+
+    </span>
+</p>
+
+
+    <h2 id="II">II) Présentation de l'application Web <a href="#II-ref">&#8617;</a> </h2>
+
+<p class="mypara">
+    <span class="marge">
+        Les deux objectifs qui ont conduit à construire cette application sont la volonté de
+        pourvoir utiliser un outil avancé d'exploration des données textuelles utiliser
+        et d'éprouver concrètement la problématique de la reproductibilité de la recherche.
+
+    </span>
+</p>
+
+
+
+    <h3 id="II1">1) Sa construction <a href="#II1-ref">&#8617;</a> </h3>
+
+
+<div id=Bel2>
+    <p class="mypara">
+        <span class="marge">
+
+        Après avoir écrit les premiers scripts <em>Python</em> pour préparer et traiter les données, un
+        travail a été réalisé avec l’aide d’un stagiaire, Pierre Prablanc, pour améliorer plusieurs parties
+        du code.
+        Cette étape a permis de clarifier et de mieux structurer plusieurs objets et fonctions. Ensuite, le
+        choix d’une application Web s’est progressivement imposé pour simplifier l’accès à tous en évitant
+        les problèmes liés à une procédure d’installation. Le framework
+            <em>Django</em><sup><a id="fn2-ref" class="note" href="#fn2">2</a></sup>
+            a permis de facilement
+        structurer les différentes parties du code. Une partie de ce travail a fait l’objet d’une
+        présentation au séminaire <em>CoCoPySHS</em><sup><a id="fn3-ref" class="note" href="#fn3">3</a></sup>
+            <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Bel2">(Beligné 2023)</a>.
+    </span>
+    </p>
+</div>
+
+
+    <h3 id="II2">2) Différentes utilisations possibles <a href="#II2-ref">&#8617;</a> </h3>
+
+
+<p class="mypara">
+    <span class="marge">
+      Au niveau de la navigation dans l’application, cette dernière a été testée sur un écran d’ordinateur
+        avec comme navigateur Firefox ou Chrome. Les navigations sur tablette ou smartphone n’ont pas fait
+        l’objet de test ni d’optimisation. Il est donc conseillé pour naviguer dans cette application
+        d’utiliser un ordinateur avec les navigateurs sus-cités.
+    </span>
+</p>
+
+
+<p class="mypara">
+    <span class="marge">
+      Plusieurs utilisations sont ensuite possibles :
+    </span>
+</p>
+
+<ul>
+    <li>La première consiste, à partir de la lecture du manuscrit, à ouvrir les liens permettant
+        d’accéder directement à des parties précises de l’application. Ces liens commencent tous par un @
+        et sont écrits en gras, ce qui permet de facilement les identifier. Ils s’ouvrent en appuyant sur
+        la touche Ctrl et cliquant simultanément dessus. Le lecteur peut ensuite revenir au manuscrit et
+        ainsi continuer en ouvrant au fur et à mesure les liens qui l’intéressent. </li>
+    <li>Une deuxième utilisation consiste à poursuivre la lecture directement sur cette application.
+        Il est possible d'utilise les raccourcis
+        «  Ctrl + S » (page suivante) et « Ctrl + R » (page précédente). La lecture directement sur ce
+        support permet d’éviter de multiples allers-retours
+        (notamment lors des étapes de préparation du corpus et de productions des résultats où les liens
+        vers l’application sont plus nombreux).
+        <br>
+        Toutefois, si vous voulez lire complètement la thèse,
+        il sera nécessaire de revenir au manuscrit après la
+        conclusion de l’application. En effet, les dernières parties, 3 et 4, n’ont pas été intégrées à ce
+        support, car cela aurait demandé un travail non négligeable pour une plus-value heuristique minime.
+        J’ai privilégié l’ensemble des parties 1 et 2, car elles présentent une cohérence liée à l’approche
+        quantitative.
+    </li>
+    <li>Une troisième manière d’utiliser l’application passe par l’annexe « Pour un usage avancé », visible
+        la page d'accueil, permettant de s’inscrire et de s’identifier. Cette inscription permet à
+        des utilisateurs de produire quelques résultats en faisant des choix différents que ceux présentés
+        dans cette thèse. Toutefois, certains traitements prennent un temps important ce qui peut ralentir
+        l’application<sup><a id="fn4-ref" class="note" href="#fn4">4</a></sup>. De plus, en multipliant les
+        possibilités laissées à l’utilisateur, la probabilité
+        de problèmes techniques s’accroit aussi. Pour ces raisons, il m’a semblé préférable de garder le
+        contrôle sur certains traitements. Par conséquent, même en étant inscrit, plusieurs traitements
+        demandent l’envoi d’un courriel pour être réalisés. Le système d’enregistrement et d’identification
+        me permet d’affecter des données et des résultats à un (ou des) utilisateur(s) particulier(s). Cette
+        organisation offre une stabilité de l’application de base tout en laissant la possibilité effective
+        d’autres constructions.</li>
+    <li>Une quatrième manière d’utiliser l’application est de la générer en local à partir du code et des
+        instructions disponibles à l’adresse suivante : <a href="https://github.com/etpistezmots/AppliThese"  target="_blank">
+            https://github.com/etpistezmots/AppliThese</a>. Pour cela, il est nécessaire de maitriser des opérations telles que la création d’un environnement
+        virtuel et le lancement d’un projet <em>Django</em>. Toutefois, la production de résultats par une
+            personne extérieure reste limitée, car il manque les sources utilisées. À cet effet, j’ai effectué quelques
+        démarches pour rendre les sources disponibles, mais cela nécessite l’accord des comités de
+        direction des deux revues, de leurs maisons d’édition ainsi que de l’UAR <em>Persée</em>. Il s’agit
+        donc de démarches assez lourdes qui n’ont pas eu le temps d’aboutir. Si la mise en accès du code ne
+        permet pas de générer directement<sup><a id="fn5-ref" class="note" href="#fn5">5</a></sup> de nouveaux
+        résultats, elle demeure néanmoins à mon sens un acte
+        significatif en termes de reproductibilité. En effet, toute personne intéressée peut rentrer dans
+        tous les détails du fonctionnement de l’application. Il reste vrai que par rapport à l’idéal
+        d’ouverture initial, quelques réductions et ajustements ont été nécessaires. </li>
+</ul>
+
+
+<p class="mypara">
+    <span class="marge">
+      Ces différentes utilisations ne sont évidemment en rien exclusives l’une de l’autre et peuvent être
+        combinées. Au niveau du contenu, le chapitre suivant vise tout d’abord à présenter un état des
+        lieux sur la notion de changement sémantique et la problématique de sa détection quantitative.
+        L’objectif est d’examiner les travaux existants afin de mieux définir les choix théoriques et
+        méthodologiques effectués.
+    </span>
+</p>
+
+
+    <br>
+
+    <!-- NOTE DEB -->
+
+<p class="present">Notes du chapitre</p>
+
+<p id="fn1">[1] Cette thèse peut être lue à partir du lien :
+    <a href="https://theses.hal.science/tel-00082408/file/Orain_these.pdf"  target="_blank">
+        https://theses.hal.science/tel-00082408/file/Orain_these.pdf </a> consulté le 18/09/2023.
+<a href="#fn1-ref">&#8617;</a></p>
+<p id="fn2">[2] <a href="https://www.djangoproject.com/"  target="_blank">
+        https://www.djangoproject.com/</a>.
+<a href="#fn2-ref">&#8617;</a></p>
+<p id="fn3">[3] Je remercie ici vivement Emilien Schultz pour cette opportunité de présentation et la mise
+    en ligne.
+<a href="#fn3-ref">&#8617;</a></p>
+<p id="fn4">[4] Toute l’application est synchrone. Ce n’est qu’à la fin de ma thèse que j’ai découvert les
+    possibilités de développement Web avec de l’asynchrone permettant d’éviter ce problème de surcharge par
+    certains traitements.
+<a href="#fn4-ref">&#8617;</a></p>
+    <p id="fn5">[5] Indirectement, il est possible de le faire en demandant à l’UAR <em>Persée</em> un
+        accès aux sources utilisées.
+<a href="#fn5-ref">&#8617;</a></p>
+
+<!-- NOTE FIN -->
+
+<br>
+<br>
+
+<p class="suite"> Suite :
+    <a  href="{% url 'EtatDesLieux:home' %}">Chap 3) État des lieux sur le changement sémantique et sa
+        détection par des démarches quantitatives </a>
+</p>
+<p class="suite"> Retour :
+    <a  href="{% url 'general:home' %}">Page d'accueil</a>
+</p>
+
+
+
+<script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+<script type="text/javascript">
+ EnArrEnAvt("{% url 'general:home' %}", "{% url 'EtatDesLieux:home' %}");
+</script>
+
+
+</body>
+</html>
+
+

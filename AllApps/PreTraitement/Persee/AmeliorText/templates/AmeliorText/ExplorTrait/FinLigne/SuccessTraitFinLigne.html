@@ -1,0 +1,12 @@
+{% extends 'AmeliorText/TraitA/TraitBase/SuccessTraitBase.html' %}
+
+{% block content %}
+ <br>
+
+    {% if donnees.normalise %}
+           en réalisant les cas de normalisations explicités.<br>
+    {% else %}
+            sans réaliser les cas de normalisations explicités.<br>
+    {% endif %}
+
+{% endblock %}

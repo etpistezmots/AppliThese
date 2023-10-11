@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    {% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>BasdePage{{reduction}}</title>
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+<body>
+
+    <p class="suite">
+            <a  href="{% url 'AmeliorText:home' %}#IV6a">Retour Texte</a>
+    </p>
+
+    {% if user.is_superuser %}
+    <p class="suite">
+        <a href="{% url 'AmeliorText:ReDispatch' 'Explor' 'BasDePage' %}"> Retour Interface </a>
+    </p>
+    {% endif %}
+
+    <br>
+
+    <br>
+
+    <a class="btn btn-primary marge"
+   href="{% url 'AmeliorText:Download' 'BasDePagebrut' reduction revue 'txt' %}">Télecharger fichier</a>
+
+
+
+<h1>Bas de page détectés de la réduction {{reduction}} pour la revue {{ revuerealname }}</h1>
+
+{% if MarqueurLimitePage %}
+    <br>
+    En raison de nombre d'éléments : {{ NbresResult }} articles, <br>
+    seulement les bas de page des 100 premier articles <br>
+    et des 100 derniers articles ont été affichés. <br>
+    Vous pouvez télécharger l'ensemble des résultats en fichier .txt <br>
+    dans le lien tout à droite <br>
+    <br>
+    <br>
+
+    Les 100 premiers articles :
+
+    <ul>
+    {% for BasdePagesBrut in ResultDeb %}
+        {% for elt in BasdePagesBrut %}
+            <li>{{ elt|safe }}</li>
+        {% endfor %}
+        <br>
+    {% endfor %}
+    </ul>
+
+    <br>
+    ...
+    Les 100 derniers articles :
+    <br>
+    <br>
+
+    <ul>
+    {% for BasdePagesBrut in ResultFin %}
+        {% for elt in BasdePagesBrut %}
+            <li>{{ elt|safe }}</li>
+        {% endfor %}
+        <br>
+    {% endfor %}
+    </ul>
+
+
+
+{% else %}
+
+    <ul>
+    {% for BasdePagesBrut in Result %}
+        {% for elt in BasdePagesBrut %}
+        <li>{{ elt|safe }}</li>
+        {% endfor %}
+        <br>
+    {% endfor %}
+    </ul>
+
+{% endif %}
+
+
+<a class="btn btn-primary marge"
+   href="{% url 'AmeliorText:Download' 'BasDePagebrut' reduction revue 'txt' %}">Télecharger fichier</a>
+
+     <br>
+    <br>
+   <p class="suite">
+            <a  href="{% url 'AmeliorText:home' %}#IV6a">Retour Texte</a>
+    </p>
+
+    {% if user.is_superuser %}
+    <p class="suite">
+        <a href="{% url 'AmeliorText:ReDispatch' 'Explor' 'BasDePage' %}"> Retour Interface </a>
+    </p>
+    {% endif %}
+
+    <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+    <script type="text/javascript">
+        EnArrEnAvt("{% url 'AmeliorText:home' %}#IV6a","{% url 'AmeliorText:home' %}#IV6a");
+    </script>
+
+</body>
+</html>

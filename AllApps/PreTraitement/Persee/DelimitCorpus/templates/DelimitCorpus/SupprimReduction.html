@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Supprimer Reduction</title>
+
+    <link rel="stylesheet" href= "{% static 'css/bootstrap.min.css' %}">
+
+     <style>
+        .marge {
+            margin-left: 3em;}
+
+    </style>
+</head>
+<body>
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+<form action="" method="post">
+
+    <label for="reduc">- Choix réduction :</label>
+    <select  id="reduc" name="reduc">
+        {% if user.is_superuser %}
+            {% for reduction in reductions%}
+                <option value="{{ reduction.nom }}">{{ reduction.nom }}</option>
+            {% endfor %}
+        {% endif %}
+    </select>
+
+    <br>
+    <br>
+
+    {% if user.is_superuser %}
+        {% csrf_token %}
+        <button  type="submit"  onclick="return confirm('Confirmer la suppression ?')" name="Supprimer" id="Supprimer"> Supprimer </button>
+    {% endif %}
+
+    <br>
+    <br>
+
+    <a class="btn btn-primary" href="{% url 'DelimitCorpus:home' %}">Retour home DelimitCorpus</a>
+    <a class="btn btn-primary marge" href="{% url 'general:home' %}">Retour home général</a>
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    {% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home Evaluation</title>
+    <style>
+        .margetitre1 {
+            margin-left: 1em;
+            font-style: italic;}
+        .margetitre2 {
+            margin-left: 2em;
+            font-style: italic;}
+	    .titreital {
+            font-style: italic;}
+        .titresouligne {
+            text-decoration:underline;}
+
+        .marge {
+            margin-left: 3em;}
+        .marge2 {
+            margin-left: 6em;}
+	    .suite {
+            font-style: italic;
+            text-align: right;}
+
+        .mypara {
+            text-align: justify;}
+
+        .centremoi {
+            text-align: center;}
+
+        .fraction {
+	display: inline-block;		/* pour que la fraction soit un élément de la ligne */
+	vertical-align: middle;
+	}
+
+        .fraction span {
+            display: block;				/* les blocks se placent par défaut les uns sous les autres */
+            padding-top: 0.15em;
+            text-align: center;
+            }
+
+        .fraction span.denominateur {
+            border-top: 1px solid black; /* la barre de fraction */
+            }
+
+    table{
+      border-collapse: collapse;
+      margin: auto;
+    }
+
+    td{
+      border: 1px solid black;
+      padding: 10px;
+      text-align :center;
+    }
+    div.a {
+	        text-align: center;
+	        padding-top: 15px;}
+
+    </style>
+</head>
+<body>
+
+<br>
+
+
+         <!-- permet d'afficher les corpus constuits hors thèse s'ils existent  -->
+    <br>
+    {% for corpusiter in CorpusFinSelect %}
+        <a href="{% url 'EvaluateCorpus:CountDocAndWord' corpusiter.nom  %}">
+            Compte des documents et des mots pour le corpus {{ corpusiter.nom }}</a>
+        <br>
+        <br>
+        <a href="{% url 'EvaluateCorpus:SelectEchantillonEvaluate' corpusiter.nom '20' '100' '1' %}">
+        Création d'un échantillon de 20 passages de 100 mots à évaluer pour le corpus
+            {{ corpusiter.nom }}</a>
+        <br>
+        <br>
+    {% endfor %}
+
+    {% if user.is_superuser %}
+    <br>
+    <a href="{% url 'EvaluateCorpus:CreateCorpusArticlePlusCrNonLem2' %}"> Création du corpus ArticlePlusCrNonLem2</a>
+    <br>
+    <br>
+    {% endif %}
+
+
+     <a href="{% url 'FinaliseCorpus:home' %}#II">Retour texte</a>
+
+
+
+
+
+    </body>
+</html>

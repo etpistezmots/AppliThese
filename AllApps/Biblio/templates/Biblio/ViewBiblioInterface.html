@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    {% load static %}
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Biblio Interface</title>
+    <style>
+        li{
+        margin-top: 30px;
+        }
+
+        .marge {
+            margin-left: 3em;}
+
+        .btn-link.btn-anchor {
+            outline: none !important;
+            padding: 0;
+            border: 0;
+            vertical-align: baseline;
+            color: blue;
+            text-decoration: underline;}
+
+        .btn-link.btn-anchor:visited {
+            color: purple;
+            text-decoration: underline;}
+
+    </style>
+</head>
+<body>
+
+  <label for="CollectSelect">Collection :</label>
+    <select onchange="location = this.value;" id="CollectSelect" name="CollectSelect" >
+        {% for CollecNameChoice, CollectIdChoice in CollectNameIdChoices %}
+            {% if CollectIdChoice == CollectIdSelect %}
+                <option selected>{{ CollecNameChoice }}</option>
+            {% else %}
+                <option
+                        value="{% url 'Biblio:ViewBiblioInterface' CollectIdChoice %}">
+                    {{ CollecNameChoice }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+
+    <a class="btn btn-primary marge" href="{% url 'Biblio:ViewBiblioAll' CollectIdSelect 0 %}">Vers biblio complète</a>
+    <a class="btn btn-primary marge" href="{% url 'general:home' %}">Retour home</a>
+
+  <ul>
+    {% for eltid,eltdeb,presital,eltital,eltfin,presweb,contenuweb,contenuint,eltref,eltMultiRefPresence,var1 in ResultTest %}
+      {% if presweb %}
+
+        {% if presital %}
+
+            {% if eltMultiRefPresence %}
+
+                {% url contenuint CollectIdSelect eltid as the_url %}
+
+                <li>
+                   <div class="csl-entry" id={{eltid}}> {{eltdeb}} <i> {{eltital}} </i> {{eltfin}}
+                       <a target="_blank" href={{contenuweb}}>Vers source Web</a>
+                       <a href="{{ the_url }}">Vers texte These</a></div>
+                </li>
+
+            {% else %}
+
+                {% url contenuint as the_url %}
+                <li>
+                   <div class="csl-entry" id={{eltid}}> {{eltdeb}} <i> {{eltital}} </i> {{eltfin}}
+                       <a target="_blank" href={{contenuweb}}>Vers source Web</a>
+                       <a href="{{ the_url }}#{{eltref}}">Vers texte These</a></div>
+                </li>
+
+            {% endif %}
+
+        {% else %}
+
+            {% if eltMultiRefPresence %}
+
+                {% url contenuint CollectIdSelect eltid as the_url %}
+
+                <li>
+                   <div class="csl-entry" id={{eltid}}> {{eltdeb}}
+                       <a target="_blank" href={{contenuweb}}>Vers source Web</a>
+                       <a href="{{ the_url }}">Vers texte These</a></div>
+                </li>
+
+            {% else %}
+
+                {% url contenuint as the_url %}
+                <li>
+                   <div class="csl-entry" id={{eltid}}> {{eltdeb}}
+                       <a target="_blank" href={{contenuweb}}>Vers source Web</a>
+                       <a href="{{ the_url }}#{{eltref}}">Vers texte These</a></div>
+                </li>
+            {% endif %}
+
+        {% endif %}
+
+      {% else %}
+
+        {% if presital %}
+
+            {% if eltMultiRefPresence %}
+
+                {% url contenuint CollectIdSelect eltid as the_url %}
+
+               <li>
+                   <div class="csl-entry" id={{eltid}}> {{eltdeb}} <i> {{eltital}} </i> {{eltfin}}
+                       <a href="{{ the_url }}">Vers texte These</a></div>
+                </li>
+
+
+            {% else %}
+
+                {% url contenuint as the_url %}
+                <li>
+                   <div class="csl-entry" id={{eltid}}> {{eltdeb}} <i> {{eltital}} </i> {{eltfin}}
+                   <a href="{{ the_url }}#{{eltref}}">Vers texte These</a></div>
+                </li>
+            {% endif %}
+
+        {% else %}
+
+            {% if eltMultiRefPresence %}
+
+                {% url contenuint CollectIdSelect eltid as the_url %}
+
+                <li>
+                   <div class="csl-entry" id={{eltid}}> {{eltdeb}}
+                       <a href="{{ the_url }}">Vers texte These</a></div>
+                 </li>
+
+            {% else %}
+
+                {% url contenuint as the_url %}
+                 <li>
+                    <div class="csl-entry" id={{eltid}}> {{eltdeb}}
+                        <a href="{{ the_url }}">Vers texte These</a></div>
+                </li>
+            {% endif %}
+
+        {% endif %}
+
+      {% endif %}
+
+	{% endfor %}
+
+  </ul>
+
+
+</body>
+</html>

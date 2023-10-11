@@ -1,0 +1,2251 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+
+    {% load static %}
+
+    <title>AmeliorTexte Home</title>
+    <style>
+        .marge {
+            margin-left: 3em;}
+        .marge2 {
+            margin-left: 6em;}
+        .marge3 {
+            margin-left: 9em;}
+        .suite {
+            font-style: italic;
+            text-align: right;}
+        .present {
+            text-decoration: underline;
+            font-weight:bold;}
+        .a {
+            text-align: center;}
+        .cite {
+            text-align: justify;
+            margin-right: 9em;
+            margin-left: 9em;
+            font-size: 0.9em;}
+        .note {
+            text-decoration: none;
+            }
+        p {
+            text-align: justify;}
+        h1 {
+            text-align: center;}
+        h2 {
+            margin-left: 3em;
+            margin-top: 1.5em;
+            margin-bottom: 1.5em;}
+        h3 {
+            margin-left: 6em;
+            margin-top: 1.5em;
+            margin-bottom: 1.5em;}
+        h4 {
+            margin-left: 9em;
+            margin-top: 1.5em;
+            margin-bottom: 1.5em;}
+        li {
+            margin-left: 3em;
+            margin-top:15px;
+            text-align: justify;}
+        img {
+            height: auto;
+            max-width: 100%;
+            }
+    </style>
+</head>
+<body>
+
+<p class="suite"> Retour :
+    <a  href="{% url 'general:home' %}">Page d'accueil</a>
+</p>
+<br>
+
+
+    <h1>Chapitre 5 : Amélioration des contenus textuels </h1>
+
+    <br>
+    <br>
+
+<p class="present">Plan du chapitre :</p>
+
+
+ <a class="marge" id="I-ref" href="#I">I) Un objectif multi-dimensionnel et problématique</a>
+<br>
+<br>
+<a class="marge" id="II-ref" href="#II">II)	Un processus d'amélioration semi-automatisé</a>
+<br>
+<br>
+<a class="marge" id="III-ref" href="#III">III) Des améliorations stockées dans la base de données</a>
+<br>
+<br>
+<a class="marge" id="IV-ref" href="#IV">IV) Améliorations réalisées grâce à l'examen des composantes des
+    documents</a>
+<br>
+<br>
+
+    <a class="marge2" id="IV1-ref" href="#IV1">1) Organisation générale et remarques introductives</a>
+    <br>
+    <br>
+    <a class="marge2" id="IV2-ref" href="#IV2">2) Titres</a>
+        <br>
+        <br>
+        <a class="marge3" id="IV2a-ref" href="#IV2a">a) Explorations </a>
+        /
+        <a id="IV2b-ref" href="#IV2b">b) Traitements automatisés </a>
+        /
+        <a id="IV2c-ref" href="#IV2c">c) Traitements manuels </a>
+
+        {% if user.is_superuser %}
+        <br>
+        <a class="marge3" href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Titre' %}"> d ) Accès Form Explor </a>
+        /
+        <a href="{% url 'AmeliorText:ReDispatch' 'TraitA' 'Titre' %}"> e ) Accès Form Trait Auto</a>
+        /
+        <a href="{% url 'AmeliorText:ReDispatch' 'TraitM' 'Titre' %}"> f ) Accès Form Trait Manu</a>
+        {% endif %}
+
+    <br>
+    <br>
+    <a class="marge2" id="IV3-ref" href="#IV3">3) Résumés</a>
+        <br>
+        <br>
+        <a class="marge3" id="IV3a-ref" href="#IV3a">a) Explorations </a>
+        /
+        <a id="IV3b-ref" href="#IV3b">b) Traitements automatisés </a>
+
+        {% if user.is_superuser %}
+        <br>
+        <a class="marge3" href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Resume' %}"> c ) Accès Form Explor </a>
+        /
+        <a href="{% url 'AmeliorText:ReDispatch' 'TraitA' 'Resume' %}"> d ) Accès Form Trait
+            Auto</a>
+        /
+        <a href="{% url 'AmeliorText:ReDispatch' 'TraitM' 'Resume' %}"> e ) Accès Form Trait
+            Manu</a>
+        {% endif %}
+
+    <br>
+    <br>
+    <a class="marge2" id="IV4-ref" href="#IV4">4) Mots-clés</a>
+        <br>
+        <br>
+        <a class="marge3" id="IV4a-ref" href="#IV4a">a) Explorations </a>
+        /
+        <a id="IV4b-ref" href="#IV4b">b) Traitements automatisés </a>
+
+        {% if user.is_superuser %}
+        <br>
+        <a class="marge3" href="{% url 'AmeliorText:ReDispatch' 'Explor' 'MotCle' %}"> c ) Accès Form Explor </a>
+        /
+        <a href="{% url 'AmeliorText:ReDispatch' 'TraitA' 'MotCle' %}"> d ) Accès Form Trait
+            Auto</a>
+        /
+        <a href="{% url 'AmeliorText:ReDispatch' 'TraitM' 'MotCle' %}"> e ) Accès Form Trait
+            Manu</a>
+        {% endif %}
+
+    <br>
+    <br>
+    <a class="marge2" id="IV5-ref" href="#IV5">5) Haut de pages</a>
+        <br>
+        <br>
+        <a class="marge3" id="IV5a-ref" href="#IV5a">a) Explorations </a>
+        /
+        <a id="IV5b-ref" href="#IV5b">b) Traitements automatisés </a>
+        /
+        <a id="IV5c-ref" href="#IV5c">c) Traitements manuels </a>
+
+        {% if user.is_superuser %}
+        <br>
+        <a class="marge3" href="{% url 'AmeliorText:ReDispatch' 'Explor' 'HautDePage' %}"> d ) Accès Form
+            Explor </a>
+        /
+        <a href="{% url 'AmeliorText:ReDispatch' 'TraitA' 'HautDePage' %}"> e ) Accès Form Trait
+            Auto</a>
+        /
+        <a href="{% url 'AmeliorText:ReDispatch' 'TraitM' 'HautDePage' %}"> f ) Accès Form Trait
+            Manu</a>
+        {% endif %}
+
+    <br>
+    <br>
+    <a class="marge2" id="IV6-ref" href="#IV6">6) Bas de pages</a>
+        <br>
+        <br>
+        <a class="marge3" id="IV6a-ref" href="#IV6a">a) Explorations </a>
+        /
+        <a id="IV6b-ref" href="#IV6b">b) Traitements automatisés </a>
+        /
+        <a id="IV6c-ref" href="#IV6c">c) Traitements manuels </a>
+
+        {% if user.is_superuser %}
+        <br>
+        <a class="marge3" href="{% url 'AmeliorText:ReDispatch' 'Explor' 'BasDePage' %}"> d ) Accès Form
+            Explor </a>
+        /
+        <a href="{% url 'AmeliorText:ReDispatch' 'TraitA' 'BasDePage' %}"> e ) Accès Form Trait
+            Auto</a>
+        /
+        <a href="{% url 'AmeliorText:ReDispatch' 'TraitM' 'BasDePage' %}"> f) Accès Form Trait
+            Manu</a>
+        {% endif %}
+
+
+    <br>
+    <br>
+    <a class="marge2" id="IV7-ref" href="#IV7">7) Notes</a>
+        <br>
+        <br>
+        <a class="marge3" id="IV7a-ref" href="#IV7a">a) Explorations </a>
+        /
+        <a id="IV7b-ref" href="#IV7b">b) Traitements automatisés </a>
+        /
+        <a id="IV7c-ref" href="#IV7c">c) Traitements manuels </a>
+
+        {% if user.is_superuser %}
+        <br>
+        <a class="marge3" href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Note' %}"> d ) Accès Form
+            Explor </a>
+        /
+        <a href="{% url 'AmeliorText:ReDispatch' 'TraitA' 'Note' %}"> e ) Accès Form Trait
+            Auto</a>
+        /
+        <a href="{% url 'AmeliorText:ReDispatch' 'TraitM' 'Note' %}"> f) Accès Form Trait
+            Manu</a>
+        {% endif %}
+
+    <br>
+    <br>
+    <a class="marge2" id="IV8-ref" href="#IV8">8) Bibliographies </a>
+        <br>
+        <br>
+        <a class="marge3" id="IV8a-ref" href="#IV8a">a) Explorations </a>
+        /
+        <a id="IV8b-ref" href="#IV8b">b) Traitements automatisés </a>
+        /
+        <a id="IV8c-ref" href="#IV8c">c) Traitements manuels </a>
+
+
+        {% if user.is_superuser %}
+        <br>
+        <a class="marge3" href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Biblio' %}"> d ) Accès Form
+            Explor </a>
+        /
+        <a href="{% url 'AmeliorText:ReDispatch' 'TraitA' 'Biblio' %}"> e ) Accès Form Trait
+            Auto</a>
+        /
+        <a href="{% url 'AmeliorText:ReDispatch' 'TraitM' 'Biblio' %}"> f) Accès Form Trait
+            Manu</a>
+        {% endif %}
+
+
+
+    <br>
+    <br>
+    <a class="marge2" id="IV9-ref" href="#IV9">9) Annexes </a>
+
+        {% if user.is_superuser %}
+        <br>
+        <a class="marge3" href="{% url 'AmeliorText:ReDispatch' 'ExplorTrait' 'Annexe' %}"> Accès Form
+            ExplorTrait </a>
+        {% endif %}
+
+
+    <br>
+    <br>
+    <a class="marge2" id="IV10-ref" href="#IV10">10) Titre des parties </a>
+
+        {% if user.is_superuser %}
+        <br>
+        <a class="marge3" href="{% url 'AmeliorText:ReDispatch' 'ExplorTrait' 'Titre123' %}"> Accès Form
+            ExplorTrait </a>
+        {% endif %}
+
+    <br>
+    <br>
+    <a class="marge2" id="IV11-ref" href="#IV11">11) Figures </a>
+        <br>
+        <br>
+        <a class="marge3" id="IV11a-ref" href="#IV11a">a) Explorations </a>
+        /
+        <a id="IV11b-ref" href="#IV11b">b) Traitements automatisés </a>
+
+
+        {% if user.is_superuser %}
+        <br>
+        <a class="marge3" href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Figure' %}"> c ) Accès Form
+            Explor </a>
+        /
+        <a href="{% url 'AmeliorText:ReDispatch' 'TraitA' 'Figure' %}"> d ) Accès Form Trait
+            Auto</a>
+        /
+        <a href="{% url 'AmeliorText:ReDispatch' 'TraitM' 'Figure' %}"> e) Accès Form Trait
+            Manu</a>
+        {% endif %}
+
+
+    <br>
+    <br>
+    <a class="marge2" id="IV12-ref" href="#IV12">12) Fin de documents </a>
+        <br>
+        <br>
+        <a class="marge3" id="IV12a-ref" href="#IV12a">a) Explorations </a>
+        /
+        <a id="IV12b-ref" href="#IV12b">b) Traitements automatisés </a>
+
+
+        {% if user.is_superuser %}
+        <br>
+        <a class="marge3" href="{% url 'AmeliorText:ReDispatch' 'Explor' 'FinDoc' %}"> c ) Accès Form
+            Explor </a>
+        /
+        <a href="{% url 'AmeliorText:ReDispatch' 'TraitA' 'FinDoc' %}"> d ) Accès Form Trait
+            Auto</a>
+        /
+        <a href="{% url 'AmeliorText:ReDispatch' 'TraitM' 'FinDoc' %}"> e) Accès Form Trait
+            Manu</a>
+        {% endif %}
+
+
+<br>
+<br>
+<a class="marge" id="V-ref" href="#V">V) Améliorations réalisées grâce à l’échelle des mots</a>
+<br>
+<br>
+    <a class="marge2" id="V1-ref" href="#V1">1) Travail préalable et décisif pour aborder cette nouvelle
+        échelle</a>
+<br>
+<br>
+    <a class="marge2" id="V2-ref" href="#V2">2) Les « ç » </a>
+            <br>
+            <br>
+            <a class="marge3" id="V2a-ref" href="#V2a">a) Explorations</a>
+            /
+            <a id="V2b-ref" href="#V2b">b) Traitements automatisés et manuels</a>
+
+        {% if user.is_superuser %}
+        <br>
+        <a class="marge3" href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Cedille' %}"> c ) Accès Form
+            Explor </a>
+        /
+        <a href="{% url 'AmeliorText:ReDispatch' 'TraitA' 'Cedille' %}"> d ) Accès Form Trait
+            Auto</a>
+        /
+        <a href="{% url 'AmeliorText:ReDispatch' 'TraitM' 'Cedille' %}"> e) Accès Form Trait
+            Manu</a>
+        {% endif %}
+
+<br>
+<br>
+    <a class="marge2" id="V3-ref" href="#V3">3) Mots avec un appel de note </a>
+
+
+        {% if user.is_superuser %}
+        <br>
+        <a class="marge3" href="{% url 'AmeliorText:ReDispatch' 'ExplorTrait' 'FinMot' %}"> Accès Form
+            ExplorTrait </a>
+        {% endif %}
+
+<br>
+<br>
+    <a class="marge2" id="V4-ref" href="#V4">4) Mots coupés par une fin de ligne </a>
+
+        {% if user.is_superuser %}
+        <br>
+        <a class="marge3" href="{% url 'AmeliorText:ReDispatch' 'ExplorTrait' 'FinLigne' %}"> Accès Form
+            ExplorTrait </a>
+        {% endif %}
+<br>
+<br>
+<a class="marge" id="VI-ref" href="#VI">VI) Améliorations envisagées mais non réalisées</a>
+<br>
+<br>
+<a class="marge" id="VII-ref" href="#VII">VII) Synthèse méthodique et réflexive</a>
+
+<br>
+<br>
+<br>
+
+    <p class="present">Texte du chapitre</p>
+
+    <p class="mypara"> <span class="marge">	L’objectif de cette étape est d’améliorer la qualité des textes qui
+    seront ensuite traités quantitativement. Cette étape est fondamentale : si la qualité des données est
+    insuffisante, les résultats obtenus ont de grande chance d’être insatisfaisants quel que soit
+    l’algorithme utilisé. Néanmoins, la notion de qualité appliquée à un corpus textuel n’est pas si facile
+    à définir car elle revêt de multiples dimensions.</span></p>
+
+
+<h2 id="I">I) Un objectif multi-dimensionnel et problématique <a href="#I-ref">&#8617;</a> </h2>
+
+
+    <p class="mypara"> <span class="marge">	Cette notion peut tout d’abord être conçue dans le sens d’une
+    fidélité par rapport au texte initial. Si l’OCR a mal fonctionné, le texte obtenu comporte des écarts
+    par rapport à la version originale. L’objectif est alors logiquement de réduire ces erreurs qui
+    modifient le texte initial.</span></p>
+
+    <p class="mypara"> <span class="marge">	Une autre dimension importante de la qualité des contenus
+    textuels est celle de la pertinence des données. Cet aspect a déjà été mentionné lors de l’étape
+    précédente (la délimitation du corpus) pour le choix des textes mais il joue également un rôle à une
+    échelle plus fine, à l’intérieur même des textes choisis. Par exemple, dans la revue <em>L’Espace
+        Géographique</em>, certaines publicités à la fin des articles ont été numérisées et n’ont pas été
+    délimitées par l’UAR <em>Persée </em>comme des éléments à part. Elles font alors partie des articles.
+    Comme ces éléments ne relèvent pas du contenu scientifique des articles, il est évident qu’il n’est pas
+    pertinent de les intégrer dans le corpus à analyser. Cet exemple montre que la définition de la qualité
+    dépend intrinsèquement du contexte et de l’objectif poursuivi. En effet, si l’objectif avait été de
+    rendre compte des revues dans leur entièreté, ces publicités auraient eu toute leur place dans le
+    corpus.</span></p>
+
+    <p class="mypara"> <span class="marge">	Enfin, une autre dimension importante de la qualité dans la
+    perspective des analyses prévues concerne le volume des données. D’une manière générale, l’augmentation
+    du volume sur des données de qualité concernant les deux points précédents tend à accroître la
+    significativité des résultats. À travers ces remarques, l’objectif n’est pas de recenser de manière
+    exhaustive toutes les dimensions constitutives de la qualité d’un corpus de
+        textes<sup><a id="fn1-ref" class="note" href="#fn1">1</a></sup>
+    mais de faire saisir que cette notion générale recouvre une pluralité d’objectifs.</span></p>
+
+
+    <p class="mypara"> <span class="marge">	De manière globale, il n’existe pas
+    de seuil à partir duquel il est possible de dire qu’un niveau satisfaisant de qualité a été atteint
+    pour telle analyse. Dans le cas présent, c’est-à-dire une étude d’un changement sémantique, il est vrai
+    que le sémantisme peut se jouer à un niveau très fin. Le déplacement d’une virgule peut, par exemple,
+    changer le sens d’une phrase. Toutefois, les méthodes utilisées et les analyses menées n’ont pas la
+    prétention d’atteindre un tel niveau de finesse. Il s’agit d’une étude quantitative qui peut sûrement
+    supporter un certain degré de bruit dans les données initiales. Un travail en profondeur a été réalisé
+    pour améliorer, autant que possible dans le temps imparti, la qualité des textes utilisés dans cette
+    recherche. Cependant, il reste un nombre d’erreurs non négligeable
+        (<em>cf.</em> section <a href="{% url 'FinaliseCorpus:home' %}#II">Chap6.II</a>).
+        Il y a donc un certain pari dans le fait
+    de penser que ces résultats sont tout de même pertinents.</span></p>
+
+    <p class="mypara"> <span class="marge">	Ce pari ne repose pas sur une pure spéculation. La comparaison des
+    résultats entre les deux corpus « Article » et « ArticlePlusCr » est par exemple une technique
+    permettant de tester la pertinence des résultats obtenus. Une autre méthode très utilisée en analyse
+    textuelle est le retour dans les textes pour mieux comprendre et interpréter les quantifications, les
+    agrégations et les visualisations que fournissent les différents algorithmes. Dans le cadre de cette
+    thèse, les résultats obtenus peuvent aussi être comparés avec ce qui est connu qualitativement de
+    l’évolution de la géographie française. Toutefois, toutes ces méthodes sont essentiellement
+    qualitatives. Il est certes possible de réaliser des évaluations quantitatives des plongements de mots
+    mais comme cela a été précédemment développé (<em>cf.</em>
+        section <a href="{% url 'EtatDesLieux:home' %}#IV2">Chap3.IV.2</a>), ce n’est pas la
+    capture des traits sémantiques et de leurs évolutions qui est vraiment évaluée. Enfin, il n’y a pas de
+    seuil permettant d’affirmer que les résultats sont valides ou/et pertinents. Il y a par conséquent
+    <em>in fine </em>une appréciation qualitative qui est susceptible d’être discutée et interrogée.</span></p>
+
+    <p class="mypara"> <span class="marge">	Dans la pratique, l’amélioration de données textuelles peut être
+    réalisée de diverses façons. La partie suivante essaye de mieux caractériser le travail qui a été
+    réalisé sur ce sujet.</span></p>
+
+
+<h2 id="II">II) Un processus d’amélioration semi-automatisé <a href="#II-ref">&#8617;</a> </h2>
+
+
+    <p class="mypara"> <span class="marge">	Quand un corpus est petit, il est la plupart du temps
+    « nettoyé »<sup><a id="fn2-ref" class="note" href="#fn2">2</a></sup> manuellement. Le chercheur lit
+        alors l’ensemble
+    du corpus et corrige chaque faute au fur et à mesure de sa lecture. Ici, la taille du corpus ne
+    permettait pas une telle opération. Il a donc été nécessaire de définir et d’automatiser différentes
+    opérations. Par rapport à une telle entreprise, il est toujours intéressant de chercher les cas qui ne
+    sont pas traités correctement par les algorithmes de traitement mis en place. Quand un critère pouvait
+    être trouvé pour repérer ces cas traités de manière erronée par l’automatisation et que ces derniers
+    pouvaient être traités dans un temps raisonnable, des corrections « manuelles » ont été réalisées.
+    L’amélioration des contenus textuels réalisée peut par conséquent être qualifiée de
+    « semi-automatisée », au sens où elle combine des tâches de corrections effectuées en masse à l’aide
+    d’algorithmes et d’autres modifications effectuées au cas par cas.</span></p>
+
+    <p class="mypara"> <span class="marge">	Il est nécessaire de préciser plus finement cette articulation car
+    différentes formes de « nettoyage » semi-automatique peuvent exister. Par exemple, il est possible dans
+    un tel cadre de faire une grande de partie de l’amélioration à l’aide de procédures automatisées et
+    ensuite de corriger manuellement les erreurs identifiées au fur à mesure de leur découverte. Il
+    m’importe de préciser que ce n’est pas cette articulation entre la partie automatisée et manuelle qui a
+    été adoptée pour cette thèse. Dans une optique de reproductibilité, l’importance des corrections
+    manuelles liées à des consultations erratiques a été réduit au maximum. Il est bien sûr arrivé qu’après
+    une consultation du corpus, des erreurs soient repérées.</span></p>
+
+    <p class="mypara"> <span class="marge">	Dans ce cas-là, la procédure mise en place est la suivante : Il
+    s’agit tout d’abord d’essayer de détecter globalement ce type d’erreur dans l’ensemble du corpus. Si
+    cette détection est réalisable dans le temps disponible et que le gain de qualité induit par rapport à
+    d’autres actions possibles est jugé intéressant, alors l’essai d’une procédure d’automatisation pour
+    repérer et traiter toutes les erreurs de ce type est réalisé. Sinon l’erreur est laissée. Les
+    corrections manuelles n’interviennent qu’en dernière instance. Le plus souvent, c’est après la mise en
+    place d’une procédure pour détecter les cas sur lesquels les traitements automatisés ont échoué, mais
+    aussi également après le constat que l’amélioration de l’automatisation est plus coûteuse que
+    l’effectuation de corrections manuelles.</span></p>
+
+    <p class="mypara"> <span class="marge">	Dans ce processus, la perception du temps disponible joue un rôle
+    fondamental. En effet, en ayant beaucoup de temps comme au départ d’une thèse, il est possible de
+    rentrer dans les détails et de viser une grande qualité de texte. Il y a eu, au fur et à mesure de
+    l’avancée de mes travaux, un processus d’abandon d’un objectif trop ambitieux. Une approche de plus en
+    plus pragmatique a été adoptée pour arriver à terminer cette préparation du corpus tout en conservant
+    du temps pour la suite de la recherche.</span></p>
+
+    <p class="mypara"> <span class="marge">	Au niveau de la rédaction, l’accumulation des taches réalisées est
+    particulièrement difficile à présenter. Il y a une multiplication des parties qui correspond, en amont,
+    à la division en sous-taches. Au sein de chaque sous-taches, il y a eu la volonté d’accompagner le
+    lecteur pour expliquer ce qui a été fait et pourquoi cela a été réalisé. Le prix à payer a été, sans
+    aucun doute, une longue rédaction. Malgré la conscience de ce désagrément, autant pour la réalisation
+    de ce travail que pour les futurs lecteurs, il y a eu un maintien de cette forme par conviction de
+    rigueur scientifique. Lors du colloque international <em>Histoire, langues et
+        textométrie</em><sup><a id="fn3-ref" class="note" href="#fn3">3</a></sup> du 16 au 18
+    janvier 2019, j’ai ainsi plaidé pour que les travaux d’analyse textuelle présentent beaucoup plus leur
+    travail de préparations des données par rapport à ce qui est fait actuellement dans la majorité des
+    cas. Alors que cette étape représente un temps de travail
+        important<sup><a id="fn4-ref" class="note" href="#fn4">4</a></sup> et qu’elle est souvent loin
+        d’être neutre, elle se trouve souvent résumée au mieux en un
+    paragraphe, au pire en deux ou trois lignes pour laisser de la place à l’explicitation de la
+    méthodologie utilisée par la suite et/ou aux résultats.</span></p>
+
+    <div id="Lan2"><p class="mypara"> <span class="marge">	La solution présentée à ce colloque est ici
+        reprise. Il s’agit
+    d’intégrer à cette phase de « nettoyage » des données souvent très technique une dimension de
+    « critique des sources », étape classique du travail de l’historien
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Lan2">(Langlois et Seignobos, 1897)</a>.
+        Pour cela, il est nécessaire d’accepter de présenter les limites des améliorations effectuées.
+        C’est en effet à l’endroit où cette opération rencontre des difficultés qu’il est souvent possible
+        de développer un discours critique sur les données utilisées. Cette perspective implique de ne pas
+        éluder les difficultés et d’accepter de développer certains points de faiblesse. L’utilisation de
+        cette méthode permet de déconstruire les données acquises. D’une certaine façon, cette optique
+        remet en cause cette métaphore du « nettoyage des données » car il ne s’agit pas seulement
+        d’éliminer les erreurs mais de prendre aussi en considération ce qu’elles nous apprennent.</span></p></div>
+
+    <div id="Lem1"><p class="mypara"> <span class="marge">	Cette orientation méthodologique s’inscrit dans
+        la position
+    défendue par Claire Lemercier pour « une deuxième vague quantitative avec une critique des sources au
+    centre et l’acceptation de données non "nettoyées" »
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Lem1">(Lemercier, 2020)</a>. Si son refus de
+            l’expression de « nettoyage des données » est ici partagé, sa proposition d’utiliser plutôt
+        « simplification des données » n’a pas été reprise. D’un certain point de vue, un positionnement
+        inverse pourrait être revendiqué puisqu’il y a dans la recherche menée un enrichissement des
+        données avec la création de nouvelles informations (<em>cf.</em> sections
+        <a href="#IV5">IV.5</a>,
+        <a href="#IV6">6</a>,
+        <a href="#IV7">7</a>,
+        <a href="#IV12">12</a>).</span></p></div>
+
+    <div id="Lan1"><p class="mypara"> <span class="marge">Une autre référence permettant de penser cette orientation méthodologique est une présentation de
+        Pierre Carl Langlais qui montre comment la « modélisation éditoriale » (au sens de détection des
+        différents éléments constitutifs d’une revue) peut être utilisée pour « historiciser par
+        algorithme » <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Lan1">(Langlais, 2019)</a>. Ce verbe
+    « historiciser » renvoie à la compréhension des contextes de productions des données et de leurs
+    changements.  Toutefois, il est vrai que Pierre Carl Langlais applique surtout cette perspective dans
+    l’analyse des résultats obtenus. C’est par conséquent une voie complémentaire qui est ici proposée en
+    mobilisant ce processus réflexif dès la préparation des
+        données<sup><a id="fn5-ref" class="note" href="#fn5">5</a></sup>.</span></p></div>
+
+    <p class="mypara"> <span class="marge">	Ces remarques expliquent pourquoi l’expression d’« amélioration
+        des contenus textuels » a été privilégiée même si elle reste assez générale et ne rend pas vraiment
+        compte de tout l’effort sous-jacent de critique des sources. Il est particulièrement délicat de
+        trouver la bonne expression qui permettrait de compte de rendre dans le même temps de la dimension
+        très technique et basique (corrections d’erreurs) et de la dimension heuristique et critique
+        (compréhension et recul critique par rapport aux documents).</span></p>
+
+    <p class="mypara"> <span class="marge">	La partie suivante présente la technique générale utilisée pour
+    réaliser ce travail d’amélioration.</span></p>
+
+
+<h2 id="III">III) Des améliorations stockées dans la base de données <a href="#III-ref">&#8617;</a> </h2>
+
+
+    <p class="mypara"> <span class="marge">	Le modèle conceptuel présenté précédemment a été complété en
+    ajoutant des attributs à l’association « Transformer ». Cette association peut être modélisée
+    ainsi :</span></p>
+
+
+    <br>
+    <div class="a" id="Figure11">
+    <img src="{% static 'AmeliorText/image/Transformer.png' %}" alt="AmeliorText/image/Transformer">
+    </div>
+    <br>
+
+
+    <div class="a">Figure n°11 : Ajout d’une classe-association pour stocker les différentes améliorations
+        des contenus textuels.</div>
+    <br>
+
+    <p class="mypara"> <span class="marge">	Un exemple concret permet de comprendre facilement le
+        fonctionnement physique de la table « Transformer ». Si par exemple un document a une faute dans
+        son titre issu de l’OCR, si grâce aux corrections de l’UAR <em>Persée</em> le titre exact est
+        connu, et enfin, si la localisation du titre erroné est connue, un nouvel élément dans cette table
+        « Transformer » mérite d’être créé. Dans ce cas, la correction est de « type » : « titre ». Si la
+        position du titre dans l’OCR brut est sur les quatre premiers mots du document , « indexDebut » est
+        égal à 0 et « indexFin » à 4. Le titre corrigé est noté dans
+        « TextRemplacement »<sup><a id="fn6-ref" class="note" href="#fn6">6</a></sup>. Une possibilité
+        d’ajouter un commentaire existe mais
+        n’est pas forcément nécessaire. Ce système permet de stocker toutes les transformations pour chaque
+        document de chaque corpus d’étude. À la fin du processus, les textes issus de l’OCR sont améliorés
+        en prenant en compte toutes les transformations enregistrées. De plus, un utilisateur ayant créé un
+        nouveau corpus d’étude, peut enregistrer ses propres améliorations à apporter aux textes grâce à ce
+        système. La partie suivante détaille la création de ces éléments d’amélioration sur les deux corpus
+        d’étude précédemment construits en examinant successivement toutes les parties d’un document
+        .</span></p>
+
+
+<h2 id="IV">IV) Améliorations réalisées grâce à l’examen des composantes des documents <a href="#IV-ref">&#8617;</a> </h2>
+
+<h3 id="IV1">1) Organisation générale et remarques introductives <a href="#IV1-ref">&#8617;</a> </h3>
+
+
+    <p class="mypara"> <span class="marge">	Pour chaque partie (titre, résumé, mot-clé…), trois étapes sont
+    proposées, intitulées respectivement « Explorations » / « Traitements automatisés » / « Traitements
+    manuels ». L’étape « Explorations » vise, au-delà d’une découverte des données, à faire comprendre
+    l’origine des méthodes et des paramètres utilisés pour les traitements automatisés. Les traitements
+    manuels permettent d’insérer des corrections spécifiques si nécessaire dans la démarche précédemment
+    explicitée (<em>cf.</em> section <a href="#II">II</a>). Les
+    parties examinées ont été nombreuses : titres principaux, résumés, mots-clés, haut de page, bas de
+    page, notes, bibliographies, annexes, titres secondaires, figures et fin de document. De plus, la
+    volonté de vouloir expliciter ce qui a été fait et ce que cela nous apprend sur les documents utilisés
+    explique une certaine longueur de chaque partie.</span></p>
+
+<p class="mypara"> <span class="marge">	Une synthèse a été écrite (<em>cf.</em> section <a
+        href="#VII">VII</a>) pour résumer les traitements réalisés.
+    Il serait toutefois dommageable que ce travail de synthèse effectué pousse les lecteurs à ne pas lire
+    quelques sous-parties suivantes. En effet, il y a dans cette confrontation quelque peu longue et
+    complexe avec les données ainsi que dans les solutions et compromis trouvés localement pour résoudre de
+    multiples petits problèmes, le rendu d’un travail qui a permis à la fois de lever un verrou
+    scientifique (en permettant de passer de l’acquisition des données à leur utilisation effective) et de
+    réfléchir épistémologiquement (en s’interrogeant notamment sur le positionnement d’un travail
+    quantitatif par rapport au « réel » suivant que cette partie de préparation des données est ou n’est
+    pas développée).</span></p>
+
+<p class="mypara"> <span class="marge">	Les premières parties considérées pour ce travail d’amélioration
+    sont les titres. Les prochaines parties concernent les résumés, les mots-clés, les hauts de pages, les
+    bas de pages, les notes, les bibliographies, les annexes, les titres secondaires, les figures et les
+    fins de documents. Cet enchaînement restitue la chronologie du travail effectué. Dans un seul cas (le
+    traitement des bibliographies), une nouvelle justification a été apporté <em>a posteriori</em> sur des
+    choix précédemment effectués (sur les résumés et les mots-clés). Cet effet induit entre parties est une
+    exception et n’a pas provoqué de modifications substantielles. Par conséquent, le choix de présenter
+    dans l’ordre de l’effectuation du travail, a été privilégié en commençant par les titres.</span></p>
+
+
+<h3 id="IV2">2) Titres <a href="#IV2-ref">&#8617;</a></h3>
+
+<h4 id="IV2a">a) Explorations <a href="#IV2a-ref">&#8617;</a></h4>
+
+
+    <p class="mypara"> <span class="marge">	L’UAR <em>Persée</em> possède le titre principal de chaque document
+    stocké en métadonnée mais la localisation exacte de chaque titre dans les textes issus de l’OCR n’est
+    pas connue. Cette situation peut paraître étrange car il a été précédemment affirmé que pendant la
+    phase de documentation infrapaginaire réalisée par l’UAR <em>Persée</em> (<em>cf.</em> section <a
+            href="{% url 'DelimitCorpus:home' %}#I1">Chap4.I.1</a>) les coordonnées
+    graphiques des principaux éléments de chaque document sont définies et stockées. Cette remarque oblige
+    à rentrer plus dans le détail de la chaîne production de cet organisme. Le titre de chaque document a
+    en fait déjà été référencé en amont de la phase de documentation infrapaginaire. En effet, dans la
+    phase de documentation initiale (<em>cf.</em> section <a
+            href="{% url 'DelimitCorpus:home' %}#I1">Chap4.I.1</a>), chaque numéro de
+    revue est découpé à partir de la table des matières en autant de documents qu’il contient en spécifiant
+    pour chacun le titre et les pages concernées. C’est pourquoi l’UAR <em>Persée</em> n’a pas inclus la
+    localisation du titre comme un objectif de la documentation infrapaginaire. Le contenu textuel de ces
+    éléments, qui est l’information qui intéresse le plus l’UAR <em>Persée</em> en vue d’une indexation sur
+    le Web, a déjà été récupéré lors de l’étape précédente. La conséquence de cette division du travail est
+    que les coordonnées graphiques des titres de chaque document n’existent pas les données acquises pour
+    effectuer cette thèse<sup><a id="fn7-ref" class="note" href="#fn7">7</a></sup>.</span></p>
+
+
+    <p class="mypara"> <span class="marge">	Cependant, le repérage des titres est important pour deux raisons.
+    La première est évidemment de remplacer le titre possiblement bruité dans l’OCR. La deuxième est qu’il
+    y a souvent en amont des titres, des indications mentionnant le nom de la revue et son adresse qui
+    méritent d’être enlevées. En localisant précisant le titre, ces indications peuvent ainsi être
+    facilement ôtées par la suite.</span></p>
+
+    <div id="ExploTitreAll"><p class="mypara"> <span class="marge">	Une première fonction créée permet
+        d’afficher tous les titres référencés par l’UAR <em>Persée</em> pour une revue d’un corpus. Un
+        point particulièrement frappant
+    dans le cas du corpus « Article » et en choisissant la revue des <em>Annales de Géographie</em> (<a
+            href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'geo' 'ET1' %}" >@ArticleAnnTitres</a>)
+        est la présence de titres, pour la période la plus contemporaine, à la fois en français et en
+    anglais, séparés par une ou deux barres obliques. Par exemple, « La Grande-Motte, Ville permanente,
+    ville saisonnière//La Grande-Motte, a town for all seasons and summertime resort ». Cette syntaxe est
+    une astuce trouvée par l’UAR <em>Persée</em> pour faire face à une situation qui n’avait sûrement pas
+    été anticipée. La revue des <em>Annales de Géographie</em> décide à partir de 1999 de citer les titres
+    des articles aussi en anglais. Il aurait été en effet préférable de coder cette information avec une
+    structure appropriée dans le schéma XML-TEI utilisé. Même si une telle structure peut être facilement
+    proposée, cette situation renvoie au fait qu’il est impossible de prévoir un schéma anticipant tous les
+    cas. Les revues ont donné naissance à une multiplicité de formes. La découverte au fur et à mesure de
+    certaines caractéristiques qui n’avaient pas été prévues amènent soit à modifier le schéma, soit à
+    trouver des astuces<sup><a id="fn8-ref" class="note" href="#fn8">8</a></sup> pour prendre en compte ces
+    spécificités.</span></p></div>
+
+    <p class="mypara"> <span class="marge">	Il faut souligner que ces titres « français/anglais » ne sont pas
+    présents dans le cas de la revue <em>L’Espace Géographique</em>
+        (<a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'spgeo' 'ET1' %}" >@ArticleEspTitres</a>).
+        Ils ne concernent pas non plus les comptes-rendus des<em> Annales de Géographie</em> comme le
+    montre les résultats obtenus pour le corpus « ArticlePlusCr »
+        (<a  href="{% url 'AmeliorText:FontionGeneralExplor' 'ArticlePlusCr' 'geo' 'ET1' %}" >@ArticlePlusCrAnnTitres</a>).</span></p>
+
+    <div id="ExploTitreSlash"><p class="mypara"> <span class="marge">	Le choix réalisé pour ces deux
+    corpus a été d’enlever la partie
+    anglaise de ces titres dans les textes destinés à être analysés. Le traitement qui peut être facilement
+    imaginé consiste à repérer les titres où il y a une ou plusieurs barres obliques. Ensuite, la première
+    partie du titre située avant la première barre oblique est gardée comme titre de référence. Le problème
+    d’un tel traitement est qu’il peut toucher d’autres titres qui possèdent aussi une ou des barres
+    obliques mais qui ne relèvent pas de la même construction. Une deuxième fonction d’exploration a été
+    créée pour prendre en charge ce problème. Cette dernière permet d’afficher seulement les titres
+    référencés par l’UAR <em>Persée</em> qui sont construits avec au moins une barre oblique. Le résultat
+    obtenu (<a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'geo' 'ET2' %}" >@ArticleAnnTitreSlash</a>)
+        pour la revue des <em>Annales de Géographie</em> dans le corpus
+    « Article » permet de confirmer que si ce traitement est réservé aux articles de cette revue depuis
+    1999, il n’affecte pas de manière erronée d’autres titres.</span></p></div>
+
+    <p class="mypara"> <span class="marge">	Une troisième fonction a été créée pour afficher les résultats
+    d’une méthode construite pour identifier les titres dans les textes. Il s’agit d’utiliser une mesure de
+    similarité entre deux chaînes de caractères pour identifier où se situe le plus probablement le titre
+    principal dans les textes issus de l’OCR. Il existe de nombreux calculs différents de la similarité
+    entre deux chaînes de caractères : distance de Levenshstein, de Hammind, de Jaro Winkler, de Jaccard…
+    (Gomaa, 2013). Dans cette thèse, la distance de Ratcliff/Obershelp a été choisie après une
+    expérimentation<sup><a id="fn9-ref" class="note" href="#fn9">9</a></sup> qui a donné des résultats assez
+    convaincants. Cette méthode recherche les deux plus longues séquences communes non redondantes entre
+    deux chaînes de caractères. Le nombre de caractères de ces deux séquences communes non redondantes est
+    multiplié par 2 et divisé par le nombre de caractère des deux chaînes. Le résultat est compris entre 0
+    et 1 : 0 pour deux chaînes de caractères totalement différentes, 1 pour deux chaînes de caractères
+    identiques.</span></p>
+
+    <p class="mypara"> <span class="marge">	Une des difficultés est que l’OCR a pu couper ou relier des mots.
+    Ainsi, il n’est pas forcément pertinent de rechercher toujours une séquence de même taille que le titre
+    corrigé par l’UAR <em>Persée</em>. Il n’était cependant pas envisageable de tester des séquences de
+    toutes les tailles dans tous les textes pour des raisons de temps de calcul. La stratégie choisie a
+    consisté à réaliser un premier calcul avec le même nombre de mots que le titre corrigé dans les 50
+    premiers mots du texte. Ce seuil s’explique par le fait que dans la majorité des cas, le titre est au
+    début du document. Si le résultat trouvé n’est pas totalement convaincant (moins de 0,95 comme résultat
+    obtenu à la méthode de Ratcliff/Obershelp sachant qu’en cas de chaîne strictement identique, le
+    résultat obtenu est 1), des tailles plus petites et plus grandes que la taille de référence ont été
+    testées<sup><a id="fn10-ref" class="note" href="#fn10">10</a></sup>. Le meilleur résultat est gardé
+        comme le titre le
+    plus probable. Enfin, avant d’afficher les résultats, ces derniers ont été triés dans l’ordre
+    croissant. Ainsi, les moins bons résultats, ceux qui sont le plus susceptibles de contenir des erreurs
+    apparaissent en premier.</span></p>
+
+    <div id="ExploTitreFound"><p class="mypara"> <span class="marge">	Les résultats obtenus sont
+        disponibles dans l’interface : pour le
+    corpus « Article », les <em>Annales de Géographie</em>
+        (<a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'geo' 'ET3' %}">@ArticleAnnTitreCherche</a>)
+        et <em>L’Espace géographique</em>
+        (<a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'spgeo' 'ET3' %}">@ArticleEspTitreCherche</a>)
+         ; pour le corpus « ArticlePlusCr », les <em>Annales de Géographie</em>
+    (<a href="{% url 'AmeliorText:FontionGeneralExplor' 'ArticlePlusCr' 'geo' 'ET3' %}">@ArticlePlusCrAnnTitreCherche</a>)
+        et <em>L’Espace géographique</em>
+        (<a href="{% url 'AmeliorText:FontionGeneralExplor' 'ArticlePlusCr' 'spgeo' 'ET3' %}" >@ArticlePlusCrEspTitreCherche</a>).
+    </span></p></div>
+
+    <p class="mypara"> <span class="marge">Les résultats comportent pour chaque document cinq lignes :</span></p>
+
+    <ul>
+    <li>L’identifiant du document donné par l’UAR <em>Persée</em> sous forme d’un lien vers leur portail permettant de consulter directement le document en question</li>
+    <li>Le score de ressemblance obtenu, c’est-à-dire la distance de Ratcliff/Obershelp entre le titre
+        documenté par l’UAR <em>Persée</em> et la chaîne de caractères dans l’OCR identifiée comme étant la plus proche du titre selon l’algorithme créé.</li>
+    <li>La chaîne de caractères précédemment identifiée.</li>
+    <li>Le titre documenté par l’UAR <em>Persée</em></li>
+    <li>L’index de début et de fin de la chaîne de caractères présumée être le titre.</li>
+    </ul>
+
+
+    <p class="mypara"> <span class="marge">	Pour simplifier l’affichage des résultats dans l’interface, ces
+        derniers ont été limités aux 100 premiers et aux 100 derniers. Il est toutefois possible sur la page
+        correspondante à chaque corpus et revue de télécharger un fichier avec l’ensemble des résultats.</span></p>
+
+    <div id="ExploTitreTrait"><p class="mypara"> <span class="marge">	Au niveau de l’analyse de ces
+        résultats, il est nécessaire de
+        distinguer les deux corpus. Pour le premier, « Article », il apparaît que le nombre d’erreur est assez
+        réduit et peut être traité à la main. Ainsi, une quatrième exploration a été réalisée avec des analyses
+        de tous les cas étant les plus susceptibles de comporter des erreurs. Les liens suivants
+        (<a href="{% url 'AmeliorText:AfficheTitreTrait' 'Article' 'geo' %}">@ArticleAnnAnalyseCas</a>
+        pour les <em>Annales de Géographie</em> et
+        <a href="{% url 'AmeliorText:AfficheTitreTrait' 'Article' 'spgeo' %}">@ArticleEspAnalyseCas</a>
+        pour <em>L'Espace Géographique</em>) permettent de consulter le travail réalisé. Chaque titre est
+        surligné en rouge quand la chaîne de caractères trouvée par la méthode décrite ne correspond pas du
+        tout au titre ; en orange quand la chaîne de caractères trouvée a un rapport avec le titre réel mais
+        reste erronée en grande partie ; en jaune quand la chaîne de caractères trouvée correspond presque au
+        titre ; enfin en vert quand le titre a effectivement été trouvé. Cette analyse des résultats a été
+        arrêtée quand les résultats ont été jugés comme commençant à être très majoritairement bons avec une
+        suite d’au moins 7 documents ayant des titres correctement
+        reconnus<sup><a id="fn11-ref" class="note" href="#fn11">11</a></sup>.</span></p></div>
+
+    <p class="mypara"> <span class="marge">	Ces travaux permettent de montrer qu’après un score de ressemblance
+        de 0,74, les titres commencent à être très bons pour <em>L'Espace Géographique</em>. Les erreurs
+        commencent à être moins nombreuses pour les <em>Annales de Géographie </em>à partir de 0,77 et
+        deviennent vraiment rares qu’à partir de 0,83. Ces résultats différents pour les deux revues
+        s’expliquent par plusieurs raisons. Tout d’abord, une meilleure
+        océrisation<sup><a id="fn12-ref" class="note" href="#fn12">12</a></sup>
+        de <em>L'Espace Géographique</em> mais aussi des titres plus longs pour cette revue dont la
+        reconnaissance tend à comporter moins
+        d’erreurs<sup><a id="fn13-ref" class="note" href="#fn13">13</a></sup>. Pour
+        chaque document, quand il y avait une erreur importante de reconnaissance, la raison et les index de
+        début et de fin correspondant au titre exact ont été marqués sur la cinquième ligne.</span></p>
+    <p class="mypara"> <span class="marge">	Les résultats précédemment obtenus pour le deuxième corpus
+        « ArticlePlusCr » sont très différents de ceux qui viennent d’être analysés. Les erreurs ne peuvent pas
+        être traitées manuellement car elles sont trop nombreuses. Une structure assez particulière commune aux
+        deux revues explique une grande partie de ces erreurs. En effet, souvent le titre d’un compte-rendu
+        reprend le titre du livre en question. En note de bas de page, les auteurs et les références exactes du
+        livre sont précisées. Or, quand l’UAR <em>Persée</em> a référencé ces titres de comptes-rendus, les
+        auteurs et les références exactes du livre ont été intégrés dans le nouveau titre. La méthode créée
+        cherche ainsi une séquence textuelle qui n’est pas le titre donné originellement par la revue. Dans
+        cette situation, il est assez compréhensible que la séquence trouvée ne corresponde presque jamais au
+        titre réel.</span></p>
+
+    <p class="mypara"> <span class="marge">	L’analyse de ces résultats a aussi montré que contrairement aux
+        articles, il n’y a pas d’inscription répétée du nom de la revue et de son adresse avant chaque
+        compte-rendu. Ceci réduit l’objectif de la reconnaissance des titres à un simple remplacement par les
+        titres exacts quand ces derniers ont été déformés par l’OCR. Il aurait été certes possible d’améliorer
+        l’algorithme en essayant de mieux prendre en compte les cas des comptes-rendus mais la détection des
+        titres n’étant pas la finalité de cette thèse, il a été jugé préférable de laisser la méthode en l’état
+        et de ne l’appliquer qu’aux articles. Le fait que le nom de la revue et son adresse ne soient pas
+        répétés avant chaque compte-rendu rend cette décision moins problématique.</span></p>
+
+
+
+<h4 id="IV2b">b) Traitements automatisés <a href="#IV2b-ref">&#8617;</a></h4>
+
+
+
+    <p class="mypara"> <span class="marge">	À partir des explorations menées, une fonctionnalité de traitement
+    automatisé des titres a été créée dans l’application avec 3 options. La première propose le choix d’un
+    seuil à partir duquel les résultats obtenus avec la distance de Ratcliff/Obershelp pour les articles
+    sont retenus. Pour les deux corpus, ce seuil a été fixé à 0,83 du fait du travail effectué
+    précédemment. Si le résultat est supérieur à ce seuil, un enregistrement est créé dans la table
+    « Transformer » correspondant au remplacement de la chaîne de caractères identifiée par la méthode
+    explicitée par le titre documenté par l’UAR <em>Persée</em>. Une deuxième option permet de retirer dans
+    ce cas tout le texte qui précède la chaîne de caractères trouvée. Enfin, une troisième option
+    correspond à la possibilité d’enlever la partie anglaise des titres des articles des <em>Annales de
+        Géographie </em>à partir de 1999. Ces deux dernières options, retirer la partie anglaise et la
+    partie précédent le titre, ont été évidemment retenues pour les deux corpus.</span></p>
+
+    <p class="mypara"> <span class="marge">	Ces choix et leurs
+        enregistrements se font par l’intermédiaire d’un
+    formulaire qui peut être visualisé à partir des liens suivants : <a
+            href="https://analytics.huma-num.fr/EtPistezMots/amelior/TraitInterface/Titre/3" >
+        @ArticleTraitAutoTitre</a> et <a
+            href="https://analytics.huma-num.fr/EtPistezMots/amelior/TraitInterface/Titre/4" >
+        @ArticlePlusCrTraitAutoTitre</a> qui synthétisent les traitements réalisés pour les titres
+    respectivement pour les corpus « Article » et « ArticlePlusCr ». Pour un utilisateur externe, les
+    formulaires apparaissent grisés et ne peuvent donner lieu à aucun changement. Si une personne a demandé
+    la création d’un corpus et a donc un droit d’écriture
+    dessus<sup><a id="fn14-ref" class="note" href="#fn14">14</a></sup>, elle peut réaliser les explorations
+        précédentes
+    pour son propre corpus, remplir le formulaire et créer des enregistrements comme elle le souhaite. Par
+    conséquent, une dimension « constructible » existe car il est possible pour une telle personne de
+    choisir un autre seuil et d’autres options que celles ici privilégiées. De plus, une fois un traitement
+        réalisé, il est facilement possible de le modifier.</span></p>
+
+    <p class="mypara"> <span class="marge">	Toutefois, il est vrai également que cette dimension
+    « constructible » peut être considérée comme très réduite au sens où plusieurs paramètres faisant
+    partie de la méthode (notamment le choix de la métrique utilisée pour calculer la similarité entre deux
+    chaînes de caractères<sup><a id="fn15-ref" class="note" href="#fn15">15</a></sup>) ne peuvent pas faire
+        l’objet d’expérimentations. Idéalement, il aurait été pertinent de donner au lecteur la possibilité
+        de réaliser
+    ses propres expériences aussi à ce niveau. Plusieurs tests auraient pu être réalisés pour aboutir à un
+    choix plus éclairé de tous les éléments de la méthode utilisée. Une telle perspective demande un temps
+    de travail non négligeable et allongerait considérablement cette partie. S’il est incontestable que
+    certains choix de cette partie sont expliqués et justifiés, il existe également tout un pan de la
+    méthodologie qui est en quelque sorte occultée de la perspective de constructibilité pour des raisons
+    pratiques. L’explication de cette situation réside aussi dans le fait que l’objectif n’a pas été de
+    déterminer vraiment la méthode optimale de détection de titre mais d’effectuer une amélioration globale
+    des textes à analyser dans un temps limité avec une partie seulement de ce temps consacrée aux titres.
+    Dans cette perspective, des choix ont été réalisés avec un certain pas de côté par rapport à l’idéal
+    revendiqué d’une construction totalement transparente et justifiée.</span></p>
+
+    <p class="mypara"> <span class="marge">	Comme les traitements automatisés des titres réalisés ont conduit à
+    ne pas prendre en compte tous les résultats inférieurs à 0,83 avec la méthode explicitée, ils ont été
+    complétés par des traitements manuels.</span></p>
+
+
+<h4 id="IV2c">c) Traitements manuels <a href="#IV2c-ref">&#8617;</a></h4>
+
+    <p class="mypara"> <span class="marge">	Ces ajouts manuels proviennent des examens précédemment menés des
+    cas où la méthode utilisée obtenait manifestement de mauvais résultats (pour les <em>Annales de
+        Géographie </em><a href="{% url 'AmeliorText:AfficheTitreTrait' 'Article' 'geo' %}" >
+        @ArticleAnnAnalyseCas</a> et pour <em>L’Espace Géographique</em> <a
+            href="{% url 'AmeliorText:AfficheTitreTrait' 'Article' 'spgeo' %}" >@ArticleEspAnalyseCas</a>).
+    Au niveau du corpus « ArticlePlusCr », ce dernier contenant tous les articles du corpus « Article »,
+    j’ai décidé après réflexion d’ajouter les mêmes traitements manuels que ceux réalisés pour le corpus
+    « Article ». Les explorations réalisées ayant montré qu’il n’était pas envisageable de corriger
+    manuellement les titres des comptes-rendus, aucune autre correction manuelle n’a été ajoutée pour le
+    corpus « ArticlePlusCr ».</span></p>
+
+<h3 id="IV3">3) Résumés <a href="#IV3-ref">&#8617;</a></h3>
+
+<h4 id="IV3a">a) Explorations <a href="#IV3a-ref">&#8617;</a></h4>
+
+
+    <p class="mypara"> <span class="marge">	La première fonction créée pour cette exploration permet d’afficher
+    les contenus textuels des résumés référencés par l’UAR <em>Persée</em> comme étant en français. Autant
+    la décision d’exclure les résumés en langue étrangère a été facilement adoptée dans le cadre de cette
+    recherche, autant le traitement à réserver aux résumés en langue française a suscité plus
+    d’interrogations. Les résultats obtenus
+        (<a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'geo' 'ER1' %}" >@ArticleAnnResumeFr</a>
+        pour les <em>Annales de Géographie</em> et
+        <a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'spgeo' 'ER1' %}" >@ArticleEspResumeFr</a>
+        pour <em>L’Espace Géographique</em>) s’appuient sur ce qui a été documenté
+    par l’UAR <em>Persée</em> directement dans les métadonnées des documents. La présentation chronologique
+    adoptée pour ces résultats permet quelques premières analyses. Mise à part une exception de 1932, la
+    véritable diffusion des résumés commence à partir de 1968 pour les <em>Annales de Géographie</em>. Pour
+    <em>L’Espace Géographique</em>, ils sont présents dès le départ de la revue, c’est-à-dire dès 1972. Ces
+    dates étant très proches, il est possible de penser que d’un point de vue formel, le fait de garder les
+    résumés en français dans les textes à analyser ne crée pas une grande dissymétrie entre les deux
+    revues. En revanche, une comparaison entre une époque antérieure à 1968 et des époques postérieures
+    peut poser la question d’une certaine hétérogénéité si la décision est prise d’inclure les résumés
+    .</span></p>
+
+    <p class="mypara"> <span class="marge">	Un examen plus attentif des premiers résultats obtenus montrent
+    que, souvent, le terme « Résumé. » est inclus dans le contenu pour la revue des <em>Annales de
+        Géographie</em> alors qu’il a été  exclu pour <em>L’Espace géographique</em>. Une erreur est aussi
+    notable dès le neuvième résumé présenté pour les <em>Annales de Géographie</em> car ce dernier est en
+    anglais alors qu’il a été référencé en français. Si la décision est prise d’inclure ces résumés, il y a
+    donc un travail d’homogénéisation à réaliser à un double niveau : tout d’abord, enlever les termes
+    comme « Résumé. » qui introduisent ces parties et ensuite exclure les résumés en langue étrangère qui
+    ont été mal référencés.</span></p>
+
+    <p class="mypara"> <span class="marge">	Par rapport à ce qui a été réalisé précédemment pour les titres, il
+    faut souligner qu’il n’est pas utile de remplacer les parties dans l’OCR correspondant aux résumés car
+    il n’y a pas eu de corrections apportées par l’UAR <em>Persée</em> sur ces éléments. Dans le cas où la
+    décision retenue est de supprimer les résumés, le repérage de ces parties dans les textes issus de
+    l’OCR est moins problématique que celui des titres puisqu’il est possible s’appuyer sur les coordonnées
+    graphiques enregistrées par l’UAR <em>Persée</em> lors de la phase de documentation infrapaginaire.
+    Toutefois, il faut souligner que cette information n’a pas malheureusement pas été incluse dans le
+    format XML-TEI qui a été utilisé pour cette recherche. Il est nécessaire d’aller chercher ces données
+    dans le format Érudit (<em>cf.</em> section <a href="{% url 'DelimitCorpus:home' %}#I3">
+        Chap4.I.3</a>). Il n’y a pas de raison spécifique permettant d’expliquer rationnellement
+    pourquoi ces données sont présentes dans un format et absentes dans un autre. Ce constat rappelle que
+    ces différents formats sont des agrégations de multiples données et que ces agrégations dépendent en
+    amont de choix qui ne font pas forcément logiques jusque dans leurs moindres détails.</span></p>
+
+    <p class="mypara"> <span class="marge">	Dans le cas où le choix réalisé est d’exclure les résumés en
+    français des textes à analyser, des petits travaux d’homogénéisation sont également nécessaires. En
+    effet, dans certains cas, la fenêtre graphique tracée par l’UAR <em>Persée</em> pour délimiter les
+    résumés contient parfois la mention « Résumé. » (comme cela a été vu précédemment) mais parfois aussi,
+    cette mention peut être en dehors de la fenêtre graphique tracée. Ainsi, si tous les mots situés à
+    l’intérieur de la fenêtre graphique tracée sont enlevés dans le texte de l’OCR suite à la décision
+    d’exclure les résumés, il se peut que dans certains cas les annonces de résumé perdurent car elles sont
+    en dehors des fenêtres graphiques tracées.</span></p>
+
+    <p class="mypara"> <span class="marge">	Malgré toutes ces explorations préalables, il est nécessaire de
+    reconnaître que la décision finalement prise pour les résumés dans cette recherche n’a pas découlé de
+    ces différentes considérations mais a été une conséquence d’une difficulté apparue au moment du
+    traitement des bibliographies (<em>cf.</em> section <a href="#IV8">IV.8)</a>.
+            La résolution de cette difficulté est
+    passée par la suppression de toutes les parties textuelles situées après la dernière bibliographie. Or,
+    il existe de nombreux cas dans les <em>Annales de Géographie</em> où le résumé est situé en fin
+    d’article. Pour homogénéiser les traitements, il a paru logique de supprimer tous les résumés des
+    textes. Toutes les analyses liées aux explorations précédentes n’ont pas été perdues puisqu’elles
+    permettent de comprendre que suite à ce choix, l’objectif a été d’éliminer les diverses annonces
+    (« Résumé. »…) qui peuvent se trouver avant les fenêtres graphiques tracées par l’UAR
+    <em>Persée.</em></span></p>
+
+    <p class="mypara"> <span class="marge">	Trois petites difficultés méritent d’être mentionnées. Tout d’abord, ces annonces
+        peuvent prendre des formes multiples du fait des diverses langues. Ensuite, elles peuvent être en majuscule ou non
+        et accolées à une ponctuation (un point ou un double point) ou non. Enfin, elles sont généralement situées juste
+        avant le résumé, mais ce n’est pas forcément toujours le mot situé juste avant la fenêtre graphique. Il est en soi
+        possible que des mots s’intercalent. Face à cette situation, une décision peut consister à enlever tout ce qui
+        ressemble à une annonce de résumé dans toutes les parties de textes situées avant les résumés. Toutefois, une
+        telle décision n’est pas vraiment judicieuse du fait de la présence dans les <em>Annales de Géographie</em>
+        de résumés situés en fin d’article. Le risque de détecter et de supprimer des faux positifs (des termes ressemblant à des
+    annonces de résumés mais n’en étant pas) est alors grand.</span></p>
+
+    <p class="mypara"> <span class="marge">	Pour faire face à ces deux difficultés, une interface d’exploration
+    a été créée. Elle propose trois fenêtres à compléter. La première offre la possibilité de rentrer
+    plusieurs formes comme « Résumé », « RESUME ». La deuxième propose de spécifier plusieurs ponctuations.
+    Par exemple, « . », « : ». Enfin, la troisième permet de spécifier un nombre de termes avant les
+        résumés <sup><a id="fn16-ref" class="note" href="#fn16">16</a></sup>
+    dans lesquels toutes les combinaisons « forme + ponctuation » qui viennent d’être entrées (par rapport
+    aux exemples précédemment mentionnés : « Résumé. », « Résumé : », « RESUME. », « RESUME : ») vont être
+    cherchées. La technique employée repose alors sur le fait de pouvoir mener une exploration très
+    exhaustive sur l’ensemble de formes probables à partir d’un seuil volontairement établi de manière
+    large. Concrètement, ce seuil a été fixé à 20 car l’annonce d’un résumé est tout de même supposée être
+    assez proche du résumé en question pour être efficiente. En fixant ce seuil, le risque est pris de
+    détecter des faux-positifs.</span></p>
+
+    <div id="ExploResumeMotAvant"><p class="mypara"> <span class="marge">	Les résultats obtenus sont disponibles à partir de ces liens :
+        <a href="https://analytics.huma-num.fr/EtPistezMots/amelior/PresenceMotAvantObjetInterface/Article/geo/Resume" >@ArticleAnnResumeAnnonceCherche</a>
+        pour les <em>Annales de Géographie</em> et
+        <a href="https://analytics.huma-num.fr/EtPistezMots/amelior/PresenceMotAvantObjetInterface/Article/spgeo/Resume" >@ArticleEspResumeAnnonceCherche</a>
+        pour <em>L’Espace Géographique</em>.
+        Un extrait des résultats est présenté ci-dessous :</span></p></div>
+
+
+<br>
+<div class="a" id="Tableau3">
+<img src="{% static 'AmeliorText/image/ResumeExplore.png' %}" alt="AmeliorText/image/ResumeExplore">
+</div>
+<br>
+
+
+<div class="a">Tableau n°3 : Extrait des résultats pour l’interface de recherche des combinaisons  : mot
+    (en ligne) + ponctuation (en colonne) avant un résumé pour la revue les <em>Annales de Géographie</em> dans le corpus « article » avec un seuil de 20</div>
+<br>
+
+
+
+<p class="mypara"> <span class="marge">La première ligne de ce Tableau n° 3 représente une absence de
+    ponctuation. Dans ce cas, la combinaison « terme + ponctuation » recherché correspond au terme en
+    colonne. Chaque résultat supérieur à 0 se présente comme un lien qu’il est possible d’ouvrir dans
+    l’interface. Par exemple, en cliquant sur le 23, une nouvelle fenêtre s’ouvre présentant les 23 cas où
+    le terme « Résumé » a été trouvé dans les 20 mots précédents une fenêtre graphique de résumé dans la
+    revue <em>Les Annales de Géographie</em>. Les résultats ont été triés automatiquement par ordre
+    décroissant (des combinaisons « terme + ponctuation » les plus éloignées aux plus proches de la fenêtre
+    graphique) pour permettre une vérification des cas les plus suspects de faux positifs (plus une
+    combinaison « terme + ponctuation » est loin de la fenêtre graphique, moins elle a de chance d’être une
+    annonce de résumés). Tous ces liens ont été ouverts pour les deux revues sur le corpus « Article ».
+    Seul un cas a été trouvé où la distance entre la fenêtre graphique et la combinaison trouvée est
+    supérieure à 2 (sur la revue les <em>Annales de Géographie</em> avec le terme « Résumé »). Une
+    vérification manuelle a permis confirmer qu’il s’agissait bien d’un cas d’annonce de résumé et qu’il ne
+    s’agissait pas d’une combinaison « terme + ponctuation » faisant partie du cœur scientifique du texte
+    qu’il aurait été dommageable d’enlever.</span></p>
+
+<p class="mypara"> <span class="marge">	Les résultats obtenus permettent de prouver que ce phénomène
+    d’annonces non annotées est finalement peu répandu (aucun cas dans <em>L'Espace Géographique</em> et
+    quelques cas dans les <em>Annales de Géographie</em>). Pour autant, rien ne permettait d’en être sûr
+    avant cette exploration car s’il existe bien une formation des personnes qui ont réalisé ces
+    annotations par l’UAR <em>Persée</em>, il n’existe pas de guide détaillé ni de consignes précises par
+    rapport à ce point précis des termes d’annonces. Pour finir, il faut souligner que la dimension
+    « constructible » de l’expérimentation a été poussée plus loin que dans la partie sur les titres. En
+    effet, une personne ayant des droits sur un corpus peut accéder à une interface et générer ses propres
+    résultats en changeant les combinaisons « terme + ponctuation » recherchées ainsi que le seuil
+    définissant le nombre de mots avant la fenêtre graphique dans lesquels ces recherches seront
+    effectuées. Cette exploration permet techniquement de justifier de manière plus complète les choix
+    réalisés dans la phase de traitements automatisés que pour les titres mais il est vrai aussi que la
+    tâche à réaliser est aussi moins complexe que dans le cas précédent.</span></p>
+
+
+<h4 id="IV3b">b) Traitements automatisés <a href="#IV3b-ref">&#8617;</a></h4>
+
+
+    <p class="mypara"> <span class="marge">	À partir de ces explorations, une fonctionnalité pour le traitement
+    automatisé des résumés a été créée comme pour les titres avec 3 paramètres à préciser. Une première
+    fenêtre permet de renseigner les combinaisons « terme + ponctuation » à enlever avant une fenêtre
+    graphique de résumé. Un deuxième paramètre concerne le nombre de mots avant la fenêtre graphique dans
+    lequel sont cherchés les termes ou combinaison de termes avec une ponctuation, précédemment précisés.
+    Enfin, une option a été ajoutée pour pourvoir ajouter (ou non) les résumés en français si jamais une
+    recherche ultérieure souhaite prendre une décision différente sur ce
+        point<sup><a id="fn17-ref" href="#fn17">17</a></sup>.</span></p>
+
+    <p class="mypara"> <span class="marge">	Les choix réalisés pour les deux corpus
+        (<a href="https://analytics.huma-num.fr/EtPistezMots/amelior/TraitHome/Resume/3" >@ArticleTraitAutoResume</a>
+        pour le corpus « Article » et
+        <a href="https://analytics.huma-num.fr/EtPistezMots/amelior/TraitHome/Resume/3" >@ArticlePlusCrTraitAutoResume</a>
+        pour le corpus « ArticlePlusCr ») se fondent sur les résultats
+    précédents. La dernière exploration ayant montré que la distance maximale entre la fenêtre graphique et
+    la combinaison « terme + ponctuation » trouvée avec un seuil de 20 est de 4, le seuil a finalement été
+    fixé à 5 pour prendre en compte tous les cas.</span></p>
+
+    <p class="mypara"> <span class="marge">	Aucun traitement manuel n’a été effectué pour les résumés sur les
+    deux corpus de cette thèse</span></p>
+
+<h3 id="IV4">4) Mots-clés <a href="#IV4-ref">&#8617;</a></h3>
+
+    <h4 id="IV4a">a) Explorations <a href="#IV4a-ref">&#8617;</a></h4>
+
+    <p class="mypara"> <span class="marge">	La partie « Exploration » a la même structure générale que celle
+    des résumés. Une différence réside dans les coordonnées des zones graphiques qui n’ont pas été stockées
+    par l’UAR <em>Persée</em> dans le format Erudit. Étant également absentes du format XML-TEI, il a fallu
+    s’appuyer sur des données récupérées suite à une demande spécifique auprès du même organisme en format
+    CSV (<em>cf.</em> section <a href="{% url 'DelimitCorpus:home' %}#I3">Chap4.I.3</a>).
+    Au-delà de l’anecdote de devoir ainsi aller chercher des informations dans différents fichiers, il est
+    intéressant de souligner que ces nouvelles données permettent de se rapprocher des données les plus
+    basiques que possède l’UAR <em>Persée</em>. En effet, les formats XML-TEI ou Erudit sont déjà des
+    reconstructions avancées. Les matériaux de base de l’UAR <em>Persée</em> sont les documents numérisés,
+    les résultats des OCR et toutes les zones graphiques qui ont été consignées dans différentes bases de
+    données. Les fichiers CSV obtenus correspondent à l’extraction de deux de ces bases de données, celles
+    correspondant aux mots-clés pour les deux revues étudiées.</span></p>
+
+    <div id="ExploMotCleAll"><p class="mypara"> <span class="marge">La première exploration permet
+        d’afficher simplement tous les
+    mots-clés en français trouvés. Les résultats montrent une dissymétrie entre les deux revues beaucoup
+    plus importante que pour les résumés. Les mots-clés apparaissent seulement en 1984 pour les <em>Annales
+        de Géographie</em>
+        (<a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'geo' 'EM1' %}" >@ArticleAnnMotCleFr</a>)
+        alors qu’ils sont présents dès 1974 pour <em>L’Espace Géographique</em>
+    (<a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'spgeo' 'EM1' %}" >@ArticleEspMotCleFr</a>).
+        Cette dissymétrie légitime le fait de ne pas prendre en compte les mots-clés dans les textes à
+    analyser pour respecter une certaine homogénéité utile pour comparer ensuite les résultats entre les
+        deux revues.</span></p></div>
+
+    <div id="ExploMotCleMotAvant"><p class="mypara"> <span class="marge">	La deuxième exploration présente,
+        comme précédemment, le résultat
+    de la recherche de combinaisons « terme + ponctuation » spécifiques (« Mots-clés », « Mots-clés. »…) à
+    proximité des zones graphiques de mots-clés délimitées par l’UAR <em>Persée</em>. Avec le même seuil de
+    20 mots précédents la zone graphique, il y a quelques points communs avec les résultats déjà obtenus.
+    Il y a une quasi-absence d’annonce des mots-clés pour la revue <em>L’Espace Géographique</em>
+        (<a href="https://analytics.huma-num.fr/EtPistezMots/amelior/PresenceMotAvantObjetInterface/Article/spgeo/MotCle" >@ArticleEspMotCleAnnonceCherche</a>).
+        Pour les <em>Annales de Géographie</em>, il y a quelque cas de combinaisons « terme + ponctuation »
+        trouvées (<a href="https://analytics.huma-num.fr/EtPistezMots/amelior/PresenceMotAvantObjetInterface/Article/geo/MotCle" >@ArticleAnnMotCleAnnonceCherche</a>).
+    </span></p></div>
+
+
+    <p class="mypara"> <span class="marge">	Toutefois, contrairement aux résultats obtenus pour les résumés,
+    beaucoup de cas présentent une distance assez importante par rapport à la fenêtre graphique (surtout
+    pour le terme « Mots-clés »). Un examen attentif des résultats montre de plus qu’il y a des doublons.
+    Les articles apparaissent souvent deux fois : une fois avec une distance entre la zone graphique et le
+    terme « Mots-Clés » assez importante et une fois avec une distance faible. Cela provient du fait que
+    les mots-clés en français et en anglais correspondent souvent à des zones graphiques très proches. Il
+    arrive souvent que la mention d’une zone antérieure soit ainsi trouvée avec un seuil de 20 mots.</span></p>
+
+    <p class="mypara"> <span class="marge">	Ces résultats empêchent de traquer facilement les faux positifs
+    obtenus par l’algorithme utilisé comme précédemment pour les résumés. Il est alors possible d’essayer
+    d’améliorer l’algorithme pour faire face à cette situation. Cela n’a pas été réalisé suite à l’examen
+    d’un faux positif sur le terme « key » (article_geo_0003-4010_1997_num_106_593_20769_tei.xml). Ce cas a
+    permis de prendre conscience que les zones situées avant les mots-clés sont dans la majorité des cas
+    des résumés. Or, les résumés ayant été enlevés, cela rend très peu probable la présence d’un
+    faux-positif ayant réellement un impact dans le cas de cette recherche. Enfin, le fait que  traitement
+    d’une zone enlève une combinaison « terme + ponctuation » qui relève en réalité d’une zone précédente
+    n’a pas de véritable impact : si la table « Transformer » a un doublon visant à enlever la même
+    combinaison textuelle<sup><a id="fn18-ref" class="note" href="#fn18">18</a></sup>, celle-ci ne sera
+        enlevée qu’une seule fois.</span></p>
+
+    <p class="mypara"> <span class="marge">	Ces réflexions expliquent pourquoi, malgré des résultats
+    d’exploration très différents, le même algorithme que pour le traitement automatisé des résumés a été
+    utilisé pour les mots-clés.</span></p>
+
+<h4 id="IV4b">b) Traitements automatisés <a href="#IV4b-ref">&#8617;</a></h4>
+
+
+    <p class="mypara"> <span class="marge">	Les liens suivants permettent de consulter les traitements
+    automatisés réalisés :
+        <a href="https://analytics.huma-num.fr/EtPistezMots/amelior/TraitHome/MotCle/3" >@ArticleTraitAutoMotCle</a>
+        pour le corpus « Article » et
+        <a href="https://analytics.huma-num.fr/EtPistezMots/amelior/TraitHome/MotCle/4" >@ArticlePlusCrTraitAutoMotCle</a>
+        pour le corpus « ArticlePlusCr ». Les paramètres choisis
+    s’expliquent par les explorations précédemment menées. Comme ces dernières n’ont pas abouti à définir
+    un nombre de mots optimal dans lesquels chercher les termes indiqués, le seuil initial très large de 20
+    a été conservé.</span></p>
+
+    <p class="mypara"> <span class="marge">	Aucun traitement manuel n’a été effectué pour les mots-clés sur les
+    deux corpus.</span></p>
+
+
+<h3 id="IV5">5) Hauts de pages <a href="#IV5-ref">&#8617;</a></h3>
+
+    <h4 id="IV5a">a) Explorations <a href="#IV5a-ref">&#8617;</a></h4>
+
+    <p class="mypara"> <span class="marge">	L’objectif est ici de supprimer toutes les mentions souvent
+    répétées en haut de chaque page du nom de l’article, des auteurs ou de la revue. Ces éléments n’ont
+    malheureusement pas été annotés par l’UAR <em>Persée</em>. De plus, les fichiers XML-TEI utilisés ne
+    permettent pas de récupérer directement une structuration par ligne. Toutefois, à partir des
+    coordonnées graphiques des mots sur chaque page, des sauts de ligne peuvent être assez facilement
+    détectés car il y a une rupture spatiale (le mot suivant est situé bien en dessous du mot précédent).
+    En fixant un seuil adapté<sup><a id="fn19-ref" class="note" href="#fn19">19</a></sup>, il est alors
+        possible d’afficher
+    toutes les premières lignes de chaque page pour tous les documents. Il est intéressant d’indiquer dans
+    le même temps la coordonnée spatiale du mot le plus bas de chaque ligne trouvée. Les résultats obtenus
+    sont très satisfaisants dans une première approche. Beaucoup de mentions de haut de pages apparaissent
+    pour l’ensemble des <em>Annales de Géographie</em>
+        (<a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'geo' 'EH1' %}">@ArticleAnnHtdePageCherche</a>)
+        et avant 1990 pour <em>L’Espace Géographique </em>
+        (<a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'spgeo' 'EH1' %}">@ArticleEspHtDePageCherche</a>).
+        En effet, il y a, après cette date, un changement de mise en page
+    de cette revue qui supprime ces mentions de haut de page.</span></p>
+
+    <p class="mypara"> <span class="marge">	Du fait de l’aspect très répétitif de ces mentions de haut de
+    pages, des exceptions peuvent être facilement repérées. Il s’agit le plus souvent d’un titre d’une
+    figure, parfois d’une référence bibliographique. Pour le corpus « ArticlePlusCr » dont les résultats
+    sont disponibles à partir des liens suivants
+        (<a href="{% url 'AmeliorText:FontionGeneralExplor' 'ArticlePlusCr' 'geo' 'EH1' %}">@ArticlePlusCrAnnHtDePageCherche</a>
+        pour les <em>Annales de Géographie</em> et
+        <a href="{% url 'AmeliorText:FontionGeneralExplor' 'ArticlePlusCr' 'spgeo' 'EH1' %}">@ArticlePlusCrEspHtDePageCherche</a>
+        pour <em>L’Espace Géographique</em>), il existe des cas où
+    cette technique détecte la première ligne des comptes-rendus et non une annotation de hauts de page. Ce
+    phénomène provient du fait que les comptes-rendus sont souvent réunis dans une partie les présentant
+    tous à la suite les uns des autres, sans forcément qu’un compte-rendu donne lieu à une nouvelle page.
+    Dans ce cas-là, l’UAR <em>Persée</em> a délimité le texte de chaque compte-rendu mais la mention
+    détectée par la méthode créée n’est plus le haut d’une page mais la première phrase du compte-rendu en
+    question. Le fait d’avoir ajouté la mention de la coordonnée spatiale la plus basse pour chaque ligne
+    permet d’illustrer quantitativement que les exceptions sont très souvent situées bien plus bas sur la
+    page que les annotations de haut de page. À la suite d’une telle constatation, l’objectif a été
+    d’essayer de fixer un seuil spatial permettant de discriminer les premières lignes qui sont bien des
+    annotations de haut de page de celles qui n’en sont pas. Une nouvelle exploration a été menée dans
+    cette optique.</span></p>
+
+    <div id="HtdePageOrder"><p class="mypara"> <span class="marge">	Les mentions de haut de page étant
+        situées généralement entre 200
+    et 400 pixels<sup><a id="fn20-ref" class="note" href="#fn20">20</a></sup>, la deuxième fonction
+        proposée n’affiche que
+    les premières lignes dont les coordonnées spatiales de tous les mots sont supérieures à 400 pixels. Les
+    résultats ne sont plus groupés par document mais triés de manière croissante par rapport à la
+    coordonnée spatiale maximale trouvée (i.e. la plus basse). L’objectif est ainsi de déterminer un seuil
+    à partir duquel les premières lignes ne font plus référence à des mentions de haut de page. Les
+    résultats obtenus
+        (<a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'geo' 'EH2' %}" >@ArticleAnnHt+400Order</a>
+        et <a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'spgeo' 'EH2' %}" >@ArticleEspt+400Order</a>)
+        montrent qu’un tel seuil n’apparaît pas nettement dans le cas des <em>Annales de
+        géographie</em>. Il y a entre les figures et les bibliographies beaucoup de bruit. Pour faire face
+    à ce problème, il a été recherché dans tous ces résultats les mentions les plus lointaines ressemblant
+    au syntagme « Annales de Géographie ». En effet, la répétition sur une des deux pages de ce nom est une
+    constante des mentions de haut de page pour cette revue. La dernière mention ainsi repérée a pour
+    valeur minimale 623. Il a été donc décidé de fixer un seuil à 625 pour cette revue. Pour <em>L’Espace
+        Géographique</em>, la moindre quantité de données permet de repérer plus facilement la dernière
+    mention de haut de page. Elle a pour coordonnée minimale la valeur 471. Le seuil a par conséquent été
+        fixé à 475 pour cette revue.</span></p></div>
+
+    <p class="mypara"> <span class="marge">	Il est vrai que dans les deux revues, et surtout dans les
+    <em>Annales de Géographie</em>, il y a en dessous des seuils retenus des éléments qui ne sont pas des
+    mentions de haut de page. Quand ces éléments relèvent de bibliographies, de figures ou de titres
+    secondaires, leur présence n’est pas problématique car ces parties spécifiques sont traitées
+    ultérieurement (<em>cf.</em> sections
+        <a href="#IV8">IV.8</a>,
+        <a href="#IV10">10</a> et
+        <a href="#IV11">11></a>). Cette réflexion permet de consulter la
+    liste de résultats précédemment obtenus en essayant de repérer les cas qui ne relèvent pas de ces
+    parties spécifiques (bibliographies, figures et titres secondaires) et qui sont situés en dessous des
+    seuils fixés. Le repérage des phrases risquant d’être effacées par erreur a été réalisé manuellement
+    car s’il est possible bien entendu d’imaginer des automatisations d’un tel travail, il a paru beaucoup
+    plus simple et rapide de l’effectuer à la main. Six cas seulement ont été trouvés pour les <em>Annales
+        de Géographie</em>. Aucun cas n’a été repéré dans les résultats de <em>L’Espace Géographique</em>.
+    Enfin, l’exercice n’a pas été mené spécifiquement sur le corpus « ArticlePlusCr » pour prendre en
+    compte le cas des comptes-rendus. Une qualité moindre a été accepté pour ce corpus. Cette décision
+    s’inscrit dans la continuité de ce qui a été réalisé précédemment pour les titres (<em>cf.</em>
+    section <a href="#IV2">IV.2</a>)</span></p>
+
+<h4 id="IV5b">b) Traitements automatisés <a href="#IV5b-ref">&#8617;</a></h4>
+
+    <p class="mypara"> <span class="marge">	Les traitements automatisés réalisés
+        (<a href="https://analytics.huma-num.fr/EtPistezMots/amelior/TraitHome/HtdePage/3" >@ArticleTraitAutoHtDePage</a>
+        et
+        <a href="https://analytics.huma-num.fr/EtPistezMots/amelior/TraitHome/HtdePage/4" >@ArticlePlusCrTraitAutoHtDePage</a>)
+        s’appuient sur les seuils déterminés lors de la phase
+    d’exploration.</span></p>
+
+<h4 id="IV5c">c) Traitements manuels <a href="#IV5c-ref">&#8617;</a></h4>
+
+<p class="mypara"> <span class="marge">	Le traitement manuel du corpus « Article »
+    (<a href="https://analytics.huma-num.fr/EtPistezMots/amelior/ConsultEltExcept/Article/HautDePage" >@ArticleTraitMainHtDePage</a>)
+    concernent les six cas d’erreurs repérés pour les <em>Annales de
+    Géographie</em> dans la phase d’exploration. Ces traitements manuels ont été également réalisés pour le
+    corpus « ArticlePlusCr ». L’affirmation précédente d’une moindre qualité de ce corpus aurait pu
+    justifier le fait de ne pas effectuer ces traitements manuels. Toutefois, ceux-ci ayant été
+    précédemment réalisés, il était particulièrement simple de les reproduire. Enfin, le fait de traiter la
+    partie sur les articles du corpus « ArticlePlusCr » comme celle du corpus « Article » peut se justifier
+    dans un objectif de comparabilité de ces deux corpus. Certes, la qualité de traitement des
+    comptes-rendus n’est pas totalement identique à celle des articles pour des raisons pratiques.
+    Toutefois, la comparaison entre les deux corpus ne porte que sur cet ajout des comptes-rendus si les
+    parties des deux corpus sur les articles ont le même contenu et ont été traitées de la même manière
+    .</span></p>
+
+<h3 id="IV6">6) Bas de page <a href="#IV6-ref">&#8617;</a></h3>
+
+<h4 id="IV6a">a) Explorations  <a href="#IV6a-ref">&#8617;</a></h4>
+
+
+    <p class="mypara"> <span class="marge">	La problématique des bas de page est globalement similaire à celle
+    des haut des pages. Il existe souvent des inscriptions situées en bas de page qui méritent d’être
+    enlevées par rapport à l’objectif poursuivi mais qui n’ont pas été annotées par l’UAR <em>Persée</em>.
+    Une première fonction a été écrite sur le même modèle que celle réalisée pour les hauts de pages afin
+    d’afficher toutes les dernières phrases de chaque page composant les documents d’un corpus. Les
+    résultats obtenus pour les <em>Annales de Géographie</em> sur le corpus « Article »
+         (<a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'geo' 'EB1' %}" >
+        @ArticleAnnBasDePageCherche</a>) montrent qu’il existe plusieurs indications de bas de pages qui
+    méritent d’être enlevées. Elles commencent très fréquemment par la forme « ANN DE GEOG » qui a été
+    parfois mal reconnue par l’OCR. De plus, il y a en 1993 quelques numéros avec des indications de bas de
+    page beaucoup plus systématiques commençant par « Gèo ». Après cette période, les indications de bas de
+    page pour cette revue se limitent à la première page avec souvent la mention de la maison d’édition
+    « Armand Colin ». Les résultats pour <em>L’Espace Géographique</em> sur le même corpus
+        (<a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'spgeo' 'EB1' %}" >@ArticleEspBasDePageCherche</a>)
+        sont assez symétriques par rapport à ceux obtenus pour les hauts
+    de page. En effet, il n’existe pas d’indications de bas de page avant 1990 et elles deviennent
+    systématiques après cette date, à quelques exceptions
+        près<sup><a id="fn21-ref" class="note" href="#fn21">21</a></sup>.
+    </span></p>
+
+    <div id="BasdePageOrder"><p class="mypara"> <span class="marge">	La difficulté pour enlever les
+        indications de bas de page concerne
+    surtout les <em>Annales de Géographie</em> car elles ne sont pas systématiques et prennent des formes
+    irrégulières dues aux erreurs d’OCR. Un premier essai a été réalisé en essayant de déterminer, comme
+    précédemment, un seuil spatial qui permettait de discriminer globalement les dernières phrases qui
+    relèvent d’indications de bas de page à enlever par rapport à celles qui n’en sont pas. Le résultat
+    obtenu pour le corpus « Article »
+        (<a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'geo' 'EB2' %}" >@ArticleAnnBasDePageOrder</a>
+        présente trop de bruit pour déterminer un tel seuil spatial.
+    L’expérimentation a été poussée plus loin en essayant d’enlever les éléments qui relèvent de notes ou
+    de figures. Le nouveau résultat obtenu pour le même corpus
+        (<a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'geo' 'EB3' %}" >@ArticleAnnBasDePageOrderSuppr</a>)
+        ne permet toujours pas de déterminer de manière satisfaisante
+    un seuil spatial. Suite à ces constatations, un changement d’optique a été réalisé en cherchant, non
+    plus une détermination basée sur un seuil spatial, mais plutôt en utilisant le contenu textuel des
+    lignes détectées. Un ensemble de combinaisons textuelles a été défini suite à plusieurs essais pour
+        essayer de couvrir un maximum de cas tout en ayant le minimum de faux positifs.</span></p></div>
+
+    <p class="mypara"> <span class="marge">	Les indications de bas de page sont retenues si elles correspondent
+    à un des critères suivants :</span></p>
+<ul>
+<li>Dernière ligne qui commence ou finit par « ANN » ou « Ann ».</li>
+<li>Dernière ligne qui commence par « Gèo. » ou « Geo. »</li>
+<li>Dernière ligne qui commence par « ARMAND » ou « Armand ».</li>
+<li>Dernière ligne qui inclue « Année. » ou « ANNEE. ».</li>
+<li>Dernière ligne qui commence par « DE », « DB », « DK », « DR » ou « DL 
+    »<sup><a id="fn22-ref" class="note" href="#fn22">22</a>.</sup></li>
+</ul>
+
+
+    <div id="BasdePageTextualCombi"><p class="mypara"> <span class="marge">	Le résultat obtenu
+        (<a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'geo' 'EB4' %}" >@ArticleAnnBasDePageTextualCombi</a>)
+        est assez satisfaisant, même si quelques erreurs peuvent être
+    facilement repérées. Il est évident qu’il est aussi possible de trouver quelques indications de bas de
+    page non supprimées par cette méthode. Toutefois, les multiples essais et les analyses de leurs
+    résultats pour trouver les combinaisons textuelles les plus efficaces me laissent penser que les
+    indications de bas de page qui se répètent le plus et qui sont le plus à même d’avoir un impact dans
+        des traitements statistiques sont enlevées en utilisant cette méthode.</span></p></div>
+
+
+<h4 id="IV6b">b) Traitements automatisés  <a href="#IV6b-ref">&#8617;</a></h4>
+
+
+    <p class="mypara"> <span class="marge">	Suite aux explorations menées, le traitement automatisé des bas de
+    page a été construit en proposant deux options : la première offre la possibilité de supprimer toutes
+    les dernières phrases détectées pour la revue <em>L’Espace Géographique</em> après 1990 ; la deuxième
+    permet de supprimer les dernières phrases détectées pour la revue les <em>Annales de Géographie</em> si
+    elles relèvent des combinaisons textuelles précédemment exposées. Les traitements réalisés pour les
+    deux corpus « Article » et « ArticlePlusCr » sont identiques avec des choix positifs concernant ces
+    deux options.</span></p>
+
+
+<h4 id="IV6c">c) Traitement manuel <a href="#IV6c-ref">&#8617;</a></h4>
+
+    <p class="mypara"> <span class="marge">	Les erreurs facilement détectables dans le résultat précédemment
+    obtenu
+        (<a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'geo' 'EB4' %}" >@ArticleAnnBasDePageTextualCombi</a>)
+        ont été analysées. Si ces erreurs relèvent de notes, de
+    bibliographies, de figures ou de titres secondaires qui sont par la suite soit supprimés, soit
+    remplacés à l’aide des informations de documentation infrapaginaire de l’UAR <em>Persée</em> (<em>cf
+        .</em> sections <a href="#IV7">IV.7</a>,
+        <a href="#IV8">8</a>,
+        <a href="#IV10">10</a> et
+        <a href="#IV11">11</a>), elles ne nécessitent pas d’être corrigées. Tous les cas
+    analysés relevant de ces situations spécifiques, il n’y a pas eu finalement de traitement manuel réalisé.</span></p>
+
+
+<h3 id="IV7">7) Notes <a href="#IV7-ref">&#8617;</a></h3>
+
+<h4 id="IV7a">a) Explorations <a href="#IV7a-ref">&#8617;</a></h4>
+
+    <p class="mypara"> <span class="marge">	Trois types de notes ont été délimités par l’UAR <em>Persée </em>:
+    les notes de bas de page, les notes
+        biographiques<sup><a id="fn23-ref" class="note" href="#fn23">23</a></sup> et les
+    notes de la rédaction<sup><a id="fn24-ref" class="note" href="#fn24">24</a></sup>. Les notes de bas de
+        page ont des
+    statuts très variables suivants les auteurs et relèvent d’un genre textuel particulier avec des
+    répétitions parfois de termes comme « ibid. », « op.cit. »… Cela explique pourquoi les notes de bas de
+    page n’ont pas été gardées dans les deux corpus créés pour cette recherche. Au niveau des notes
+    biographiques et des notes de la rédaction, ces dernières représentent une masse textuelle bien moins
+    importante que les notes de bas de page. Elles peuvent de plus être considérées comme plus secondaire
+    par rapport à l’objectif par cette recherche. Enfin, elles relèvent également de genres textuels
+    spécifiques. Elles ont donc été comme pour les notes de bas de pages enlevées des deux corpus créés
+    .</span></p>
+
+    <div id="NoteBioExist"><p class="mypara"> <span class="marge">	Lors d’un premier travail sur les
+        évolutions lexicales (<em>cf.</em> Manuscrit Chap2.II.5.c), j’avais pu m’apercevoir que certaines notes biographiques n’avaient
+    pas été annotées par l’UAR <em>Persée</em>. Pour essayer de remédier à ce problème, une première
+    fonction a été créée permettant d’afficher toutes les notes biographiques existantes. Les résultats
+    obtenus
+        (<a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'geo' 'EN1' %}" >@ArticleAnnNoteBioExist</a>
+        pour les <em>Annales de Géographie</em> et
+        <a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'spgeo' 'EN1' %}" >@ArticleEspNoteBioExist</a>
+        pour <em>L’Espace Géographique</em>) montrent une structure commune de
+    ces notes biographiques. D’abord, sur la première ligne, le nom et le prénom d’un auteur. Puis, sur une
+    deuxième ligne, son grade ou son organisme d’affiliation. Ces résultats ont permis de répertorier les
+    grades (« Professeur », « Maître de conférence », « Assistant »…) et les organismes d’affiliation
+    (« Université », « Laboratoire », « CNRS »…) les plus utilisés.</span></p></div>
+
+    <div id="NoteBioSuspi"><p class="mypara"> <span class="marge">	Les listes de grades et d’organismes
+        d’affiliation ainsi obtenues
+    ont été ensuite utilisées dans l’élaboration d’une deuxième fonction pour chercher la structure
+    précédemment identifiée (une première ligne avec le nom ou le prénom d’un auteur suivi d’une deuxième
+    ligne avec un grade ou une affiliation) dans des articles où aucune note biographique n’avait été
+    annotée par l’UAR <em>Persée</em>. Pour tenir compte de différences minimes d’écriture ou de petites
+    fautes dues à l’OCR, les recherches de nom(s), de prénom(s), de grades et d’organismes d’affiliation
+    ont eu recours à la distance de Ratcliff/Obershelp précédemment utilisée pour les titres (<em>cf.</em>
+    section <a href="#IV2">IV.2)</a>. Seuls les taux de ressemblance supérieur à 0,9 entre une entité (nom, prénom,
+    grade ou organisme d’affiliation) et un terme ont été retenus. Les résultats obtenus
+        (<a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'geo' 'EN2' %}" >
+            @ArticleAnnNoteBioCherche</a> pour les <em>Annales de Géographie</em>
+        et <a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'spgeo' 'EN2' %}" >@ArticleEspNoteBioCherche</a>
+        pour <em>L’Espace Géographique</em>) permettent de détecter plusieurs
+    cas où des notes biographiques non annotées sont suspectées. Pour améliorer leur reconnaissance, chaque
+    résultat est accompagné de sa localisation : première ou dernière page de l’article et numéro de la
+    première ligne où une note biographique est suspectée d’après cette deuxième fonction. Cela a permis de
+        plus rapidement examiner l’ensemble de ces cas.</span></p> </div>
+
+    <p class="mypara"> <span class="marge">	Au niveau des notes de rédaction, ces dernières sont rares et
+    peuvent être considérées comme marginale par rapport à la masse textuelle des documents dans les deux
+    corpus créés. À l’inverse, les notes de bas de page sont globalement nombreuses (avec des disparités
+    importantes suivant les documents). Cette considération explique pourquoi une exploration des notes de
+    bas de page a été privilégiée. Toutefois, il n’est pas si facile de réaliser des explorations qui
+    permettent d’améliorer les annotations réalisées par l’UAR<em> Persée</em> et de détecter des erreurs
+    comme précédemment pour les notes biographiques. Ma fréquentation des données me conduit à penser qu’il
+    est plutôt rare qu’une note de bas de page ait été oubliée d’être annotée. Ce que j’ai pu observer
+    parfois est l’existence d’une fenêtre graphique tracée par l’annotateur un peu trop proche des mots. Il
+    en résulte que les coordonnées graphiques d’un mot, cordonnées définies par l’OCR, peuvent parfois
+    dépasser le cadre de la fenêtre graphique tracée. Le mot n’est alors pas compté comme faisant partie de
+    la note.</span></p>
+
+    <div id="NoteBioDiscon"><p class="mypara"> <span class="marge">	À la suite de ce constat, une
+        exploration a été menée pour essayer
+    d’afficher toutes les notes présentant une discontinuité par rapport au texte issu de l’OCR. En effet,
+    si le mot concerné par l’exclusion de la fenêtre n’est pas le premier ou le dernier mot, la note est
+    composée de plusieurs blocs textuels qui ne forment pas un tout continu dans le texte de l’OCR. Une
+    fonction a été écrite pour détecter tous les cas de notes présentant une telle discontinuité textuelle
+    au sein d’un corpus. Les résultats obtenus
+        (<a href="{% url 'AmeliorText:AfficheNoteDiscontinu' 'Article' 'geo' %}" >@ArticleAnnNoteBasDiscon</a>
+        et <a href="{% url 'AmeliorText:AfficheNoteDiscontinu' 'Article' 'spgeo' %}" >@ArticleEspNoteBasDiscon</a>)
+        montrent que ces cas sont assez nombreux : 782 pour les <em>Annales
+        de Géographie</em> et 94 pour <em>L'Espace géographique</em>. Il n’y a pas eu de traitement
+    automatisé ou manuel effectué par rapport à l’ensemble de ces cas. En conséquence, il existe un ou
+    parfois quelques mot(s) appartenant(s) aux notes qui sont intégré(s) dans le texte et non pas
+    supprimé(s). Le phénomène reste assez marginal par rapport à l’ensemble des notes : 0,04 % des notes de
+    bas de page concernées pour les <em>Annales de Géographie</em> et 0,02 % pour <em>L'Espace
+            Géographique.</em></span></p></div>
+
+    <p class="mypara"> <span class="marge">	Les résultats ayant été classés par ordre décroissant par rapport à
+    la discontinuité maximale<sup><a id="fn25-ref" class="note" href="#fn25">25</a></sup> observée dans
+        chaque note, une
+    différence très nette peut être observée entre les deux revues. <em>L'Espace Géographique</em> présente
+    de nombreuses discontinuités assez importantes (supérieures à 10 mots) alors que ce n’est pas le cas
+    des <em>Annales de géographie</em>. Cette différence s’explique par la mise en page sous forme de
+    double colonne dans <em>L'Espace Géographique</em>. Une colonne s’intercale parfois dans une note, ce
+    qui explique la présence de ces discontinuités importantes dans cette revue. En inversant la
+    perspective, ces résultats montrent que les doubles colonnes ont plutôt été très bien reconnues par
+    l’OCR car sinon le nombre de discontinuités trouvées serait bien supérieur. Pour les <em>Annales de
+        Géographie</em>, la présence accrue de petites discontinuités s’explique en partie par des pages
+    numérisées penchées beaucoup plus nombreuses que pour <em>L'Espace Géographique</em>. Quand
+    l’annotateur doit tracer une fenêtre graphique de forme rectangulaire sur un texte penché, il a plus de
+    chance de finir très proche d’un bord du texte, et donc que les coordonnées graphiques de quelques mots
+    dépassent de la fenêtre tracée.</span></p>
+
+
+ <h4 id="IV7b">b) Traitements automatisés <a href="#IV7b-ref">&#8617;</a></h4>
+
+
+    <p class="mypara"> <span class="marge">	Le traitement automatisé présente un formulaire qui permet pour
+    chaque type de note de choisir de leur maintien ou non dans les textes. Pour les deux corpus
+    « Article » et « ArticlePlusCr », les notes biographiques, les notes de l’éditeur et les notes de bas
+    de page annotées par l’UAR <em>Persée</em> ont été toutes supprimées.</span></p>
+
+
+
+<h4 id="IV7c">c) Traitements manuels <a href="#IV7c-ref">&#8617;</a></h4>
+
+    <p class="mypara"> <span class="marge">	Les traitements manuels pour les notes
+        (<a href="https://analytics.huma-num.fr/EtPistezMots/amelior/ConsultExceptAll/Article/Note" >@ArticleTraitMainNote</a>
+        et <a href="https://analytics.huma-num.fr/EtPistezMots/amelior/ConsultExceptAll/ArticlePlusCr/Note" >@ArticlePlusCrTraitMainNote</a>)
+        sont identiques pour les deux corpus. Ils proviennent de la détection
+    précédemment réalisée de notes biographiques non annotées par l’UAR <em>Persée</em>.</span></p>
+
+
+<h3 id="IV8">8) Bibliographies <a href="#IV8-ref">&#8617;</a></h3>
+
+<h4 id="IV8a">a) Explorations <a href="#IV8a-ref">&#8617;</a></h4>
+
+
+    <p class="mypara"> <span class="marge">	Les bibliographies ont été annotées par l’UAR <em>Persée</em>. Il
+    s’agit à l’instar des notes d’éléments textuels spécifiques. Pour cette raison, les bibliographies ont
+    été enlevées des textes à analyser dans cette recherche. Leur retrait a posé des difficultés beaucoup
+    plus importantes que prévu<sup><a id="fn26-ref" class="note" href="#fn26">26</a></sup> à cause de la
+        façon dont ces
+    éléments sont représentés dans les fichiers XML-TEI. Les problèmes rencontrés concernent plus
+    particulièrement les bibliographies qui s’étendent sur plusieurs pages d’affilée et qui sont suivies
+    d’un texte. Dans le cas d’une bibliographie de plusieurs pages, l’UAR <em>Persée</em> a créé dans les
+    fichiers XML-TEI acquis correspondant à ces documents un premier bloc de données « bibliographie » qui
+    compile les différentes pages de bibliographie avec l’indication des sauts de pages dans ce bloc. La
+    difficulté provient du bloc suivant de données créé pour représenter le texte venant à la suite de
+    cette bibliographie de plusieurs pages. L’UAR <em>Persée </em>a fait le choix de réintégrer toutes les
+    pages de bibliographies précédentes dans ce bloc textuel sans les indications de saut de page
+    puisqu’elles avaient déjà été intégrées dans le bloc
+    précédent<sup><a id="fn27-ref" class="note" href="#fn27">27</a></sup>.</span></p>
+
+    <p class="mypara"> <span class="marge">	La conséquence de ce choix est qu’en récupérant les données, si le
+    premier bloc est ignoré, les sauts de pages sont perdus, ce qui est problématique car une grande partie
+    des traitements précédemment réalisés reposent sur cette détection ; si le deuxième bloc est ignoré,
+    des données textuelles ne sont pas pris en
+        compte<sup><a id="fn28-ref" class="note" href="#fn28">28</a></sup> Le choix
+    réalisé a été par conséquent de récupérer le contenu des deux blocs ce qui a eu pour conséquence de
+    créer des répétitions dans les textes sur ces parties spécifiques. Après pas mal de recherche pour
+    essayer d’ôter ces doublons de la manière la plus efficace possible, une première exploration a été
+    créée pour afficher les cas de documents ou un contenu textuel existe après la dernière bibliographie
+    et quand ce dernier ne relève pas d’éléments déjà supprimés (résumé, mots-clés et notes).</span></p>
+
+    <div id="ApresBiblio"><p class="mypara"> <span class="marge">	Les résultats obtenus (<a
+        href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'geo' 'EBl1' %}" >
+    @ArticleAnnApresDernBiblio</a> pour les <em>Annales de Géographie</em> et <a
+        href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'spgeo' 'EBl1' %}" >
+    @ArticleEspApresDernBiblio</a> pour <em>L’Espace Géographique</em>) montrent que, dans la plupart des
+    cas, ce qui suit la dernière bibliographie n’appelle pas être gardé pour cette recherche. Suite à ce
+    constat, j’ai choisi de m’orienter vers un traitement automatisé où la dernière bibliographie mais
+    aussi tout ce qui se trouve après celle-ci est supprimé. Les résultats de cette première exploration
+    peuvent alors être utilisés pour trouver les cas où un tel traitement supprime des contenus
+    scientifiques qui devraient être gardés dans l’optique de la recherche menée. La phase de traitement
+        manuel permet alors de corriger ces erreurs.</span></p></div>
+
+    <p class="mypara"> <span class="marge">	Une observation particulièrement étonnante pouvant être réalisée à
+    partir des résultats précédents est la présence de bibliographies pour <em>L'Espace Géographique</em>
+    alors que la méthode mise en œuvre est censée afficher le contenu textuel après la dernière
+    bibliographie. Ceci provient du fait que l’UAR <em>Persée </em>a parfois répété dans ses données que la
+    première partie d’une bibliographie (située sur une première colonne). Le texte correspondant à la
+    dernière bibliographie annotée par l’UAR <em>Persée</em> (située sur la seconde colonne) se situe alors
+    avant cette première partie répétée ce qui explique l’affichage de cette dernière dans les résultats,
+    malgré la méthode mise en place et une annotation correcte réalisée par l’UAR <em>Persée. </em>De
+    nombreux autres éléments trouvés après les bibliographies dans cette revue relèvent de publicités ou de
+    recommandations aux auteurs qui n’ont pas été annotées et qui méritent d’être supprimés dans le cadre
+    de cette recherche. Pour deux documents seulement (spgeo_0046-2497_1988_num_17_2_2760 et
+    spgeo_0046-2497_1984_num_13_4_3946), la suppression de toute la partie après la dernière bibliographie
+    apparaît comme une erreur. Ces deux cas ont fait l’objet de corrections lors de la phase de traitement
+    manuel.</span></p>
+
+    <p class="mypara"> <span class="marge">	Pour les <em>Annales de Géographie</em>, il est possible de
+    remarquer la présence de nombreuses notes biographiques mais aussi de textes plus longs. Une grande
+    partie de ces textes relèvent de comptes-rendus qui ont été définis de manière erronée comme
+    « Article » par l’UAR <em>Persée</em> et qui mentionnent, dès le départ, en note bibliographique la
+    référence traitée par le compte-rendu. Ces documents ont été enlevés du corpus « Article » et corrigés
+    dans le corpus « ArticlePlusCr » en traitement manuel. Au-delà de ces comptes-rendus mal référencés,
+    seulement deux articles (geo_0003-4010_1905_num_14_76_6413 et geo_0003-4010_1892_num_1_4_19938) et un
+    document situé dans une limite floue entre l’article et le compte-rendu
+    (geo_0003-4010_1907_num_16_88_6842) ont fait l’objet de corrections manuelles suite à l’application de
+    la méthode précédemment explicitée.</span></p>
+
+    <div id="PlusieursBiblios"><p class="mypara"> <span class="marge">	Une deuxième exploration a
+        été réalisée pour identifier les
+    articles où il y a plusieurs bibliographies. En effet, la méthode qui a été exposée ne prend pas en
+    compte ces cas particuliers puisqu’elle ne traite que de la dernière bibliographie. Les résultats
+    obtenus montrent que peu d’articles possèdent plusieurs bibliographies
+        (<a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'geo' 'EBl2' %}" >@ArticleAnnPlusieursBiblios</a>
+        pour les <em>Annales de Géographie</em> et
+        <a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'spgeo' 'EBl2' %}" >@ArticleEspPlusieursBiblios</a>
+        pour <em>L’Espace Géographique</em>). Après un examen de ces cas,
+    j’ai choisi d’appliquer pour le traitement la méthode simple de retrait à partir des coordonnées
+    graphiques quand la bibliographie concernée n’est pas la dernière du document et de faire des
+        modifications manuellement si le problème précédemment mentionné existe.</span></p></div>
+
+    <div id="ExploBiblioMotAvant"><p class="mypara"> <span class="marge">	Une troisième exploration a été
+        menée pour vérifier si certains
+    mots pouvant annoncer les bibliographies ne se trouvent pas en dehors des parties délimitées par l’UAR
+    <em>Persée</em>. La même méthode que pour les résumés et les mots-clés a été utilisée avec une
+    recherche exhaustive et un examen détaillé des résultats
+        (<a href="https://analytics.huma-num.fr/EtPistezMots/amelior/PresenceMotAvantObjetResult/Article/geo/Biblio" >@ArticleAnnBiblioAnnonceCherche</a>
+    pour les <em>Annales de Géographie</em> et
+        <a href="https://analytics.huma-num.fr/EtPistezMots/amelior/PresenceMotAvantObjetResult/Article/spgeo/Biblio" >@ArticleEspBiblioAnnonceCherche</a>
+    pour <em>L’Espace Géographique</em>) afin de déterminer d’éventuels faux positifs et de fixer la
+        délimitation de la zone de recherche la plus pertinente possible.</span></p></div>
+
+    <div id="BiblioInCR"><p class="mypara"> <span class="marge">Enfin, une dernière exploration traite
+        plus spécifiquement des
+    comptes-rendus. Il s’agit d’identifier tous les cas où un compte-rendu possède au moins une
+    bibliographie :
+        <a href="{% url 'AmeliorText:FontionGeneralExplor' 'ArticlePlusCr' 'geo' 'EBl3' %}" >@ArticlePlusCrAnnBiblioInCr</a>
+        pour les <em>Annales de Géographie</em> et
+        <a href="{% url 'AmeliorText:FontionGeneralExplor' 'ArticlePlusCr' 'spgeo' 'EBl3' %}" >@ArticlePlusCrEspBiblioInCr</a>
+        pour <em>L’Espace Géographique</em>. Il est facile de trouver alors
+    plusieurs comptes-rendus présentant la même difficulté que ce qui avait repéré précédemment pour des
+    comptes-rendus malencontreusement référencés comme article. Pour contourner cette difficulté, un
+    retrait en utilisant les coordonnées graphiques a été privilégié pour les comptes-rendus lors de la
+    phase de traitement. Les résultats de cette exploration ont été utilisés également pour vérifier que
+    les comptes-rendus présentant des bibliographies s’étendant sur plusieurs pages successives, ne
+    présentent pas le problème de répétitions précédemment rencontré dans le cadre des articles. Seulement
+    quatre cas présentant ce problème ont été détectés. Ils ont été corrigés manuellement dans le corpus
+        « ArticlePlusCr ».</span></p></div>
+
+<h4 id="IV8b">b) Traitements automatisés <a href="#IV8b-ref">&#8617;</a></h4>
+
+
+    <p class="mypara"> <span class="marge">	Le traitement des bibliographies peut être facilement réalisé en
+    cochant la case en face de l’intitulé : « Supprimer les bibliographies par leurs coordonnées graphiques
+    et tout ce qui suit la dernière bibliographie d’un article » dans la boite de dialogue de
+    l’interface<sup><a id="fn29-ref" class="note" href="#fn29">29</a></sup> dédiée à cette partie. Pour
+        faire suite à la
+    troisième exploration, l’interface propose également de préciser des termes et une zone de recherche
+    pour effacer les annonces de bibliographies n’étant pas incluses dans les annotations de l’UAR <em>Pers
+        ée</em>. Suite à l’examen des résultats obtenus lors de la troisième exploration, les termes
+    « BIBLIOGRAPHIE », « Bibliographie », « Références » , « Orientation » et une zone de recherche de 20
+    mots<sup><a id="fn30-ref" class="note" href="#fn30">30</a></sup> avant chaque bibliographie ont été
+        retenus pour les deux corpus « Article » et « ArticlePlusCr ».</span></p>
+
+<h4 id="IV8c">c) Traitements manuels <a href="#IV8c-ref">&#8617;</a></h4>
+
+
+<p class="mypara"> <span class="marge">	Tous les traitements manuels (
+    <a href="https://analytics.huma-num.fr/EtPistezMots/amelior/ConsultEltExcept/Article/Biblio" >@ArticleTraitMainEltBiblio</a>
+    et
+    <a href="https://analytics.huma-num.fr/EtPistezMots/amelior/ConsultDocExcept/Article/Biblio" >@ArticleTraitMainExceptDocBiblio</a>
+    pour le corpus « Article »,
+    <a href="https://analytics.huma-num.fr/EtPistezMots/amelior/ConsultEltExcept/ArticlePlusCr/Biblio" >@ArticlePlusCrTraitMainEltBiblio</a>
+    et <a href="https://analytics.huma-num.fr/EtPistezMots/amelior/ConsultDocExcept/ArticlePlusCr/Biblio" >@ArticlePlusCrTraitMainExceptDocBiblio</a>
+    pour le corpus « ArticlePlusCr ») proviennent des constats
+    réalisés lors de la phase d’exploration.</span></p>
+
+<h3 id="IV9">9) Annexes <a href="#IV9-ref">&#8617;</a></h3>
+
+<p class="mypara"> <span class="marge">	Les annexes s’étendant sur plusieurs pages ne présentent pas le
+    problème précédemment explicité pour les bibliographies. Une exploration a été effectuée pour détecter
+    d’éventuelles annonces des annexes avant les zones graphiques tracées par l’UAR <em>Persée</em> sur le
+    modèle de ce qui a été réalisé pour les résumés, les mots-clés et les bibliographies<em>.</em> Les
+    résultats obtenus (<a href="https://analytics.huma-num.fr/EtPistezMots/amelior/PresenceMotAvantObjetResult/Article/geo/Annexe" >@ArticleAnnAnnexeMotAnnonce</a>
+    pour les <em>Annales de Géographie</em> et
+    <a href="https://analytics.huma-num.fr/EtPistezMots/amelior/PresenceMotAvantObjetResult/Article/spgeo/Annexe" >@ArticleEspAnnexeMotAnnonce</a>
+    pour <em>L’Espace Géographique</em>) montrent qu’un seul document des <em>Annales de Géographie</em>
+    est concerné. Le traitement des deux corpus s’est fait simplement en retirant les annexes à l’aide des
+    coordonnées graphiques délimitées par l’UAR <em>Persée </em>et en tenant compte des résultats de
+    l’exploration menée. Il n’y a pas eu de traitement manuel réalisé pour les annexes.</span></p>
+
+<h3 id="IV10">10) Titre des parties <a href="#IV10-ref">&#8617;</a></h3>
+
+<p class="mypara"> <span class="marge">	Il n’y a pas eu d’exploration spécifique menée pour cette partie.
+    Les titres des parties ont simplement été remplacés par leur version corrigée. Pour cela, les
+    coordonnées graphiques des fenêtres et les corrections documentées par l’UAR <em>Persée </em>ont été
+    utilisées. Il n’y a pas eu de traitement manuel sur les titres des parties.</span></p>
+
+<h3 id="IV11">11) Figures <a href="#IV11-ref">&#8617;</a></h3>
+
+<h4 id="IV11a">a) Explorations <a href="#IV11a-ref">&#8617;</a></h4>
+
+
+    <p class="mypara"> <span class="marge">	Les figures ont été également délimitées par l’UAR <em>Persée</em>
+    et leur titre ont été aussi corrigés lors de la phase de documentation infrapaginaire. Ces titres
+    peuvent être annoncés par des termes généraux comme « Fig » ou « Figure » et d’autres dénominations
+    plus spécifiques comme « Tableau », « Carte », « Croquis » … Une exploration a tout d’abord été
+    effectuée pour rechercher ces annonces les plus fréquentes. La méthode utilisée recense tous les
+    premiers mots rencontrés dans l’ensemble des titres de chaque revue puis les classe par ordre
+    décroissant de fréquence. Les résultats obtenus
+        (<a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'geo' 'EF1' %}" >@ArticleAnnFreqAnnonceFig</a>
+        pour les <em>Annales de Géographie</em> et
+        <a  href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'spgeo' 'EF1' %}" >@ArticleEspFreqAnnonceFig</a>
+    pour <em>L’Espace Géographique</em>) montrent une forte dissymétrie entre les deux revues. Le nombre de
+    mot trouvés pour <em>L’Espace Géographique</em> est très inférieur car cette revue a globalement
+    réalisé des annonces plus normées pour les
+        figures<sup><a id="fn31-ref" class="note" href="#fn31">31</a></sup>. À
+    partir de ces résultats, il est facile de repérer les termes qui relèvent d’annonces de figures et d’en
+    dresser une liste assez exhaustive<sup><a id="fn32-ref" class="note" href="#fn32">32</a></sup>.</span></p>
+
+    <p class="mypara"> <span class="marge">	La suppression des annonces générales (« Fig », « Figure »…)
+    s’explique facilement par le fait qu’elles sont variables entre les deux revues et les époques. Elles
+    dépendent avant tout de choix éditoriaux. Le sort des dénominations spécifiques (« Tableau »,
+    « Carte », « Croquis »…) a suscité plus de questionnements dans la mesure où elles font référence plus
+    explicitement à un contenu scientifique. Toutefois, elles présentent également des hétérogénéités dans
+    le temps et entre revues. Un examen plus en détail permet de constater qu’elles ne sont pas
+    essentielles par rapport aux contenus scientifiques. Par exemple, les titres, « Carte de la région
+    parisienne » et « Région parisienne », peuvent tout aussi bien convenir pour la même figure. Ces
+    réflexions ont conduit à supprimer également ces dénominations plus spécifiques des textes à analyser.</span></p>
+
+    <div id="FigureTitreSlash"><p class="mypara"> <span class="marge">	Une seconde exploration a consisté
+        comme pour les titres à afficher
+    tous les titres de figures contenant une ou des barres obliques. Le résultat obtenu pour les
+    <em>Annales de Géographie</em>
+        (<a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'geo' 'EF2' %}" >@ArticleAnnFigTitreSlash</a>)
+        met en évidence qu’entre 1991 et 1998, beaucoup de titres de figures
+    de cette revue ont été traduits en anglais avec une séparation par une barre oblique entre le titre
+    français et anglais. Comme pour les titres, il a été choisi de garder seulement la partie française
+        .</span></p></div>
+
+    <p class="mypara"> <span class="marge">	L’OCR des figures donne lieu à deux situations très différentes
+    selon que le logiciel utilisé pour cette tâche par l’UAR <em>Persée</em> a détecté ou non que la figure
+    était une image. Dans le cas de nombreux tableaux, cartes ou graphiques par exemple, le logiciel a
+    souvent continué à reconnaître automatiquement le texte. Ces parties présentent souvent des éléments
+    textuels discontinus et parfois répétitifs dans le cas de certains tableaux. Ces éléments qui relèvent
+    du contenu des figures n’ont pas été gardés même s’ils renvoient à des contenus scientifiques car leur
+    forme est souvent très différente de celles du corps du texte. Une difficulté rencontrée provient du
+    fait que les fenêtres graphiques tracées par l’UAR <em>Persée</em> sur les figures contiennent parfois
+    le titre, mais pas toujours. Il a été, par conséquent, nécessaire d’essayer de différencier ces deux
+    cas pour savoir si après suppression du texte contenu dans les fenêtres graphiques tracées, il fallait
+    ajouter ou non le titre corrigé.</span></p>
+
+    <div id="FigureTitreDetect"><p class="mypara"> <span class="marge">	Une troisième exploration a été menée
+        dans cet objectif en
+    reprenant la technique mise en place pour les titres. Il s’agit de rechercher pour chaque figure si
+    dans le contenu textuel inclus dans la fenêtre graphique correspondante tracée par l’UAR <em>Pers
+        ée</em> une suite de mots est proche du titre corrigé de la figure. À partir des résultats obtenus
+    (<a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'geo' 'EF3' %}" >@ArticleAnnTitreFigCherche</a>
+        pour les <em>Annales de Géographie</em> et
+        <a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'spgeo' 'EF3' %}" >@ArticleEspTitreFigCherche</a>
+        pour <em>L’Espace Géographique</em>), la technique utilisée pour les
+    titres, à savoir la détermination d’un seuil de ressemblance à partir duquel le titre est très
+    probablement trouvé, ne s’est pas révélée satisfaisante. En effet, l’OCR permet d’avoir un texte
+    souvent discontinu sur ces zones correspondant à des figures. Le titre d’une figure se retrouve assez
+    souvent en plusieurs parties entrecoupées par des mots du contenu de la figure. Par conséquent, la
+    méthode consistant à rechercher une séquence continue n’est pas toujours pertinente. C’est pourquoi,
+        une quatrième exploration a été menée pour essayer de trouver une méthode plus adaptée.</span></p></div>
+
+    <div id="FigureTitreDiscon"><p class="mypara"> <span class="marge">	La démarche utilisée consiste à
+        évaluer pour chaque mot du titre
+    s’il existe le même mot ou un terme lui ressemblant
+    fortement<sup><a id="fn33-ref" class="note" href="#fn33">33</a></sup> dans tout le contenu textuel
+        inclus dans la
+    fenêtre graphique de la figure correspondante. Il est ensuite possible d’obtenir un ratio entre le
+    nombre de  cas positifs et le nombre total de mots du titre de la figure. Les résultats obtenus (
+        <a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'geo' 'EF5' %}" >@ArticleAnnTitreFigChercheDiscon</a>
+        pour les <em>Annales de Géographie</em> et
+        <a href="{% url 'AmeliorText:FontionGeneralExplor' 'Article' 'spgeo' 'EF5' %}" >@ArticleEspTitreFigChercheDiscon</a>
+        pour <em>L’Espace Géographique</em>) montrent que des titres
+    discontinus dans l’OCR peuvent ainsi être plus facilement détectés. Toutefois, ces résultats ont permis
+    également de mettre en lumière un constat : sur les titres courts, le ratio obtenu peut varier de
+    manière importante suivant la présence ou l’absence de quelques détections. Il est alors difficile de
+    fixer un seuil permettant de discriminer les résultats corrects de ceux erronés. Cette expérimentation
+    et ce constat m’ont finalement fait privilégier pour le traitement une méthode mixte : pour les titres
+    inférieurs ou égaux à 5 mots, la première technique explicitée (celle employée pour les titres) a été
+    utilisée ; pour les titres supérieurs à 5 mots, la deuxième technique venant d’être explicitée, a été
+    employée. Ce seuil de 5 mots n’a pas été déterminé à la suite d’une évaluation quantifiée mais de
+        manière approchée à partir des constats réalisés.</span></p></div>
+
+    <p class="mypara"> <span class="marge">	Une dernière difficulté importante a été rencontrée au niveau des
+    figures pour lesquelles aucun texte n’a été détecté par l’OCR. Dans ce cas-ci, il est particulièrement
+    complexe d’enlever les termes d’annonces de figures en privilégiant les zones textuelles situées juste
+    avant ou après les figures parce qu’il est difficile de savoir où sont précisément localisés ces zones
+    par rapport au texte. Après réflexion, j’ai décidé d’enlever tous les mots d’annonces de figure
+    (définis à l’aide de la première exploration) de l’ensemble des pages contenant au moins une figure
+    pour contourner ce problème. Ce qui m’a convaincu d’opter pour ce choix est le constat que tous ces
+    termes d’annonces commencent par une majuscule, il y a donc très peu de chance qu’il se retrouve
+    ailleurs que dans les titres de figures mise à part pour des références du type « Cf. Fig ».</span></p>
+
+<h4 id="IV11b">b) Traitements automatisés <a href="#IV11b-ref">&#8617;</a></h4>
+
+
+    <p class="mypara"> <span class="marge">	Les traitements automatisés réalisés
+        (<a href="https://analytics.huma-num.fr/EtPistezMots/amelior/TraitHome/Figure/3" >@ArticleTraitAutoFigure</a>
+        pour le corpus « Article » et
+        <a href="https://analytics.huma-num.fr/EtPistezMots/amelior/TraitHome/Figure/4" >@ArticlePlusCrTraitAutoFigure</a>
+        pour le corpus « ArticlePlusCr ») ont permis d’enlever l’ensemble des
+    mots d’amorces et d’ajouter les titres sans les parties anglaises dans les figures où le titre a été
+    détecté dans la fenêtre graphique délimitée par l’UAR <em>Persée </em>en utilisant la méthode mixte
+    précédemment explicitée. Concernant la première démarche utilisée pour les titres inférieurs ou égaux à
+    5 mots, le seuil retenu pour juger si le titre a été trouvé est de 0,75. Concernant la deuxième
+    démarche pour les titres supérieurs à 5 mots, le seuil est de 0,7. Ces seuils ont été déterminés à
+    l’aide des résultats obtenus lors de la troisième et quatrième explorations mais le nombre de cas et
+    d’exceptions n’a pas permis de déterminations aussi précises que celles menées pour les titres (<em>cf
+        .</em> section <a href="#IV2">IV.2</a>)</span></p>
+
+    <p class="mypara"> <span class="marge">Il n’y a pas eu de traitement manuel ajouté pour les figures.</span></p>
+
+
+ <h3 id="IV12">12) Fin de documents <a href="#IV12-ref">&#8617;</a></h3>
+
+<h4 id="IV12a">a) Explorations <a href="#IV12a-ref">&#8617;</a></h4>
+
+    <p class="mypara"> <span class="marge">	La première exploration menée précédemment pour les bibliographies
+        (<em>cf.</em> section <a href="#IV8">IV.8</a>) a montré que plusieurs documents de <em>L'Espace
+            Géographique</em> se
+    terminent par la présence de publicités ou de recommandations aux auteurs. À la suite de cette
+    exploration, les traitements réalisés ont permis de retirer ces éléments pour l’ensemble des documents
+    contenant une bibliographie. Toutefois, tous les documents n’ayant pas de bibliographie, certains
+    pouvant présenter également des publicités ou des recommandations aux auteurs n’ont de fait pas été
+    traités. L’observation des cas trouvés à partir des résultats concernant les bibliographies a permis
+    d’identifier une structure commune de ces éléments. Alors que le texte scientifique se caractérise dans
+    <em>L'Espace Géographique</em> par une mise en page sur deux colonnes, ces éléments particuliers se
+    différencient très souvent par leur extension sur une seule colonne. Les lignes correspondant à ces
+    parties se retrouvent centrées sur la page. Il a par conséquent été décidé de rechercher tous les
+    documents sans bibliographie présentant sur leur dernière page au moins deux lignes d’affilée centrées
+    par rapport à la page. Le résultat obtenu
+        (<a href="{% url 'AmeliorText:LastPageCenter' 'Article' 'spgeo' %}" >@ArticleEspLignesCentrFin</a>)
+    permet de détecter plusieurs contenus qui méritent en effet d’être retirés des textes à analyser car
+    relevant de publicités ou de recommandation aux auteurs.</span></p>
+
+    <p class="mypara"> <span class="marge">	Toutefois, ce résultat présente aussi plusieurs cas de
+    faux-positifs qu’il n’est pas pertinent de supprimer des textes à analyser car ils relèvent du contenu
+    scientifique des documents. Comme pour les notes de bas de page, j’ai décidé de coupler cette recherche
+    d’une structure spatiale particulière à une détermination faisant également appel au contenu textuel.
+    En effet, il peut être observé à partir des résultats obtenus que les éléments recherchés peuvent être
+    aussi caractérisés à l’aide d’un petit ensemble de termes spécifique : « GIP », « collection »,
+    « recommandation », « Colloque »… Après avoir recensé ces derniers, la technique mise au point pour le
+    traitement repose donc sur la recherche à la fois d’une ligne centrée sur la dernière page d’un
+    document et sur la détection d’un de ces mots spécifiques dans la ligne en question.</span></p>
+
+    <div id="FinDocDebutLigne"><p class="mypara"> <span class="marge">	Une deuxième exploration a enfin été
+        menée suite au constat de deux
+    mentions récurrentes, « Manuscrit reçu le … » et « Manuscrit prêt le ... » en fin de document de la
+    plupart des articles de <em>L'Espace Géographique</em> jusqu’aux années 1980. Le résultat obtenu
+        (<a href="{% url 'AmeliorText:DetectDebutLigne' 'Article' 'spgeo' %}" >@ArticleEspManuscritFin</a>)
+    présente toutes les lignes commençant par « Manuscrit » dans cette revue. Ils correspondent tous aux
+    mentions recherchées. Il n’y a pas eu de recherche équivalente menée pour les <em>Annales de
+        Géographie</em> car il n’y a pas eu d’observation de mentions récurrentes marquant la fin des
+        documents.</span></p></div>
+
+<h4 id="IV12b">b) Traitements automatisés <a href="#IV12b-ref">&#8617;</a></h4>
+
+
+    <p class="mypara"> <span class="marge">	Le traitement automatisé des fins de document fait suite aux
+    explorations menées. En effet, l’utilisateur peut opter pour la suppression des contenus situés sur la
+    dernière page de <em>L'Espace Géographique</em> et après une ligne centrée contenant des termes
+    spécifiques que l’utilisateur peut définir. De plus, il est possible de supprimer tous les passages de
+    cette revue situés après une ligne commençant par le terme « Manuscrit ». Ces deux options ont été
+    utilisées pour les deux corpus de cette recherche. La même liste de termes spécifiques a été utilisée
+    dans les deux cas
+        (<a href="https://analytics.huma-num.fr/EtPistezMots/amelior/TraitHome/FinDoc/3" >@ArticleTraitAutoFinDoc</a>
+        pour le corpus « Article » et
+        <a href="https://analytics.huma-num.fr/EtPistezMots/amelior/TraitHome/FinDoc/4" >@ArticlePlusCrTraitAutoFinDoc</a>
+        pour le corpus « ArticlePlusCr »). Il n’y a pas eu de traitement
+    manuel ajouté pour les fins de documents.</span></p>
+
+    <p class="mypara"> <span class="marge">	Suite à cet examen méthodique des différentes parties des
+    documents, une approche complémentaire centrée plus sur l’échelle des mots a été effectuée.</span></p>
+
+
+
+<h2 id="V">V) Améliorations réalisées grâce à l’échelle des mots <a href="#V-ref">&#8617;</a></h2>
+
+<h3 id="V1">1) Travail préalable et décisif pour aborder cette nouvelle échelle <a href="#V1-ref">&#8617;</a></h3>
+
+    <p class="mypara"> <span class="marge">	L’objectif d’un travail à l’échelle des mots est de corriger des
+    erreurs d’OCR. La prise en charge de cette échelle a été longtemps repoussée du fait de l’absence d’une
+    référence numérique satisfaisante quant au vocabulaire de la géographie. Il existe bien des sites
+    s’attelant à une telle entreprise comme
+        Hypergéo<sup><a id="fn34-ref" class="note" href="#fn34">34</a></sup>.
+    Toutefois, une prise en compte des références existantes sous forme papier montre qu’il existe une
+    pluralité de dictionnaires de référence (Bonnamour, 2004). D’une manière plus générale, un recensement
+    exhaustif du vocabulaire de la géographie est difficilement réalisable au vu des frontières floues de
+    cette discipline et de son évolution
+        permanente<sup><a id="fn35-ref" class="note" href="#fn35">35</a></sup>. Pour
+    essayer de faire au mieux dans un temps raisonnable, l’ensemble des termes de cinq dictionnaires a été
+    collecté :</span></p>
+
+<ul>
+<li>P. George et F. Verger, <em>Dictionnaire de la géographie</em>, 3e édition 2009, (1re édition 1970), Quadrige / Presses Universitaires de France, Paris</li>
+<li>R. Brunet, R. Ferras et H. Théry, <em>Les mots de la géographie</em>, 3e édition 1996, (1re édition 1992), GIP RECLUS et la documentation française, Montpellier-Paris</li>
+<li>Y. Lacoste, <em>De la géopolitique aux paysages : dictionnaire de la géographie</em>, 2003, Armand Colin, Paris</li>
+<li>J. Lévy et M. Lussault dir., Dictionnaire<em> de la géographie et de l’espace des sociétés</em>, 2003, Belin, Paris</li>
+<li><em>Hypergéo</em>, l’encyclopédie électronique moissonnée en 2018</li></ul>
+
+    <p class="mypara"> <span class="marge">	L’application permet de télécharger les termes récencés pour chaque
+    dictionnaire en utilisant les liens suivant : <a
+            href="{% url 'AmeliorText:DownloadDico' 'VergerFin' %}" >DicoGeorgeVerger</a>, <a
+            href="{% url 'AmeliorText:DownloadDico' 'Brunet' %}" >DicoBrunet</a>, <a
+            href="{% url 'AmeliorText:DownloadDico' 'Lacoste' %}" >DicoLacoste</a>, <a
+            href="{% url 'AmeliorText:DownloadDico' 'LevyLussault' %}" >DicoLevyLussault</a> <a
+            href="{% url 'AmeliorText:DownloadDico' 'Hypergeo' %}" >DicoHypergeo</a>.</span></p>
+
+    <p class="mypara"> <span class="marge">	Le travail sur les mots ne se limitant pas aux termes
+    géographiques, des ressources électroniques assez exhaustives ont été utilisées pour avoir une base des
+    termes français et des noms propres :</span></p>
+
+
+<ul>
+<li> <em>Morphalou</em>, Analyse et traitement informatique de la langue française - UMR 7118,
+    2019<sup><a id="fn36-ref" class="note" href="#fn36">36</a></sup></li>
+<li><em>Prolex</em>, Laboratoire d'informatique de l’université François-Rabelais de Tours, 2018<sup><a
+        id="fn37-ref" href="#fn37">37</a></sup></li>
+</ul>
+
+
+    <p class="mypara"> <span class="marge">	Pour les noms de géographes, la base constituée par la
+    Géothèque<sup><a id="fn38-ref" class="note" href="#fn38">38</a></sup> a été récupérée. Bien que cette
+        base ne soit plus
+    mise à jour et qu’elle soit reconnue comme loin d’être complète, elle a été utilisée du fait de sa
+    facilité d’accès et de l’impossibilité une nouvelle fois d’être exhaustif sur ce sujet.</span></p>
+
+    <p class="mypara"> <span class="marge">	Cet ensemble de ressources a servi de base de référence pour le
+    travail mené sur les mots en réalisant une fusion de ces dictionnaires en une seule liste globale (avec
+    une suppression des doublons et un travail spécifique concernant les pluriels des termes
+    géographiques<sup><a id="fn39-ref" class="note" href="#fn39">39</a></sup>). La présentation de ce
+        travail débute par un examen des mots présentant des « ç » mal reconnus.</span></p>
+
+
+<h3 id="V2">2) Les « ç » <a href="#V2-ref">&#8617;</a></h3>
+
+<h4 id="V2a">a) Explorations <a href="#V2a-ref">&#8617;</a></h4>
+
+
+    <p class="mypara"> <span class="marge">	Cette entrée peut paraître étonnante mais des problèmes récurrents
+    dans l’OCR ont été rapidement détectés à ce niveau. Il existe des textes où les mots avec des « ç » ont
+    été globalement bien reconnus et d’autres où cette reconnaissance peut être qualifiée de médiocre.
+    Cette hétérogénéité se retrouvant au sein même d’une même revue sur des documents dont la typographie
+    est similaire, l’explication de ce phénomène provient de la version du logiciel d’OCR utilisé. Tous les
+    documents n’ayant pas été océrisés au même moment, cela a créé des différences non négligeables au sein
+    des textes obtenus. Quand la reconnaissance est médiocre, le c cédille est le plus souvent remplacé par
+    un blanc. Par exemple, « français » devient une suite de deux mots : « fran » et « ais ». À partir ce
+    constat, l’idée a été d’examiner l’ensemble des mots de tous les documents en testant si en reliant
+    deux mots successifs par un « ç », la combinaison créée existe dans la base de référence utilisée.</span></p>
+
+    <p class="mypara"> <span class="marge">	Le problème est qu’il existe potentiellement des cas où il n’est
+    pas forcément pertinent de remplacer deux mots successifs par la combinaison créée en les reliant par
+    un « ç »<sup><a id="fn40-ref" class="note" href="#fn40">40</a></sup>. La solution trouvée a résidé dans
+        une exploration
+    recherchant tous les mots avec une cédille dont la première partie (avant la cédille) et la deuxième
+    partie (après la cédille) sont des termes existants dans la base de référence utilisée. Le résultat
+    obtenu
+        (<a href="https://analytics.huma-num.fr/EtPistezMots/amelior/AfficheMotCedilleAvtApres" >@MotCedilleAvtApres</a>)
+        montre que le nombre de cas litigieux est très limité. Ce sont surtout
+    les termes finissant par « a » dans l’ensemble trouvé qui peuvent éventuellement poser
+        problème<sup><a id="fn41-ref" class="note" href="#fn41">41</a></sup>. Cette exploration tend à
+        montrer que ce problème est très
+    marginal. Il a tout de même été donné la possibilité d’exclure ces cas litigieux dans les traitements
+    réalisés car cela était particulièrement simple à effectuer après la réalisation de ce travail
+    exploratoire.</span></p>
+
+<h4 id="V2b">b) Traitements automatisés <a href="#V2b-ref">&#8617;</a></h4>
+
+<p class="mypara"> <span class="marge">	Le même traitement a été réalisé pour les deux corpus en remplaçant
+    tous les mots successifs (mot_i, mot_i+1) par la combinaison « mot_i + ‘ç’ + mot_i+1 » si et seulement
+    si cette combinaison se trouve dans la base de référence utilisée et ne fait pas partie des cas
+    litigieux précédemment explicités.</span></p>
+
+<h3 id="V3">3) Mots avec un appel de note <a href="#V3-ref">&#8617;</a></h3>
+
+<p class="mypara"> <span class="marge">	Les appels de note de bas de page, quand ils sont reconnus par
+    l’OCR, se traduisent par le mot concerné et le chiffre de l’appel de note directement accolé. Ce
+    phénomène pose problème car certains textes sont composés de nombreuses notes et certains termes sont
+    plus fréquemment que d’autres associés à une note de bas de page. Il a donc été décidé de passer en
+    revue automatiquement l’ensemble des mots situés sur une page présentant au moins une note de bas de
+    page. Tous ces termes ont été testés quand ils finissent par un chiffre ou deux chiffres pour voir si
+    leur forme réduite (sans ce(s) chiffre(s)) est dans la base de référence utilisée. Dans ce cas, ils ont
+    été remplacés par leur forme réduite dans les textes à analyser. Aucun traitement manuel n’a été
+    réalisé sur cette partie. La partie suivante concerne les mots coupés par une fin de ligne.</span></p>
+
+
+<h3 id="V4">4) Mots coupés par une fin de ligne <a href="#V4-ref">&#8617;</a></h3>
+
+    <p class="mypara"> <span class="marge">	Sur ce sujet de coupure des mots en fin de ligne, les textes
+    présentent comme pour les cédilles de fortes disparités en fonction de la version du logiciel d’OCR
+    utilisé. Il a été essayé de reconstituer ces fins de lignes en suivant la même technique que celle
+    utilisée pour les cédilles, c’est-à-dire en regardant si l’association de deux termes (le premier en
+    fin de ligne et le deuxième au début de la ligne d’après) forme un mot présent dans la base de
+    référence utilisée et s’il ne fait pas partie d’une liste de mots litigieux. Cette liste a été établie
+    en cherchant tous les termes dans la base de référence utilisée pouvant être constitué par
+    l’association de deux termes de cette même base de référence. Un travail a également été réalisé pour
+    normaliser certaines formes. Par exemple, si l’expression « l’espace » est coupée ainsi « l’es » -
+    « pace », elle ne peut pas être trouvée car « l’espace » n’appartient pas à la base de référence
+    utilisée. Il est ainsi d’utile d’enlever la forme « l’ » pour améliorer le traitement. De même si un
+    tiret a été ajouté entre les deux formes, il est utile de l’enlever avant de faire la détection.</span></p>
+
+    <p class="mypara"> <span class="marge">	La phase de traitement permet de choisir de réaliser un ensemble de
+    normalisations correspondant aux cas suivants : mot tout en majuscule ou avec une première lettre
+    seulement en majuscule, mot commençant ou finissant par une parenthèse ou des guillemets, mot finissant
+    par une virgule ou un point, mot commençant par « l’ » ou « L’ » et mots avec un tiret ajouté entre les
+    deux formes. Les deux corpus ont été traités de la même manière en choisissant d’effectuer ces
+    normalisations avant la détection.</span></p>
+
+    <br>
+
+    <p class="mypara"> <span class="marge">	Enfin, pour terminer l’explicitation de ces travaux d’amélioration,
+    certains ont été envisagés sans être réalisés. Ils sont tout de même évoqués dans la partie suivante
+    car ils représentent des pistes concrètes qu’il aurait été pertinent d’envisager plus tôt dans ce
+    travail. De plus, ils peuvent éventuellement servir à l’avenir pour des chercheurs qui voudraient
+    également travailler à partir de sources provenant de l’UAR <em>Persée</em>.</span></p>
+
+
+<h2 id="VI">VI) Améliorations envisagées mais non réalisées <a href="#VI-ref">&#8617;</a></h2>
+
+    <p class="mypara"> <span class="marge">	Il est nécessaire de reconnaître que l’hétérogénéité dans les
+    textes liée à des versions différentes du logiciel d’OCR n’est que partiellement corrigée par les
+    traitements précédents : les « ç » et les mots coupés par une fin de ligne. Il y a d’autres éléments
+    spécifiques comme la reconnaissance de la ponctuation qui présente des disparités. De plus, la
+    reconnaissance globale de tous les mots est également de qualité variable. Ces constats invitent à
+    penser qu’une ré-océrisation avec un transfert des données de documentation déjà existantes est une
+    solution pertinente à envisager. Une demande a été effectuée à l’UAR <em>Persée</em> dans ce sens mais
+    leur chaîne de production ne permettait pas une telle opération au moment de cette demande. J’ai par
+    conséquent envisagé de réaliser cette action de ré-océration à l’aide des services d’Huma-num.
+    Plusieurs difficultés ont été rencontrées et explique l’inachèvement de ce travail.</span></p>
+
+    <p class="mypara"> <span class="marge">	Tout d’abord, l’UAR <em>Persée</em>, pour générer ses PDF, garde
+    ses documents sous forme d’image en 200 dpi. Or, lors de la numérisation et de l’océrisation, les
+    images utilisées sont en 400 dpi. Cette meilleure qualité permet d’améliorer significativement les
+    résultats de l’OCR. Une fois ce travail effectué, les images en 400 dpi ne sont pas gardées par l’UAR
+    <em>Persée</em> mais sont stockées au Centre Informatique National de l’Enseignement Supérieur (CINES)
+    pour des raisons de sécurité. Il est bien sûr possible de récupérer ces documents mais cette action ne
+    s’est pas révélée aussi simple que prévu. La demande effectuée à ce niveau est restée sans suite.</span></p>
+
+    <p class="mypara"> <span class="marge">	Un autre problème vient du processus d’océrisation qui réalise un
+    ensemble de pré-traitements destiné à améliorer la reconnaissance. Parmi ces derniers, il y a le
+    redressement du texte si la page a été numérisée quelque peu de travers. En refaisant un OCR, le
+    redressement n’est pas exactement le même et par conséquent les coordonnées graphiques des mots peuvent
+    présenter des petites variations. Or, une grande partie du travail d’amélioration qui a été effectué
+    dans ce travail dépend de ces coordonnées
+        graphiques<sup><a id="fn42-ref" class="note" href="#fn42"></a></sup>. Trois
+    solutions sont envisageables : soit ré-aligner les nouvelles coordonnées graphiques des mots sur les
+    anciennes en écrivant un algorithme adapté à cette
+        tâche<sup><a id="fn43-ref" class="note"  href="#fn43">43</a></sup>  ;
+    soit ne rien faire mais il faudrait dans ce cas montrer que le type d’erreur venant d’être explicité
+    est marginal ; soit récupérer les coefficients de redressement de chaque page et réaliser ce
+    pré-traitement avant l’océrisation. La troisième solution semblant <em>a priori</em> la plus simple et
+    la plus sûre, une demande a été effectuée à l’UAR <em>Persée</em> sur ce sujet. Là encore, cette
+    demande est restée sans suite.</span></p>
+
+    <p class="mypara"> <span class="marge">	L’échec de ces deux demandes s’explique par le fait qu’elles ont
+    été effectuées au moment de la refonte de la chaîne de production de l’UAR <em>Persée</em>. Il y a eu
+    pour cet organisme des priorités plus importantes à gérer. De plus, de mon côté, il a fallu boucler ce
+    long travail d’amélioration des données pour envisager la production de résultats ainsi que leurs
+    analyses et interprétations. Ces raisons expliquent pourquoi ces demandes n’ont pas été renouvelées et
+    le choix d’abandonner cette piste de travail.</span></p>
+
+<h2 id="VII">VII) Synthèse méthodique et réflexive <a href="#VII-ref">&#8617;</a></h2>
+
+
+<p class="mypara"> <span class="marge">	L’interface permet d’accéder pour tout corpus à un récapitulatif
+    des choix effectués pour chaque traitement automatisé et à l’ensemble des traitements manuels réalisés
+    (<a href="{% url 'AmeliorText:SyntheseTraitement' 'Article' %}" >@ArticleSynthese</a> et
+    <a href="{% url 'AmeliorText:SyntheseTraitement' 'ArticlePlusCr' %}" >@ArticlePlusCrSynthese</a>).
+    De telles synthèses se sont révélées particulièrement utiles lors de l’effectuation de ces
+    travaux d’amélioration. Elles ont joué le rôle de tableaux de bord permettant de savoir quelles étapes
+    avaient été réalisées et avec quels paramètres pour chaque corpus. Une fois ces travaux d’amélioration
+    terminés, elles permettent de ne pas oublier et de rappeler le caractère très construit des corpus. Il
+    faut ici souligner qu’il n’est pas possible dans la plupart des publications sous la forme d’articles
+    scientifiques d’effectuer de tels développements. Il est alors possible de résumer les actions
+    réalisées de la manière suivante :</span></p>
+
+<p class="mypara"> <span class="marge">	Le travail d’annotation réalisé en amont par l’UAR <em>Persée</em>
+    a été utilisé pour sélectionner les corps des textes. Les notes de bas de page, bibliographies,
+    annexes, résumés, mots-clés et contenus des figures ont été exclus des textes à analyser. Un effort a
+    été effectué pour retirer les termes pouvant annonçant ces éléments spécifiques. Les titres des figures
+    ont été conservés en ôtant également les termes les annonçant (« Figure », « Fig »…). Un travail
+    d’identification des annotations de haut de page, de bas de page, de publicités et de certaines notes
+    biographiques a été effectué afin de supprimer ces éléments des textes à analyser. Enfin, tout un
+    travail a été mené à l’échelle des mots pour corriger certaines erreurs d’OCR.</span></p>
+
+<p class="mypara"> <span class="marge">	Un tel résumé, s’il reste exact dans ses grandes lignes, supprime
+    toutes les difficultés rencontrées et tous les compromis trouvés pour faire face à ces difficultés. Ce
+    qui a été effectué dans cette partie, peut être alors lu comme une remise en cause d’un effet de
+    « plain-pied » couramment pratiqué par le travail quantitatif. Au-delà de la dimension relevant de la
+    déconstruction et d’une prise de recul utile sur les documents utilisés, ces travaux d’amélioration ont
+    alimenté ainsi toute une réflexion par rapport à la thèse d’Olivier Orain.</span></p>
+
+
+<p class="mypara"> <span class="marge">	Les développements menés pour produire l’application permettent de
+    mettre en avant de manière détaillée le processus de construction des corpus tout en montrant à divers
+    endroit ses limites. Il y a la reconnaissance de plusieurs points de subjectivité s’expliquant à la
+    fois par un temps limité mais aussi par l’impossibilité d’une objectivation totale. Le travail mené est
+    évidemment perfectible mais des justifications complètes de tous les choix successifs opérés sont
+    particulièrement difficiles à tenir à partir du moment où le chercheur rentre dans les détails. Il faut
+    souligner qu’il existe toujours une certaine tension à révéler ces moments où la subjectivité du
+    chercheur se trouve mobilisée à l’intérieur d’une démarche quantitative. La réalisation d’une
+    application favorise un tel processus.</span></p>
+
+<p class="mypara"> <span class="marge">	Par rapport aux travaux d’amélioration ici menés, il est utile de
+    rappeler qu’il n’est pas facile de savoir quelle partie relève de ce qui peut être qualifié de détail
+    <em>a posteriori</em> par d’autres chercheurs. Par exemple, il est possible de penser que la partie
+    corrigeant les mots avec les « ç » ne conduit qu’à des améliorations négligeables au vu du poids réduit
+    de ces occurrences par rapport à l’ensemble des mots les plus utilisés. C’est pourtant l’erreur qui
+    ressortait le plus des premiers résultats statistiques que j’ai obtenus. C’est suite à ces résultats
+    que cette partie a été ajoutée. De plus, ce qui peut être parfois un détail d’un point de vue
+    quantitatif, peut se révéler loin d’être négligeable dans la critique et la compréhension induite des
+    sources.</span></p>
+
+<p class="mypara"> <span class="marge">	Enfin, une analyse globale des difficultés rencontrées permet de
+    distinguer plusieurs niveaux dans l’origine des problèmes. Premièrement, au niveau des revues en
+    elles-mêmes. Il existe certes des grandes formes qui se répètent (article, compte-rendu) mais ces
+    formes ne sont pas entièrement formatées. Il subsiste toujours des variations, des exceptions, des
+    évolutions chronologiques. Puis, le deuxième niveau de difficulté provient du travail de documentation
+    réalisé par l’UAR <em>Persée. </em>Même si ce travail est globalement d’une bonne qualité, certains
+    manques par rapport à l’objectif poursuivi dans cette thèse et certaines erreurs ont pu être
+    identifiés. Enfin, le troisième niveau est constitué par les premiers formats de fichier acquis avec
+    des données manquantes par rapport à l’ensemble réellement existant et quelques complexités sur
+    certains points spécifiques (par exemple les bibliographies).</span></p>
+
+<p class="mypara"> <span class="marge">	Ce travail d’amélioration, et en particulier les améliorations
+    envisagées et non réalisées (<em>cf.</em> section
+    <a href="#VI">VI</a>), permet dès lors de saisir qu’il y a bien au fur et à mesure des avancées une remontée
+    progressive dans la chaîne de production de l’UAR <em>Persée</em>. Les difficultés rencontrées sur les
+    mots-clés (<em>cf.</em> section <a href="#IV4">IV.4</a>)
+    m’avaient déjà conduit au-delà de mes sources originellement utilisés (les fichiers XML-TEI
+    et Érudit). En effet, cette étape m’avait permis de découvrir une partie des bases de données que l’UAR
+    <em>Persée</em> obtient directement en sortie de sa phase de documentation infrapaginaire. Le travail
+    envisagé mais non réalisé (<em>cf.</em> section <a href="#VI">VI</a>)
+    propose une remontée jusqu’à l’océrisation elle-même. La volonté de construire des
+    données de plus en plus adéquates mène ainsi à une déconstruction des données initialement obtenues de
+    plus en plus profonde.</span></p>
+
+<p class="mypara"> <span class="marge">	Ce processus rejoint les réflexions d’Andreas Fickers à propos
+    d’une actualisation de la pensée critique liée à l’ère numérique : « Pour mener une critique des
+    sources prétendant à une validité scientifique, il nous faut comprendre comment les données sont
+    codées, indexées et enrichies de métadonnées. Sans critique des sources numériques, nous abandonnons
+    une compétence clé du travail des historiens et
+    historiennes »<sup><a id="fn44-ref" class="note" href="#fn44">44</a></sup>. Dans cette optique, ce
+    travail peut être vu
+    comme un exemple concret qui illustre la complexité de ce processus et la progressivité qu’il requiert
+    et peut recouvrir.</span></p>
+
+<p class="mypara"> <span class="marge">	La dernière étape a été l’écriture d’une fonction qui permet de
+    prendre en compte l’ensemble des améliorations stockées dans la base de données pour tous les
+    documents d’un corpus d’étude et de produire les textes correspondants. Cette
+    fonction<sup><a id="fn45-ref" class="note" href="#fn45">45</a></sup> n’est accessible que pour les
+    utilisateurs ayant des
+    droits sur un corpus. Une fois cela réalisé, une étape pour finaliser ces corpus a été nécessaire
+    .</span></p>
+
+
+<br>
+
+
+
+
+
+
+<!-- NOTE DEB -->
+
+<p class="present">Notes du chapitre</p>
+
+<p id="fn1">[1] Nous renvoyons le lecteur intéressé par un panorama plus complet sur ce point à la thèse de
+    Bénédicte Pincemin (1999), notamment au chapitre VII : "Caractérisation d'un texte dans un corpus : du
+    quantitatif vers le qualitatif",§ A"Définir un corpus", p 415-427. Ce passage est publié à l’adresse
+    suivante :
+    <a target="_blank"
+       href="http://www.revue-texto.net/1996-2007/Corpus/Publications/pincemin_ad_1999.pdf">http://www.revue-texto.net/1996-2007/Corpus/Publications/pincemin_ad_1999.pdf</a>  consulté le 18/09/2023.
+<a href="#fn1-ref">&#8617;</a></p>
+<p id="fn2">[2] Les guillemets sont ici utilisés pour signifier un renvoi à l’expression commune de
+    « nettoyage des données » et à une certaine réticence quant à la pertinence de cette expression comme l’explique cette partie.
+<a href="#fn2-ref">&#8617;</a></p>
+    <p id="fn3">[3] Colloque organisé par le <em>Pôle Informatique de Recherche et d'Enseignement en Histoire</em>
+    (PIREH) en 2019 à la Sorbonne.
+<a href="#fn3-ref">&#8617;</a></p>
+<p id="fn4">[4] Un intervalle entre 50 et 80 % du temps d’une recherche passé à préparer les données est
+    souvent annoncé de manière générale dans le domaine des données massives
+    <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Loh1">(Lohr, 2014)</a>. Il me semble
+    aussi assez bien correspondre à la réalité de la plupart des études d’analyses textuelles même quand
+    les ensembles de données travaillés ne sont pas massifs.
+<a href="#fn4-ref">&#8617;</a></p>
+<p id="fn5">[5] L’historicisation peut en effet découler des traitements statistiques ultérieurs.
+<a href="#fn5-ref">&#8617;</a></p>
+<p id="fn6">[6] Dans le cadre d’une correction qui vise seulement à supprimer un élément comme par exemple
+    une note de bas de page, il suffit de laisser ce champ « TextRemplacement » vide.
+<a href="#fn6-ref">&#8617;</a></p>
+<p id="fn7">[7] L’UAR <em>Persée </em>ayant travaillé à une refonte de leur chaîne de production, il est
+    possible que la problématique qui est ici exposée soit prise en compte par cet organisme si bien qu’elle ne sera plus d’actualité dans quelques années.
+<a href="#fn7-ref">&#8617;</a></p>
+<p id="fn8">[8] Ces astuces qui relèvent d’une forme de bricolage se justifient par le fait que si le
+    schéma change, il est nécessaire de régénérer toutes les données produites auparavant pour les adapter au nouveau schéma. Il est parfois moins coûteux d’utiliser localement un tel bricolage.
+<a href="#fn8-ref">&#8617;</a></p>
+<p id="fn9">[9] La raison expliquant le choix de cette distance relève de la commodité. Elle a été
+    implémentée dans une librairie Python couramment utilisée (difflib). Elle est par conséquent facilement applicable.
+<a href="#fn9-ref">&#8617;</a></p>
+<p id="fn10">[10] Si la taille du titre référencé par l’UAR <em>Persée</em> est de n mots, pour les titres de
+    moins de 10 mots, la recherche s’est effectuée sur l’ensemble des chaînes de caractères comprises entre
+    n-3 et n+3 mots sur les 50 premiers mots du texte ; pour les titres de 10 à 15 mots, entre n-5 et n+5
+    mots ; pour les titres de + de 15 mots, entre n-7 et n+7 mots. Ces seuils ont été fixés en fonction ce
+    qui a été jugé comme semblant le plus adapté suivant les situations. L’objectif a été d’essayer d’avoir
+    une bonne efficacité tout en gardant des temps de calcul raisonnable.
+<a href="#fn10-ref">&#8617;</a></p>
+<p id="fn11">[11] Ce seuil de 7 documents consécutifs est un choix subjectif permettant d’arrêter les
+    analyses quand les résultats sont globalement très bons.
+<a href="#fn11-ref">&#8617;</a></p>
+<p id="fn12">[12] Cette meilleure qualité s’explique autant par les documents de base (la qualité du papier
+    est parfois moins bonne et la typographie moins stable quand on remonte dans le temps) et par les
+    progrès des logiciels d’OCR. Les <em>Annales de Géographie</em> ont été traitées en par l’UAR Persée avant
+    <em>L’Espace Géographique</em>.
+<a href="#fn12-ref">&#8617;</a></p>
+<p id="fn13">[13] Si un titre court comme par exemple « La Bresse » est mal transcrit par l’OCR et qu’il est
+    répété au début du texte sans erreur de transcription cette fois-ci, cela provoque une erreur de
+    détection. Le risque est moindre avec un titre du type : « La Bresse, étude d’un géosystème complexe ».
+<a href="#fn13-ref">&#8617;</a></p>
+<p id="fn14">[14] En se basant sur la variable « user restrict » (<em>cf.</em> section
+    <a href="{% url 'DelimitCorpus:home'%}#IV2">Chap4.IV.2</a>)
+<a href="#fn14-ref">&#8617;</a></p>
+<p id="fn15">[15] La distance de Ratcliff/Obershelp a été justifiée rapidement. Elle n’a pas été proposée
+    pratiquement comme un choix possible parmi d’autres distances envisageables.
+<a href="#fn15-ref">&#8617;</a></p>
+<p id="fn16">[16] Pour être plus précis, avec les fenêtres graphiques des résumés traçées par l’UAR
+    <em>Persée</em>.
+<a href="#fn16-ref">&#8617;</a></p>
+<p id="fn17">[17] L’algorithme actuel laisse le texte des résumés directement issus de l’OCR. Idéalement, il
+    faudrait réaliser les travaux d’homogénéisation précédemment évoqués sur les textes stockés en
+    métadonnées par l’UAR <em>Persée</em> et remplacer les parties de l’OCR concernées (qui peuvent être
+        trouvées à
+    partir des coordonnées graphiques) par les textes corrigés. Il conviendrait donc d’améliorer quelque
+    peu l’algorithme de traitement si une telle décision était prise. Il faudrait également revenir sur la
+    difficulté concernant les bibliographies qui a été évoquée dans cette partie.
+<a href="#fn17-ref">&#8617;</a></p>
+<p id="fn18">[18] Une fois du fait de sa proximité avec la zone graphique qu’elle annonce, une autre fois du
+    fait d’une autre zone de mot-clé un peu plus lointaine mais restant à moins de 20 mots.
+<a href="#fn18-ref">&#8617;</a></p>
+<p id="fn19">[19] Après quelques essais, le seuil utilisé pour cette recherche pour détecter les sauts de
+    lignes a été de 50 pixels. Il peut être modifié dans la fonction « DocMotPageLigne » du fichier « AllApps/Pretraitement/Persee/DelimitCorpus/outils/xpath.py »
+<a href="#fn19-ref">&#8617;</a></p>
+<p id="fn20">[20] Les <em>Annales de Géographie</em> présente de très nombreuses exceptions avec des
+    articles qui  commencent jusqu’en 1998 très bas sur la page. Ces exceptions ne touchent que les
+    premières pages des articles qui ont déjà été traitées par ailleurs dans la partie sur les titres
+    principaux. Il n’est donc pas nécessaire de traiter plus en profondeur de ces exceptions.
+<a href="#fn20-ref">&#8617;</a></p>
+<p id="fn21">[21] Par exemple, sur la dernière page d’un l’article après la bibliographie, il n’existe
+        pas forcément de note de bas de page.
+<a href="#fn21-ref">&#8617;</a></p>
+<p id="fn22">[22] Ces cas prennent en compte quelques erreurs d’OCR dans la reconnaissance de ces bas de page.
+<a href="#fn22-ref">&#8617;</a></p>
+<p id="fn23">[23] Présentation brève de (ou des) auteur(s) en début (ou fin) d’article avec leur affiliation.
+<a href="#fn23-ref">&#8617;</a></p>
+<p id="fn24">[24] Ndlr et erratum.
+<a href="#fn24-ref">&#8617;</a></p>
+<p id="fn25">[25] Cette taille est comptée en nombre de mots. Pour comprendre cette valeur, les intervalles
+    composant les notes ont été ajoutés dans les résultats. Par exemple, une note ayant comme pour
+    intervalle [(3,6), (8,10),(13,15)] commence au troisième mot du texte de l’OCR, avec deux trous entre
+    le sixième et le huitième mot et entre le dixième et treizième mot (le septième, le onzième et le
+    douzième mot du texte de l’OCR n’appartiennent pas à la fenêtre graphique correspondant à cette note)
+    et une fin au quinzième mot. Dans ce cas, les deux trous sont de un mot et de deux mots. La
+    discontinuité maximale a par conséquent pour valeur 2.<br>
+ Le numéro de la note concernée, ainsi que les termes correspondant à ces intervalles ont été ajoutées,
+    permettant de retrouver là où se localisent ces discontinuités.
+<a href="#fn25-ref">&#8617;</a></p>
+<p id="fn26">[26] Il peut être en effet pensé qu’en utilisant les coordonnées graphiques des différentes
+    parties de bibliographies délimitées par l’UAR <em>Persée</em>, il va être possible de les enlever très facilement.
+<a href="#fn26-ref">&#8617;</a></p>
+<p id="fn27">[27] Ce procédé peut se justifier car dans le premier bloc de données, seules les
+    bibliographies étaient représentées. Si d’autres données sont présentes sur ces pages, elles
+    n’apparaissent pas dans ce premier bloc. En répétant l’ensemble du contenu textuel des pages contenant
+    les bibliographies avant le bloc textuel suivant, cela permet d’avoir des données complètes.
+<a href="#fn27-ref">&#8617;</a></p>
+<p id="fn28">[28] De manière évidente, le texte suivant la bibliographie mais aussi tous les autres éléments
+    textuels qui étaient sur les pages de bibliographies mais n’ont pas été logiquement intégrés dans le premier bloc.
+<a href="#fn28-ref">&#8617;</a></p>
+<p id="fn29">[29] Pour un utilisateur ayant des droits d’écriture sur un corpus.
+<a href="#fn29-ref">&#8617;</a></p>
+<p id="fn30">[30] Il n’existe que deux faux positifs sur le terme « Orientation » pour le document
+    spgeo_0046-2497_1992_num_21_1_3038 mais cela renvoie à une figure dont le contenu est par la suite
+    effacé. Il a ainsi paru pertinent de garder le seuil maximum testé. Il n’y a pas eu d’exploration avec
+    des seuils plus importants car les discontinuités maximales sont en fait dues à des phénomènes
+    marginaux de double colonne. La fenêtre graphique correspondant à la deuxième colonne trouve l’annonce
+    de la première colonne mais cette annonce est bien dans la fenêtre graphique tracée par l’UAR
+    <em>Persée</em> pour la première colonne comme le montre l’absence de doublon sur ces cas.
+<a href="#fn30-ref">&#8617;</a></p>
+<p id="fn31">[31] Le fait que <em>L'Espace Géographique</em> ne commence qu’en 1972 explique en partie cette
+    différenciation. Une partie provient aussi d’une politique éditoriale moins changeante sur ce sujet.
+<a href="#fn31-ref">&#8617;</a></p>
+<p id="fn32">[32] Pour les <em>Annales de Géographie</em>, seulement les 100 premiers termes ont été examinés.
+<a href="#fn2-ref">&#8617;</a></p>
+<p id="fn33">[33] Toujours en utilisant la distance de Ratcliff/Obershelp avec un seuil cette fois-ci de 0,8
+    (L’OCR sur ces zones de figures étant souvent plus perturbé que sur le corps du texte).
+<a href="#fn33-ref">&#8617;</a></p>
+<p id="fn34">[34] <a href ="http://www.hypergeo.eu/" target="_blank">http://www.hypergeo.eu/</a> consulté le 18/09/2023.
+<a href="#fn34-ref">&#8617;</a></p>
+<p id="fn35">[35] Les rééditions de plusieurs dictionnaires témoignent de ce phénomène.
+<a href="#fn35-ref">&#8617;</a></p>
+<p id="fn36">[36] <a href ="https://www.ortolang.fr/market/lexicons/morphalou" target="_blank">https://www.ortolang.fr/market/lexicons/morphalou</a> consulté le 18/09/2023.
+<a href="#fn36-ref">&#8617;</a></p>
+<p id="fn37">[37] <a href ="https://www.ortolang.fr/market/lexicons/prolex" target="_blank">https://www.ortolang.fr/market/lexicons/prolex</a> consulté le 18/09/2023.
+<a href="#fn37-ref">&#8617;</a></p>
+<p id="fn38">[38] <a href ="https://geotheque.org/">https://geotheque.org/</a> consulté le 18/09/2023.
+<a href="#fn38-ref">&#8617;</a></p>
+<p id="fn39">[39] La base « Morphalou » intègre déjà l’ensemble des pluriels et toute les formes conjuguées des verbes.
+<a href="#fn39-ref">&#8617;</a></p>
+<p id="fn40">[40] Par exemple, si l’OCR a mal reconnu l’accent de l’expression « mena à », la transformation en « menaça » n’est pas opportune.
+<a href="#fn40-ref">&#8617;</a></p>
+<p id="fn41">[41] Par exemple, « menaça » peut être décomposé en « mena » et « a » dont la présence peut
+    s’imaginer avec une faute d’OCR sur la reconnaissance du « à » sur l’expression « mena à »
+<a href="#fn41-ref">&#8617;</a></p>
+<p id="fn42">[42] C’est surtout l’utilisation des coordonnées graphiques des fenêtres tracées par l’UAR
+    <em>Persée</em> lors de la phase de documentation infrapaginaire qui a été mis en avant dans le travail
+    présenté. Toutefois, pour récupérer le contenu textuel de ces fenêtres, il faut s’appuyer sur les
+    coordonnées graphiques des mots. Si ces dernières changent, des erreurs peuvent apparaître. Certains
+    mots peuvent se retrouver hors de leur fenêtre d’origine.
+<a href="#fn42-ref">&#8617;</a></p>
+<p id="fn43">[43] Une librairie python comme « difflib » pouvant servir comme base pour trouver les séquences de mots similaires et aider aux alignements entre les anciens et nouveaux mots.
+<a href="#fn43-ref">&#8617;</a></p>
+<p id="fn44">[44] Andreas Fickers, « Entre altérité et familiarité : pour une herméneutique numérique en
+    sciences historiques ». Conférence dans le cadre du cycle « Les jeudis de l’Institut historique
+    allemand », IHA, Paris, (25 avril 2019)  Le texte cité provient de la présentation de conférence
+    https://dhiha.hypotheses.org/2611 publié le 18 mars 2019, consulté le 31 juillet 2019.
+<a href="#fn44-ref">&#8617;</a></p>
+<p id="fn45">[45] Disponible dans le fichier « Interface/AllApps/PreTraitement/Persee/AmeliorText/views.py » sous le nom « Extract »
+<a href="#fn45-ref">&#8617;</a></p>
+
+
+
+<!-- NOTE FIN -->
+
+
+<p class="suite"> Suite :
+    <a  href="{% url 'FinaliseCorpus:home' %}">Chap 6) Finalisation et évaluation des corpus d’étude</a>
+</p>
+    <br>
+<p class="suite"> Retour :
+    <a  href="{% url 'general:home' %}">Page d'accueil</a>
+</p>
+
+
+<script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+<script type="text/javascript">
+ EnArrEnAvt("{% url 'DelimitCorpus:home' %}", "{% url 'FinaliseCorpus:home' %}");
+</script>
+
+
+</body>
+</html>

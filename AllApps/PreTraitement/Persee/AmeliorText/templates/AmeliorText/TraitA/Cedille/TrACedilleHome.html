@@ -1,0 +1,41 @@
+{% extends 'AmeliorText/TraitA/TraitBase/TraitBaseHome.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+
+<br>
+<p class="suite"> Suite :
+    <a  href="{% url 'AmeliorText:ReDispatch' 'ExplorTrait' 'FinMot' %}">Part1)II)5)c) Les mots avec un
+        appel de note</a>
+</p>
+
+<!-- NOTE DEB -->
+
+<!-- NOTE FIN -->
+
+<script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+<script type="text/javascript">
+ EnArrEnAvt("{% url 'AmeliorText:ReDispatch' 'Explor' 'Cedille'  %}",
+  "{% url 'AmeliorText:ReDispatch' 'ExplorTrait' 'FinMot' %}");
+</script>
+
+
+
+    <script type = 'text/javascript'>
+        window.onload=function() {
+            var Myform = document.getElementsByClassName("grisemoi")[0];
+            {% if PossibleChange %}
+                Myform.disabled = false;
+            {% else %}
+                Myform.disabled = true;
+            {% endif %}
+        }
+    </script>
+
+
+
+{% endblock %}

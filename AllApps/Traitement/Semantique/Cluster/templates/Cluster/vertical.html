@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Comparateur d'expe</title>
+    <style>
+
+        .suite {
+            font-style: italic;
+            text-align: right;}
+
+        textarea {
+          width: 100%;
+          height: 50px;
+        }
+
+        .asteriskField {
+            display: none;
+        }
+        .marge {
+            margin-left: 1em;
+        }
+        .marge2 {
+            margin-left: 3em;
+        }
+
+        * {
+          box-sizing: border-box;
+        }
+
+        /* Create two equal columns that floats next to each other */
+        .column {
+          float: left;
+          width: 50%;
+          padding: 5px;
+          border: solid #5B6DCD 1px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+
+        textarea {
+          width: 100%;
+          height: 100px;
+        }
+
+
+
+    </style>
+
+    <link rel="stylesheet" href= "{% static 'Tableau/css/bootstrap.min.css' %}">
+
+
+</head>
+<body>
+
+
+<p class="suite">
+  <a  href="{% url 'TxtTheseConstructResult:home' %}#III2"> Retour Texte </a>
+</p>
+
+    <label for="paraselect">Affichage paramètres :</label>
+    <select onchange="location = this.value;" id="paraselect" name="paraselect" >
+        {% for parachoice in parachoices %}
+            {% if parachoice == paraselect %}
+                <option selected>{{ parachoice }}</option>
+            {% else %}
+                <option value="{% url 'Cluster:resultallvisu' listexpesvisibles listexpesstock parachoice formselect tailleselect %}">{{ parachoice }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;
+
+  <label for="formselect">Format :</label>
+    <select onchange="location = this.value;" id="formselect" name="formselect" >
+        {% for formchoice in formchoices %}
+            {% if formchoice == formselect %}
+                <option selected>{{ formchoice }}</option>
+            {% else %}
+                <option value="{% url 'Cluster:resultallvisu' listexpesvisibles listexpesstock paraselect formchoice tailleselect %}">{{ formchoice }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <label for="tailleselect">Taille image :</label>
+    <select onchange="location = this.value;" id="tailleselect" name="tailleselect">
+        {% for taillechoice in taillechoices %}
+            {% if taillechoice == tailleselect %}
+                <option selected>{{ taillechoice }}</option>
+            {% else %}
+                <option value="{% url 'Cluster:resultallvisu' listexpesvisibles listexpesstock paraselect formselect taillechoice %}">{{ taillechoice }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+
+    </br>
+
+
+<label for="expe1"> Choix de l'expe 1 :</label>
+<select onchange="location = this.value;" id="expe1">
+    {% for expeR,ListExpeVisR in ZipExpe1 %}
+        {% if expeR == expe1R %}
+        <option selected>{{ expeR.nomresult }}</option>
+        {% else %}
+        <option value="{% url 'Cluster:resultallvisu' ListExpeVisR listexpesstock paraselect formselect tailleselect %}">{{ expeR.nomresult }}</option>
+        {% endif %}
+    {% endfor %}
+</select>
+
+    {% if paraselect == "All" or paraselect == "Diff" %}
+        <textarea id="dict1" name="dict1" rows="3" cols="150">Paramètre de l'expe 1 : {{ dict1 }}</textarea>
+    {% endif %}
+
+
+    <div id="mynetwork"></div>
+
+    {% if expe1R.methode_clustering == "AggloMoyenne" or expe1R.methode_clustering == "AggloMin" or expe1R.methode_clustering == "AggloMax" %}
+        Dendrogramme Expe 1 : <input type="radio" name="visudendroExpe1" id="visudendro1Expe1"
+                              onclick="VisibleDendroExpe1()" value="DendroExpe1">
+        &nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;&nbsp;&nbsp;&nbsp;
+
+        {% if expe2R.methode_clustering == "AggloMoyenne" or expe2R.methode_clustering == "AggloMin" or expe2R.methode_clustering == "AggloMax" %}
+        Compare Dendrogramme Expe1 et 2 : <input type="radio" name="visudendroExpe1"
+                                                 id="visudendroExpe1et2"
+                                              onclick="VisibleDendroExpe1()" value="DendroExpe1et2">
+        {% endif %}
+
+    <img  style="display:none" id="dendroExpe1"
+          src="{% url 'Cluster:image' expe1R.modelc.polymorphic_ctype.model expe1R.nomresult %}" width="100%"
+          height="{{ taillediagramme1 }}">
+
+        {% if expe2R.methode_clustering == "AggloMoyenne" or expe2R.methode_clustering == "AggloMin" or expe2R.methode_clustering == "AggloMax" %}
+        <div class="row" style="display:none" id="dendroExpe1et2">
+            <div class="column">
+                <img  src="{% url 'Cluster:image' expe1R.modelc.polymorphic_ctype.model expe1R.nomresult %}" width="100%" height="{{ taillediagramme1 }}">
+            </div>
+            <div class="column">
+                <img  src="{% url 'Cluster:image' expe2R.modelc.polymorphic_ctype.model expe2R.nomresult %}"
+                      width="100%" height="{{ taillediagramme2 }}">
+            </div>
+        </div>
+        {% endif %}
+
+    {% endif %}
+
+
+</br>
+<label for="expe2"> Choix de l'expe 2 :</label>
+<select onchange="location = this.value;" id="expe2">
+    {% for expeR,ListExpeVisR in ZipExpe2 %}
+        {% if expeR == expe2R %}
+        <option selected>{{ expeR.nomresult }}</option>
+        {% else %}
+        <option value="{% url 'Cluster:resultallvisu' paraselect formselect tailleselect %}">{{
+            expeR.nomresult }}</option>
+        {% endif %}
+    {% endfor %}
+</select>
+
+{% if paraselect == "All" or paraselect == "Diff" %}
+    <textarea id="dict2" name="dict2" rows="3" cols="150">Paramètre de l'expe 2 : {{ dict2 }}</textarea>
+ {% endif %}
+
+
+    <div id="mynetwork2"></div>
+
+    {% if expe2R.methode_clustering == "AggloMoyenne" or expe2R.methode_clustering == "AggloMin" or expe2R.methode_clustering == "AggloMax"%}
+        Dendrogramme Expe 2: <input type="radio" name="visudendroExpe2" id="visudendroExpe2"
+                               onclick="VisibleDendroExpe2()" value="DendroExpe2">
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        {% if expe1R.methode_clustering == "AggloMoyenne" or expe1R.methode_clustering == "AggloMin" or expe1R.methode_clustering == "AggloMax" %}
+        Compare Dendrogramme Expe 2 et 1 : <input type="radio" name="visudendroExpe2"
+                                                  id="visudendroExpe2et1" onclick="VisibleDendroExpe2()"
+                                                  value="DendroExpe2et1">
+        {% endif %}
+
+        {% if expe1R.methode_clustering == "AggloMoyenne" or expe1R.methode_clustering == "AggloMin" or expe1R.methode_clustering == "AggloMax" %}
+        <img  style="display:none" id="dendroExpe2" src="{% url 'Regroup:image' expe2R.modelc.polymorphic_ctype.model expe2R.nomresult %}" width="100%" height="{{ taillediagramme2 }}">
+
+        <div class="row" style="display:none" id="dendroExpe2et1">
+            <div class="column">
+                <img  src="{% url 'Cluster:image' expe2R.modelc.polymorphic_ctype.model expe2R.nomresult %}" width="100%" height="{{ taillediagramme2 }}">
+            </div>
+            <div class="column">
+                <img  src="{% url 'Cluster:image' expe1R.modelc.polymorphic_ctype.model expe1R.nomresult %}"
+                      width="100%" height="{{ taillediagramme2 }}">
+            </div>
+        </div>
+        {% endif %}
+    {% endif %}
+
+<script src="{% static 'ReseauExplore/js/vis.min.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+ <script type="text/javascript">
+
+       function VisibleDendroExpe1() {
+            val1 = document.querySelector('input[name=visudendroExpe1]:checked').value;
+            {% if expe2R.methode_clustering == "AggloMoyenne" or expe2R.methode_clustering == "AggloMin" or expe2R.methode_clustering == "AggloMax" %}
+                if (val1 == "DendroExpe1") {
+                    dendroExpe1.style.display = "block";
+                    dendroExpe1et2.style.display = "none";
+                } else if (val1 == "DendroExpe1et2") {
+                    dendroExpe1.style.display = "none";
+                    dendroExpe1et2.style.display = "block";
+                }
+            {% else %}
+                if (val1 == "DendroExpe1") {
+                    dendroExpe1.style.display = "block";
+                    }
+            {% endif %}
+        }
+
+
+        function VisibleDendroExpe2() {
+            val2 = document.querySelector('input[name=visudendroExpe2]:checked').value;
+            {% if expe1R.methode_clustering == "AggloMoyenne" or expe1R.methode_clustering == "AggloMin" or expe1R.methode_clustering == "AggloMax" %}
+                if (val2 == "DendroExpe2") {
+                    dendroExpe2.style.display = "block";
+                    dendroExpe2et1.style.display = "none";
+                } else if (val2 == "DendroExpe2et1") {
+                    dendroExpe2.style.display = "none";
+                    dendroExpe2et1.style.display = "block";
+                }
+            {% else %}
+                if (val2 == "DendroExpe2") {
+                    dendroExpe2.style.display = "block";
+                    }
+            {% endif %}
+        }
+
+
+        nodes1 = new vis.DataSet({{ nodes_list1|safe }});
+        edges1 = new vis.DataSet({{ edges_list1|safe }});
+        var container = document.getElementById('mynetwork');
+        var taille = document.getElementById('tailleselect').value;
+
+        var data = {
+                nodes: nodes1,
+                edges: edges1
+            };
+
+        var options = {
+             height: taille,
+             width: '100%',
+             nodes: {
+                 size:15,
+                 font:{strokeWidth: 1.5, size: 20,  multi: 'html', bold: '18px arial black'},
+                   },
+             edges: {
+                  color: {
+                     inherit: "both"
+                         }
+                     },
+         groups: {
+1: {color:{background:'#81BEF7'}},
+2: {color:{background:'#FFFF00'}},
+3: {color:{background:'#F78181'}},
+4: {color:{background:'#3ADF00'}},
+5: {color:{background:'#D358F7'}},
+6: {color:{background:'#B09603'}},
+7: {color:{background:'#FAAC58'}},
+8: {color:{background:'#0040FF'}},
+9: {color:{background:'#F8ADD6'}},
+10: {color:{background:'#9EFDCB'}},
+11: {color:{background:'#DF0101'}},
+12: {color:{background:'#FE2E9A'}},
+13: {color:{background:'#0080FF'}},
+14: {color:{background:'#0B6121'}},
+15: {color:{background:'#DF01A5'}},
+16: {color:{background:'#D8CEF6'}}
+}
+             };
+
+        network = new vis.Network(container, data, options);
+
+
+
+
+        nodes2 = new vis.DataSet({{ nodes_list2|safe }});
+        edges2 = new vis.DataSet({{ edges_list2|safe }});
+        var container2 = document.getElementById('mynetwork2');
+
+        var data2 = {
+                nodes: nodes2,
+                edges: edges2
+            };
+
+        var options2 = {
+             height: taille,
+             width: '100%',
+             nodes: {
+                 size:15,
+                 font:{strokeWidth: 1.5, size: 20,  multi: 'html', bold: '18px arial black'},
+                   },
+             edges: {
+                  color: {
+                     inherit: "both"
+                         }
+                     },
+         groups: {
+1: {color:{background:'#81BEF7'}},
+2: {color:{background:'#FFFF00'}},
+3: {color:{background:'#F78181'}},
+4: {color:{background:'#3ADF00'}},
+5: {color:{background:'#D358F7'}},
+6: {color:{background:'#B09603'}},
+7: {color:{background:'#FAAC58'}},
+8: {color:{background:'#0040FF'}},
+9: {color:{background:'#F8ADD6'}},
+10: {color:{background:'#9EFDCB'}},
+11: {color:{background:'#DF0101'}},
+12: {color:{background:'#FE2E9A'}},
+13: {color:{background:'#0080FF'}},
+14: {color:{background:'#0B6121'}},
+15: {color:{background:'#DF01A5'}},
+16: {color:{background:'#D8CEF6'}}
+}
+             };
+
+        network2 = new vis.Network(container2, data2, options2);
+
+
+
+
+ </script>
+
+
+</body>
+</html>

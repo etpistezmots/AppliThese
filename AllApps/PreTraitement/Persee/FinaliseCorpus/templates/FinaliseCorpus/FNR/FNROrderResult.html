@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>FNROrderResult</title>
+    </head>
+    <body>
+
+        <ul>
+            {%  for fnr, freq in Result %}
+                <li>{{ fnr }}, {{ freq }}</li>
+            {% endfor %}
+        <br>
+        </ul>
+
+    </body>
+</html>

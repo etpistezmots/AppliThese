@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        L'évaluation {{ n_eval }} du corpus {{ corpusfin }} a tiré au hasard les
+        {{ n_docs }} documents suivant et {{ n_mots }} mots dans chacun de ces documents :
+
+        <br>
+        <br>
+        - Lien vers le document Persée selectionné <br>
+        - Index début et fin des {{ n_mots }} mots <br>
+        - Séquence évaluée <br>
+        - Lien vers l'évaluation réalisée <br>
+        <br>
+        {% for doc,index,text,eval in Result %}
+            - {{ doc |safe }} <br>
+            - {{ index }}<br>
+            - {{ text }}<br>
+            - {{ eval |safe }} <br>
+        <br>
+        <br>
+        {% endfor %}
+
+        <br>
+        <br>
+        <a href="{% url 'FinaliseCorpus:home' %}#fn30">Retour texte</a>
+
+    </body>
+</html>

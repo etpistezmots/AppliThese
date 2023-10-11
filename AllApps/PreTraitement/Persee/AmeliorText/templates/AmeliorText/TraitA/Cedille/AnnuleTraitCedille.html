@@ -1,0 +1,11 @@
+{% extends 'AmeliorText/TraitA/TraitBase/AnnuleTraitBase.html' %}
+
+{% block content %}
+
+        {% if AncienneReductionElt.litigecedille %}
+            avec un essai de réduction des litiges <br>
+        {% else %}
+            sans essai de réduction des litige<br>
+        {% endif %}
+
+{% endblock %}

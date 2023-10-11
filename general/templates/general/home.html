@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>home general</title>
+    <style>
+        .marge {
+            margin-left: 3em;}
+        .margesouligne {
+            margin-left: 3em;
+            text-decoration:underline;}
+        .marge2 {
+            margin-left: 6em;}
+    </style>
+</head>
+<body>
+
+<h1 style="text-align:center">Application issue de la thèse de Max Beligné </h1>
+ <h3 style="text-align:center">Remise en questions d'une lecture kuhnienne de la géographie
+     française :</h3>
+    <h3 style="text-align:center">Réflexions épistémologiques entre sciences sociales, humanités numériques et
+        données massives</h3>
+    <h4 style="text-align:center">PARTIES 1 et 2</h4>
+
+<br>
+
+
+<a class="marge" href="{% url 'Introduction:home' %}" style="font-weight:bold">Introduction</a>
+<br>
+<br>
+<span class="margesouligne" style="font-weight:bold">Première partie : Choix méthodologiques et préparation des
+    données</span>
+<br>
+<br>
+<a class="marge2" href="{% url 'EtatDesLieux:home' %}">Chapitre 3 : État des lieux sur le changement
+    sémantique et sa détection par des démarches quantitatives</a>
+<br>
+<br>
+<a class="marge2" href="{% url 'DelimitCorpus:home' %}">Chapitre 4 : Préparation des données, exploration et
+    délimitation des corpus</a>
+<br>
+<br>
+<a class="marge2" href="{% url 'AmeliorText:home' %}">Chapitre 5 : L’amélioration des contenus textuels</a>
+<br>
+<br>
+<a class="marge2" href="{% url 'FinaliseCorpus:home' %}">Chapitre 6 : Finalisation et évaluation des corpus
+    d’étude</a>
+<br>
+<br>
+
+<span class="margesouligne" style="font-weight:bold"> Deuxième partie : Exploration, construction, analyse et discussion
+    des résultats</span>
+<br>
+<br>
+
+<a class="marge2" href="{% url 'TxtTheseConstructResult:home' %}"> Chapitre 7 : Exploration et construction
+    des résultats </a>
+<br>
+<br>
+<a class="marge2" href="{% url 'TxtTheseDiscussion:home' %}"> Chapitre 8 : Discussion élargie à partir des
+    résultats et du processus de leurs productions</a>
+<br>
+<br>
+
+<a class="marge" href="{% url 'Conclusion:home' %}" style="font-weight:bold">Conclusion</a>
+<br>
+<br>
+    <a class="marge" href="{% url 'Biblio:home' %}" style="font-weight:bold">Biblio</a>
+
+
+<br>
+<br>
+    <h4 class="marge">Pour un usage avancé</h4>
+{% if user.is_authenticated %}
+  Bonjour {{ user.username }}!
+<p><a class="marge2"href="{% url 'logout' %}">logout</a></p>
+{% else %}
+    <a class="marge2" href="{% url 'general:useplus' %}">1) Pourquoi ? </a>
+    <br>
+    <a class="marge2" href="{% url 'users:signup' %}">2) S'inscrire</a>
+    <br>
+    <a class="marge2" href="{% url 'login' %}">3) S'identifier</a>
+{% endif %}
+
+{% if user.is_superuser %}
+    <h2>Aide super utilisateur et accès direct interface </h2>
+    <a href="{% url 'general:getiduser' %}">Chercher l'id d'un user</a>
+   <br>
+    <br>
+    <a class="marge2" href="{% url 'TableauOcc:home' %}">1) Vers interface Tableau Occurence</a>
+    <br>
+    <br>
+    <a class="marge2" href="{% url 'TableauEmb:homeredirect' %}">2) Vers interface Tableau Embedding</a>
+    <br>
+    <br>
+    <a class="marge2" href="{% url 'ReseauExplore:homeredirect' %}">3) Vers interface Reseau Explore</a>
+    <br>
+    <br>
+    <a class="marge2" href="{% url 'Cluster:homeredirect' %}">4) Vers interface Regroup</a>
+    <br>
+    <br>
+    <a class="marge2" href="{% url 'DiachroGroup:homeredirect' %}">5) Vers interface Diachro</a>
+{% endif %}
+
+
+
+<script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+<script type="text/javascript">
+ EnArrEnAvt("{% url 'DiachroGroup:homeredirect' %}", "{% url 'Introduction:home' %}");
+</script>
+
+
+
+</body>
+</html>
+
+

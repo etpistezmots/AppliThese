@@ -1,0 +1,28 @@
+{% extends 'AmeliorText/TraitA/TraitBase/TraitBaseHome.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- TEXT DEB -->
+
+ <p class="suite">
+    <a  href="{% url 'AmeliorText:home' %}#IV4b">Retour texte : Chap5)IV)4)b)</a>
+    </p>
+    <br>
+
+
+    <script type = 'text/javascript'>
+        window.onload=function() {
+            var Myform = document.getElementsByClassName("grisemoi")[0];
+            {% if PossibleChange %}
+                Myform.disabled = false;
+            {% else %}
+                Myform.disabled = true;
+            {% endif %}
+        }
+    </script>
+
+
+
+{% endblock %}

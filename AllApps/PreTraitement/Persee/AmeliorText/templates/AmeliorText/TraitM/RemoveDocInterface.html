@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ExceptDoc</title>
+</head>
+<body>
+
+<form action="" method="post">
+       {% csrf_token %}
+    Indiquez nom doc réduit <br>
+    <br>
+    ex: &lt;a href="https://www.persee.fr/doc/spgeo_0046-2497_2000_num_29_4_2040">spgeo_0046-2497_2000_num_29_4_2040&lt;/a&gt;<br>
+    <br>
+    ou plusieurs noms sur plusieurs lignes<br>
+     <br>
+    ex : &lt;a
+    href="https://www.persee.fr/doc/spgeo_0046-2497_2000_num_29_4_2040">spgeo_0046-2497_2000_num_29_4_2040&lt;/a&gt;<br>
+    &lt;a href="https://www.persee.fr/doc/spgeo_0046-2497_1984_num_13_3_3934">spgeo_0046-2497_1984_num_13_3_3934&lt;/a&gt;<br>
+    <br>
+    Enfin dernière possibilité avec commentaires séparés par virgule<br>
+    <br>
+    ex : &lt;a
+    href="https://www.persee.fr/doc/spgeo_0046-2497_2000_num_29_4_2040">spgeo_0046-2497_2000_num_29_4_2040&lt;/a&gt;,comment1<br>
+    &lt;a
+    href="https://www.persee.fr/doc/spgeo_0046-2497_1984_num_13_3_3934">spgeo_0046-2497_1984_num_13_3_3934&lt;/a&gt;,comment2<br>
+    <br>
+    Possibilité de mixer avec commentaire et sans commentaire
+    <br>
+    <br>
+
+    <textarea name="Text3" cols="100" rows="7"></textarea>
+    <br>
+    <input type="submit" name="Retour" id="Retour" value="Retour">
+    <input type="submit" name="Effectuer" id="Effectuer" value="Effectuer">
+    <br>
+</form>
+
+</body>
+</html>

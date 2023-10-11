@@ -1,0 +1,2 @@
+" Au niveau de la méthodologie, j’ai utilisé une technique de plongements de mots, GloVe, mis au point par des chercheurs de l’université de Stanford en 2014 "	"(Pennington, Socher et Manning 2014)"	"."	"Introduction"	""	"Pen1a"
+" La méthode GloVe"	" (Pennington, Socher et Manning 2014)"	" demande comme les modèles de Word2Vec en entrée un corpus, une fenêtre de contexte, une taille pour les vecteurs constituant les résultats et un nombre d’itérations."	"EtatDesLieux"	""	"Pen1b"

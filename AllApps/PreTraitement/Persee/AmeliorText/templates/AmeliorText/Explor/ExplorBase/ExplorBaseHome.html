@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+
+    <meta charset="UTF-8">
+     <style>
+        .marge {
+            margin-left: 3em;}
+        .marge2 {
+            margin-left: 6em;}
+        .suite {
+            font-style: italic;
+            text-align: right;}
+        .mypara {
+            text-align: justify;}
+        div.a {
+	        text-align: center;}
+    </style>
+    <title>Explor {{ objet }} Home</title>
+</head>
+<body>
+
+
+
+
+    <!-- permet d'afficher procduction résulat -->
+
+    <h3> Interface exploration spécifique {{ RenduPluriel }}  </h3>
+
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <label class="marge" for="red">- Corpus d'études disponibles :</label>
+        <select  name="red" id="red">
+            {% for reduction in reductions %}
+                <option>{{ reduction.nom }}</option>
+            {% endfor %}
+        </select>
+
+         <br>
+
+        <label class="marge" for="fct">- Fonctions disponibles :</label>
+        <select  name="fct" id="fct">
+            {% for fct in fctselect %}
+                <option>{{ fct }}</option>
+            {% endfor %}
+        </select>
+
+         <br>
+
+        <label class="marge" for="revue">- Revues disponibles :</label>
+        <select  name="revue" id="revue">
+            {% for revue in revueselect %}
+                <option>{{ revue }}</option>
+            {% endfor %}
+        </select>
+
+        <br>
+
+        <input class="marge2" type="submit" name="Effectuer" id="Effectuer"
+               value="Effectuer">
+
+    </form>
+
+
+    <br>
+    <br>
+    {% block content %}
+    {% endblock %}
+
+
+
+
+
+
+
+</body>
+</html>

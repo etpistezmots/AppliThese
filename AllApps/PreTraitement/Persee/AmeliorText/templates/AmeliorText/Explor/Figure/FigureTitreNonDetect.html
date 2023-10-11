@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    {% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>TitreNonDetect : {{reduction}}</title>
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+<body>
+
+    <p class="suite">
+    <a  href="{% url 'AmeliorText:home' %}#IV11a">Retour texte : Chap5)IV)11)a)</a>
+    </p>
+    <br>
+
+
+
+    <h2> Cas de non détection du titre dans les figures sur la revue : {{ revuerealname }}</h2>
+    <h3>Nombres d'éléments : {{ NbresResult }}</h3>
+
+    <ul>
+    {% for elt in Result %}
+        {% for elt1 in elt %}
+            {% if forloop.counter0 == 0 %}
+                <li>{{ elt1|safe }}</li>
+            {% else %}
+                <li>{{ elt1 }}</li>
+            {% endif %}
+        {% endfor %}
+        <br>
+    {% endfor %}
+    </ul>
+
+
+    <br>
+    <br>
+    <p class="suite">
+    <a  href="{% url 'AmeliorText:home' %}#IV11a">Retour texte : Chap5)IV)11)a)</a>
+    </p>
+    <br>
+
+    <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+    <script type="text/javascript">
+        EnArrEnAvt("{% url 'AmeliorText:home' %}#IV11a","{% url 'AmeliorText:home' %}#IV11a");
+    </script>
+
+
+</body>
+</html>

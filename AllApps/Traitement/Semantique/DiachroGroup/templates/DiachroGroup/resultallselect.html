@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Selection expe à visualiser</title>
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+<body>
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li class="{{ message.tags }}">{{ message|linebreaks }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+<p class="suite">
+  <a  href="{% url 'TxtTheseConstructResult:home' %}#IV"> Retour Texte </a>
+</p>
+
+
+<form action="" method="post">
+
+    {% csrf_token %}
+
+    {% for mode, result in ZipModeResult %}
+
+        {% if mode == "glove" %}
+
+            <h3> Liste experiences "GloVe" </h3>
+
+            <table border="1" width="1100">
+            <thead>
+                <tr>
+                    <th>select</th>
+                    <th>nom</th>
+                    <!-- <th>path data</th> -->
+                    <th>revue</th>
+                    <th>epoque</th>
+                    <th>embed-size</th>
+                    <th>context-size</th>
+                    <th>min-occur</th>
+                    <th>n_epochs</th>
+                    <th>terme</th>
+                    <th>nresult</th>
+                    <th>methode clustering</th>
+                    <th>ncluster</th>
+                    <th>stop_mots</th>
+                    <th>compareJustNewRevue</th>
+                    <th>SelectLinkDiachro</th>
+                    <th>calculPoidsLabel</th>
+                    <th>couleursRevues</th>
+                    <th>seuil100</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for expe in result %}
+                <tr>
+                    <td><input type="checkbox" name="selected_glove" value="{{ expe.id }}"></td>
+                    <td> <a href="{% url 'DiachroGroup:result' 'glove' expe.modelc.id expe.id %}">
+                        {{expe.nomresult}}</a> </td>
+                    <!-- <td> {{ expe.modelc.path }} </td> -->
+                    <td> {{ expe.modelc.revue }} </td>
+                    <td> {{ expe.modelc.epoque }} </td>
+                    <td> {{ expe.modelc.embedding_size }} </td>
+                    <td> {{ expe.modelc.context_size }} </td>
+                    <td> {{ expe.modelc.min_occurrences }} </td>
+                    <td> {{ expe.modelc.num_epochs }} </td>
+                    <td> {{ expe.terme }} </td>
+                    <td> {{ expe.nresult }} </td>
+                    <td> {{ expe.methode_clustering }} </td>
+                    <td> {{ expe.ncluster}} </td>
+                    <td> {{ expe.stop_mots }} </td>
+                    <td> {{ expe.compareJustNewRevue }} </td>
+                    <td> {{ expe.selectLink }} </td>
+                    <td> {{ expe.calculPoidsLabel }} </td>
+                    <td> {{ expe.couleursRevues }} </td>
+                    <td> {{ expe.seuil100 }} </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+            </table>
+
+    {% endif %}
+
+        {% if mode == "word2vec" %}
+
+    <h3> Liste experiences "Word2Vec" </h3>
+
+        <table border="1" width="1100">
+        <thead>
+            <tr>
+                <th>select</th>
+                <th>nom</th>
+                <!-- <th>path data</th> -->
+                <th>revue</th>
+                <th>epoque</th>
+                <th>embed-size</th>
+                <th>context-size</th>
+                <th>min-occur</th>
+                <th>n_epochs</th>
+                <th>terme</th>
+                <th>nresult</th>
+                <th>methode clustering</th>
+                <th>ncluster</th>
+                <th>stop_mots</th>
+                <th>compareJustNewRevue</th>
+                <th>SelectLink</th>
+                <th>calculPoidsLabel</th>
+                <th>couleursRevues</th>
+                <th>seuil100</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for expe in result %}
+            <tr>
+                <td><input type="checkbox" name="selected_word2vec" value="{{ expe.id }}"></td>
+                <td> <a href="{% url 'DiachroGroup:result' 'word2vec' expe.modelc.id expe.id %}"> {{expe.nomresult}}</a> </td>
+                <!-- <td> {{ expe.modelc.path }} </td> -->
+                <td> {{ expe.modelc.revue }} </td>
+                <td> {{ expe.modelc.epoque }} </td>
+                <td> {{ expe.modelc.embedding_size }} </td>
+                <td> {{ expe.modelc.context_size }} </td>
+                <td> {{ expe.modelc.min_occurrences }} </td>
+                <td> {{ expe.modelc.num_epochs }} </td>
+                <td> {{ expe.terme }} </td>
+                <td> {{ expe.nresult }} </td>
+                <td> {{ expe.methode_clustering }} </td>
+                <td> {{ expe.ncluster}} </td>
+                <td> {{ expe.stop_mots }} </td>
+                <td> {{ expe.compareJustNewRevue }} </td>
+                <td> {{ expe.selectLink}} </td>
+                <td> {{ expe.calculPoidsLabel }} </td>
+                <td> {{ expe.couleursRevues }} </td>
+                <td> {{ expe.seuil100 }} </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+        </table>
+
+    {% endif %}
+
+        {% if mode == "fasttext" %}
+
+
+            <h3> Liste experiences "FastText" </h3>
+
+            <table border="1" width="1100">
+            <thead>
+                <tr>
+                    <th>select</th>
+                    <th>nom</th>
+                    <!-- <th>path data</th> -->
+                    <th>revue</th>
+                    <th>epoque</th>
+                    <th>embed-size</th>
+                    <th>context-size</th>
+                    <th>min-occur</th>
+                    <th>n_epochs</th>
+                    <th>min-n</th>
+                    <th>max-n</th>
+                    <th>terme</th>
+                    <th>nresult</th>
+                    <th>methode clustering</th>
+                    <th>ncluster</th>
+                    <th>stop_mots</th>
+                    <th>compareJustNewRevue</th>
+                    <th>SelectLink</th>
+                    <th>calculPoidsLabel</th>
+                    <th>couleursRevues</th>
+                    <th>seuil100</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for expe in result %}
+                <tr>
+                    <td><input type="checkbox" name="selected_fasttext" value="{{ expe.id }}"></td>
+                    <td> <a href="{% url 'DiachroGroup:result' 'fasttext' expe.modelc.id expe.id %}"> {{expe.nomresult}}</a> </td>
+                    <!-- <td> {{ expe.modelc.path }} </td> -->
+                    <td> {{ expe.modelc.revue }} </td>
+                    <td> {{ expe.modelc.epoque }} </td>
+                    <td> {{ expe.modelc.embedding_size }} </td>
+                    <td> {{ expe.modelc.context_size }} </td>
+                    <td> {{ expe.modelc.min_occurrences }} </td>
+                    <td> {{ expe.modelc.num_epochs }} </td>
+                    <td> {{ expe.modelc.min_n }} </td>
+                    <td> {{ expe.modelc.max_n }} </td>
+                    <td> {{ expe.terme }} </td>
+                    <td> {{ expe.nresult }} </td>
+                    <td> {{ expe.methode_clustering }} </td>
+                    <td> {{ expe.ncluster}} </td>
+                    <td> {{ expe.stop_mots }} </td>
+                    <td> {{ expe.compareJustNewRevue }} </td>
+                    <td> {{ expe.selectLink }} </td>
+                    <td> {{ expe.calculPoidsLabel }} </td>
+                    <td> {{ expe.couleursRevues }} </td>
+                    <td> {{ expe.seuil100 }} </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+            </table>
+
+        {% endif %}
+
+    {% endfor %}
+
+
+    <button  type="submit" name="Comparer" id="Compare"> Comparer les expériences cochées</button>
+
+
+</form>
+
+
+</body>
+</html>

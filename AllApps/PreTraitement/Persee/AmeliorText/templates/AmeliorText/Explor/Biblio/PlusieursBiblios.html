@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    {% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>PlusieursBiblio{{reduction}}</title>
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+<br>
+
+    <p class="suite">
+        <a  href="{% url 'AmeliorText:home' %}#PlusieursBiblios">Retour Texte</a>
+    </p>
+
+    {% if user.is_superuser %}
+    <p class="suite">
+        <a href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Biblio' %}"> Retour Interface </a>
+    </p>
+    {% endif %}
+
+
+        <h2>Articles avec plusieurs bibliographies trouvées de la réduction  {{reduction}} pour la revue
+            {{revue}}</h2>
+
+    <h3>Nombres d'éléments : {{ NbresResult }}</h3>
+
+        <ul>
+        {% for art in Result %}
+            {% for elt in art %}
+                {% if forloop.counter0 == 0 %}
+                    <li>{{ elt|safe }}</li>
+                {% else %}
+                    <li>{{ elt }}</li>
+                {% endif %}
+            {% endfor %}
+            <br>
+        {% endfor %}
+        </ul>
+
+
+    <br>
+    <br>
+    <p class="suite">
+        <a  href="{% url 'AmeliorText:home' %}#PlusieursBiblios">Retour Texte</a>
+    </p>
+
+    {% if user.is_superuser %}
+    <p class="suite">
+        <a href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Biblio' %}"> Retour Interface </a>
+    </p>
+    {% endif %}
+
+    <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+    <script type="text/javascript">
+        EnArrEnAvt("{% url 'AmeliorText:home' %}#PlusieursBiblios","{% url 'AmeliorText:home' %}#PlusieursBiblios");
+    </script>
+
+</body>
+</html>

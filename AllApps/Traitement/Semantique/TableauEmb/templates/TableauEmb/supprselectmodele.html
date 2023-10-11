@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="" method="post">
+
+    {% csrf_token %}
+
+
+
+{% if modeactuel == "glove" %}
+
+    <h3> Liste modèles "glove"</h3>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>select</th>
+                <th>nom</th>
+                <th>corpus</th>
+                <th>revue</th>
+                <th>epoque</th>
+                <th>embed_size</th>
+                <th>context_size</th>
+                <th>min_occur</th>
+                <th>learn_rate</th>
+                <th>n_epochs</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for modele in modeles%}
+        <tr>
+            <td><input type="checkbox" name="selected_modele" value="{{ modele.id }}"></td>
+            <td> <a href="{% url 'TableauEmb:modele' 'glove' modele.id %}"> {{modele.nom}}</a> </td>
+		    <td> {{ modele.CorpusFinRef.nom }} </td>
+		    <td> {{ modele.revue }} </td>
+		    <td> {{ modele.epoque }} </td>
+            <td> {{ modele.embedding_size }} </td>
+            <td> {{ modele.context_size }} </td>
+            <td> {{ modele.min_occurrences }} </td>
+            <td> {{ modele.learning_rate }} </td>
+            <td> {{ modele.num_epochs }} </td>
+	    </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+
+
+
+{% elif modeactuel == "word2vec" %}
+
+    <h3> Liste modèles "word2vec"</h3>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>select</th>
+                <th>nom</th>
+                <th>corpus</th>
+                <th>revue</th>
+                <th>epoque</th>
+                <th>architecture</th>
+                <th>embed_size</th>
+                <th>context_size</th>
+                <th>min_occur</th>
+                <th>learn_rate</th>
+                <th>sample</th>
+                <th>n_epochs</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for modele in modeles%}
+        <tr>
+            <td><input type="checkbox" name="selected_modele" value="{{ modele.id }}"></td>
+            <td> <a href="{% url 'TableauEmb:modele' 'word2vec' modele.id %}"> {{modele.nom}}</a> </td>
+		    <td> {{ modele.CorpusFinRef.nom }} </td>
+		    <td> {{ modele.revue }} </td>
+		    <td> {{ modele.epoque }} </td>
+            <td> {{ modele.architecture }} </td>
+            <td> {{ modele.embedding_size }} </td>
+            <td> {{ modele.context_size }} </td>
+            <td> {{ modele.min_occurrences }} </td>
+            <td> {{ modele.learning_rate }} </td>
+            <td> {{ modele.sample }} </td>
+            <td> {{ modele.num_epochs }} </td>
+	    </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+
+
+{% elif modeactuel == "fasttext" %}
+
+    <h3> Liste modèles "fasttext"</h3>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>select</th>
+                <th>nom</th>
+                <th>corpus</th>
+                <th>revue</th>
+                <th>epoque</th>
+                <th>architecture</th>
+                <th>embed_size</th>
+                <th>context_size</th>
+                <th>min_occur</th>
+                <th>learn_rate</th>
+                <th>sample</th>
+                <th>n_epochs</th>
+                <th>min_n</th>
+                <th>max_n</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for modele in modeles %}
+        <tr>
+            <td><input type="checkbox" name="selected_modele" value="{{ modele.id }}"></td>
+            <td> <a href="{% url 'TableauEmb:modele' 'fasttext' modele.id %}"> {{modele.nom}}</a> </td>
+		    <td> {{ modele.CorpusFinRef.nom }} </td>
+		    <td> {{ modele.revue }} </td>
+		    <td> {{ modele.epoque }} </td>
+            <td> {{ modele.architecture }} </td>
+            <td> {{ modele.embedding_size }} </td>
+            <td> {{ modele.context_size }} </td>
+            <td> {{ modele.min_occurrences }} </td>
+            <td> {{ modele.learning_rate }} </td>
+            <td> {{ modele.sample }} </td>
+            <td> {{ modele.num_epochs }} </td>
+            <td> {{ modele.min_n }} </td>
+            <td> {{ modele.max_n }} </td>
+	    </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+
+{% endif %}
+
+{% if modeles %}
+
+    <button  type="submit"  onclick="return confirm('Confirmer la suppression ?')" name="Supprimer" id="Supprimer"> Supprimer </button>
+    <button  type="submit" name="Retour" id="Retour"> Retour </button>
+
+{% else %}
+
+    <h3> Pas de modèle existant</h3>
+    <button  type="submit" name="Retour" id="Retour2"> Retour </button>
+
+{% endif %}
+
+</form>
+
+</body>
+</html>

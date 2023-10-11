@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ objetred }}</title>
+</head>
+<body>
+
+<form action="" method="post">
+       {% csrf_token %}
+    soit sous forme de triplet, quadruplet, cinqtuplet:<br>
+    <br>
+    - triplet : nomdoc, indexdeb, indexfin (dans ce cas, textfield ="" et comment = "")<br>
+    - quadruplet : nomdoc, indexdeb, indexfin, textfield (dans ce cas, comment="")<br>
+    - cinqtuplet : nomdoc, indexdeb, indexfin, textfield, comment=""<br>
+    <br>
+    Attention, si virgule dans textfield ou comment, il faut l'enlever !!! <br>
+    <br>
+
+
+    <textarea name="Text2" cols="100" rows="7"></textarea>
+    <br>
+    <input type="submit" name="Retour" id="Retour" value="Retour">
+    <input type="submit" name="Effectuer" id="Effectuer" value="Effectuer">
+    <br>
+</form>
+
+</body>
+</html>

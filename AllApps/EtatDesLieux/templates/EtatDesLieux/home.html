@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+
+    {% load static %}
+
+    <title>Plan EtatDesLieux</title>
+    <style>
+        .marge {
+            margin-left: 3em;}
+        .marge2 {
+            margin-left: 6em;}
+        .marge3 {
+            margin-left: 9em;}
+        .suite {
+            font-style: italic;
+            text-align: right;}
+        .present {
+            text-decoration: underline;
+            font-weight:bold;}
+        .a {
+            text-align: center;}
+        .cite {
+            text-align: justify;
+            margin-right: 9em;
+            margin-left: 9em;
+            font-size: 0.9em;}
+        .note {
+            text-decoration: none;
+            }
+        p {
+            text-align: justify;}
+        h1 {
+            text-align: center;}
+        h2 {
+            margin-left: 3em;
+            margin-top: 1.5em;
+            margin-bottom: 1.5em;}
+        h3 {
+            margin-left: 6em;
+            margin-top: 1.5em;
+            margin-bottom: 1.5em;}
+        h4 {
+            margin-left: 9em;
+            margin-top: 1.5em;
+            margin-bottom: 1.5em;}
+        li {
+            margin-left: 3em;
+            margin-top:15px;
+            text-align: justify;}
+        img {
+            height: auto;
+            max-width: 100%;
+            }
+
+    </style>
+</head>
+<body>
+
+<p class="suite"> Retour :
+    <a href="{% url 'general:home' %}">Page d'accueil</a>
+</p>
+<br>
+
+    <h1>Chapitre 3 : État des lieux sur le changement
+    sémantique et sa détection par des démarches quantitatives </h1>
+
+<br>
+
+<p class="present">Plan du chapitre :</p>
+
+
+ <a class="marge" id="I-ref" href="#I">I) Approches théoriques du changement
+     sémantique</a>
+<br>
+<br>
+ <a class="marge2" id="I1-ref" href="#I1">1) Les sémantiques référentielles</a>
+<br>
+<br>
+<a class="marge2" id="I2-ref" href="#I2">2) Les sémantiques différentielles</a>
+<br>
+<br>
+<a class="marge2" id="I3-ref" href="#I3">3) Le positionnement adopté pour cette
+    recherche</a>
+<br>
+<br>
+<a class="marge" id="II-ref" href="#II">II) La métaphore de la plasticité de la
+    matière</a>
+<br>
+<br>
+<a class="marge" id="III-ref" href="#III">III) D’un premier état des lieux : approches
+    sémantiques, quantitatives et kuhniennes</a>
+<br>
+<br>
+
+<a class="marge2" id="III1-ref" href="#III1">1) L’analyse des mots-associés</a>
+<br>
+<br>
+<a class="marge2" id="III2-ref" href="#III2">2) La thèse de Carmela Chateau Smith</a>
+<br>
+<br>
+<a class="marge" id="IV-ref" href="#IV">IV) à un second état des lieux : approches sémantiques et
+    quantitatives sans perspective kuhnienne</a>
+<br>
+<br>
+ <a class="marge2" id="IV1-ref" href="#IV1">1) De l’axe syntagmatique aux plongements
+     de mots</a>
+<br>
+<br>
+<a class="marge2" id="IV2-ref" href="#IV2">2) Principales méthodes de plongement de
+    mots</a>
+<br>
+<br>
+ <a class="marge3" id="IV2a-ref" href="#IV2a">a) Fonctionnement de la méthode <em>Word2Vec
+ </em></a>
+<br>
+<br>
+<a class="marge3" id="IV2b-ref" href="#IV2b">b) Deux autres méthodes classiques de
+    plongements de mots : <em>GloVe</em> et <em>FastText</em></a>
+<br>
+<br>
+<a class="marge3" id="IV2c-ref" href="#IV2c">c) Plongements de mots diachroniques</a>
+<br>
+<br>
+<a class="marge3" id="IV2d-ref"  href="#IV2d">d) Plongements de graphes et
+    plongements de mots contextualisés</a>
+<br>
+<br>
+<a class="marge2" id="IV3-ref" href="#IV3">3) Explicitation de la méthode utilisée et
+    raisons de ce choix</a>
+<br>
+<br>
+<br>
+
+<p class="present">Texte du chapitre</p>
+
+
+
+<p class="mypara"> <span class="marge">	Il s’agit pour commencer de préciser ce qui est cherché au-delà
+        de cette appellation très générique de « changement sémantique » en développant les grandes théories
+        permettant de comprendre cette notion. L'adjectif « sémantique »  est défini dans le dictionnaire du
+        <em>Trésor de la Langue Française</em> comme ce « qui a rapport à la signification d’un mot ou
+            d’une
+        structure linguistique ». D’un point de vue formel, un changement sémantique est donc
+        un changement de signification concernant un ou plusieurs mot(s) ou structure(s)
+        linguistique(s). Toutefois, cette définition ne fait que reporter la difficulté sur la question
+        suivante : qu’est-ce que la signification d’un mot ou d’une structure linguistique ? Par rapport à
+        cette question, deux grandes approches existent : d’un côté les sémantiques référentielles, de
+        l’autre les sémantiques différentielles.
+
+
+</span></p>
+
+
+    <h2 id="I">I) Approches théoriques du changement sémantique <a href="#I-ref">&#8617;</a> </h2>
+
+
+    <h3 id="I1">1) Les sémantiques référentielles <a href="#I1-ref">&#8617;</a> </h3>
+
+
+    <div id="Ras1a"><p class="mypara"> <span class="marge">	François Rastier (<a
+            href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Ras1">1995</a>) montre que l’origine des sémantiques
+        référentielles remonte à Aristote avec une conception tripartite : parole / états de l’âme /
+        choses. Il met également en évidence une évolution de ce modèle (Boèce, Thomas d’Aquin, Ogden et
+        Richards) jusqu’à son durcissement « par le positivisme logique qui exprime un idéal de
+        correspondance si l’on peut dire terme à terme entre un mot, un concept et un objet » (<a
+            href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Ras1">Rastier 1995</a>). Une telle conception
+            s’applique difficilement au langage naturel. En effet, il est courant
+        qu’un mot renvoie à plusieurs concepts ou objets. Dans ce cas, la relation référentielle peut être
+        pensée d’une manière plus souple que celle du positivisme logique. Schématiquement, deux approches
+        peuvent être distinguées. La première renvoie à un système pré-existant d’objets et d’états dans le
+        monde physique alors que dans la seconde, les références sont établies par rapport à un monde
+        mental. Dans la première, le changement sémantique désigne un changement de la chose désignée alors
+        que dans la seconde, il renvoie plus à une modification des concepts permettant d’appréhender une
+        chose. Il est certain que ces deux conceptions ne sont pas antinomiques et qu’il existe une
+        multiplicité d’articulations possibles dans la conception tripartite d’Aristote précédemment
+        citée : parole / états de l’âme / choses. L’objectif n’est pas ici de développer l’ensemble de ce
+        groupe des sémantiques référentielles au-delà de ces grandes perspectives.</span></p></div>
+
+    <p class="mypara"> <span class="marge">Ce groupe s’oppose à celui des sémantiques différentielles.
+        </span></p>
+
+    <h3 id="I2">2) Les sémantiques différentielles <a href="#I2-ref">&#8617;</a> </h3>
+
+    <div id="Sau1"><p class="mypara"> <span class="marge">Ces dernières ne reposent sur aucun système d’objet
+        ou d’état pré-conçu. Le sens
+        d’un mot n’est pas défini de manière positive par son contenu mais uniquement par ses relations
+        avec les autres termes. Cette conception est présente par exemple chez Saussure où la langue est un
+        système dont « tous les termes sont solidaires et où la valeur de l’un ne résulte que de la
+        présence simultanée de l’autre » <a
+            href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Sau1">(Saussure 1995, 159)</a>. La représentation de
+            l’ensemble de ce système pour une langue est particulièrement ardue car il s’agit d’un système
+        complexe et ouvert
+        aux évolutions. Dans cette perspective, il existe une première sémantique différentielle qui peut
+        être qualifiée de componentielle <a
+                href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Sab1">(Sabah 2000)</a>. Le sens des mots est
+            divisé en composants<sup><a id="fn1-ref" class="note" href="#fn1">1</a></sup>, appelés
+        sèmes qui sont des éléments primitifs de sens. Ainsi, le terme ‘couteau’ peut être représenté de
+        manière simplifiée par deux sèmes /couvert/ et /pour couper/. Ces éléments primitifs peuvent
+        s’agencer de multiples manières pour créer de nouvelles significations.
+    </span></p></div>
+
+
+     <div id="Pinc2a"><p class="mypara"> <span class="marge"> Par rapport à cette approche, il existe un
+         autre type de
+         sémantique différentielle qui prend en considération de manière plus effective l’impossibilité de
+         décrire de manière complète et directe le système sémantique d’une langue en s’orientant avant
+         tout vers l’analyse locale de ses manifestations. En effet, en étudiant les distributions
+         d’occurrences des entités linguistiques entre différents textes, il est possible de caractériser
+         des différences existantes, et donc possiblement de mettre en avant des emplois sémantiques
+         différents. Cette optique est par exemple celle de la sémantique interprétative de François
+         Rastier. Bien qu’elle utilise le même vocable de « sème » que la sémantique componentielle
+         précédemment vue, la perspective est inverse comme le souligne Bénédicte Pincemin : « Ce sont les
+         sèmes qui sont décrits par un ensemble d’occurrences (/couvert/ = {‘fourchette’, ‘couteau’,
+         ‘cuillère’})<sup><a id="fn2-ref" class="note" href="#fn2">2</a></sup> ; et ce n’est
+         qu’indirectement qu’un ensemble de sèmes peut être attribué à un mot »
+          <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Pinc2">(Pincemin 1999b, 72)</a>. Cette
+         attribution des sèmes à un mot n’a rien d’automatique. Elle dépend de
+         l’interprétation d’un chercheur. Dans ce cas, il n’y a jamais sur un texte de clôture du processus
+         interprétatif au sens où diverses lectures sont toujours possibles. Le sémantisme n’a plus alors
+         de base établie.</span></p></div>
+
+
+    <h3 id="I3">3) Le positionnement adopté pour cette recherche <a href="#I3-ref">&#8617;</a> </h3>
+
+        <div id="Pinc2b"><p class="mypara"> <span class="marge">Du fait de son objectif d’étude du changement
+        sémantique à partir des textes et non d’un système d’objets ou d’états pré-établis, cette thèse
+        s’inscrit dans le champ des sémantiques différentielles. Les réflexions de François Rastier ont
+        été particulièrement utiles pour comprendre a posteriori le positionnement de cette recherche mais il
+        n’y a pas eu de tentative en amont pour être au plus proche de cette théorie. La démarche suivie a
+        été surtout inspirée initialement par les réflexions de Bénédicte Pincemin <a
+                    href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Pinc2">(1999b)</a> qui se demande
+        de manière générale comment trouver des sèmes à partir de l’outillage de l’analyse textuelle. Sa
+        réponse est loin de spécifier une méthode unique puisqu’elle présente une pluralité d’outils
+        (cooccurrence, modèle de l’espace vectoriel…) pour atteindre cet objectif. Ainsi, le choix de ce
+        cadre théorique général n’a pas permis d’en déduire logiquement une méthode. En revanche, ce choix
+        théorique a permis de stimuler plusieurs réflexions, notamment en considérant de possibles
+        attractions vis-à-vis d’autres positionnements.</span></p></div>
+     <p class="mypara"> <span class="marge"> En effet, dans le cadre d’une démonstration d’un changement
+         sémantique, il est évident qu’une approche des sèmes ouverte et relative comme celle proposée par
+         François Rastier n’est pas l’idéal. Une approche componentielle serait indiscutablement plus
+         démonstrative. Par exemple, par rapport à l’hypothèse d’Olivier Orain sur l’équivalence sémantique
+         des termes « espace » et « milieu » puis leur différenciation, l’idéal serait de montrer qu’ils
+         ont été constitués par les mêmes composants sémantiques de base puis que cette constitution a
+         ensuite changé. <em>A contrario</em>, dans le cas d’une lecture des sèmes qui repose sur des
+         différences
+         locales d’utilisation, mais qui dépend <em>in fine</em> de l’interprétation d’un chercheur, l’objectivité
+         dans la démonstration est moindre. Il y a donc une tension à prévoir dans cette recherche par
+         rapport à une approche plus componentielle qui fournirait plus de poids à la démonstration.</span></p>
+    <p class="mypara"> <span class="marge"> De plus, il est ici utile de rappeler que l’objectif derrière
+        la détermination d’un changement sémantique est bien de caractériser un changement cognitif dans la
+        manière de faire de la géographie. Le changement sémantique est ici utilisé comme un
+        proxy<sup><a id="fn3-ref" class="note" href="#fn3">3</a></sup> : ce
+        qui est visé est au fond la mise en avant d’un changement majeur dans les structures conceptuelles
+        des géographes. Cette situation amène à penser qu’au cours de la recherche une tension va aussi
+        probablement se manifester par rapport à une sémantique référentielle poussant à interpréter des
+        changements sémantiques comme des modifications plus ou moins importantes de structures de pensée.</span></p>
+
+    <p class="mypara"> <span class="marge"> La section suivante complète cette approche très globale par une
+        perspective plus spécifique à cette recherche. En effet, la problématique de cette recherche,
+        au-delà de la détection d’un changement sémantique, est celle d’un changement de paradigme. Or, il
+        n’y a rien d’évident dans ce passage qui vise à déduire du changement sémantique un changement de
+        paradigme. Cette réflexion a conduit à s’intéresser à un point théorique précis dont la
+        formalisation imagée a permis de mieux préciser la recherche en cours.</span></p>
+
+    <h2 id="II">II) La métaphore de la plasticité de la matière <a href="#II-ref">&#8617;</a> </h2>
+
+
+    <div id="Reu1a"><p class="mypara"> <span class="marge"> Le travail de thèse de Caroline Reutenaeur <a
+             href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Reu1">(2012)</a> apporte une
+         première réponse à cette interrogation sur le lien changement sémantique / changement de paradigme
+         par le biais d’une analogie. L’évolution sémantique y est comparée à la plasticité de la matière.
+         Ce qui permet la déformation, ce sont les « potentiels de sens, c’est-à-dire des facettes
+         sémantiques susceptibles de s’actualiser » <a
+                href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Reu1">(Reutenauer 2012, 40)</a> pour
+         chaque mot. Cette analogie
+         permet d’introduire les concepts de transformation réversible et irréversible. Dans le premier
+         cas, il y a « une déformation temporaire du sens, qui reste tributaire des contraintes de
+         l’environnement, c’est-à-dire du contexte, mais qui n’affecte pas le sens lexical lorsque les
+         contraintes contextuelles se relâchent » <a
+                 href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Reu1">(<em>Ibid</em> 2012, 40)</a>. Dans le
+        second cas, à l’inverse, il y a
+         une déformation durable et une restructuration du sens littéral qui peut « acquérir un nouveau
+         contenu d’un point de vue cognitif » <a
+                 href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Reu1">(<em>Ibid</em> 2012, 40)</a>. Ce que
+        permet de penser cette analogie,
+         c’est qu’au-delà d’une élasticité de la langue avec un processus de création de sens polysémiques,
+         il peut exister des « seuils d’élasticité » impliquant des possibilités ou impossibilités de
+         retour à l’état initial en fonction du franchissement ou non de ces derniers. L’idée d’un
+         changement irréversible tel qu’il existe dans la théorie kuhnienne peut être appréhendée à travers
+         cette image.</span></p></div>
+    <div id="Orain1f"><p class="mypara"> <span class="marge"> La détection du changement sémantique ici menée s’oriente par
+        conséquent dans la mise en évidence d’un changement irréversible, sans retour possible à l’état
+        initial. Il faut toutefois souligner que ce qui est recherché va au-delà de l’irréversibilité car
+        il faut qu’il y ait en plus, selon la théorie kuhnienne, « incommensurabilité ». Il est
+        particulièrement difficile de fonder une étude quantitative sur un concept aussi flou car il ne
+        relève pas d’un critère directement mesurable. Dans une définition stricte d’ailleurs,
+        incommensurable renvoient à « des grandeurs qui n’ont pas de communes mesures » (Dictionnaire Le
+        Robert 2002). Il y a incontestablement un certain paradoxe à vouloir mesurer une
+        incommensurabilité. Par rapport à cette difficulté, un point intéressant dans la reprise du travail
+        d’Olivier Orain, est qu’il permet de s’appuyer sur une prise assez concrète pour étudier là où se
+        joue, selon lui, l’incommensurabilité d’un point de vue sémantique : sa conclusion affirme des
+        dynamiques qui partent d’une équivalence sémantique des termes « espace » et « milieu » avec au
+        cours de la « révolution » une différenciation conceptuelle aboutissant à « un cadre paradigmatique
+        à nouveau stable »
+        et à la « généralisation d’une sémantique particulière »
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Orain1">(Orain 2003, 354)</a> au milieu des
+        années 1980.</span></p></div>
+    <div id="Orain1g"><p class="mypara"> <span class="marge"> Cette affirmation s’appuie en partie sur une
+        étude
+        quantitative. Cette dernière pose question quand elle est examinée en détail tant au niveau du
+        corpus (14 livres dont un seul après 1972) que de la méthode (des calculs d’occurrences et de
+        rapports sans vraiment d’interrogation sur l’origine et la portée de cet outillage). Il ressort par
+        conséquent d’un examen plus attentif que ce qui est avancé par cet auteur relève avant tout
+        d’appréciations qualitatives. De plus, les interprétations réalisées apparaissent assez
+        problématiques quand elles sont analysées en détail. En effet, Olivier Orain déclare une certaine
+        équivalence des termes « espace », « milieu » et « région » tout en leur assignant tout de même des
+        cadres sémantiques distincts<sup><a id="fn4-ref" class="note" href="#fn4">4</a></sup>. Il affirme
+        ensuite l’apparition de sens émergents du terme
+        « espace », « plus ou moins en rupture avec la doxa » <a
+                href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Orain1">(<em>Ibid</em> 2003, 223)</a> mais
+        finit par dénier lui
+        assigner une sémantique sous les arguments qu’il est « tout et dans tout », qu’il désignerait l’
+        « objet légitime de la géographie » , qu’il serait un « déictique de l’identité disciplinaire »
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Orain1">(<em>Ibid</em> 2003, 223)</a>. Pour
+        finir, il y a
+             l’affirmation de sens émergents mais sans que le changement
+        sémantique soit vraiment précisé.</span></p></div>
+    <p class="mypara"> <span class="marge"> Nul doute que l’image de Caroline Reutaneuer de l’existence
+        d’une polysémie avant le franchissement d’un seuil de rupture peut ici aider à la compréhension du
+        processus que souhaite mettre en avant Olivier Orain. Il y aurait eu un foisonnement polysémique
+        autour du terme « espace » qui aurait abouti à des changements irréversibles dans la signification
+        de ce terme et d’autres qui lui étaient associés. Il n’en reste pas moins que ce processus est
+        surtout intuité dans le travail de thèse d’Olivier Orain plus que véritablement montré. Il s’agit
+        par conséquent de reprendre cette idée en étudiant les dynamiques sémantiques des termes « milieu »
+        et « espace » afin de tester plus en profondeur la thèse d’Olivier Orain. Avant de réfléchir
+        concrètement à la méthode utilisée, l’état des lieux a été poursuivi pour savoir s’il existait déjà
+        des travaux étudiant des changements sémantiques dans une double optique, à la fois quantitative et
+        kuhnienne, comme celle envisagée dans ce travail. </span></p>
+
+
+     <h2 id="III">III) D’un premier état des lieux :<br> approches sémantiques, quantitatives et kuhniennes
+     <a href="#III-ref">&#8617;</a> </h2>
+
+        <p class="mypara"> <span class="marge"> La recherche bibliographique d’approches sémantiques,
+         quantitatives et kuhniennes a abouti à un nombre très réduit de références. Dans un premier temps,
+         il est possible de penser que ce résultat est la conséquence directe d’une requête finalement
+         assez spécifique. Un examen approfondi des références trouvées apporte des éléments d’explication
+         plus complexes et intéressants par rapport à la problématique de ce travail. Le fait d’avoir
+         trouvé peu de références a permis aussi de rentrer dans les détails de celles-ci, et notamment de
+         pouvoir réfléchir la recherche ici envisagée par rapport aux travaux existants. La partie suivante
+         détaille un ensemble de références trouvées relevant d’une méthodologie spécifique, celle de
+            l’analyse des mots-associés (<em>co-word analysis</em>).</span></p>
+
+        <h3 id="III1">1) L’analyse des mots-associés <a href="#III1-ref">&#8617;</a> </h3>
+
+
+        <div id="Cal1"><p class="mypara"> <span class="marge"> D’un point de vue technique, l’analyse des
+    mots-associés
+         consiste à étudier le réseau de cooccurrences de mots-clés d’un corpus donné. Tout un outillage
+         spécifique (indice d’inclusion, indice d’association, diagramme stratégique…) existe et s’est
+         perfectionné avec le temps
+            (<a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Cal2">Callon <em>et al.</em> 1983</a>; <a
+                 href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Cal3">Callon 1986</a>; <a
+                 href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Cal1">Callon, Courtial et
+         Laville 1991)</a>. S’il existe quelques références qui s’inscrivent dans une perspective kuhnienne
+         (<a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Ste1">Steinberg 1994</a>; <a
+                 href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Liu1">Liu <em>et al.</em> 2014)</a>, elles
+             sont incontestablement peu nombreuses par rapport à
+         l’ensemble des recherches se revendiquant de cette méthode. Cette observation s’explique assez
+         facilement par le fait que l’analyse des mots-associés a été historiquement liée à la théorie de
+         l’acteur-réseau <a  href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Cal3">(Callon 1986)</a>
+             du fait d’une création et d’une mise en avant par les mêmes
+         auteurs. Ces derniers revendiquent un fort lien entre leur approche théorique et cet outillage
+         méthodologique.</span></p></div>
+
+      <div id="Cal2a"><p class="mypara"> <span class="marge"> Il est d’autant plus intéressant de se pencher
+          sur ce lien
+          qu’il est construit dans un positionnement explicitement contre la théorie kuhnienne. Cette
+          théorie y est critiquée pour son cadre fixe qui ne permettrait pas d’appréhender de manière
+          satisfaisante toute la complexité des dynamiques de construction des connaissances. L’approche
+          kuhnienne est assimilée à un outillage méthodologique de détection de regroupements (clustering)
+          dans les réseaux de co-citations. Or, en reprenant l’hypothèse sémantique précédemment détaillée
+          (<em>cf.</em> Manuscrit Chap2.II.3.c), il est possible de penser, qu’au
+          contraire, l’analyse de l’évolution des mots-associés dans leurs différentes interactions peut
+          être menée pour étudier des dynamiques envisagée dans une optique kuhnienne. Il y a dans cette
+          opposition forgée initialement par Callon <em>et al.</em> <a
+                  href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Cal2">(1983)</a> un certain coup de force
+          pour affirmer et outiller leur théorie.</span></p></div>
+
+        <div id="Coi1"><p class="mypara"> <span class="marge"> Le travail de Jean-Philippe Cointet permet
+            une approche différente quand il affirme : </span></p></div>
+
+        <p class="mypara cite"> « En dépit de la circulation incessante des entités
+            décrites par la thèse de l’acteur-réseau, la méthode des mots-associés vise bien à identifier
+            des structures stables qui émergent de la répétition des occurrences d’un mot dans une série de
+            contextes différents ; quelles configurations d’équilibres émergent de la façon dont les
+            acteurs associent les mots ou posent les problèmes » <a
+                    href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Coi1">(Cointet 2017, 16)</a>.</span></p>
+
+        <p class="mypara"> <span class="marge"> Ces « structures stables » ou « configurations
+            d’équilibres » pourraient théoriquement correspondre à des paradigmes. Cette perspective permet
+            de réhabiliter l’utilisation de l’analyse des mots-associés dans un cadre kuhnien.</span></p>
+
+        <div id="Che3"><p class="mypara"> <span class="marge"> De plus, par rapport à cette méthode des
+            mots-associés, il
+            faut préciser qu’elle est, de nos jours, très peu employée telle qu’elle a été développée
+            historiquement par les partisans de la théorie de l’acteur-réseau. Les évolutions qui ont eu
+            lieu se sont jouées sur plusieurs plans. Tout d’abord, de nombreuses recherches privilégient en
+            entrée<sup><a id="fn5-ref" class="note" href="#fn5">5</a></sup> le texte intégral (avec ensuite
+            parfois une sélection à partir des termes les plus
+            fréquents et/ou discriminants) plutôt qu’une pré-sélection de mots-clés comme cela se faisait
+            antérieurement. De plus, tout l’outillage complexe précédemment cité (indice d’inclusion…) est
+            souvent remplacé par la détection de clusters (<a
+                    href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Che3">Chen <em>et al.</em> 2016)</a>.
+                Enfin, les méthodes
+            d’analyse plus bibliométriques ne sont plus opposées mais utilisées en complément de l’analyse
+            des mots cooccurrents <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Bra1">(Braam et Moed
+                1991)</a>.</span></p></div>
+
+        <div id="Che1"><p class="mypara"> <span class="marge"> Toutefois, il ne faut pas négliger
+            l’importance de cet
+            héritage qui a établi une bipartition entre théorie kuhnienne et analyse de co-citations d’un
+            côté et théorie de l’acteur-réseau et analyses des mots-associés de l’autre. Par exemple,
+            l’ensemble d’articles publiés sous la houlette de Chaomei Chen <a
+                    href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Che1">(2003)</a> sous le titre
+            <em>Visualizing scientific paradigms</em> est totalement orienté vers des analyses de co-citations.
+            Même si cet auteur met par ailleurs en avant l’importance des analyses par mots-associés <a
+                    href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Che2">(Chen <em>et al.</em> 2002)</a>,
+                ces dernières restent concrètement rares dans les études adoptant le modèle
+            kuhnien comme cadre théorique.</span></p></div>
+
+        <p class="mypara"> <span class="marge"> D’autres éléments que cette bipartition peuvent être
+            développés pour tenter d’expliquer cette rareté. Une hypothèse est que les réseaux de
+            co-citations donnent à voir des ruptures plus nettes que celle des réseaux de mot-associés. De
+            plus, un recul de l’épistémologie
+            kuhnienne<sup><a id="fn6-ref" class="note" href="#fn6">6</a></sup> doit sûrement être considéré
+            aussi comme un facteur permettant de comprendre pourquoi l’emploi des méthodes de clustering
+            sur les réseaux de cooccurrences se fait souvent sans utiliser ce cadre théorique.</span></p>
+
+        <div id="Cha1"><p class="mypara"> <span class="marge"> La spécificité de ma recherche est de
+            bénéficier grâce aux
+            travaux d'Olivier Orain d'une lecture kuhnienne approfondie de mes corpus. Ceci explique la
+            formalisation initiale d'hypothèses plus spécifiques et plus avancées. Il ne s’agit pas de se
+            contenter d’affirmer que le réseau de cooccurrence global a évolué pour affirmer qu’il y a eu un
+            changement de paradigme. L’hypothèse porte sur des dynamiques sémantiques précises et la réflexion
+            prolongée à l’aide du travail de Caroline Reutaneuer est un apport non négligeable pour penser
+            théoriquement cette évolution. D’après les recherches bibliographiques menées, il n’existe pas
+            d’études présentant de telles caractéristiques. Toutefois, il faut souligner la présence d’un
+            travail se basant sur un outillage un peu différent de celui de l’analyse des mots-associées avec
+            un cadre théorique kuhnien bien affirmé. Il s’agit de la thèse de Carmela Chateau-Smith <a
+                    href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Cha1">(2012)</a> sur
+            les changements sémantiques liés à l’affirmation de la théorie de la tectonique des plaques et se
+            basant sur une méthode appelée prosodie sémantique. L’étude de cette référence a donné lieu à un
+            ensemble de réflexions par rapport à l’étude ici envisagée.</span></p></div>
+
+            <h3 id="III2">2) La thèse de Carmela Chateau Smith <a href="#III2-ref">&#8617;</a> </h3>
+
+        <p class="mypara"> <span class="marge">La méthode employée par Carmela Chateau-Smith dans sa thèse
+         relève de la prosodie sémantique. Cette dernière consiste à examiner la polarité, positive ou
+         négative, des cooccurrents d’un mot. L’idée sous-jacente de cette autrice est qu’un tel changement
+         de polarité peut être un bon marqueur d’un changement de paradigme. Cette idée s’appuie sur le
+         fait qu’une inversion de polarité peut en effet renvoyer à un changement profond de valeurs. Par
+         rapport au travail spécifique d’Olivier Orain, il est tout à fait possible qu’en étudiant certains
+         auteurs qu’il cite (Pierre George, Jacqueline Beaujeu-Garnier…), un changement de polarité autour
+         du terme « espace » puisse être identifié. En effet, certains auteurs ont développé des critiques
+         du spatialisme alors que d’autres ont au contraire valorisé fortement cette approche. Toutefois,
+         la perspective d’Olivier Orain dépasse ces positionnements individuels. Il promeut en effet une
+         dynamique sémantique plus globale. Pour étudier une telle dynamique, une méthode axée seulement
+         sur un changement de polarité des cooccurrents apparaît comme assez réductrice. En effet, si seuls
+         les cooccurents marqués fortement par une polarité positive ou négative sont gardés, un risque
+         encouru est de réaliser des analyses liées surtout à quelques positionnements individuels et de
+         passer à côté d’une grande partie des dynamiques.</span></p>
+
+      <p class="mypara"> <span class="marge">Sur un autre plan, l’étude Carmela Chateau-Smith peut faire
+          penser qu’il serait intéressant de réaliser une étude comparative, notamment par rapport à des
+          cas de changement de paradigmes plus avérés relevant des sciences physiques (tectonique des
+          plaques, théorie de la relativité…). Au-delà du problème de production de corpus comparables, il
+          ne serait pas pertinent à mon avis d’essayer d’établir ainsi un seuil commun de changement
+          sémantique à partir duquel il est légitime de parler d’un changement de paradigme. Il n’existe
+          pas de seuil universel déterminant en la matière. Il ne s’agit pas ici de dénier tout intérêt
+          pour une perspective comparative car il serait évidemment instructif d’étudier dans une même
+          étude des changements sémantiques dans des disciplines relevant de modes différents de
+          scientificité. Toutefois, par rapport à l’optique quantitative ici privilégiée, il ne me semble
+          pas qu’une étude comparative pourrait régler le problème de détection de cette thèse au moyen de
+          l’établissement d’un seuil universel.</span></p>
+
+        <p class="mypara"> <span class="marge">Enfin, un dernier élément par rapport à la méthodologie du
+            travail de Carmela Chateau-Smith mérite d’être souligné. Il me semble que l’optique de
+            recherche adoptée par cette auteure est moins « critique » que celle qui a animé ma recherche.
+            Cette différence de positionnement peut tout d’abord s’illustrer dans le statut du cadre
+            kuhnien qui est considéré comme une donnée par Carmela Chateau-Smith alors qu’il est une
+            interrogation centrale dans cette thèse. Cette différence de positionnement peut aussi se lire
+            à travers un point spécifique de l’approche méthodologique : Carmela Chateau-Smith s’appuie sur
+            une référence au travail de Robert Daley pour justifier d’une fenêtre optimale de cooccurrence
+            de cinq à gauche et quatre à droite<sup><a id="fn7-ref" class="note" href="#fn7">7</a></sup>.
+            Par rapport à cette affirmation d’un empan qui serait
+            universellement plus valide que les autres, le positionnement de ce travail est tout autre.
+            L’alternative a bien été résumée par Bénédicte Pincemin sur cette question :</span></p>
+
+        <div id="Pinc2c"><p class="cite"> « soit on argumente pour
+    démontrer que, parmi toutes les définitions de contexte que l’on pourrait envisager, l’une est plus
+    pertinente que les autres ;
+            soit on considère que la définition du contexte peut varier suivant les types de textes et les
+            applications visées, et que c’est un paramètre à ajuster, souvent sur des considérations
+            heuristiques (tel choix "marche mieux" que tel autre dans tel cas de figure). » <a
+                    href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Pinc2">(Pincemin, 1999b)</a></p></div>
+
+        <p class="mypara"> <span class="marge"> D’une manière assez
+            intuitive<sup><a id="fn8-ref" class="note" href="#fn8">8</a></sup>,
+            la seconde voie d’une
+            fenêtre définie comme un paramètre à ajuster a ici été privilégiée </span></p>
+
+        <p class="mypara"> <span class="marge"> Si cet état des lieux sur les travaux articulant changement
+            sémantique, perspective kuhnienne et approche quantitative, a permis de préciser et de
+            développer plusieurs points, il n’a pas réglé la question du choix méthodologique. Un état des
+            lieux plus élargi a eu lieu par rapport à cette problématique. Pour cela, j’ai effectué une
+            recherche en m’intéressant toujours aux travaux sur le changement sémantique avec une approche
+            quantitative mais en abandonnant la contrainte d’un rattachement à une perspective kuhnienne.</span></p>
+
+
+        <h2 id="IV">IV) ...à un second état des lieux :<br>
+            approches sémantiques et quantitatives sans perspective kuhnienne <a href="#IV-ref">&#8617;</a>
+        </h2>
+
+
+        <h3 id="IV1">1) De l’axe syntagmatique aux plongements de mots <a href="#IV1-ref">&#8617;</a> </h3>
+
+
+        <div id="Lon1"><p class="mypara"> <span class="marge">Le nombre important de références
+    trouvées confirme que le
+         constat effectué par Bénedicte Pincemin en 2009 d’une grande diversité d’outils de la statistique
+         textuelle pour travailler sur les sèmes (et donc potentiellement le changement sémantique) est
+         toujours d’actualité. Par exemple, Julien Longhi et André Salem mobilisent la technique des
+         segments répétés et l’analyse factorielle des correspondances pour étudier le changement
+         sémantique autour du terme « ennemi » dans la série chronologique du Père Duchesne <a
+                 href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Lon1">(Longhi et Salem 2018)</a> ; Armelle
+             Boussidian mobilise le concept de clique sur le réseau de cooccurrences pour
+         étudier l’évolution sémantique du terme de mondialisation entre 1998 et 2001 <a
+                 href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Bou1">(Boussidan 2013)</a> ;
+         de nombreux travaux proposent des adaptations du modèle bayésien LDA pour prendre en compte
+         l’évolution temporelle et s’intéresser plus spécifiquement à la problématique du sens des mots
+         <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Fre1">(Frermann et Lapata 2016)</a>. D’une manière
+             globale, il est intéressant de noter que tous les travaux
+         s’attaquant au problème complexe du sens des mots s’appuient plus ou moins explicitement sur
+         l’affirmation de John Rupert Firth <a
+                 href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Fir1">(1957)</a> : « you shall know a word by
+             the company it keeps »<sup><a id="fn9-ref" class="note" href="#fn9">9</a></sup>. En
+         effet, il n’existe pas de sens pour un mot isolé. C’est le contexte qui permet d’étudier cette
+         dimension sémantique d’un terme.</span></p></div>
+
+      <div id="Reu1b"><p class="mypara"> <span class="marge">Dans sa thèse, Coralie Reutenaeur <a
+              href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Reu1">(2012)</a> étudie l’évolution
+          des cooccurrents du terme « tsunami ». Alors qu’initialement ce mot est accompagné d’un
+          vocabulaire relevant assez exclusivement des sciences de la nature (« mer », « vague »,
+          « terre », « côte », …), il y a une diversification des cooccurrents avec notamment l’apparition
+          de termes marqués par le monde de la finance (« capitalisme », « économie réelle », « zone
+          euros », « dollars »,…). Cette méthode de la coocurrence s’appuie sur les relations
+          syntagmatiques (la proximité des termes) mais elle ignore les relations paradigmatiques
+          (l’utilisation de termes plus ou moins substituables dans une même structure). Pour illustrer ce
+          phénomène, imaginons un texte contenant plusieurs occurrences de ces deux syntagmes : « l’espace
+          économique régional » et « le milieu économique régional ». Dans cet exemple, après avoir défini
+          une fenêtre de cooccurrence au moins supérieure à 1 à droite, le terme « espace » cooccurre avec
+          les mots « économique » et « régional ». De la même manière, « milieu » cooccurre alors avec
+          « économique » et « régional ». Cependant, « espace » et « milieu » ne vont pas forcément
+          cooccurrer<sup><a id="fn10-ref" class="note" href="#fn10">10</a></sup>. Le fait que ces deux
+          termes soient pris dans une structure lexicale similaire n’est
+          pas pris en compte en utilisant le calcul de cooccurrence.</span></p></div>
+
+        <div id="Rub1"> <p class="mypara"> <span class="marge">Or, une partie de ce que soutient
+    Olivier Orain repose dans un premier temps sur une équivalence sémantique entre les termes « espace »,
+    « milieu » et « région » (<em>cf.</em> Manuscrit Chap2.II.3.c). Il y a donc une certaine légitimité à
+    essayer de prendre en compte cet axe paradigmatique. Ce sont les recherches de Zellig S. Harris
+            <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Har1">(1969)</a> avec
+    des analyses  dites distributionnelles qui sont le plus souvent citées comme la référence historique
+    sur ce sujet. Il faut ici préciser qu’à la base, le critère utilisé était surtout la grammaticalité.
+            Ainsi, dans l’exemple « le chat est noir », il est possible de remplacer « blanc » par
+            « noir ». Ces deux termes font alors partie du même
+            paradigme<sup><a id="fn11-ref" class="note" href="#fn11">11</a></sup>.
+            Cependant, grammaticalement, il
+            est correct d’écrire « le chat est connecté ». « connecté » appartient donc aussi au paradigme
+            contenant « noir » et « blanc ». Dans ce cas, c’est une catégorie grammaticale que permet
+            d’approcher cet axe paradigmatique. Cependant, en ne partant plus d’hypothèse grammaticale
+            fictive, mais de corpus existants, il a été montré que la reprise de ce principe de test de
+            commutation au sein d’une phrase permet de mettre en avant des classes de mots ayant une
+            véritable proximité sémantique <a
+                    href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Rub1">(Rubenstein et Goodenough 1965)</a>.
+        </span></p></div>
+
+        <div id="Mik1a"><p class="mypara"> <span class="marge">Des mesures spécialisées dans le calcul d’une proximité sur
+            l’axe paradigmatique existent. Elles consistent à calculer un vecteur pour chaque mot en
+            fonction des termes qui composent ses contextes d’apparition. Plusieurs métriques existent
+            ensuite pour évaluer la proximité entre deux vecteurs <a
+                    href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Fer2">(Ferret 2010)</a>. Une limite de ces
+            approches est qu’elles ne prennent pas en compte l’axe syntagmatique. S’appuyant toujours sur
+            le principe de ces analyses distributionnelles, une autre approche s’est développée ces
+            dernières années. Elle a donné lieu à un champ de recherche particulièrement dynamique en
+            utilisant des approches basées sur les réseaux neuronaux. Ces méthodes appelées « plongements
+            de mots » ont été implémentées initialement par Bengio <em>et al.</em> <a
+                    href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Ben1">(2003)</a> mais le véritable
+            développement de cette voie de recherche ne s’est réalisé qu’après les travaux de Mikolov <em>et
+            al.</em> <a
+                    href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Mik1">(2013)</a> avec la diffusion de la
+            méthode <em>Word2Vec</em>.</span></p></div>
+
+        <div id="Rul1"><p class="mypara"> <span class="marge"> L’intérêt de ces méthodes est de « condenser »
+            l’information sémantique<sup><a id="fn12-ref" class="note" href="#fn12">12</a></sup>. Il faut
+            souligner que ces méthodes sont généralement appliquées sur
+            de très gros corpus mais des expérimentations montrent qu’ils peuvent aussi être efficaces sur
+            des corpus beaucoup plus réduits. Par exemple, Alix Rules <em>et al.</em> <a
+                    href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Rul1">(2015)</a> ont appliqué un tel
+            outillage sur les discours de l’Union des Etats-Unis de 1790 à 2014. Les résultats obtenus sont
+            convaincants. Ces auteurs montrent ainsi que les voisins sémantiques du terme « land »
+            renvoient à des plusieurs univers thématiques relevant des frontières (river, territory, shore,
+            possession, etc.), de la propriété (ownership, private, public domain, title, etc.) et des
+            ressources (soil, mine, natural ressource, etc.).</span></p></div>
+
+        <p class="mypara"> <span class="marge"> Le choix des plongements de mots correspond aussi, comme
+            l’introduction de cette thèse, l’a mentionné à la conséquence d’une certaine acculturation
+            (<em>cf.</em> Manuscrit Chap1.III.1). Ce n’est qu’après avoir expérimenté et
+            trouvé les résultats assez convaincants pour être valorisés que j’ai adopté ces techniques.
+        </span></p>
+
+
+
+        <h3 id="IV2">2) Principales méthodes de plongement de mots <a href="#IV2-ref">&#8617;</a> </h3>
+
+
+        <p class="mypara"> <span class="marge">Un point commun entre les méthodes de plongement de mots
+         détaillées dans cette partie est d’obtenir pour chaque terme du vocabulaire du texte donné en
+         entrée un vecteur de nombres. Les termes qui ont des contextes similaires d’apparition vont
+         obtenir pour résultat des vecteurs correspondants
+            proches<sup><a id="fn13-ref" class="note" href="#fn13">13</a></sup>. En reprenant le principe
+            des analyses dites distributionnelles, à savoir que deux termes avec des contextes similaires
+            d’apparition ont
+         de grande chance d’avoir un sens proche, il est facile de comprendre pourquoi ces méthodes de
+         plongement de mots sont utilisées pour calculer des proximités sémantiques. De plus, il a été
+         montré expérimentalement que les vecteurs produits par ces algorithmes permettent de résoudre un
+         grand nombre d’analogies. Ainsi, si un plongement de mots fonctionne bien, en prenant le vecteur
+         correspondant au mot « roi », puis en lui soustrayant le vecteur correspondant au mot « homme » et
+         enfin en lui additionnant le mot « femme », le terme le plus proche du vecteur ainsi créé devrait
+         être « reine ». Ce qui peut être résumé par l’équation suivante : roi – homme + femme = reine.</span></p>
+
+      <div id="Gla1a"><p class="mypara"> <span class="marge">Les analogies qui peuvent être résolues sont
+    multiples. Un test connu <a
+                  href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Gla1">(Gladkova, Drozd, et Matsuoka 2016)</a>
+              permettant d’évaluer les plongements de mots donne
+          un aperçu de cette diversité en distinguant les analogies d’inflexion (singulier/pluriel…), de
+          dérivation (nom + suffixe<sup><a id="fn14-ref" class="note" href="#fn14">14</a></sup>...), de
+          lexicographie
+          (hyperonyme<sup><a id="fn15-ref" class="note" href="#fn15">15</a></sup>…) et d’encyclopédie
+          (géographie<sup><a id="fn16-ref" class="note" href="#fn16">16</a></sup>…).
+          Les résultats obtenus à partir d’un corpus
+          massif<sup><a id="fn17-ref" class="note" href="#fn17">17</a></sup>
+          avec un algorithme classique (<em>Skip-Gram</em>) sont
+          loin d’être parfaits : autour de 61 % des analogies d’inflexion, 11 % des analogies de
+          dérivation, 9 % des analogies lexicographiques et 26 % des analogies encyclopédiques sont
+          effectivement trouvées <a
+                  href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Dro1">(Drozd, Gladkova et Matsuoka 2016)</a>.
+              Les autres méthodes classiques de
+          plongement de mots permettent des gains mineurs (quelques points de pourcentage) sur certaines
+    catégories mais restent de cet ordre de grandeur.</span></p></div>
+
+        <p class="mypara"> <span class="marge">Cependant, ces résultats sont suffisamment meilleurs que
+            ceux obtenus par les outils antérieurs, expliquant pourquoi les plongements de mots ont été un
+            champ de recherche très dynamique<sup><a id="fn18-ref" class="note" href="#fn18">18</a></sup>
+            pendant toute la période d’élaboration de cette thèse. Par
+            rapport aux développements théoriques précédemment effectués, il faut préciser que ce ne sont
+            pas des sèmes qui sont trouvés par les plongements de mots. Toutefois, comme il n’existe pas de
+            méthode permettant de détecter automatiquement les sèmes, il faut trouver des outils permettant
+            non pas de déterminer mais plutôt d’approcher la sémantique des termes. Dans ce cadre-là, les
+            plongements de mots sont des techniques imparfaites mais qu’il est légitime d’utiliser. Mes
+            expérimentations tendent à me faire penser que plus les détections des analogies
+            lexicographiques et encyclopédiques sont bonnes par une méthode de plongement de mots, plus les
+            plus proches voisins d’un terme obtenus sont sémantiquement intéressants.</span></p>
+
+        <p class="mypara"> <span class="marge">Les parties suivantes détaillent le fonctionnement des
+            algorithmes les plus classiques : la méthode <em>Word2Vec</em> avec ses deux modèles <em>Continuous Bag of
+            Word</em> (<em>CBOW</em>) et <em>Skip-gram</em>, la méthode <em>GloVe</em> et enfin la méthode
+            <em>FastText</em> avec les deux mêmes
+            modèles : <em>CBOW</em> et <em>SkipGram</em>. La présentation commence par <em>Word2Vec</em> car sa date de création est
+            antérieure aux deux autres.</span></p>
+
+
+        <h4 id="IV2a">a) Fonctionnement de la méthode <em>Word2Vec</em> <a href="#IV2a-ref">&#8617;</a> </h4>
+
+
+        <div id="Mik1b"><p class="mypara"> <span class="marge">La méthode <em>Word2Vec</em> a été
+    développée par <a
+             href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Mik1">(Mikolov <em>et al.</em> 2013)</a>
+         . Cette partie présente dans un premier temps de manière simplifiée le modèle <em>CBOW</em>.</span></p></div>
+
+      <p class="mypara"> <span class="marge">Ce modèle demande en entrée un corpus et une fenêtre de
+          contexte. En guise d’exemple, la phrase suivante sera considérée comme un corpus : « L’armature
+          urbaine joue un rôle fondamental dans l’organisation régionale » et la fenêtre de contexte sera
+          fixée à 4 (2 à gauche et 2 à droite). Si nous considérons par exemple le mot cible « joue », le
+          contexte retenu va être {« armature », « urbaine »} à gauche et {« un », « rôle »} à droite. Le
+          modèle <em>CBOW</em> vise à prédire le mot cible à partir de son contexte.</span></p>
+
+        <p class="mypara"> <span class="marge">Pour cela, chaque mot du contexte est représenté par un
+            vecteur correspondant à la taille du vocabulaire (c’est-à-dire le nombre de mots dans le
+            corpus) avec des 0 partout sauf à l’emplacement du mot en question. Dans notre exemple, le
+            vocabulaire est l’ensemble {« l’ », « armature », « urbaine », « joue », « un », « rôle »,
+            « fondamental », « dans », « organisation », « régional »}. En suivant la règle précédente,
+            « armature », c’est-à-dire le premier mot du contexte de « joue » qui est noté dans le schéma
+            suivant w(t-2) du fait de sa position de deuxième mot à gauche, est encodé
+            [0,1,0,0,0,0,0,0,0,0]. Sur le même principe, il est possible d’encoder l’ensemble des autres
+            mots, notamment w(t-1), w(t), w(t+1), w(t+2). Le fonctionnement du modèle <em>CBOW</em> peut alors être
+            modélisé ainsi :</span></p>
+
+        <br>
+    <div class="a" id="Figure2">
+    <img src="{% static 'EtatDesLieux/image/Word2Vec.png' %}"
+         alt="EtatDesLieux/image/Word2Vec">
+    </div>
+    <br>
+
+
+    <div class="a" id="Mik1c">Figure n°2 : Fonctionnement du modèle <em>CBOW</em> <a
+            href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Mik1">(Mikolov <em>et al.</em>,2013).</a></div>
+    <br>
+    <br>
+
+        <div id="Mik1d"><p class="mypara"> <span class="marge">A partir des entrées (INPUT) : w(t-2),
+            w(t-1), w(t+1), w(t+2), l’objectif est que le modèle arrive à prédire en sotie (OUTPUT) : w(t). Le modèle a une
+            couche intermédiaire ici appelée PROJECTION. Ce graphique extrait de la publication originelle
+            de <a
+                    href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Mik1">(Mikolov <em>et al.</em> 2013)</a> est
+                trop synthétique pour comprendre même de manière simplifiée ce qui
+            est réalisé par l’algorithme. À cette fin, un nouveau schéma est ici présenté :</span></p></div>
+
+        <br>
+    <div class="a" id="Figure3">
+    <img src="{% static 'EtatDesLieux/image/Word2Vec2.png' %}"
+         alt="EtatDesLieux/image/Word2Vec2">
+    </div>
+    <br>
+
+
+    <div class="a">Figure n°3 : Fonctionnement plus détaillé du modèle <em>CBOW</em>. <br>
+        Source : <a href="https://fr.wikipedia.org/wiki/Word_embedding" target="_blank">https://fr.wikipedia.org/wiki/Word_embedding</a>, consulté le 25 juin 2020</div>
+    <br>
+
+        <p class="mypara"> <span class="marge">Par rapport à la Figure n°1, l’entrée dépend ici de la taille du contexte choisie (noté C dans Xc).
+            Dans l’exemple précédent, le contexte était de 4 mais il peut être différent (d’où l’existence
+            de cette variable dans le schéma ci-dessus). Le codage des mots sous forme de 0 et de 1 est
+            représenté ici par des points blancs et noirs dans la suite du vocabulaire. Un point blanc
+            correspond à un 0 et un point noir à un 1 par rapport à l’encodage précédemment explicité. La
+            taille du vocabulaire est notée V. Ce que permet d’appréhender ce nouveau schéma, c’est la
+            présence d’un paramètre N qui doit être fixé par l’utilisateur qui correspond à la taille de la
+            couche intermédiaire qui va être un vecteur à N dimensions. Ce qui était représenté dans le
+            schéma précédent par des flèches simples de transformation est en fait concrètement 2
+            matrices : une notée W de taille (VxN) et une notée W’ de taille (NxV).</span></p>
+
+        <div id="Mik1e"><p class="mypara"> <span class="marge">L’algorithme correspondant au
+            modèle <em>CBOW</em> cherche à
+            optimiser ces deux matrices pour trouver un vecteur final (y1, y2…, yv) le plus proche possible
+            du résultat attendu. Cette optimisation est réalisée en passant sur tous les mots du corpus en
+            déplaçant à chaque fois la fenêtre contextuelle précédemment définie. Elle est réalisée de
+            manière itérative avec comme paramètre fixé par l’utilisateur le nombre d’itérations, appelé
+            « epochs », à réaliser. Une fois cette optimisation réalisée, ce n’est pas le vecteur final
+            (y1, y2…, yv) obtenu qui est le plus intéressant mais le contenu de la matrice W. En effet,
+            cette dernière contient autant de lignes que de mots du vocabulaire. La ligne i de cette
+            matrice est un vecteur de taille N qui correspond au résultat du plongement pour le mot i. Pour
+            plus de détails techniques sur l’ensemble du processus d’optimisation qui est aussi appelé
+            phase d’apprentissage ou d’entraînement, nous renvoyons le lecteur intéressé à l’article
+            original <a
+                    href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Mik1">(Mikolov <em>et al.</em> 2013)</a>.
+        </span></p></div>
+
+        <br>
+
+        <p class="mypara"> <span class="marge">Le second modèle constituant la méthode <em>Word2Vec</em> est
+            <em>Skip-gram</em>. À l’inverse de <em>CBOW</em>, l’objectif est de prédire les éléments de contexte à partir du
+            mot cible. Par rapport à l’exemple précédent, il s’agirait d’inférer à partir du terme « joue »
+            le contexte {« armature », « urbaine », « un », « rôle »} si la fenêtre contextuelle choisie
+            est toujours de 4. Schématiquement, le modèle <em>Skip-gram</em> peut être représenté ainsi :</span></p>
+
+           <br>
+    <div class="a">
+    <img src="{% static 'EtatDesLieux/image/SkipGram.png' %}"
+         alt="EtatDesLieux/image/SkipGram">
+    </div>
+    <br>
+
+
+    <div class="a" id="Mik1f">Figure n°4 : Fonctionnement du modèle <em>Skip-Gram</em> (<a
+                href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Mik1">Mikolov <em>et al.</em>,
+        2013)</a></div>
+    <br>
+
+        <p class="mypara"> <span class="marge">Comme pour le modèle <em>CBOW</em>, ce schéma peut être développé
+            avec des matrices W et W’. De la même manière, les résultats sont pour chaque mot un vecteur de
+            dimension N issu de la matrice W. N étant toujours un paramètre qui doit être fixé par
+            l’utilisateur en amont. Par rapport au modèle <em>CBOW</em>, il est reconnu que le modèle <em>Skip-gram</em>
+            permet d’obtenir de meilleurs résultats pour les mots rares mais il est moins précis pour les
+            mots fréquents. Toutefois, le choix ne se réduit pas à une alternative puisque deux autres
+            algorithmes qui font aussi maintenant partie des méthodes classiques de plongement de mots
+            peuvent également être utilisés : <em>GloVe</em> et <em>FastText</em>.</span></p>
+
+
+    <h4 id="IV2b">b) Deux autres méthodes classiques de plongements de mots : <em>GloVe</em> et
+            <em>FastText</em> <a href="#IV2b-ref">&#8617;</a> </h4>
+
+
+        <div id="Pen1b"><p class="mypara"> <span class="marge">La méthode <em>GloVe</em>
+            <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Pen1">(Pennington, Socher et Manning
+         2014)</a> demande comme les modèles de <em>Word2Vec</em> en entrée un corpus, une fenêtre de contexte, une taille pour les
+         vecteurs constituant les résultats et un nombre d’itérations. Cette ressemblance dans les
+         paramètres initiaux cache des processus de calcul totalement différents. Dans le cas de <em>GloVe</em>, une
+         matrice de cooccurrence globale des mots est créée à partir de la fenêtre contextuelle définie. La
+         méthode peut être décrite comme une décomposition de la matrice Mots-Contextes (MC) en deux
+            matrices : une Mots-Variables (MV) et une Variables-Contextes (VC).</span></p></div>
+
+    <br>
+    <div class="a" id="Figure5">
+    <img src="{% static 'EtatDesLieux/image/GloVe.png' %}"
+         alt="EtatDesLieux/image/GloVe">
+    </div>
+    <br>
+
+
+    <div class="a">Figure n°5 : Fonctionnement du modèle <em>GloVe</em> <br> Source : <a
+            href="{% url 'Biblio:ViewBiblioInterface' 0  %}#Dip1">(Dipanjan, 2018)</a></div>
+    <br>
+
+    <div id="Gla1b"><p class="mypara"> <span class="marge">Le nombre de variables correspond à la
+    taille des
+    vecteurs de
+        plongement obtenus. Cette taille est un paramètre choisi par l’utilisateur. Les matrices MV et VC
+        sont initialisées au départ avec des poids aléatoires et l’algorithme utilise la méthode de
+        descente de gradient stochastique pour minimiser les erreurs dans l’approximation de la matrice MC
+        au fur et mesure des itérations. Le vecteur de chaque mot est contenu dans les lignes de la matrice
+        MV. Ainsi, des vecteurs ayant des propriétés similaires que ceux précédemment présentés pour les
+        modèles de la méthode <em>Word2Vec</em> sont obtenus. Par rapport au test précédent <a
+                href="{% url 'Biblio:ViewBiblioInterface' 0  %}#Gla1">(Gladkova, Drozd et
+            Matsuoka 2016)</a>, des gains pour les analogies lexicographiques et encyclopédiques peuvent être
+        observées, passant respectivement à 11 % et 31,5 %. Pour autant, <em>GloVe</em> est loin d’avoir supplanté
+        <em>Word2Vec</em>. Il y a une coexistence des différentes méthodes avec, suivant les auteurs et les tâches à
+        réaliser, une préférence pour l’une ou l’autre. Il faut souligner que <em>GloVe</em> demande une ressource
+        en mémoire vive beaucoup plus importante pour travailler sur la matrice de cooccurrences. La forte
+        popularité de <em>Word2Vec</em> s’explique aussi par de nombreuses extensions réalisées à partir du même
+        fonctionnement.</span></p></div>
+
+    <br>
+
+    <div id="Boj1"><p class="mypara"> <span class="marge">Parmi ces dernières, une très connue est <em>
+        FastText</em> <a
+                    href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Boj1">(Bojanowski <em>et al</em>. 2017)</a>.
+        Cet algorithme ne travaille plus au niveau du mot comme Word2Vec mais des
+        n-grams. En choisissant par exemple le terme « young » et des n-grams de n=4 à 6, l’ensemble suivant de n-gram
+        va être crée {&lt;you, &lt;youn, &lt;young, youn, young, young&gt;, oung, oung&gt;, ung&gt;} car <em>FastText</em> ajoute
+        deux signes « &lt; » et « &gt; » comme marqueur de début et de fin de mot. En réalisant cette opération
+        pour tous les mots d’un corpus, des vecteurs correspondants aux plongements de tous ces n-grams
+        sont obtenus en utilisant les modèles de la méthode <em>Word2Vec</em> (<em>CBOW</em> ou <em>Skip-gram</em>). L’intérêt de ce
+        changement d’échelle, des mots aux n-grams, est qu’il y a une amélioration de la représentation
+        sémantique de termes moins fréquemment employés mais qui sont construits sur la même base que
+        d’autres plus employées par ajout de préfixe et de suffixe. Par exemple, il est possible d’imaginer
+        que dans un corpus, le terme « young » est sémantiquement proche d’« adolescent ». Il est possible
+        que d’autres formes comme « preadolescent » soient plus rares et par conséquent moins bien
+        représentées en utilisant classiquement la méthode <em>Word2Vec</em>. <em>FastText</em> permet
+        d’obtenir que les
+        vecteurs des n-grams de « young » soient globalement proches de plusieurs vecteurs de n-grams
+        d’« adolescent », mais aussi du même coup proche de ceux du terme « preadolescent », ce qui
+        contribue à améliorer sa représentation sémantique. </span></p></div>
+
+
+        <div id="Lak1"><p class="mypara"> <span class="marge">Ce mécanisme explique des gains importants
+            notamment dans la
+            détection des analogies dites d’inflexion et de dérivation dans le test précédent avec une
+            baisse mineure sur les analogies dites encyclopédiques (<a
+                    href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Lak1">Lakmal <em>et al.</em> 2020)</a>. Dans la
+            perspective de cette recherche, il est possible d’imaginer par exemple un rapprochement
+            d’« espace » et de « spatial » par l’intermédiaire du tri-gram « spa ». Toutefois, ces formes
+            sont très employées dans mon corpus et il n’est pas donc certain qu’il soit utile d’utiliser
+            <em>FastText</em>. Il est possible aussi que cette méthode engendre un certain bruit, du fait notamment
+            de termes dont la syntaxe est proche mais non la sémantique. Seule l’expérimentation est
+            susceptible d’apporter des réponses à cette question car il n’y a pas de règle générale. La
+            spécificité de chaque corpus et de chaque questionnement joue un rôle important en la matière.
+            Dans le cadre de notre problématique, tout un autre champ de recherche se doit également d’être
+            exploré : celui des plongements de mots diachroniques.</span></p></div>
+
+
+<h4 id="IV2c">c) Plongements de mots diachroniques  <a href="#IV2c-ref">&#8617;</a> </h4>
+
+
+
+     <div id="Kim1"><p class="mypara"> <span class="marge">La première étude inaugurant cette voie de
+         recherche est celle
+         de Kim <em>et al.</em> <a
+                 href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Kim1">(2014)</a> qui
+             consiste à considérer les plongements de mots appris à la période t comme
+         initialisation pour apprendre ceux de la période t+1. La variation des distances existantes entre
+         plusieurs termes (par l’intermédiaire des vecteurs calculés) peut ensuite être visualisée dans le
+         temps. Par exemple, l’évolution des similarités cosinus entre le vecteur du terme « gay » et les
+         vecteurs de ses plus proches voisins en 1900 (« cheerful », « pleasant ») et en 2009 (« lesbian »,
+         « bisexual ») est représentée sur la figure suivante :</span></p></div>
+
+    <br>
+    <div class="a" id="Figure6">
+    <img src="{% static 'EtatDesLieux/image/Diachro.png' %}"
+         alt="EtatDesLieux/image/Diachro">
+    </div>
+    <br>
+
+
+    <div class="a">Figure n°6 : Evolution de la similarité cosinus des plus proches voisins du terme
+        « gay » en 1900 et 2009 <br> d’après les travaux de Kim et <em>al.</em> <a
+                href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Kim1">(2014)</a></div>
+    <br>
+
+    <div id="Kul1"><p class="mypara"> <span class="marge">Cette représentation permet de figurer de façon
+        remarquable un
+        changement sémantique. Des méthodes plus sophistiquées ont été ensuite proposées consistant à
+        calculer les plongements à différentes périodes et à essayer d’aligner les espaces vectoriels
+        obtenus à l’aide de la meilleure transformation linéaire possible (<a
+                href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Kul1">Kulkarni <em>et al.</em> 2015</a>;
+            <a
+                href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Ham1">Hamilton
+                <em>et al.</em> 2016</a>; <a
+                href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Dub1">Dubossarsky <em>et al.</em> 2017</a>;
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Szy1">Szymanski 2017)</a>.
+    </span></p></div>
+
+    <br>
+
+    <div id="Wev1"><p class="mypara"> <span class="marge">Quelques études peuvent être considérées comme
+        particulièrement
+        intéressantes pour ce travail car elles revendiquent une approche de l’évolution non plus des mots
+        mais des concepts. Une étude plus poussée de ces publications amène à être prudent par rapport à
+        une telle affirmation. Par exemple, Wevers <em>et al.</em> <a
+                href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Wev1">(2015)</a>
+            proposent un système qui peut prendre en
+        entrée non pas un mot mais un groupe de mots. L’évolution dans le temps peut être suivie grâce à
+        deux méthodes : une « non-adaptative » où l’apprentissage est fait de manière indépendante pour
+        chaque époque ; une « adaptative » où les résultats obtenus à une époque t servent à constituer le
+        nouveau groupe de mots pris comme référence à l’époque t+1. La dimension conceptuelle repose ainsi
+        surtout sur cette échelle du groupe de mots ce qui est discutable. Recchia <em>et al.</em> <a
+                href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Rec1">(2017)</a> proposent
+        une méthode de clustering pour mieux séparer des groupes de mots qui relèvent a priori de concepts
+        différents. Leur conclusion montre bien les limites d’un tel travail : « Toutes ces considérations
+        soulignent la complexité et la promesse des nouvelles approches pour suivre le vocabulaire associé
+        à des concepts spécifiques au fil du
+        temps »<sup><a id="fn19-ref" class="note" href="#fn19">19</a></sup>. Cette
+        citation montre en creux une recherche
+        balbutiante attirée par les lumières d’une approche cognitiviste du sémantisme mais qui doit
+        reconnaître que le passage des mots aux concepts est loin d’être résolu.Pour finir cet état des
+        lieux avant de mieux situer ce travail, deux évolutions importantes qui ont eu lieu au cours de
+        cette thèse, doivent être abordées.</span></p></div>
+
+
+<h4 id="IV2d">d) Plongement de graphes et plongement de mots contextualisés <a href="#IV2d-ref">&#8617;</a>
+</h4>
+
+
+   <div id="Gla1c"><p class="mypara"> <span class="marge">Les méthodes de plongement de graphes
+    permettent de ne pas
+         réduire une phrase à une suite continue de mots mais au contraire de pouvoir prendre en compte sa
+         structure syntaxique. Dans la pratique, l’étude de Zucherman <em>et al.</em> <a
+                 href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Zuc1">(2019)</a> montre que les
+         résultats ainsi obtenus par exemple sur le test de résolution d’analogies <a
+                href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Gla1">(Gladkova, Drozd et
+             Matsuoka 2016)</a> sont moins bons qu’avec des algorithmes classiques de plongement de mots. La raison
+         invoquée est la création d’un certain « bruit » provenant du fait que des phrases peuvent avoir
+         des structures similaires alors que leurs contenus sémantiques sont très éloignés. D’autres
+         approches doivent néanmoins être soulignées comme celle de <em>Word-Node2Vec</em> <a
+                href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Sen1">(Sen, Ganguly,
+             et Jones 2019)</a> qui permet de prendre mieux en compte pour les cooccurrences le niveau du
+             document. Les
+         auteurs affirment une amélioration de la tâche de résolution d’analogies mais les gains restent
+         mineurs par rapport à <em>GloVe</em> ou <em>FastText</em>.</span></p></div>
+
+    <div id="Pet1"><p class="mypara"> <span class="marge">Les plongements de mots contextualisés (<em>ELMo
+    </em> <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Pet1">(Peters <em>et al.</em> 2018)</a>, <em>
+        BERT</em> <a
+            href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Dev1">(Devlin <em>et al.</em> 2018)</a> permettent
+        des
+        gains nettement plus importants. La nouveauté de
+        ces méthodes est de pouvoir produire des vecteurs différents pour un même terme suivant ses
+        contextes d’apparition. Sans rentrer dans le détail de ces méthodes complexes puisqu’elles n’ont
+        pas été mobilisées dans cette thèse, il est nécessaire de reconnaître qu’il y aurait eu une
+        pertinence à les utiliser. Ce regret m’amène à justifier plus précisément le choix de la méthode
+        retenue pour cette recherche.</span></p></div>
+
+
+<h3 id="IV3">3) Explicitation de la méthode utilisée et raisons de ce choix <a href="#IV3-ref">&#8617;</a>
+</h3>
+
+
+
+     <p class="mypara"> <span class="marge">Il y a dans une thèse plusieurs étapes. Il existe notamment un
+         temps pour l’expérimentation et un autre pour la finalisation. Le format d’une thèse implique un
+         temps long de finalisation. Pendant celui-ci, la recherche continue d’avancer. À un moment donné,
+         j’ai choisi de ne plus modifier la méthodologie malgré les innovations existantes. Cela nécessite
+         de reconnaître le caractère daté et situé de la recherche. Le choix effectué, à savoir les
+         plongements de mots non contextualisés en utilisant les modèles de base (<em>Word2Vec</em>, <em>GloVe</em>,
+         <em>FastText</em>) peut et se doit d’être ainsi compris. Ce choix correspond à l’aboutissement d’une phase
+         de trois ans de réflexions et d’expérimentations aussi bien au niveau de la problématique que des
+         méthodologies (cf. Manuscrit Chap2). Toutefois, le chemin effectué ne me semble pas la seule
+         raison expliquant ce choix.</span></p>
+
+    <p class="mypara"> <span class="marge">Une deuxième raison est que ce socle (<em>Word2Vec</em>, <em>GloVe</em>, <em>FastText</em>)
+        est généralement bien identifié alors que les techniques qui en dérivent, forment un champ plus
+        profus et moins stabilisé. Ce constat est partagé par Syrielle Montariol et Alexandre Allanzen sur
+        la question de la diachronie :</span></p>
+
+    <div id="Mon1"><p class="cite"> « Le domaine en plein essor qu’est
+        l’apprentissage de
+        plongements de mots dynamiques manque encore de la cohésion que possèdent les tâches plus anciennes
+        du traitement automatique des langues […]. Notons qu’un cadre d’évaluation est difficile à définir
+        dans le cas qui nous intéresse, tant les attentes applicatives vis-à-vis d’un modèle diachronique
+        peuvent varier » <a  href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Mon1">(Montariol et Allauzen
+            2019, 12)</a>
+        </p></div>
+
+    <p class="mypara"> <span class="marge">Au niveau de cette étude, l’objectif a été évidemment d’utiliser
+        les technologies qui semblaient adaptées pour pouvoir répondre au problème posé mais sans forcément
+        faire de la dernière technologie disponible une nécessité absolue. Il y a eu un certain compromis
+        réalisé entre l’avancée technologique, le besoin de terminer ce travail et la nécessité d’avoir un
+        certain recul par rapport aux outils utilisés.</span></p>
+
+    <p class="mypara"> <span class="marge">Un troisième ordre de raison est plus technique et pragmatique.
+        Tout d’abord, il faut souligner que les algorithmes de plongement de mots contextualisés n’étaient
+        pas si faciles à implémenter dans les premiers temps de leurs développements (2018-2020). Ensuite,
+        les phrases étant une unité de référence importante dans ces outils les plus avancés, il faudrait à
+        mon avis retravailler la qualité des textes utilisés. En effet, certaines erreurs d’OCR perturbent
+        la reconnaissance de ces structures de base dans le corpus utilisé pour cette recherche. Des
+        améliorations sont possibles par rapport à ce problème mais elles demandent un travail
+        supplémentaire important.</span></p>
+
+    <br>
+
+    <p class="mypara"> <span class="marge">Pour finir, la technique utilisée doit être détaillée pour
+        saisir un aspect pragmatique du choix réalisé. La démarche retenue peut être décomposée en quatre
+        étapes :</span></p>
+
+        <ul>
+    <li>1) Calculer des plongements de mots pour chaque époque différente en essayant les modèles de
+            plongements de mots les plus classiques (<em>Word2Vec</em>, <em>GloVe</em>, <em>FastText</em>)
+     </li>
+	<li>2) Après avoir choisi la méthode de plongement semblant la plus efficace, retenir les p-voisins les
+        plus proches d’un terme choisi<sup><a id="fn20-ref" class="note" href="#fn20">20</a></sup> (p étant
+        un paramètre fixé par l’utilisateur)</li>
+	<li>3) Sur les vecteurs de ces p-voisins, appliquer des méthodes de clustering pour essayer d’organiser des regroupements sémantiques de termes voisins du terme choisi.</li>
+	<li>4) Comparer dans le temps l’évolution des clusters (groupes) obtenus pour chaque époque.</li>
+        </ul>
+
+
+    <div id="Dug2b"><p class="mypara"> <span class="marge">
+        Le facteur décisif pour comprendre cette méthode est le travail antérieurement effectué sur
+        l’évolution thématique. En effet, une recherche importante avait été réalisée en reprenant et
+        développant une méthode pour suivre l’évolution de clusters dans le temps <a
+            href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Dug2">(Dugué, Lamirel et Cuxac, 2016)</a>.
+        Cette partie est détaillée par la suite (cf. section
+        <a href="{% url 'TxtTheseConstructResult:home' %}#III3">Chap7.III.3)</a>. Ce qu’il faut ici comprendre, c’est
+        que cet outil sur lequel tout un travail avait déjà été effectué, a été logiquement testé sur cette
+        problématique de l’évolution sémantique. Les expériences menées étant assez concluantes et le temps
+        des expérimentations ayant été déjà bien consommé, il y a eu une adoption de cette démarche
+        méthodologique. Pour finir, il faut mentionner une évolution décisive dans les réflexions tirées de
+        ces expérimentations : elles m’ont conduit à penser que les conclusions de fond réalisées ne
+        seraient pas modifiées par les améliorations techniques alors disponibles. Tous ces facteurs
+        expliquent le choix méthodologique fait. </span></p></div>
+
+    <p class="mypara"> <span class="marge">
+        Avant d’appliquer ces méthodes et outils, il est nécessaire de préparer les données, ce qui est
+        l’objet du chapitre suivant. </span></p>
+
+
+
+
+<br>
+
+
+
+
+
+<!-- NOTE DEB -->
+
+<p class="present">Notes du chapitre</p>
+
+     <p id="fn1">[1] «Components» en anglais, d’où le terme d’analyse componentielle.
+<a href="#fn1-ref">&#8617;</a></p>
+    <p id="fn2">[2] Cette formulation synthétique veut dire que le sème /couvert/ est par exemple décrit dans
+        certains textes par les mots : « fourchette », « couteau » et « cuillère ».
+<a href="#fn2-ref">&#8617;</a></p>
+     <p id="fn3">[3] Au sens d’une variable qui en remplace une autre moins facilement mesurable.
+<a href="#fn3-ref">&#8617;</a></p>
+<p id="fn4">[4] « Quand on examine dans les détails les acceptions du terme inférables des usages qui en
+         sont faits, on peut aussi bien rabattre « espace » sur les grandes notions classiques, « paysage »
+         (qui est aussi donné comme la manifestation visible du spatial), « milieu » (« assiette » d’une
+         certaine relation homme/nature ou globalité régie par un ensemble d’interactions),
+         « région »(notamment conçue comme une unité organique observable) »  <a
+                 href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Orain1">(Orain 2003, 223)</a>. <a
+                 href="#fn4-ref">&#8617;</a></p>
+<p id="fn5">[5] Cette expression « en entrée » renvoie ici et quand elle est utilisée par la suite au début
+        de la chaîne de traitement des données. Elle correspond à l’expression anglaise d’« input ». <a
+            href="#fn5-ref">&#8617;</a></p>
+<p id="fn6">[6] Recul développé précédemment pour la géographie française (<em>cf.</em> Manuscrit Chap2.II.2.b) mais
+    qui
+    est un phénomène plus global dépassant cette discipline. <a href="#fn6-ref">&#8617;</a></p>
+<p id="fn7">[7] La fenêtre de cooccurrence permet de définir la zone contextuelle dans laquelle si deux
+        mots sont présents, alors ils sont définis comme cooccurrents. Si un mot est proche d’un autre mais
+        hors de cette fenêtre de cooccurrence, les deux mots ne sont pas cooccurrents <a href="#fn7-ref">
+            &#8617;</a></p>
+
+<p id="fn8">[8] Intuitif au sens où ce n’est pas passé par un travail critique sur la référence originelle
+        employée par Carméla Chateau-Smith <a
+            href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Dal1">(Daley <em>et al.</em> 2004)</a> mais bien
+    plutôt par un positionnement semblant <em>a priori</em> plus ouvert et pertinent. <a href="#fn8-ref">
+            &#8617;</a></p>
+
+    <p id="fn9">[9] Traduction personnelle : « Vous pouvez connaître un mot à partir de la compagnie qu’il
+        possède ». <a href="#fn9-ref">&#8617;</a></p>
+    <p id="fn10">[10] Cela dépend de la fenêtre de cooccurrence définie et de la proximité des deux syntagmes
+        « l’espace économique régional » et « le milieu économique régional ». <a href="#fn10-ref">&#8617;
+        </a></p>
+    <p id="fn11">[11] Ici, paradigme est pris dans son sens linguistique désignant une classe d’éléments
+        homogènes qui peuvent être substitués les uns aux autres en laissant l’énoncé grammaticalement
+        correct.<a href="#fn11-ref">&#8617;</a></p>
+    <p id="fn12">[12] Notamment par rapport aux méthodes précédentes qui représentent chaque mot par un
+        vecteur composé à partir des termes de ses différents contextes. Ces méthodes se caractérisent le plus
+        souvent par des vecteurs dit creux, c’est-à-dire composé par beaucoup de composantes nulles. En
+        effet, pour être comparable à d’autres vecteurs, il faut représenter dans le vecteur d’un terme les
+        mots composant ses contextes d’apparition mais aussi ceux qui ne le composent pas (mais qui vont
+        composer les contextes d’apparitions d’autres termes). La conséquence est alors en général la
+        création des longs vecteurs composés de beaucoup de 0. L’information contenue pas ces vecteurs est
+        considérée comme peu « dense ». D’où l’expression précédente de « condensation » de l’information
+        sémantique avec la production par les méthodes de plongements de vecteurs avec moins de 0 et
+        composé à partir de la distribution (syntagmatique et paradigmatique) des termes qui a une
+        dimension sémantique.<a href="#fn12-ref">&#8617;</a></p>
+    <p id="fn13">[13] Il existe plusieurs manières pour calculer la distance entre deux vecteurs. Une des plus
+        classiques est la similarité cosinus.  <a href="#fn13-ref">&#8617;</a></p>
+    <p id="fn14">[14] Par exemple, accomplishment -  accomplish + achieve = achievement. <a href="#fn14-ref">
+        &#8617;</a></p>
+    <p id="fn15">[15] Comme cat – feline + dog = canine.  <a href="#fn15-ref">&#8617;</a></p>
+    <p id="fn16">[16] Par exemple,  Paris – France + Grèce = Athènes. <a href="#fn16-ref">&#8617;</a></p>
+    <p id="fn17">[17] Corpus constitué du contenu anglais de Wikipedia au mois de juillet 2015 (1,8B tokens),
+        d’Araneum Anglicum Maius (1.2B) (Benko, 2014) et de l’ukWaC (2B) (Baroni et al., 2009) avec une
+        fenêtre de contexte de 8, une taille de vecteur demandé de 300.  <a href="#fn17-ref">&#8617;</a></p>
+    <p id="fn18">[18] Il faut ici souligner pour comprendre cette dynamique que les plongements de mots ont
+        été appliqués avec succès à un nombre important de domaines : étiquetage morpho-syntaxique,
+        reconnaissance d’entités nommées, analyse de sentiments... <a href="#fn18-ref">&#8617;</a></p>
+    <p id="fn19">[19] Traduction personnelle de : « All of these considerations underscore the complexity and
+        promise of novel  approaches  to  tracking  the  vocabulary  associated  with  particular concepts
+        over time » <a
+                href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Rec1">(Recchia <em>et al.</em>,2016)</a>. <a
+                href="#fn19-ref">&#8617;</a></p>
+
+    <p id="fn20">[20] Dans le cas de cette recherche, « espace » et « milieu ».<a href="#fn20-ref">&#8617;
+    </a></p>
+
+
+
+
+<!-- NOTE FIN -->
+
+<br>
+<br>
+
+
+<p class="suite"> Suite :
+    <a  href="{% url 'DelimitCorpus:home' %}">Chap4) Présentation des données, explorations et
+        délimitation des corpus</a>
+</p>
+<p class="suite"> Retour :
+    <a  href="{% url 'general:home' %}">Page d'accueil</a>
+</p>
+
+
+
+<script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+<script type="text/javascript">
+ EnArrEnAvt("{% url 'general:home' %}", "{% url 'DelimitCorpus:home' %}");
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    {% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Résumés discontinus de la réduction: {{reduction}}</title>
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+
+<body>
+
+    <p class="suite">
+            <a  href="{% url 'AmeliorText:ReDispatch' '1)Exploration' 'MotCle' %}">Retour : Part1)II)4)d)i)
+                Explorations mots-clés</a>
+    </p>
+    <br>
+
+
+
+    <h1>Mots-Clés discontinus de la réduction : {{reduction}}</h1>
+    <h2>Nombres d'éléments : {{NbresMotCles}}</h2>
+
+    <h2>Pourcentage par rapport au total : {{PourcentDiscon}}</h2>
+
+
+    <ul>
+    {% for motcle in RefMotCles%}
+        {% for elt in motcle %}
+        <li>{{ elt }}</li>
+        {% endfor %}
+        <br>
+    {% endfor %}
+    </ul>
+
+
+    <br>
+    <br>
+    <p class="suite">
+            <a  href="{% url 'AmeliorText:ReDispatch' 'Explor' 'MotCle' %}">Retour : Part1)II)3)d)i)
+                Explorations mots-clés</a>
+    </p>
+    <br>
+
+
+    <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+    <script type="text/javascript">
+        EnArrEnAvt("{% url 'AmeliorText:ReDispatch' 'Explor' 'MotCle' %}",
+        "{% url 'AmeliorText:ReDispatch' 'Explor' 'MotCle' %}");
+    </script>
+
+</body>
+</html>

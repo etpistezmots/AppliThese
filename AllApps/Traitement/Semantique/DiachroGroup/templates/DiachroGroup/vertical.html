@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Comparateur d'expe</title>
+
+        <style>
+
+
+.node rect {
+  cursor: move;
+  fill-opacity: .8;
+  shape-rendering: crispEdges;
+
+}
+
+.node text {
+  pointer-events: none;
+  /*text-shadow: 0 1px 0 #fff;*/
+}
+
+/*.link {
+  fill: #000;
+  opacity: .2;
+  stroke: #fff;
+  stroke-opacity: 0.;
+}
+*/
+.link {
+  fill: #000;
+  /*opacity: .1;*/
+  stroke: #f00;
+  stroke-opacity: .9;
+}
+
+
+.link:hover {
+  opacity: .5;
+}
+
+path.line {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1.5px;
+}
+
+path.area {
+  fill: #e7e7e7;
+}
+
+.axis {
+  shape-rendering: crispEdges;
+}
+
+.x.axis line {
+  stroke: #000;
+  stroke-opacity: .2;
+}
+
+.x.axis .minor {
+  stroke-opacity: .5;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.node2 rect {
+  cursor: move;
+  fill-opacity: .8;
+  shape-rendering: crispEdges;
+
+}
+
+.node2 text {
+  pointer-events: none;
+  /*text-shadow: 0 1px 0 #fff;*/
+}
+
+/*.link2 {
+  fill: #000;
+  opacity: .2;
+  stroke: #fff;
+  stroke-opacity: 0.;
+}
+*/
+.link2 {
+  fill: #000;
+  /*opacity: .1;*/
+  stroke: #f00;
+  stroke-opacity: .9;
+}
+
+
+.link2:hover {
+  opacity: .5;
+}
+
+path2.line {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1.5px;
+}
+
+path2.area {
+  fill: #e7e7e7;
+}
+
+
+.x2.axis line {
+  stroke: #000;
+  stroke-opacity: .2;
+}
+
+.x2.axis .minor {
+  stroke-opacity: .5;
+}
+
+.x2.axis path {
+  display: none;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+}
+
+
+ div.tooltip1 {
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  padding: 2px;
+  font: 14px sans-serif;
+  color: white;
+  background: black;
+  border: 0px;
+  border-radius: 8px;
+}
+
+
+ div.tooltip2 {
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  padding: 2px;
+  font: 14px sans-serif;
+  color: white;
+  background: black;
+  border: 0px;
+  border-radius: 8px;
+}
+
+        .suite {
+            font-style: italic;
+            text-align: right;}
+
+</style>
+
+
+
+</head>
+<body>
+
+<p class="suite">
+  <a  href="{% url 'TxtTheseConstructResult:home' %}#IV"> Retour Texte </a>
+</p>
+
+
+        <label for="paraselect">Affichage paramètres :</label>
+    <select onchange="location = this.value;" id="paraselect" name="paraselect" >
+        {% for parachoice in parachoices %}
+            {% if parachoice == paraselect %}
+                <option selected>{{ parachoice }}</option>
+            {% else %}
+                <option value="{% url 'DiachroGroup:resultallvisu' listexpesvisibles listexpesstock parachoice formselect tailleselect %}">{{ parachoice }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;
+
+  <label for="formselect">Format :</label>
+    <select onchange="location = this.value;" id="formselect" name="formselect" >
+        {% for formchoice in formchoices %}
+            {% if formchoice == formselect %}
+                <option selected>{{ formchoice }}</option>
+            {% else %}
+                <option value="{% url 'DiachroGroup:resultallvisu' listexpesvisibles listexpesstock paraselect formchoice tailleselect %}">{{ formchoice }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <label for="tailleselect">Taille image :</label>
+    <select onchange="location = this.value;" id="tailleselect" name="tailleselect">
+        {% for taillechoice in taillechoices %}
+            {% if taillechoice == tailleselect %}
+                <option selected>{{ taillechoice }}</option>
+            {% else %}
+                <option value="{% url 'DiachroGroup:resultallvisu' listexpesvisibles listexpesstock paraselect formselect taillechoice %}">{{ taillechoice }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+
+    </br>
+
+
+    <div id="navigation" onchange="run()">
+            <label for="data"> Choix de l'expe 1 :</label>
+            <select onchange="location = this.value;" id="data">
+                {% for expeR,ListExpeVisR in ZipExpe1 %}
+                    {% if expeR == expe1R %}
+                    <option selected>{{ expeR.nomresult }}</option>
+                    {% else %}
+                    <option value="{% url 'DiachroGroup:resultallvisu' ListExpeVisR listexpesstock paraselect formselect tailleselect %}">{{ expeR.nomresult }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <label for="myRange"> seuil : </label>
+            <input type="range" id="myRange" name="myRange" min="0" max="1" value="{{ seuilselect1 }}"
+                   step="0.05" class="slider">
+    <!-- voir la fonction updateTextInput pour mise à jour de la value-->
+            <input type="text" id="textInput" name="textInput" value="{{ seuilselect1 }}" size="4" disabled>
+            <label for="OneLabel"> Un seul label : </label>
+            <input type="checkbox" id="OneLabel" name="OneLabel" >
+    </div>
+
+    {% if paraselect == "All" or paraselect == "Diff" %}
+        <textarea id="dict1" name="dict1" rows="3" cols="150">Paramètre de l'expe 1 : {{ dict1 }}</textarea>
+    {% endif %}
+
+    <input type="hidden" id="tailleclusterlast1" name="tailleclusterlast1"
+           value="{{ expe1R.taillecluster }}">
+
+
+
+    <p id="chart"></p>
+
+        <div id="navigation2" onchange="run2()">
+            <label for="data2"> Choix de l'expe 2 :</label>
+                <select onchange="location = this.value;" id="data2">
+                    {% for expeR,ListExpeVisR in ZipExpe2 %}
+                        {% if expeR == expe2R %}
+                        <option selected>{{ expeR.nomresult }}</option>
+                        {% else %}
+                        <option value="{% url 'DiachroGroup:resultallvisu' ListExpeVisR listexpesstock paraselect formselect tailleselect %}">{{ expeR.nomresult }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+        <label for="myRange2"> seuil : </label>
+        <input type="range" id="myRange2" name="myRange2" min="0" max="1" value="{{ seuilselect2 }}"
+               step="0.05" class="slider">
+        <input type="text" id="textInput2" name="textInput2" value="{{ seuilselect2 }}" size="4" disabled>
+            <label for="OneLabel2"> Un seul label : </label>
+            <input type="checkbox" id="OneLabel2" name="OneLabel2" >
+        </div>
+
+        {% if paraselect == "All" or paraselect == "Diff" %}
+            <textarea id="dict2" name="dict2" rows="3" cols="150">Paramètre de l'expe 2 : {{ dict2 }}</textarea>
+         {% endif %}
+
+        <input type="hidden" id="tailleclusterlast2" name="tailleclusterlast2"
+           value="{{ expe2R.taillecluster }}">
+
+ <p id="chart2"></p>
+
+
+
+
+<script src="{% static 'DiachroGroup/js/d3-v3-min.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+<script src="{% static 'DiachroGroup/js/sankey.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+<script type = 'text/javascript'>
+
+        var taille = document.getElementById('tailleselect').value;
+        var tailleok = taille.substring(0, taille.length-2);
+        var largeur = window.screen.width;
+
+        function updateTextInput(val) {
+                  var elt1 = document.getElementById('textInput')
+                  elt1.disabled=false;
+                  elt1.value=val;
+                  elt1.disabled=true;
+                };
+
+
+        try {
+            var term = location.search.split('?term=')[1].replace('%20'," ")
+            document.write(term);}
+        catch(err)
+            {
+            var term='dqdqsdsqdsq';
+            }
+
+
+
+        var margin = {top: 20, right: 20, bottom: 20, left: 20},
+            totalwidth=largeur,
+            totalheight=tailleok,
+            nodewidth=15,
+            width = totalwidth - margin.left - margin.right,
+            height = totalheight - margin.top - margin.bottom;
+
+        var formatNumber = d3.format(",.0f"),
+            format = function(d) { return formatNumber(d) + " records"; },
+            color = d3.scale.category20();
+
+        var formatNumberstrength = d3.format(",.2f"),
+            format = function(d) { return formatNumber(d) ; },
+            color = d3.scale.category20();
+
+
+
+        // Set the sankey diagram properties
+        var sankey = d3.sankey()
+            .nodeWidth(nodewidth)
+            .nodePadding(10)
+            .size([width, height]);
+
+        var path = sankey.link();
+
+        var minx;
+        var maxx;
+
+
+        function TraceGraph()  {
+
+        var seuil= document.getElementById("myRange").value;
+        updateTextInput(seuil);
+
+        var totnom = "{% url 'DiachroGroup:jsonimport' mode1 path_result_transfo1 %}";
+
+
+        // load the data
+        d3.json(totnom, function(energy) {
+            metas= energy.metas;
+            minx = energy.metas.min_year;
+            maxx = energy.metas.max_year;
+            ticksnb = energy.metas.nb_ticks;
+            var minstre = seuil;
+            var maxstre = energy.metas.maxstre;
+            var deltastre = maxstre-minstre;
+            sankey
+              .nodes(energy.nodes)
+              .links(energy.links)
+              .layout(32);
+
+
+        // add in the links
+          var link = svg.append("g").selectAll(".link")
+              .data(energy.links)
+              .enter().append("path")
+              .attr("class", "link")
+              .attr("d", path)
+              .style("stroke-width", function(d) { return 1;})//{return Math.max(1, d.dy*100);})
+              .style("opacity",function(d) { return (d.value - minstre)/(deltastre+0.2) / 2.3 +.05;})
+              .sort(function(a, b) { return b.dy - a.dy; })
+              .on("mouseover", function(){d3.select(this).style("fill", "#8D31CB");})
+              .on("mouseout", function(d){d3.select(this).style("fill", "#000000");});
+
+              // ci dessous pour activer assymetrie
+              /*
+              .style('stroke', function(d) { if (document.getElementById('assymetrie').checked) {
+                                                if (d.assymetrie == 1 || d.assymetrie == 2) {
+                                                        return "#2F682A";
+                                                } else if (d.assymetrie == -1 || d.assymetrie == -2) {
+                                                    return "#FF0000";
+                                                } else {
+                                                    return d.source.color;
+                                                }
+                                            } else {return d.source.color;}}) //{return d.source.color;})
+              .style("stroke-width", function(d) { if (document.getElementById('assymetrie').checked) {
+                                                        if (d.assymetrie == 2 || d.assymetrie == -2) {
+                                                            return 10;
+                                                        } else if (d.assymetrie == 1 || d.assymetrie == -1) {
+                                                            return 5;
+                                                        } else {return 0;}
+                                                    } else {return 1;}})
+              .style("fill", function(d) { if (document.getElementById('assymetrie').checked) {
+                                                if (d.assymetrie == 0)  {
+                                                    return "#000000";
+                                                } else { if (d.value >= seuil) {return "#A27B09";
+                                                         } else {return "#000000";}
+                                                }
+                                              } else {return "#000000";}})
+
+              .style("opacity", function(d) { if (document.getElementById('assymetrie').checked) {
+                                                if (d.assymetrie == 0)  {
+                                                    return (d.value - minstre)/(deltastre+0.2) / 2.3 +.05;
+                                                } else { if (d.value >= seuil) {return .5;
+                                                         } else {return (d.value - minstre)/(deltastre+0.2) / 2.3 +.05;}
+                                                }
+                                              } else {return (d.value - minstre)/(deltastre+0.2) / 2.3 +.05;}})
+              .sort(function(a, b) { return b.dy - a.dy; })
+              .on("mouseover", function(){d3.select(this).style("fill", "#8D31CB");})
+              .on("mouseout", function(d){ if (document.getElementById('assymetrie').checked) {
+                                              if (d.assymetrie == 0)  {
+                                                 d3.select(this).style("fill", "#000000");
+                                              } else { if (d.value >= seuil) {d3.select(this).style("fill", "#A27B09");
+                                                        } else {d3.select(this).style("fill", "#000000");}
+                                                }
+                                              } else {d3.select(this).style("fill", "#000000");}
+                              });
+              */
+
+
+        // add the link titles
+              link.append("title")
+              .text(function(d) { return d.source.name.split('-*-')[0] + "("+d.source.period + ")’ " + d.target.name.split('-*-')[0] + " ("+d.target.period + ")\nstrength: " + formatNumberstrength(d.value) + '\n' + 'assymetrie:' + formatNumber(d.assymetrie) + '\n' + 'shared:' + d.shared + '\n' + 'sourcesOnly:' + d.onlysource + '\n' + 'cibleOnly:' + d.onlycible; })
+
+
+        // Define 'div' for tooltips
+        var tooltip1test = document.getElementsByClassName('tooltip1');
+
+        // permet d'enlever si rappel fonction par seuil ou assymétrie
+        if (tooltip1test.length > 0) {
+            tooltip1test[0].remove()
+            }
+
+        var div = d3.select("body")
+                .append("div")  // declare the tooltip div
+                .attr("class", "tooltip1")              // apply the 'tooltip' class
+                .style("opacity", 0);                  // set the opacity to nil
+
+        // add in the nodes
+          var node = svg.append("g").selectAll(".node")
+              .data(energy.nodes)
+              .enter().append("g")
+              .attr("class", "node")
+              .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+              .call(d3.behavior.drag()
+              .origin(function(d) { return d; })
+              .on("dragstart", function() { this.parentNode.appendChild(this); })
+              .on("drag", dragmove))
+              .on("click", function(d) {
+                    var tooltip1elt = document.getElementsByClassName('tooltip1')[0];
+                    if (tooltip1elt.style.opacity == 0) {
+                        div	.html(
+                            'Plus de détails et liens documents' + '</br>' + '</br>' +
+                            'Periode:' + d.period + '</br>' + 'Dendogramme de la période: ' + '<a href=' +
+          "{% url 'DiachroGroup:test' mode1 path_result_transfo1 12345 %}".replace(/12345/, d.period) +
+              '>' + d.period + '</a>')
+                            .style("left", (d3.event.pageX + 5) + "px")
+                            .style("top", (d3.event.pageY + 25) + "px");
+                        tooltip1elt.style.opacity = 0.8
+                      } else {
+                        tooltip1elt.style.opacity = 0;
+                      }
+                    });
+
+
+        // add the rectangles for the nodes
+            node.append("rect")
+              .attr("height", function(d) { return d.dy; })
+              .attr("width", sankey.nodeWidth())
+              .attr('rx',1)
+              .attr('ry',1)
+              .style("fill", function(d) { return d.color;})// = color(d.name.replace(/ .*/, "")); })
+              .style("opacity", 0.8)
+              .style('stroke', "#000001")
+              .style("stroke-width", function(d) {  if (d.terms.search(term)>-1)  {return 5;} else {return 1;}} )
+              .append("title")
+              .text(function(d) {  var tailleclu1 = document.getElementById('tailleclusterlast1').value
+                if ( tailleclu1 == "Nombre termes constitutifs cluster") {
+                      return ('- PeriodeRevue: ' + d.period + "\n" + '- ' + formatNumber(d.value) +
+                      ' termes'  + "\n" + '- Termes principaux (nombre occurences) : '  +
+                      "\n" + d.termsnbrs + "\n" + '- Auteurs principaux (nombre occurences) :'  +
+                      "\n" + d.auteurs);
+                 } else {
+                      return ('- PeriodeRevue: ' + d.period + "\n" + '- ' + formatNumber(d.value) +
+                      ' occurences'  + "\n" + '- Termes principaux (nombre occurences) : ' +
+                      "\n" + d.termsnbrs +
+                      "\n" + '- Auteurs principaux (nombre occurences) :' +
+                      "\n" + d.auteurs);
+                      }
+                 });
+
+        if (document.getElementById('OneLabel').checked) {
+
+
+            // add in the title for the nodes
+            node.append("text")
+              .attr("x", -6)
+              .attr("y", function(d) { return d.dy / 2; })
+              .attr("dy", ".35em")
+              .attr("text-anchor", "end")
+              .attr("transform", null)
+              .text(function(d) { return d.name.split('-*-')[0];})
+              //.filter(function(d) { return d.x < width / 2; })
+              .attr("x", 6 + sankey.nodeWidth())
+              .attr("text-anchor", "start");
+
+
+        } else {
+
+            // add in the title for the nodes
+                node.append("text")
+                  .attr("x", -6)
+                  .attr("y", function(d) { if (d.terms.split(',').length>1)
+                                                {return d.dy / 2 -8;}
+                                          else {return d.dy / 2 };
+                                          })
+                  .attr("dy", ".35em")
+                  .attr("text-anchor", "end")
+                  .attr("transform", null)
+                  .text(function(d) { return d.name.split('-*-')[0];})
+                  //.filter(function(d) { return d.x < width / 2; })
+                  .attr("x", 6 + sankey.nodeWidth())
+                  .attr("text-anchor", "start");
+
+             // add in the title 2 for the nodes
+                node.append("text")
+                  .attr("x", -6)
+                  .attr("y", function(d) { return d.dy / 2 + 8 ; })
+                  .attr("dy", ".35em")
+                  .attr("text-anchor", "end")
+                  .attr("transform", null)
+                  .text(function(d) { if (d.terms.split(',').length == 2)
+                                        {return d.terms.split(',')[1] ;}
+                                      else if (d.terms.split(',').length > 2)
+                                        {return d.terms.split(',')[1] + ',...' ;}
+                                      else
+                                        {return ""}
+                                     })
+                  //.filter(function(d) { return d.x < width / 2; })
+                  .attr("x", 6 + sankey.nodeWidth())
+                  .attr("text-anchor", "start");
+        };
+
+          var x = d3.scale.linear().range([0+nodewidth/2, width-nodewidth/2]).domain([minx, maxx]);
+
+          var xAxis = d3.svg.axis().scale(x).ticks(ticksnb*2).tickSize(height).orient("top").tickFormat(d3.format("d"));
+
+          svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+
+
+        // the function for moving the nodes
+          function dragmove(d) {
+            d3.select(this).attr("transform", "translate(" + d.x + "," + (d.y = Math.max(0, Math.min(height - d.dy, d3.event.y))) + ")");
+            sankey.relayout();
+            link.attr("d", path);}
+
+        });
+
+
+        // append the svg canvas to the page
+        var svg = d3.select("#chart").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        };
+
+
+
+        function run() {
+        // efface le graphe précedent
+        d3.select("svg").remove();
+        // recrée graph
+        TraceGraph();
+        };
+
+
+        // Trace le premier graph
+        TraceGraph();
+
+
+
+
+function updateTextInput2(val) {
+          var elt2 = document.getElementById('textInput2')
+                  elt2.disabled=false;
+                  elt2.value=val;
+                  elt2.disabled=true;
+        };
+
+
+
+try {
+	var term2 = location.search.split('?term=')[1].replace('%20'," ")
+	document.write(term2);}
+catch(err)
+	{
+	var term2='dqdqsdsqdsq';
+	}
+
+
+
+var margin2 = {top: 20, right: 20, bottom: 20, left: 20},
+	totalwidth=largeur,
+	totalheight=tailleok,
+	nodewidth=15,
+    width = totalwidth - margin2.left - margin2.right,
+    height = totalheight - margin2.top - margin2.bottom;
+
+var formatNumber2 = d3.format(",.0f"),
+    format = function(d) { return formatNumber2(d) + " records"; },
+    color = d3.scale.category20();
+
+var formatNumberstrength2 = d3.format(",.2f"),
+    format = function(d) { return formatNumber2(d) ; },
+    color = d3.scale.category20();
+
+
+
+// Set the sankey diagram 2properties
+var sankey2 = d3.sankey()
+    .nodeWidth(nodewidth)
+    .nodePadding(10)
+    .size([width, height]);
+
+var path2 = sankey2.link();
+
+var minx2;
+var maxx2;
+
+
+function TraceGraph2() {
+
+var seuil2 = document.getElementById("myRange2").value;
+updateTextInput2(seuil2);
+
+var totnom2 = "{% url 'DiachroGroup:jsonimport' mode2 path_result_transfo2 %}";
+
+
+// load the data
+d3.json(totnom2, function(energy) {
+	metas2= energy.metas;
+    minx2 = energy.metas.min_year;
+	maxx2 = energy.metas.max_year;
+	ticksnb2 = energy.metas.nb_ticks;
+	var minstre2 = seuil2;
+	var maxstre2= energy.metas.maxstre;
+	var deltastre2=maxstre2-minstre2;
+	sankey2
+      .nodes(energy.nodes)
+      .links(energy.links)
+      .layout(32);
+
+
+// add in the links
+  var link2 = svg.append("g").selectAll(".link")
+      .data(energy.links)
+      .enter().append("path")
+      .attr("class", "link")
+      .attr("d", path2)
+      .style("stroke-width", function(d) { return 1;})//{return Math.max(1, d.dy*100);})
+              .style("opacity",function(d) { return (d.value - minstre2)/(deltastre2+0.2) / 2.3 +.05;})
+              .sort(function(a, b) { return b.dy - a.dy; })
+              .on("mouseover", function(){d3.select(this).style("fill", "#8D31CB");})
+              .on("mouseout", function(d){d3.select(this).style("fill", "#000000");});
+
+      // ci dessous pour activer assymetrie
+      /*
+      .style('stroke', function(d) { if (document.getElementById('assymetrie2').checked) {
+						                if (d.assymetrie == 1 || d.assymetrie == 2) {
+						                        return "#2F682A";
+						                } else if (d.assymetrie == -1 || d.assymetrie == -2) {
+						                    return "#FF0000";
+						                } else {
+						                    return d.source.color;
+						                }
+				                    } else {return d.source.color;}}) //{return d.source.color;})
+      .style("stroke-width", function(d) { if (document.getElementById('assymetrie2').checked) {
+                                                if (d.assymetrie == 2 || d.assymetrie == -2) {
+                                                    return 10;
+                                                } else if (d.assymetrie == 1 || d.assymetrie == -1) {
+                                                    return 5;
+                                                } else {return 0;}
+                                            } else {return 1;}})
+      .style("fill", function(d) { if (document.getElementById('assymetrie2').checked) {
+                                        if (d.assymetrie == 0)  {
+                                            return "#000000";
+                                        } else { if (d.value >= seuil2) {return "#A27B09";
+                                                 } else {return "#000000";}
+                                        }
+		                              } else {return "#000000";}})
+
+      .style("opacity", function(d) { if (document.getElementById('assymetrie2').checked) {
+                                        if (d.assymetrie == 0)  {
+                                            return (d.value - minstre2)/(deltastre2+0.2) / 2.3 +.05;
+                                        } else { if (d.value >= seuil2) {return .5;
+                                                 } else {return (d.value - minstre2)/(deltastre2+0.2) / 2.3 +.05;}
+                                        }
+		                              } else {return (d.value - minstre2)/(deltastre2+0.2) / 2.3 +.05;}})
+      .sort(function(a, b) { return b.dy - a.dy; })
+	  .on("mouseover", function(){d3.select(this).style("fill", "#8D31CB");})
+	  .on("mouseout", function(d){ if (document.getElementById('assymetrie2').checked) {
+	                                  if (d.assymetrie == 0)  {
+	                                     d3.select(this).style("fill", "#000000");
+	                                  } else { if (d.value >= seuil2) {d3.select(this).style("fill", "#A27B09");
+	                                            } else {d3.select(this).style("fill", "#000000");}
+	                                    }
+	                                  } else {d3.select(this).style("fill", "#000000");}
+					  });
+	    */
+
+
+// add the link titles
+      link2.append("title")
+      .text(function(d) { return d.source.name.split('-*-')[0] + "("+d.source.period + ")’ " + d.target.name.split('-*-')[0] + " ("+d.target.period + ")\nstrength: " + formatNumberstrength(d.value) + '\n' + 'assymetrie:' + formatNumber(d.assymetrie) + '\n' + 'shared:' + d.shared + '\n' + 'sourcesOnly:' + d.onlysource + '\n' + 'cibleOnly:' + d.onlycible; })
+
+// Define 'div' for tooltips
+        var tooltip2test = document.getElementsByClassName('tooltip2');
+
+        // permet d'enlever si rappel fonction par seuil ou assymétrie
+        if (tooltip2test.length > 0) {
+            tooltip2test[0].remove()
+            }
+
+        var div = d3.select("body")
+                .append("div")  // declare the tooltip div
+                .attr("class", "tooltip2")              // apply the 'tooltip' class
+                .style("opacity", 0);                  // set the opacity to nil
+
+
+// add in the nodes
+  var node2 = svg.append("g").selectAll(".node")
+	  .data(energy.nodes)
+      .enter().append("g")
+      .attr("class", "node")
+      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+      .call(d3.behavior.drag()
+      .origin(function(d) { return d; })
+      .on("dragstart", function() { this.parentNode.appendChild(this); })
+      .on("drag", dragmove2))
+      .on("click", function(d) {
+                    var tooltip2elt = document.getElementsByClassName('tooltip2')[0];
+                    if (tooltip2elt.style.opacity == 0) {
+                        div	.html(
+                            'Plus de détails et liens documents' + '</br>' + '</br>' +
+                            'Periode:' + d.period + '</br>' + 'Dendogramme de la période: ' + '<a href=' +
+          "{% url 'DiachroGroup:test' mode2 path_result_transfo2 12345 %}".replace(/12345/, d.period) +
+              '>' + d.period + '</a>')
+                            .style("left", (d3.event.pageX + 5) + "px")
+                            .style("top", (d3.event.pageY + 25) + "px");
+                        tooltip2elt.style.opacity = 0.8
+                      } else {
+                        tooltip2elt.style.opacity = 0;
+                      }
+                    });
+
+
+// add the rectangles for the nodes
+  	node2.append("rect")
+      .attr("height", function(d) { return d.dy; })
+      .attr("width", sankey2.nodeWidth())
+  	  .attr('rx',1)
+  	  .attr('ry',1)
+      .style("fill", function(d) { return d.color;})// = color(d.name.replace(/ .*/, "")); })
+  	  .style("opacity", 0.8)
+	  .style('stroke', "#000001")
+      .style("stroke-width", function(d) {  if (d.terms.search(term)>-1)  {return 5;} else {return 1;}} )
+      .append("title")
+      .text(function(d) {  var tailleclu2 = document.getElementById('tailleclusterlast2').value
+                if ( tailleclu2 == "Nombre termes constitutifs cluster") {
+                      return ('- PeriodeRevue: ' + d.period + "\n" + '- ' + formatNumber2(d.value) +
+                      ' termes'  + "\n" + '- Termes principaux (nombre occurences) : '  +
+                      "\n" + d.termsnbrs + "\n" + '- Auteurs principaux (nombre occurences) :'  +
+                      "\n" + d.auteurs);
+                 } else {
+                      return ('- PeriodeRevue: ' + d.period + "\n" + '- ' + formatNumber2(d.value) +
+                      ' occurences'  + "\n" + '- Termes principaux (nombre occurences) : ' +
+                      "\n" + d.termsnbrs +
+                      "\n" + '- Auteurs principaux (nombre occurences) :' +
+                      "\n" + d.auteurs);
+                      }
+                 });
+
+if (document.getElementById('OneLabel2').checked) {
+
+            // add in the title for the nodes
+            node2.append("text")
+              .attr("x", -6)
+              .attr("y", function(d) { return d.dy / 2; })
+              .attr("dy", ".35em")
+              .attr("text-anchor", "end")
+              .attr("transform", null)
+              .text(function(d) { return d.name.split('-*-')[0];})
+              //.filter(function(d) { return d.x < width / 2; })
+              .attr("x", 6 + sankey2.nodeWidth())
+              .attr("text-anchor", "start");
+
+
+        } else {
+
+
+
+            // add in the title for the nodes
+                node2.append("text")
+                  .attr("x", -6)
+                  .attr("y", function(d) { if (d.terms.split(',').length>1)
+                                                        {return d.dy / 2 -8;}
+                                                  else {return d.dy / 2 };
+                                                  })
+                  .attr("dy", ".35em")
+                  .attr("text-anchor", "end")
+                  .attr("transform", null)
+                  .text(function(d) { return d.name.split('-*-')[0];})
+                  //.filter(function(d) { return d.x < width / 2; })
+                  .attr("x", 6 + sankey2.nodeWidth())
+                  .attr("text-anchor", "start");
+
+
+            // add in the title 2 for the nodes
+                 node2.append("text")
+                  .attr("x", -6)
+                  .attr("y", function(d) { return d.dy / 2 + 8 ; })
+                  .attr("dy", ".35em")
+                  .attr("text-anchor", "end")
+                  .attr("transform", null)
+                  .text(function(d)  { if (d.terms.split(',').length == 2)
+                                                {return d.terms.split(',')[1] ;}
+                                              else if (d.terms.split(',').length > 2)
+                                                {return d.terms.split(',')[1] + ',...' ;}
+                                              else
+                                                {return ""}
+                                             })
+                  //.filter(function(d) { return d.x < width / 2; })
+                  .attr("x", 6 + sankey2.nodeWidth())
+                  .attr("text-anchor", "start");
+
+         };
+
+
+  var x2 = d3.scale.linear().range([0+nodewidth/2, width-nodewidth/2]).domain([minx2, maxx2]);
+
+  var xAxis2 = d3.svg.axis().scale(x2).ticks(ticksnb2*2).tickSize(height).orient("top").tickFormat(d3.format("d"));
+
+  svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis2);
+
+
+// the function for moving the nodes
+  function dragmove2(d) {
+    d3.select(this).attr("transform", "translate(" + d.x + "," + (d.y = Math.max(0, Math.min(height - d.dy, d3.event.y))) + ")");
+    sankey2.relayout();
+    link2.attr("d", path2);}
+
+});
+
+
+// append the svg canvas to the page
+var svg = d3.select("#chart2").append("svg")
+    .attr("width", width + margin2.left + margin2.right)
+    .attr("height", height + margin2.top + margin2.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
+
+};
+
+
+ function run2() {
+        // efface le graphe précedent
+        document.getElementsByTagName("svg")[1].remove();
+        // recrée graph
+        TraceGraph2();
+        };
+
+// Trace le premier graph
+TraceGraph2();
+
+
+
+
+
+
+
+
+ </script>
+
+
+</body>
+</html>

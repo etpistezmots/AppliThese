@@ -1,0 +1,14 @@
+{% extends 'AmeliorText/TraitA/TraitBase/AnnuleTraitBase.html' %}
+
+{% block content %}
+
+    avec les mots suivants : {{ AncienneReductionElt.mots }} <br>
+    en recherchant dans une zone de {{ AncienneReductionElt.zone }} mots avants <br>
+
+    {% if AncienneReductionElt.AjoutMotCleFr %}
+        et en ajoutant les mots clés en français dans le texte final <br>
+    {% else %}
+        et en retirant les mots clés dans le texte final <br>
+    {% endif %}
+
+{% endblock %}

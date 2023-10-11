@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="" method="post">
+
+    {% csrf_token %}
+
+
+{% if results %}
+
+    <h3> Liste resultat nombre occurences simple</h3>
+
+    <table border="1" width="1100">
+    <thead>
+        <tr>
+            <th></th>
+            <th>lien</th>
+            <th>termes</th>
+            <th>corpus</th>
+            <th>revues</th>
+            <th>epoques</th>
+            <th>user_restrict</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for result in results %}
+        {% if result.mode == "Simple" %}
+        <tr>
+            <td><input type="checkbox" name="selected_occSimple" value="{{ result.id }}"></td>
+            <td> <a href="{% url 'TableauOcc:Result' 'Simple' result.id %}">
+                {{result.nomresult}}</a> </td>
+		    <td> {{ result.terme }} </td>
+		    <td> {{ result.CorpusFinRef.nom }} </td>
+            <td> {{ result.revue }} </td>
+            <td> {{ result.epoque }} </td>
+            <td> {{ result.user_restrict }} </td>
+	    </tr>
+        {% endif %}
+    {% endfor %}
+
+    </tbody>
+    </table>
+
+
+    <h3> Liste resultat nombre occurences par auteurs</h3>
+
+    <table border="1" width="1100">
+    <thead>
+        <tr>
+            <th></th>
+            <th>lien</th>
+            <th>termes</th>
+            <th>corpus</th>
+            <th>revues</th>
+            <th>epoques</th>
+            <th>user_restrict</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for result in results %}
+        {% if result.mode == "Auteur" %}
+
+        <tr>
+            <td><input type="checkbox" name="selected_occAuteur" value="{{ result.id }}"></td>
+            <td> <a href="{% url 'TableauOcc:Result' 'Auteur' result.id %}"> {{result.nomresult}}</a>
+            </td>
+		    <td> {{ result.terme }} </td>
+		    <td> {{ result.CorpusFinRef.nom }} </td>
+            <td> {{ result.revue }} </td>
+            <td> {{ result.epoque }} </td>
+            <td> {{ result.user_restrict }} </td>
+	    </tr>
+        {% endif %}
+    {% endfor %}
+
+    </tbody>
+    </table>
+
+    <button  type="submit"  onclick="return confirm('Confirmer la suppression ?')" name="Supprimer"
+             id="Supprimer"> Supprimer </button>
+    <button  type="submit" name="Retour" id="Retour"> Retour </button>
+
+{% else %}
+
+    <h3> Pas de résultat existant</h3>
+    <button  type="submit" name="Retour" id="Retour2"> Retour </button>
+
+{% endif %}
+
+</form>

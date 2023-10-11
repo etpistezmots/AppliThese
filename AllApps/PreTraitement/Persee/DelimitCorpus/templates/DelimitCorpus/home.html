@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+
+    {% load static %}
+
+    <title>DelimitCorpus</title>
+    <style>
+        .marge {
+            margin-left: 3em;}
+        .marge2 {
+            margin-left: 6em;}
+        .marge3 {
+            margin-left: 6em;}
+        .suite {
+            font-style: italic;
+            text-align: right;}
+        .present {
+            text-decoration: underline;
+            font-weight:bold;}
+        .a {
+            text-align: center;}
+        .cite {
+            text-align: justify;
+            margin-right: 9em;
+            margin-left: 9em;
+            font-size: 0.9em;}
+        .note {
+            text-decoration: none;
+            }
+        p {
+            text-align: justify;}
+        h1 {
+            text-align: center;}
+        h2 {
+            margin-left: 3em;
+            margin-top: 1.5em;
+            margin-bottom: 1.5em;}
+        h3 {
+            margin-left: 6em;
+            margin-top: 1.5em;
+            margin-bottom: 1.5em;}
+        h4 {
+            margin-left: 9em;
+            margin-top: 1.5em;
+            margin-bottom: 1.5em;}
+        li {
+            margin-left: 3em;
+            margin-top:15px;
+            text-align: justify;}
+        img {
+            height: auto;
+            max-width: 100%;
+            }
+
+    </style>
+</head>
+<body>
+
+    <p class="suite"> Retour :
+    <a  href="{% url 'general:home' %}">Page d'accueil</a>
+</p>
+<br>
+
+
+    <h1>Chapitre 4 : Présentation des données,<br>
+    exploration et délimitation des corpus </h1>
+
+    <br>
+
+<p class="present">Plan du chapitre :</p>
+
+
+ <a class="marge" id="I-ref" href="#I">I) Présentation des données</a>
+<br>
+<br>
+ <a class="marge2" id="I1-ref" href="#I1">1) Au-delà du PDF et des données ouvertes</a>
+<br>
+<br>
+<a class="marge2" id="I2-ref" href="#I2">2) Les données en XML-TEI</a>
+<br>
+<br>
+<a class="marge2" id="I3-ref" href="#I3">3) Trois autres types de données utilisées</a>
+<br>
+<br>
+<a class="marge" id="II-ref" href="#II">II)	Principes et première modélisation pour délimiter les corpus</a>
+<br>
+<br>
+<a class="marge" id="III-ref" href="#III">III) Explorations du corpus de référence pour l’établissement de critères de délimitation des corpus d’étude</a>
+<br>
+<br>
+
+<a class="marge2" id="III1-ref" href="#III1">1) Afficher les numéros par ordre chronologique</a>
+<br>
+<br>
+<a class="marge2" id="III2-ref" href="#III2">2) Afficher tous les documents par ordre chronologique</a>
+<br>
+<br>
+ <a class="marge2" id="III3-ref" href="#III3">3) Afficher les documents ayant un nom hors norme</a>
+<br>
+<br>
+<a class="marge2" id="III4-ref" href="#III4">4) Afficher les différents types des documents nommés
+    "article"</a>
+<br>
+<br>
+ <a class="marge2" id="III5-ref" href="#III5">5) Afficher les langues des articles</a>
+<br>
+<br>
+<a class="marge2" id="III6-ref" href="#III6">6) Afficher les articles vides</a>
+<br>
+<br>
+<a class="marge2" id="III7-ref" href="#III7">7) Afficher les catégories des articles</a>
+<br>
+<br>
+<a class="marge2" id="III8-ref" href="#III8">8) Synthèse et choix des critères</a>
+<br>
+<br>
+<a class="marge" id="IV-ref" href="#IV">IV) Délimitation des corpus d’étude</a>
+<br>
+<br>
+<a class="marge2" id="IV1-ref" href="#IV1">1) Du modèle conceptuel à la délimitation effective</a>
+<br>
+<br>
+<a class="marge2" id="IV2-ref" href="#IV2">2) Vers la création de deux corpus d’étude</a>
+<br>
+<br>
+<a class="marge2" id="IV3-ref" href="#IV3">3) Visualisation des corpus dans l’interface</a>
+
+<br>
+<br>
+<br>
+
+    <p class="present">Texte du chapitre</p>
+    <br>
+
+
+<p class="mypara"> <span class="marge">	Les données utilisées proviennent de l’Unité d’Appui et de
+    Recherche (UAR) <em>Persée</em> qui a pour principal objectif de numériser et de mettre à disposition
+    sur le Web des documents produits historiquement par les SHS.</span></p>
+
+    <h2 id="I">I) Présentation des données <a href="#I-ref">&#8617;</a> </h2>
+
+    <h3 id="I1">1) Au-delà du PDF et des données ouvertes <a href="#I1-ref">&#8617;</a> </h3>
+
+    <p class="mypara"> <span class="marge">	Le portail créé en 2005 par cette UAR permet ainsi d’accéder
+        aux deux revues utilisées pour cette recherche : </span></p>
+
+     <ul>
+    <li>Les <em>Annales de Géographie</em> : <a
+            href="https://www.persee.fr/collection/geo" target="_blank">https://www.persee.fr/collection/geo</a></li>
+	<li><em>L’Espace Géographique</em> : <a
+            href="https://www.persee.fr/collection/spgeo" target="_blank">https://www.persee.fr/collection/spgeo</a></li>
+        </ul>
+
+
+    <p class="mypara"> <span class="marge">	L’UAR <em>Persée</em> ne peut pas fournir directement tous les PDF
+    d’une revue car cet organisme ne stocke pas ces fichiers mais les régénère à chaque demande.
+    Concrètement, l’UAR <em>Persée</em> ne fait que réassembler des images et des données textuelles pour
+    former ses PDF mais ce détail est symboliquement intéressant dans l’optique de ce travail. En effet, ce
+    qui peut apparaître pour l’utilisateur habituel du portail <em>Persée</em> comme le document de base,
+    celui qui rend le mieux compte du document physique initial, n’est en fait qu’une reconstruction
+    permanente. Ce fait permet de rappeler que le document numérique n’est pas un simple décalque d’un
+    document « réel ». Il est le résultat d’une construction qu’il est utile de comprendre pour mieux
+    utiliser les données acquises.</span></p>
+
+
+    <p class="mypara"> <span class="marge">	La chaîne de documentation de l’UAR <em>Persée</em> peut être
+        décomposée en 5 étapes représentées par le graphique ci-dessous : </span></p>
+    <br>
+    <div class="a" id="Figure7">
+    <img src="{% static 'DelimitCorpus/image/ChaineProdPersee.jpg' %}"
+         alt="DelimitCorpus/image/ChaineProdPersee">
+    </div>
+    <br>
+    <div class="a">Figure n°7 : La chaîne de documentation de l’UAR <em>Persée</em>.</div>
+    <br>
+
+    <p class="mypara"> <span class="marge">	L’objectif n’est pas ici de rentrer dans les détails de chaque
+        étape. Celle qui mérite le plus d’attention dans notre perspective est la documentation
+        infrapaginaire. Ce travail consiste à passer sur chaque page d’un document pour annoter tous ses
+        éléments structurants (titres, figures, notes, bibliographies…). Pour chaque élément, une fenêtre
+        graphique est tracée sur la zone concernée et des informations sont précisées. Par exemple, si le
+        titre a été mal reconnu par la Reconnaissance Optique de Caractères (OCR), une version corrigée est
+        notée. Ces informations servent ensuite à l’indexation sur le Web. L’objectif est qu’un utilisateur
+        trouve en fonction de sa recherche sur internet les données les plus pertinentes. L’idée est ici
+        d’utiliser ces données de documentation infrapaginaire dans un autre objectif à savoir la
+        préparation des données textuelles plus pertinentes à analyser.</span></p>
+    <p class="mypara"> <span class="marge">	Il est en effet possible, à partir de ces informations,
+        d’enlever certains éléments comme les notes de bas de page, les bibliographies… Le but de ces
+        opérations est ainsi d’éviter le bruit statistique que peuvent engendrer ces éléments qui relèvent
+        de genres textuels spécifiques. Toutefois, les informations de documentation infrapaginaire ne sont
+        pas présentes dans les PDF. Il est par conséquent nécessaire de s’appuyer sur un autre format
+        produit par l’UAR <em>Persée</em> : le XML-TEI. Ce format n’est pas disponible en accès libre. La
+        partie suivante détaille les données acquises sous ce format.</span></p>
+
+
+    <h3 id="I2">2) Les données en XML-TEI <a href="#I2-ref">&#8617;</a> </h3>
+
+
+    <p class="mypara"> <span class="marge">	L’abréviation XML provient de l’anglais « Extensible Markup
+    Language »<sup><a id="fn1-ref" class="note" href="#fn1">1</a></sup>. L’abréviation TEI fait
+    référence à la « Text encoding Initiative » qui est une communauté très reconnue qui fixe des
+    recommandations pour encoder des documents textuels. L’interface permet d’explorer un tel fichier en
+    cliquant sur le lien suivant :
+        <a href="{% url 'DelimitCorpus:AfficheEx' 'tei' %}" target="_blank">@Afficher exemple
+            XML-TEI</a><sup><a id="fn2-ref" class="note" href="#fn2">2</a></sup>.
+        Les différentes balises peuvent être
+    ensuite ouvertes et fermées à volonté en cliquant sur les petits items à gauche de chaque balise. Deux
+    grandes parties structurent le fichier :</span></p>
+    <ul>
+    <li>La première, l’en-tête (balise &lt;tei:teiHeader&gt;), contient les métadonnées de l’article : son titre, son
+        ou ses auteurs…</li>
+    <li>La deuxième, le corps (balise &lt;tei:teibody&gt;) contient le détail de l’OCR localisé avec les coordonnées
+        graphiques de chaque mot (balise &lt;word&gt; avec les attributs « left », « top », « right » et
+        « bottom »)</li>
+    </ul>
+    <br>
+    <div class="a" id="Figure8">
+    <img src="{% static 'DelimitCorpus/image/DataOCR.png' %}" alt="DelimitCorpus/image/DataOCR">
+    </div>
+    <br>
+
+    <div class="a">Figure n°8 : Exemple du fichier XML-TEI présenté <br>correspondant au début du corps avec
+        l’OCR localisé.</div>
+    <br>
+
+    <p class="mypara"> <span class="marge">	Les informations correspondant aux coordonnées graphiques de
+        chaque mot proviennent d’un temps d’échange en amont qui a permis à l’UAR <em>Persée</em> de
+        générer des données leur semblant les plus appropriées par rapport aux objectifs poursuivis par
+        cette recherche. D’habitude, les fichiers XML-TEI de cet organisme contiennent seulement le contenu
+        textuel de l’OCR. Les coordonnées graphiques des mots sont stockées dans des fichiers à part. Ce
+        travail fait en amont par l’UAR <em>Persée</em> a permis de faciliter les premières réflexions et
+        réalisations.</span></p>
+    <p class="mypara"> <span class="marge">	Par rapport au travail d’amélioration des contenus textuels réalisé
+    ensuite (<em>cf.</em> <a href="{% url 'AmeliorText:home'%}">Chap5</a>), un point important à
+    souligner est que les informations de documentation infrapaginaire sont présentes à la fin de chaque
+    page (balise &lt;tei:pb&gt;). Les corrections ayant été réalisées ne sont pas directement intégrées dans le
+    texte issu de l’OCR. Par conséquent, pour bénéficier d’un texte avec les corrections réalisées, il faut
+    réintégrer ces corrections à leurs places respectives. Si ces données en XML-TEI ont été celles qui ont
+    été principalement utilisées pour cette recherche, il faut mentionner l’emploi plus ponctuel de trois
+    autres types de données.</span></p>
+
+
+
+
+    <h3 id="I3">3) Trois autres types de données utilisées <a href="#I3-ref">&#8617;</a></h3>
+
+
+    <p class="mypara"> <span class="marge">	Un premier format de données utilisé en complément de celles en
+    XML-TEI provient de l’équipe « Érudit » du Centre d’édition de l’Université de
+        Montréal<sup><a id="fn3-ref" class="note" href="#fn3">3</a></sup>. L’utilisation de ce format
+        s’explique par
+        le fait que
+    plusieurs informations, comme des coordonnées graphiques de fenêtres tracées lors de la phase de
+    documentation infrapaginaire, existent dans le format Erudit alors qu’elles sont absentes du format
+    XML-TEI obtenu. Ces informations étant utiles pour le travail d’amélioration des contenus textuels
+    (<em>cf.</em> <a href="{% url 'AmeliorText:home'%}">Chap5</a>), elles ont été importées à
+    partir de ces fichiers. Le lien suivant permet d’accéder au même article que précédemment dans ce
+    format Erudit :
+    <a href="{% url 'DelimitCorpus:AfficheEx' 'erudit' %}" target="_blank">@Afficher exemple Erudit</a></span></p>
+
+
+<p class="mypara"> <span class="marge">	Une seule information, les coordonnées graphiques correspondant aux
+    mots clés, a été identifiée comme étant absente aussi bien du format XML TEI que du format Erudit. Une
+    demande a par conséquent été effectuée à l’UAR <em>Persée</em> pour récupérer ces données. Ces
+    dernières ont été obtenues sous la forme de deux tableaux (un correspondant à <em>L’Espace
+        Géographique</em>, un correspondant aux <em>Annales de Géographie</em>) qui proviennent d’une
+    extraction des deux bases de données conservées par l’UAR <em>Persée</em> sur ce sujet. Ces deux
+    tableaux sont téléchargeables au format CSV en cliquant sur les deux liens en note de bas de
+    page<sup><a id="fn4-ref" class="note" href="#fn4">4</a></sup><sup>,</sup>
+    <sup><a id="fn5-ref" class="note" href="#fn5">5</a></sup>. Chaque
+    ligne correspond à une zone de mot clé. Ce sont les colonnes D, E, F et G qui ont été utilisées car
+    elles référencent les coordonnées graphiques de toutes ces zones.</span></p>
+
+
+<p class="mypara"> <span class="marge">	Enfin, une dernière source de données a été utilisée en récupérant
+    ce qui a été mis en ligne par <em>Persée</em> sur son
+    triplestore<sup><a id="fn6-ref" class="note" href="#fn6">6</a></sup>. Il s’agit des métadonnées de tous
+    les articles
+    et les auteurs des deux revues concernées par cette recherche sous forme de triplet
+    RDF<sup><a id="fn7-ref" class="note" href="#fn7">7</a></sup>. Ces fichiers sont téléchargeables en
+    cliquant sur les
+    quatre liens en note de bas de page<sup><a id="fn8-ref" class="note" href="#fn8">8</a></sup><sup>,</sup>
+    <sup><a id="fn9-ref" class="note" href="#fn9">9</a></sup><sup>,</sup>
+    <sup><a id="fn10-ref" class="note" href="#fn10">10</a></sup><sup>,</sup>
+    <sup><a id="fn11-ref" class="note" href="#fn11">11</a></sup>.
+    Dans notre cas, les informations issues de ces fichiers ont servi à remplir une base de données
+    utilisée pour améliorer la qualité du texte des articles
+    (<em>cf.</em> <a href="{% url 'AmeliorText:home'%}">Chap5</a>). Il était en effet assez logique de
+    vouloir relier dans cette base de données les documents à leurs auteurs. Sur ce sujet, un travail
+    spécifique a été réalisé par l’UAR <em>Persée</em> avec l’Agence Bibliographique de l’Enseignement
+    Supérieur (ABES) pour mieux identifier les
+    auteurs<sup><a id="fn12-ref" class="note" href="#fn12">12</a></sup>. Il
+    aurait été dommage de ne pas inclure cette amélioration dans l’identification des auteurs au sein de
+    cette recherche. Ceci explique l’utilisation de ces fichiers.</span></p>
+
+
+
+    <p class="mypara"> <span class="marge">	Le processus de réduction du corpus provient de la constatation que
+    les revues ne sont pas qu’une succession bien ordonnée d’articles. Il existe d’autres rubriques qu’il
+    n’est pas pertinent d’intégrer aux analyses envisagées (bibliographies, tables des documents publiés,
+    nécrologies…). Ces éléments peuvent en effet créer un certain bruit dans l’analyse statistique. Il y a
+    donc eu toute une réflexion menée autour d’une délimitation plus précise du corpus.</span></p>
+
+    <h2 id="II">II) Principes et première modélisation pour délimiter les corpus <a href="#II-ref">&#8617;
+    </a> </h2>
+
+
+<div id="Pinc1"> <p class="mypara"> <span class="marge">	Cette opération de délimitation s’inscrit dans un
+    processus connu dans le domaine de l’analyse textuelle.
+    Bénédicte Pincemin parle à ce propos d’« emboîtements » <a
+            href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Pinc1">(Pincemin, 1999, p. 420)</a> entreplusieurs
+    corpus : le corpus existant, le corpus de référence, le corpus d’étude et les corpus distingués.
+    Par exemple, dans cette recherche, le corpus existant peut être considéré comme composé de toutes les
+    revues de géographie française disponibles sous forme numérique. Le corpus de référence peut renvoyer
+    aux deux revues, les <em>Annales de Géographie</em> et <em>L’Espace Géographique</em>, choisies en
+    fonction de la problématique retenue. Le corpus d’étude est composé par l’ensemble résultant de cette
+    opération de délimitation plus précise mais aussi du processus ultérieur visant à améliorer la qualité
+    du texte des articles (<em>cf.</em> <a href="{% url 'AmeliorText:home'%}">Chap5</a>). Enfin,
+    les corpus distingués dépendront des analyses menées ensuite avec la délimitation de sous-corpus à
+    comparer dans le temps.</span></p>
+<p class="mypara"> <span class="marge">	La problématique de cette étape de travail est donc d’identifier
+    les critères les plus pertinents pour construire un ou plusieurs corpus d’étude. Il serait certes
+    possible d’énoncer les critères retenus avec quelques justifications rapides. La démarche ici adoptée
+    est toute autre car elle vise à accompagner le lecteur dans l’exploration du corpus de référence pour
+    déterminer ces critères et à rentrer dans les questionnements liés à ces choix. De plus, une certaine
+    complexité a été ajoutée en voulant laisser la possibilité de construire des corpus d’étude différents
+    à ceux qui manifesteraient des envies d’expérimentations en faisant d’autres choix par rapport aux
+    critères ici retenus. Cette idée a motivé la création d’une base de données en amont qui recense,
+    organise et stocke tous les documents du corpus de référence. Un corpus d’étude n’est alors qu’une
+    sous-partie de cet ensemble. La base de données pour gérer le corpus de référence et les corpus
+    d’études est modélisée d’un point de vue conceptuel selon le diagramme de classes suivant (en
+    UML<sup><a id="fn13-ref" class="note" href="#fn13">13</a></sup>) :</span></p></div>
+<br>
+<div class="a" id="Figure9">
+<img src="{% static 'DelimitCorpus/image/Bddfin2.png' %}" alt="DelimitCorpus/image/Bddfin2">
+</div>
+<br>
+
+
+<div class="a">Figure n°9 : Première modélisation conceptuelle de la base de données <br>
+pour délimiter les corpus d’étude.</div>
+<br>
+
+
+
+
+<p class="mypara"> <span class="marge">Cette figure comporte 5 classes : « Doc Référence », « Revue »,
+    « Auteur », « Doc Transformé  et « Corpus Etude ». La classe « Doc Référence » modélise tous les
+    documents du corpus de référence où chaque document est décrit par un identifiant (« id »), une url, un
+    titre, un type (article, compte-rendu…), l’année de publication du document et son texte de référence
+    (l’OCR et les informations de documentation de l’UAR <em>Persée</em>). Les indications en face de
+    chacun de ces attributs correspond au format attendu : « integer » pour un entier, « string » pour une
+    chaîne de caractères. Les textes de références, comme d’ailleurs les textes transformés pouvant être
+    assez longs, ils n’ont pas été stockés directement dans la base de donnée. Ce sont les  noms des
+    fichiers correspondants qui ont été enregistrés. L’attribut « nomPersée » de la classe « Revue »
+    renvoie aux deux abréviations<sup><a id="fn14-ref" class="note" href="#fn14">14</a></sup> : « geo »
+    pour les <em>Annales de géographie</em> et « spgeo » pour <em>L’Espace Géographique.</em> L’attribut
+    « type » de
+    la classe « Auteur » provient de la distinction entre auteur individuel et collectif. L’attribut
+    « IdPersée » renvoie au travail précédemment mentionné réalisé par l’UAR <em>Persée</em> et l’ABES afin
+    de mieux identifier les auteurs (<em>cf.</em> section <a href="#I3">I.3</a>). </span></p>
+
+<p class="mypara"> <span class="marge">	Pour la classe « Corpus Etude », la mention « CRITERES » ne
+    correspond pas directement à un attribut mais à un ensemble d’attributs que le travail qui suit doit
+    définir. Par exemple, si un utilisateur veut créer un corpus d’étude visant à analyser tous les
+    documents du corpus de référence de 1910 à 1980, la création de deux nouveaux attributs, « DateMin » et
+    « DateMax », dans la classe « Vers Corpus Etude » est nécessaire en amont. Pour le corpus d’étude de
+    cet utilisateur, les deux critères « DateMin » et « DateMax » prennent alors respectivement comme
+    valeur 1910 et 1980. Au-delà de cet exemple basiqye, ce système permet de retrouver
+    facilement l’ensemble<sup><a id="fn15-ref" class="note" href="#fn15">15</a></sup>
+    des critères utilisés pour construire chaque corpus d’étude. De plus, il laisse la possibilité de
+    construire de nouveaux corpus en choisissant des valeurs différentes pour les critères définis.
+    </span></p>
+
+
+ <p class="mypara"> <span class="marge">L’objectif est maintenant d’explorer le corpus de référence pour déterminer les critères retenus et
+    expliquer les choix réalisés.</span></p>
+
+
+
+     <h2 id="III">III) Explorations du corpus de référence <br>
+         pour l’établissement de critères de délimitation des corpus d’étude <a href="#III-ref">&#8617;
+    </a>
+     </h2>
+
+        <p class="mypara"> <span class="marge">	L’interface permet d’accéder à plusieurs modules d’explorations.
+    Chaque module a un objectif spécifique résumé par son titre. Comme précédemment, chaque module
+    correspond à une fonction facilement accessible dans le code. Si le résultat d’une exploration a déjà
+    été créé, il est immédiatement affiché. Si ce résultat n’a pas été créé, alors le code pour le
+    construire en question est exécuté. Ce système permet à l’utilisateur d’afficher rapidement les
+    résultats créés tout en ayant la possibilité de reprendre le code qui a permis de les
+            créer<sup><a id="fn16-ref" class="note" href="#fn16">16</a></sup>. La première exploration proposée réalise
+            un affichage de tous les numéros de la revue sélectionnée dans l’ordre chronologique.</span></p>
+
+
+        <h3 id="III1">1) Afficher les numéros par ordre chronologique <a href="#III1-ref">&#8617;
+    </a></h3>
+
+
+
+    <p class="mypara"> <span class="marge">	L'UAR <em>Persée</em> classant ses données à l’intérieur de chaque
+    revue par numéro, il s’agit de la première information à laquelle une personne consultant ces données
+    est confrontée. La liste des numéros obtenus n'est pas si longue : 632 pour les <em>Annales de
+        Géographie</em> (<a href="{% url 'DelimitCorpus:NumeroResult' 'geo' %}">@AnnNumeros</a>) et 113
+    pour <em>L'Espace Géographique</em>
+        (<a href="{% url 'DelimitCorpus:NumeroResult' 'spgeo' %}" >@EspNumeros</a>).
+        Ces résultats bruts permettent de détecter facilement une syntaxe commune. Elle
+    est ici décryptée à partir du premier numéro de <em>L’Espace Géographique</em> :
+    « spgeo_0003-4010_1972_num_1_1 ». L’indication « spgeo » renvoie à la
+        revue<sup><a id="fn17-ref" class="note" href="#fn17">17</a></sup>. «0003-4010 » est un numéro de
+        version interne à l’UAR
+        <em>Persée</em>. Cette indication peut paraître un détail sans importance mais cela renvoie au fait qu’il a existé auparavant d’autres versions. Il en existera également dans le futur de nouvelles, du fait des modifications et des améliorations à venir apportées par l’UAR <em>Persée</em>. Ces données ne sont pas immuables mais en évolution. « 1972 » est la date de ce premier numéro de <em>L’Espace Géographique</em>. « num » est un code servant à spécifier que c’est un numéro « normal ». Un examen rapide des résultats obtenus permet de remarquer qu’il existe une exception en 1993 avec un numéro « hos ». Enfin « 1_1 » renvoie au fait que c’est la première année de publication et le premier numéro de cette année.</span></p>
+<p class="mypara"> <span class="marge">	Il est facile de détecter à partir des résultats des exceptions et
+    de comprendre à quoi elles correspondent en explorant les numéros concernés. Ainsi, le numéro « hos »
+    pour <em>L’Espace Géographique</em> renvoie à un hors-série tout en anglais publié en 1993. Pour
+    <em>Les Annales de Géographie</em>, il faut souligner que de nombreux numéros surtout dans les
+    premières années sont marqués « bib ». Cette situation s’explique par le fait qu'historiquement la
+    <em>Bibliographie Géographique Internationale</em> était une publication intégrée dans les <em>Annales
+        de Géographie</em>. Pour cette recherche, il a été décidé d’exclure les numéros « hos » et « bib »
+    des corpus d’étude créés. En effet, pour le numéro « hos », cela pose la question du multilinguisme qui
+    n’est pas une problématique prise en charge par cette étude. Pour les numéros « bib », les
+    bibliographies ne sont pas des éléments les plus pertinents à prendre en compte pour faire des analyses
+    textuelles et mettre à jour un changement sémantique.</span></p>
+<p class="mypara"> <span class="marge">	Une différence peut être observée entre les deux revues : les
+    numéros des <em>Annales de Géographie</em> vont jusqu’en 2006 alors que les numéros de <em>L’Espace
+        Géographique</em> s’arrêtent à la fin des années 2000. Cette différence provient du fait que
+    <em>L’Espace Géographique</em> a été numérisée après les<em> Annales de Géographie</em> et que ces
+    numéros sont disponibles sur le portail <em>Cairn</em> depuis 2001. En raison de cette asymétrie dans
+    les données, la partie 2001-2006 des <em>Annales de Géographie </em>n’a pas été prise en compte dans
+    les corpus d’études construits. Cette première fonction aboutit donc à mettre à jour deux critères
+    importants dans la délimitation des corpus d’étude : le premier s’appuie sur la composition de la
+    dénomination des numéros et le deuxième sur la date maximale prise en compte.</span></p>
+<p class="mypara"> <span class="marge">	Le deuxième module proposé réalise un affichage non plus des
+    numéros mais de tous les documents du corpus de référence.</span></p>
+
+
+
+<h3 id="III2">2) Afficher tous les documents par ordre chronologique <a href="#III2-ref">&#8617;
+    </a></h3>
+
+
+    <p class="mypara"> <span class="marge">	Les listes obtenues sont relativement conséquentes : 14422 lignes
+    pour les <em>Annales de Géographie</em>
+        (<a href="{% url 'DelimitCorpus:DocumentResult' 'geo' %}" >@AnnDocuments</a>) et 2217 lignes pour
+        <em>L'Espace Géographique</em>
+        (<a href="{% url 'DelimitCorpus:DocumentResult' 'spgeo' %}" >@EspDocuments</a>). Comme dans le cas
+    précédent, une syntaxe commune se détache nettement mais aussi des exceptions. L’idée est d’examiner
+    ces exceptions sans toutefois être perdu face à la longueur de ces listes. Ceci est l’objectif de la
+    troisième fonction appelée « Afficher les noms des fichiers hors normes ».</span></p>
+
+
+<h3 id="III3">3) Afficher les documents ayant un nom « hors norme » <a href="#III3-ref">&#8617;
+    </a></h3>
+
+
+    <p class="mypara"> <span class="marge">	La stratégie retenue pour cette fonction a été d'écrire une
+    expression régulière résumant la forme commune<sup><a id="fn18-ref" class="note" href="#fn18">18</a></sup> et
+    permettant d'extraire seulement les exceptions. Tous les fichiers qui ont un nom ayant une syntaxe
+    respectant l’expression régulière sont affichés. L'ouverture des fichiers créés par cette troisième
+    fonction peut laisser croire qu'il y a encore de trop nombreuses exceptions pour être traitées
+    facilement par un être humain : 3226 pour les <em>Annales de Géographie</em>
+        (<a href="{% url 'DelimitCorpus:DocHorsNormeResult' 'geo' %}" >@AnnDocHorsNorme</a>) et 172
+    pour<em> L'Espace Géographique</em>
+        (<a href="{% url 'DelimitCorpus:DocHorsNormeResult' 'spgeo' %}" >@EspDocHorsNorme</a>).
+        Or, les structures très répétitives permettent de faire des premières
+    analyses. Il y a deux types d’exceptions : des documents qui commencent encore par "article" alors que
+    d’autres commencent au contraire par "corpus". Les "corpus" correspondent à des recensions des
+    documents composant à chaque fois un numéro. Ils ne sont pas intéressants à traiter dans le cadre des
+    analyses ici réalisés. Les exceptions "article" correspondent à des documents dont la forme ou le
+    contenu est particulier. Par exemple, des tables décennales ou encore des comptes-rendus commençant ou
+    finissant au milieu d’une page. Il est possible de vouloir faire un tri à ce niveau en voulant par
+    exemple ne retenir que ce qui correspond vraiment à des articles dans ces fichiers. En effet, ils
+    commencent tous par la dénomination « article » mais cela recouvre des situations très différentes.
+    Ceci est l’objet d'une quatrième exploration (« Afficher les différents types des documents nommés
+    "article" ») vise à connaître le contenu réel de ces fichiers.</span></p>
+
+
+<h3 id="III4">4) Afficher les différents types des documents nommés "article" <a href="#III4-ref">&#8617;
+    </a></h3>
+
+
+
+<p class="mypara"> <span class="marge">	La réalisation de cette fonction est possible grâce aux
+    informations ajoutées par les annotateurs de l’UAR <em>Persée</em> sur ce sujet dans les métadonnées
+    associées à chaque document. Les résultats
+    obtenus<sup><a id="fn19-ref" class="note" href="#fn19">19</a></sup> montrent
+    la diversité des documents : article, illustration, compte-rendu, ouvrage reçu, note critique, note
+    biblio, liminaire, table, édito, données, note biographique… Pour des raisons d’homogénéité, une
+    première réflexion réalisée pour créer un corpus d’étude dans la perspective de cette recherche a été
+    de ne s’orienter que vers les articles. Ceci a conduit à créer un critère pour sélectionner les
+    documents composant les futurs corpus d’étude en fonction de cette métadonnée renseignée par l’UAR <em>
+        Persée</em>.</span></p>
+<p class="mypara"> <span class="marge">	Si précédemment le hors-série de <em>L'Espace Géographique</em> en
+    anglais a été retiré, il est possible que des articles en langue étrangère existent, sans que cela ait
+    donné naissance à un hors-série. La cinquième exploration permet de donner un aperçu des langues
+    présentes pour chaque revue au niveau des articles.</span></p>
+
+
+<h3 id="III5">5) Afficher les langues des articles <a href="#III5-ref">&#8617;
+    </a></h3>
+
+
+<p class="mypara"> <span class="marge">	Ce qui est récupéré par cette fonction est l'information donnée sur
+    ce sujet par l’UAR <em>Persée</em> dans les métadonnées des articles. Les résultats obtenus sont les
+    mêmes pour <em>L’Espace Géographique</em> et les <em>Annales de Géographie</em> : français, anglais et
+    allemand<sup><a id="fn20-ref" class="note" href="#fn20">20</a></sup>. Dans le cas des corpus d’études
+    créés pour cette thèse, le choix a été de garder uniquement les articles en français comme cela a été justifié
+    précédemment. De manière plus générale, cette exploration permet de comprendre la présence d’un critère
+    sur cette métadonnée « Langue » renseignée par l’UAR <em>Persée</em> pour délimiter les corpus d’étude.
+    Le travail réalisé a permis aussi de constater que plusieurs articles n’avaient pas de contenu textuel.
+    Une sixième exploration a été menée pour mieux préciser ce phénomène.</span></p>
+
+
+<h3 id="III6">6) Afficher les articles vides <a href="#III6-ref">&#8617;
+    </a></h3>
+
+
+    <p class="mypara"> <span class="marge">	Il s’agit d’un nombre très réduit de documents : 4 pour les
+    <em>Annales de Géographie</em>
+        (<a href="{% url 'DelimitCorpus:ArticleVideResult' 'geo' %}" >@AnnArtVides</a>)
+        et 13 pour <em>L’Espace Géographique</em>
+        (<a href="{% url 'DelimitCorpus:ArticleVideResult' 'spgeo' %}" >@EspArtVides</a>). Ce phénomène
+    s’explique par deux raisons différentes. Pour <em>L'Espace Géographique</em>, il s’agit d’un problème
+    de droits d’auteurs. Suite à la constatation qu’il y avait tout un groupe d’articles écrits par des
+    géographes importants dans le système interprétatif d’Olivier Orain (comme Jean-Bernard Racine et
+    Antoine S. Bailly), il a été décidé de numériser, d’océriser et d’importer ces données. Pour les
+    <em>Annales de Géographie,</em> les articles manquants concernent un très petit document de 1903 (une
+    page) et plusieurs documents de 2002. Sur ces derniers, il s’agit en fait, en amont, d’une modification
+    de l’UAR <em>Persée</em> dans la structure de la TEI<sup><a id="fn21-ref" class="note" href="#fn21">21
+        </a></sup> qui fait que l’algorithme utilisé pour trouver les mots ne fonctionne pas. Comme les
+        articles postérieurs aux années 2000 n’ont pas été retenus, il n’y a pas eu de traitement de ces
+        articles manquants.</span></p>
+
+    <p class="mypara"> <span class="marge">	En explorant les documents, il s’est avéré que la catégorie
+        "article" définie par l’UAR <em>Persée</em> est moins homogène que prévu. Ceci s’explique par
+        plusieurs raisons. Tout d'abord, il existe des formats d'articles très différents entre les petits
+        essais d’une page et de grands développements sur plusieurs dizaines de pages. Ensuite, les limites
+        entre catégories peuvent parfois être floues. Il n’y a pas de critères définitifs pour départager
+        un article, un compte-rendu et une note critique. Enfin, il peut y avoir des erreurs de
+        classification. Pour mieux cerner ce problème, une exploration a été menée par l’intermédiaire
+        d’une fonction capable d’afficher les catégories dans lesquelles les revues ont classé,
+        elles-mêmes, les articles.</span></p>
+
+
+<h3 id="III7">7) Afficher les catégories des articles <a href="#III7-ref">&#8617;
+    </a></h3>
+
+
+<p class="mypara"> <span class="marge">	Les catégories récupérées par le module d’exploration sont issues
+    des sommaires qui proposent souvent des regroupements d’articles sous des thématiques. L’UAR
+    <em>Persée</em> ayant consigné cette information dans les métadonnées, il est possible d’y avoir facilement
+    accès. Un tableau a été créé avec pour chaque catégorie le nombre d’article concernés, le nombre moyen
+    de pages ainsi que le nombre médian. Les premiers résultats obtenus
+    (<a href="{% url 'DelimitCorpus:CategArticleResult' 'geo' 'brut' %}" >@AnnCatArtBrut</a> pour les
+    <em>Annales de géographie </em>et <a href="{% url 'DelimitCorpus:CategArticleResult' 'spgeo' 'brut' %}" >
+        @EspCatArtBrut</a> pour <em>L’Espace Géographique) </em>montrent quelques catégories avec de
+    multiples variantes orthographiques<sup><a id="fn22-ref" class="note" href="#fn22">22</a></sup>. C’est
+    pourquoi les
+    catégories dont les titres étaient proches ont été
+    agrégés<sup><a id="fn23-ref" class="note"  href="#fn23">23</a></sup>.
+    Les résultats nouvellement obtenus peuvent être facilement consultés pour les <em>Annales de
+        géographie</em>
+    (<a href="{% url 'DelimitCorpus:CategArticleResult' 'geo' 'agreg' %}" >@AnnCatArtAgreg</a>)
+    et <em>L’Espace Géographique</em> (<a href="{% url 'DelimitCorpus:CategArticleResult' 'spgeo' 'agreg' %}" >@EspCatArtAgreg</a>).</span></p>
+
+<p class="mypara"> <span class="marge">	Il faut souligner que les catégories qui peuvent être ainsi
+    interprétées sont les catégories mentionnées par les revues et non pas les catégories
+    réelles<sup><a id="fn24-ref" class="note" href="#fn24">24</a></sup>.
+    Il y a une grande dissymétrie entre les deux revues. Pour les <em>Annales de Géographie,</em> le
+    classement a longtemps été dominé par la bipartition
+    « Géographie générale / Géographie régionale » et s’est ensuite transformé avec une grande catégorie
+    « Article ». Pour L'<em>Espace Géographique</em>, il y a eu une multiplication des thématiques. Cette
+    opposition n’est pas développée ici car elle est déjà connue dans l’histoire de la géographie (Claval,
+    1998). Dans l’optique de cette thèse, cette exploration a plutôt été utilisée pour améliorer le
+    périmètre des documents retenus pour le corpus d’étude. En effet, il est possible de remarquer que des
+    documents classés par les revues en « compte-rendu » ont été a posteriori rangés par l’UAR
+    <em>Persée</em> dans la catégorie « article ». De plus, certaines catégories comme « Dans l'air du temps »
+    laissent davantage penser à des essais qu’à des articles.</span></p>
+
+    <p class="mypara"> <span class="marge">	Dans un premier temps, le choix a été fait de garder seulement
+        les articles de plus de trois pages. En effet, beaucoup de catégories relevant plutôt de l’essai
+        que de l’article présentaient des moyennes et des médianes inférieures ou égales à trois pages.
+        Après la première rencontre avec Olivier Orain, ce seuil a été quelque peu remis en question. Il
+        m’a en effet fait remarquer qu'il y avait plusieurs numéros de <em>L'Espace Géographique</em>
+        correspondant à l’émergence de thèmes importants (par exemple, celui de la justice spatiale avec
+        David Harvey, 7-4, 1978) qui étaient en fait des compilations de textes de deux ou trois pages. Par
+        ailleurs, une page ne signifie pas exactement la même chose pour <em>L'Espace Géographique</em> et
+        les <em>Annales de Géographie.</em> Suite à ces remarques, ce seuil des trois pages n'a pas été
+        gardé. Une possibilité de choisir un seuil par nombre de mots et non plus par nombre de pages, a
+        été implémenté. Conjointement, un autre critère a été ajouté de telle sorte qu’un utilisateur
+        puisse exclure certaines catégories de son choix dans la construction d’un corpus d’étude.</span></p>
+
+<h3 id="III8">8) Synthèse et choix des critères <a href="#III8-ref">&#8617;
+    </a></h3>
+
+
+
+<p class="mypara"> <span class="marge">	Ces différentes explorations permettent de préciser et de
+    comprendre plusieurs attributs de la classe « Corpus Etude » précédemment résumés sous la mention
+    « CRITERES » dans la
+    <a href="#Figure9">Figure n°9</a></span></p>
+<ul>
+<li>« Stop word dossier » renvoie aux conclusions de la première exploration en permettant d’exclure du corpus d’étude tous les documents appartenant à des dossiers contenant certains mots.</li>
+<li>« Type doc » permet de sélectionner les documents en fonction de leur nature en se référant à la métadonnée créée par l’UAR <em>Persée</em> à ce sujet (article, compte-rendu…)</li>
+<li>« Date min » et « Date max » définissent l’intervalle temporel retenu.</li>
+<li>« Langue » définit les langues des documents formant le corpus d’étude.</li>
+<li>« Mot min » et « Page min » définissent des seuils minimaux pour le nombre de pages et le nombres de mots.</li>
+<li>« Type catégorie exclude » permet d’exclure certaines catégories d’articles en s’appuyant sur les données obtenues lors de la dernière exploration.</li>
+</ul>
+
+<p class="mypara"> <span class="marge">Cinq autres attributs ont été ajoutés pour les raisons
+    suivantes :</span></p>
+<ul>
+<li>« User restrict » permet d’affecter un corpus d’étude particulier à un utilisateur préalablement inscrit. Ce système permet d’imaginer la création de nouveaux corpus sans perturber une base stable nécessaire à la présentation de ce travail.</li>
+<li>« Revue » est un paramètre qui anticipe le fait que des utilisateurs puissent ne vouloir travailler que sur une seule revue.</li>
+<li>« Date » permet de garder en mémoire la date de créations des différents corpus d’étude.</li>
+<li>« Comment » n’est pas un critère de délimitation à proprement parler mais cet attribut permet d’ajouter un commentaire de description pour chaque corpus d’étude.</li>
+<li>« Extract Mot » permet de définir la méthode pour extraire les mots des textes. Dans ce que j’ai
+    réalisé, une seule option est disponible : « FromTEIDocMot ». Cette option signifie que les mots sont
+    extraits des fichiers <em>Persée</em> XML-TEI précédemment présentés
+    (<em>cf.</em> section <a href="#I3">I.3</a>).Les données en
+    XML-TEI). Même si aucune autre option n’est disponible, j’ai ajouté cet attribut pour signifier que d’autres méthodes
+    d’extraction des mots sont techniquement possibles. En utilisant par exemple directement les fichiers
+    d’OCR de l’UAR <em>Persée</em>, quelques problèmes rencontrés notamment au moment du traitement des
+    bibliographies (cf. section <a href="{% url 'AmeliorText:home'%}#IV8">Chap5.IV.8</a>) auraient pu être évités. Pour des raisons de temps et de priorités, cette solution n’a pas été implémentée mais cet attribut permet de pas oublier cette réflexion et cette piste de travail.</li>
+</ul>
+
+
+<p class="mypara"> <span class="marge">	Grâce à cette modélisation, il est possible maintenant de délimiter concrètement un ou plusieurs corpus d’étude.</span></p>
+
+
+  <h2 id="IV">IV) Délimitation des corpus d’étude <a href="#IV-ref">&#8617;
+    </a></h2>
+
+  <h3 id="IV1">1) Du modèle conceptuel à la délimitation effective <a href="#IV1-ref">&#8617;
+    </a></h3>
+
+
+    <p class="mypara"> <span class="marge">	Le modèle conceptuel précédemment exposé a été décliné en un modèle
+    logique de type relationnel et le modèle physique a été implémenté dans le code du projet
+        <em>Django</em><sup><a id="fn25-ref" class="note" href="#fn25">25</a></sup>. Le bouton disponible sur cette page
+        dans l’application (<a
+            href="{% url 'DelimitCorpus:VersDelimitConcrete' %}" >@ImportDonnees</a>) permet de remplir
+    les tables « Auteurs », « Revues » et « Doc Référence ». Si l’utilisateur clique sur ce bouton, une
+    indication « Insertion déjà réalisée » apparaît. En effet, le corpus de référence étant toujours le même,
+        cette étape
+    a déjà été effectuée en amont. S’il est légitime de s’interroger alors sur l’utilité d’un tel bouton, il
+    faut souligner qu’à partir de ce dernier, un lecteur intéressé peut facilement remonter à la
+    fonction<sup><a id="fn26-ref" class="note" href="#fn26">26</a></sup> qui a permis de constituer le
+        corpus de référence
+    dans la base de données. Il s’agit par conséquent d’un élément, parmi d’autres, visant à améliorer la
+    reproductibilité de cette recherche.</span></p>
+
+<p class="mypara"> <span class="marge">	Un formulaire a été ensuite créé à partir de la table « Corpus
+    Etude » pour permettre d’enregistrer des nouveaux items dans cette table. Son accès dans l’interface
+    n’est pas ouvert à tous pour les raisons précédemment explicitées
+    (<em>cf.</em> section Manuscrit Intro Part1). Le
+    formulaire se présente ainsi :</span></p>
+
+
+<br>
+<div class="a" id="Figure10">
+<img src="{% static 'DelimitCorpus/image/formulaire.png' %}" alt="DelimitCorpus/image/formulaire">
+</div>
+<br>
+
+
+<div class="a">Figure n°10 : Formulaire de l’interface
+pour créer et enregistrer de nouveaux corpus d’étude dans la base de données.
+</div>
+<br>
+<p class="mypara"> <span class="marge">	L’enregistrement d’un nouveau corpus d’étude dans la base de
+    données à partir de ce formulaire s’accompagne de l’effectuation d’une
+    fonction<sup><a id="fn27-ref" class="note" href="#fn27">27</a></sup> qui détermine quels documents du
+    corpus de référence sont concernés en fonction des critères
+    choisis. Ce dispositif technique étant en place, les corpus d’études utilisés pour cette thèse doivent
+    être plus précisément définis.</span></p>
+
+
+<h3 id="IV2">2) Vers la création de deux corpus d'étude <a href="#IV2-ref">&#8617;
+    </a></h3>
+
+    <p class="mypara"> <span class="marge">	Lors de la création du premier corpus, plusieurs décisions ont
+    découlé de la problématique ou de choix exposés lors des explorations précédemment menées : revues
+    concernées, mots excluant certains dossiers, date minimum, date maximum… Un critère a suscité davantage
+    de questionnements : le nombre de mots minimal. J’ai choisi au fil du temps un seuil de 1000 mots
+    minimum pour le premier corpus d’étude créé mais cette limite n’a pas été strictement déterminée par
+    des calculs. Ce seuil résulte plutôt d’une reconnaissance qu’il n’existe pas de seuil parfait en la
+    matière. Il y a sans aucun doute une certaine fragilité et contingence dans ce découpage. Il aurait été
+    possible d’abandonner ce critère, de choisir tous les documents et de passer sous silence ces
+    questionnements. Il n’en demeure pas moins qu’il existe une certaine hétérogénéité entre les documents
+    relevant de petites formes et les articles plus longs. Dans le même temps, il est possible de penser
+    que des variations de cette limite ne provoquent que l’ajout ou le retrait de petits textes sans
+    vraiment d’impact sur les résultats du fait même de la masse de données textuelles. Ceci est bien sûr
+    une hypothèse qu’il conviendrait de tester. Toutefois, il est apparu plus important d’étudier une
+    décision qui reste discutable et qui crée sans conteste un changement beaucoup plus important par
+    rapport à un futur corpus d’étude.</span></p>
+<p class="mypara"> <span class="marge">	En effet, la réflexion initiale avait précédemment conduit à
+    privilégier plutôt les articles et à exclure les comptes-rendus pour des raisons d’homogénéité. Il est
+    évident qu’il est possible pour soutenir un tel choix d’arguer que le compte-rendu est un genre textuel
+    à part. Cependant, la délimitation n’est parfois pas si évidente. De plus, les comptes-rendus peuvent
+    permettre d’avoir une petite image de la production qui est passée « par les livres » et qui est
+    extrêmement importante en SHS. Cette décision est loin d’être secondaire car elle rajoute une masse
+    textuelle importante<sup><a id="fn28-ref" class="note" href="#fn28">28</a></sup>. Il peut y avoir
+    certes des comptes-rendus qui ne reflètent pas le contenu
+    scientifique d’une revue mais globalement le choix de « ce dont une revue rend compte » peut être aussi
+    considéré comme intimement lié à un positionnement intellectuel. Pour cette raison, il a été décidé
+    finalement de faire deux corpus d’étude : un premier ne prenant en compte que les articles en français
+    avec le seuil minimum de 1000 mots, un deuxième qui inclue aussi les comptes-rendus en français sans
+    limite pour le nombre minimal de mots<sup><a id="fn29-ref" class="note" href="#fn29">29</a></sup>. Le
+    premier corpus nommé « Article » est considéré comme le corpus d’étude principal. C’est sur celui-ci
+    que seront présentés les premiers résultats. Le deuxième corpus nommé « ArticlePlusCr » est destiné à
+    réaliser des tests pour voir si cet ajout important des comptes-rendus modifie (ou non) les résultats
+    obtenus.</span></p>
+
+<p class="mypara"> <span class="marge">	La section suivante présente la visualisation de ces deux corpus à
+    partir de l’interface.</span></p>
+
+
+ <h3 id="IV3">3) Visualisation des corpus dans l’interface <a href="#IV3-ref">&#8617;
+    </a></h3>
+
+<p class="mypara"> <span class="marge">	Toutes les valeurs entrées dans le formulaire pour la construction des deux corpus
+    peuvent facilement être visualisés grâce à la page suivante :
+<a href="{% url 'DelimitCorpus:reduction' '0'%}">FaireEtVisualiserCorpus</a></span></p>
+
+<p class="mypara"> <span class="marge">	Pour les deux corpus, le critère « User restrict » est un peu
+    particulier car ce sont des corpus ouverts au niveau de la lecture des résultats déjà réalisés mais
+    protégés quant à la production de nouveaux résultats. Ce statut spécifique a été codé par le chiffre
+    « 0 » mais ne renvoie pas à un utilisateur particulier.</span></p>
+<p class="mypara"> <span class="marge">	Le critère « Langue » est mentionné en anglais car la syntaxe
+    utilisée par l’UAR <em>Persée</em> a été
+    reprise<sup><a id="fn30-ref" class="note" href="#fn30">30</a></sup>.
+</span></p>
+<p class="mypara"> <span class="marge">	Les choix réalisés pour le critère (« Type catégorie exclude »)
+    s’expliquent à partir des premiers résultats (non-agrégés) de la septième
+    exploration<sup><a id="fn31-ref" class="note" href="#fn31">31</a></sup>. Au niveau de la syntaxe utilisée,
+    certaines catégories étant constituées de virgule, le séparateur utilisé a été « * ».</span></p>
+<br>
+<p class="mypara"> <span class="marge">	Pour cette thèse, ces deux corpus d’étude étant constitués, l’étape
+    suivante est celle de l’amélioration de leurs contenus textuels.</span></p>
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<!-- NOTE DEB -->
+
+<p class="present">Notes du chapitre</p>
+
+<p id="fn1">[1] Ce qui peut être traduit en français par : « langage de balisage extensible ».
+<a href="#fn1-ref">&#8617;</a></p>
+<p id="fn2">[2] Ce fichier correspond à l’article accessible à l’adresse suivante : <br>
+    <a href ="https://www.persee.fr/doc/geo_0003-4010_1966_num_75_409_17238" target="_blank"
+    >https://www.persee.fr/doc/geo_0003-4010_1966_num_75_409_17238</a>
+    consulté le18/09/2023.
+<a href="#fn2-ref">&#8617;</a></p>
+<p id="fn3">[3] <a href ="https://apropos.erudit.org/fr/" target="_blank">https://apropos.erudit.org/fr/</a> consulté
+    le18/09/2023.
+<a href="#fn3-ref">&#8617;</a></p>
+<p id="fn4">[4] <a href ="https://analytics.huma-num.fr/EtPistezMots/delimit/DownloadEx/keyword/geo" target="_blank">@Lien
+    téléchargement données mots-clés Annales de Géographie en format CSV</a>
+<a href="#fn4-ref">&#8617;</a></p>
+<p id="fn5">[5] <a
+        href ="https://analytics.huma-num.fr/EtPistezMots/delimit/DownloadEx/keyword/spgeo" target="_blank">@Lien
+    téléchargement données mots-clés Espace Géographique en format CSV</a>
+<a href="#fn5-ref">&#8617;</a></p>
+<p id="fn6">[6] <a href ="http://data.persee.fr/ressources/le-triplestore-de-persee/" target="_blank">http://data.persee
+    .fr/ressources/le-triplestore-de-persee/</a>
+    consulté le 18/09/2023.
+<a href="#fn6-ref">&#8617;</a></p>
+<p id="fn7">[7] Un triplet RDF est une association (sujet, prédicat, objet). Un triplestore est une base de
+    données composée d’un ensemble de triplets RDF.
+<a href="#fn7-ref">&#8617;</a></p>
+<p id="fn8">[8] <a
+        href ="https://analytics.huma-num.fr/EtPistezMots/delimit/DownloadEx/docstriple/geo" target="_blank">@Lien
+    téléchargement données Documents Annales de Géographie en format RDF</a>
+<a href="#fn8-ref">&#8617;</a></p>
+<p id="fn9">[9] <a
+        href ="https://analytics.huma-num.fr/EtPistezMots/delimit/DownloadEx/docstriple/spgeo" target="_blank">@Lien
+    téléchargement données Documents Espace Géographique en format RDF</a>
+<a href="#fn9-ref">&#8617;</a></p>
+<p id="fn10">[10] <a
+        href ="https://analytics.huma-num.fr/EtPistezMots/delimit/DownloadEx/perstriple/geo" target="_blank">@Lien
+    téléchargement données Auteurs Annales de Géographie en format RDF</a>
+<a href="#fn10-ref">&#8617;</a></p>
+<p id="fn11">[11] <a
+        href ="https://analytics.huma-num.fr/EtPistezMots/delimit/DownloadEx/perstriple/spgeo" target="_blank">@Lien
+    téléchargement données Auteurs Espace Géographique en format RDF</a>
+<a href="#fn11-ref">&#8617;</a></p>
+<p id="fn12">[12] Un identifiant unique peut être récupéré facilement pour chaque auteur grâce au travail
+    réalisé par l’UAR <em>Persée</em> avec l’Agence Bibliographique de l’Enseignement Supérieur (ABES) :
+    <a href="http://info.persee.fr/lalignement-des-autorites-persee-au-referentiel-idref/" target="_blank">http://info
+        .persee.fr/lalignement-des-autorites-persee-au-referentiel-idref/</a>
+    consulté le 18/09/2023.
+<a href="#fn12-ref">&#8617;</a></p>
+<p id="fn13">[13] <em>Unified Modeling Language </em>(Langage de Modélisation Unifié en français).
+<a href="#fn13-ref">&#8617;</a></p>
+<p id="fn14">[14] Abréviations utilisées à la base par l’UAR <em>Persée</em> et reprises dans le cadre de
+    cette thèse.
+<a href="#fn14-ref">&#8617;</a></p>
+<p id="fn15">[15] Il suffit de requêter la base de données où ces critères sont stockés pour chaque corpus d’étude.
+<a href="#fn15-ref">&#8617;</a></p>
+<p id="fn16">[16] Les fonctions de chaque module sont situées dans le fichier « view.py » du dossier
+    « AllApps/PreTraitement/Persee/DelimitCorpus ».
+<a href="#fn16-ref">&#8617;</a></p>
+<p id="fn17">[17] « geo » pour les <em>Annales de Géographie</em>, « spgeo » pour <em>L’Espace
+    Géographique</em> dans la codification de l’UAR <em>Persée</em>, qui est également reprise dans l’application créée.
+<a href="#fn17-ref">&#8617;</a></p>
+<p id="fn18">[18] Voici l’expression régulière utilisée :"article_" + revue +
+    "_[0-9]{4}-[0-9]{4}_[0-9]{4}_num_[0-9]{1,4}_[0-9]{1,4}_[0-9]{1,8}_tei\.xml". Revue est une variable : soit "geo" pour les <em>Annales de Géographie</em>, soit "spgeo" pour <em>L’Espace Géographique</em>. Pour les non-connaisseurs des expressions régulières, une syntaxe du type [0-9]{4} signifie qu’une suite de quatre chiffres entre 0 et 9 est attendue.
+<a href="#fn18-ref">&#8617;</a></p>
+<p id="fn19">[19] Les résultats obtenus peuvent être consultés avec les liens suivants
+    (<a href ="{% url 'DelimitCorpus:TypeDocArticleResult' 'geo' %}">@AnnTypeDocArt</a> et
+    <a href ="{% url 'DelimitCorpus:TypeDocArticleResult' 'spgeo' %}">@EspTypeDocArt</a>)
+    mais ils n’apportent pas vraiment d’information plus intéressante que ce qui vient d’être décrit.
+<a href="#fn19-ref">&#8617;</a></p>
+<p id="fn20">[20] Comme précédemment, les résultats obtenus peuvent être consultés avec les liens suivants
+    (<a href ="{% url 'DelimitCorpus:LangArticleResult' 'geo' %}">@AnnLangArt</a> et
+    <a href ="{% url 'DelimitCorpus:LangArticleResult' 'spgeo' %}">@EspLangArt</a>)
+    mais ils n’apportent pas vraiment d’information plus intéressante que ce qui vient d’être décrit.
+<a href="#fn20-ref">&#8617;</a></p>
+    <p id="fn21">[21] Pour une raison inconnue et qui relève très probablement d’une erreur.
+<a href="#fn21-ref">&#8617;</a></p>
+    <p id="fn22">[22] Par exemple, « I – Géographie générale » et « II – Géographie générale » sont
+        considérées comme deux catégories différentes. Il suffit d’un caractère, parfois difficilement visible
+        comme un espace, pour casser l’identité entre deux chaînes de caractères.
+        Cela explique la présence de catégories dans les résultats qui semblent des doublons mais qui diffèrent
+        d’un point de vue d’une stricte égalité informatique.
+<a href="#fn22-ref">&#8617;</a></p>
+<p id="fn23">[23] L’agrégation s’est faite en utilisant la distance de Racliff/Obershelp
+    (<a href ="https://en.wikipedia.org/wiki/Gestalt_Pattern_Matching" target="_blank">https://en.wikipedia.org/wiki/Gestalt_Pattern_Matching</a>
+    consulté le 18/09/2023) et le seuil de 0,9.
+<a href="#fn24-ref">&#8617;</a></p>
+<p id="fn24">[24] Par exemple, pour les <em>Annales de Géographie</em>, la catégorie « Amérique » ne contient
+    qu’un article alors qu’il y a évidemment plus d’un article sur les Amériques dans cette revue pour la
+    période 1892-2006
+<a href="#fn24-ref">&#8617;</a></p>
+<p id="fn25">[25] Un projet <em>Django</em> permet de créer directement une base de données. Le code
+    correspondant à
+    cette création est situé dans le fichier AllApps/PreTraitement/Persee/AmelioText/models.py. La base de
+    données  générée à partir de ce fichier est hébergée par <em>Huma-Num</em> et utilise <em>PostgreSQL</em>.
+<a href="#fn25-ref">&#8617;</a></p>
+<p id="fn26">[26] La fonction « InsertMesDonneesPersee » dans le fichier « views.py » du dossier
+    « AllApps/Pretraitement/Persee/DelimitCorpus ». D’un point de vue technique, la fonction en amont est construite ainsi : « Si les deux revues utilisées pour cette recherche ne sont pas dans la base de données, alors la fonction qui réalise toute l’insertion des données initiales est effectuée. Sinon, l’indication ‘Insertion déjà réalisée’ est marquée ».
+<a href="#fn26-ref">&#8617;</a></p>
+<p id="fn27">[27] Voir la fonction « reduction » dans le fichier « views.py » du dossier
+    « AllApps/PreTraitement/Persee/DelimitCorpus ».
+<a href="#fn27-ref">&#8617;</a></p>
+<p id="fn28">[28] Il existe souvent plusieurs comptes-rendus par numéros.
+<a href="#fn28-ref">&#8617;</a></p>
+<p id="fn29">[29] Le choix de ne pas retenir un seuil pour le deuxième corpus provient du fait qu’en incluant
+    les comptes-rendus, il y a une recherche d’homogénéité moindre. Il devient moins pertinent de rentrer dans un tel détail.
+<a href="#fn29-ref">&#8617;</a></p>
+<p id="fn30">[30] Disponible à partir les résultats de la cinquième exploration.
+<a href="#fn30-ref">&#8617;</a></p>
+<p id="fn31">[31] <a href ="{% url 'DelimitCorpus:CategArticleResult' 'geo' 'brut' %}">
+    @AnnCatArtBrut</a> pour les <em>Annales de géographie</em> et
+    <a href ="{% url 'DelimitCorpus:CategArticleResult' 'spgeo' 'brut' %}">@EspCatArtBrut</a>
+    pour <em>L’Espace Géographique</em>.
+<a href="#fn31-ref">&#8617;</a></p>
+
+
+<!-- NOTE FIN -->
+
+
+<p class="suite"> Suite :
+    <a  href="{% url 'AmeliorText:home' %}">Chap 5) Amélioration des contenus textuels</a>
+</p>
+<p class="suite"> Retour :
+    <a  href="{% url 'general:home' %}">Page d'accueil</a>
+</p>
+
+
+<script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+<script type="text/javascript">
+ EnArrEnAvt("{% url 'EtatDesLieux:home' %}", "{% url 'AmeliorText:home' %}");
+</script>
+
+
+</body>
+</html>

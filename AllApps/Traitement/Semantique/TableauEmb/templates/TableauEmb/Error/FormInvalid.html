@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>FormInvalid</title>
+    </head>
+    <body>
+        Il y a une erreur dans le formulaire :
+        </br>
+        </br>
+        {{ form.as_p}}
+        </br>
+        </br>
+        <button onclick="goBack()">Retour</button>
+
+        <script>
+        function goBack() {
+          window.history.back();
+        }
+        </script>
+
+    </body>
+</html>

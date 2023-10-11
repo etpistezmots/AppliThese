@@ -1,0 +1,24 @@
+{% extends 'AmeliorText/TraitA/TraitBase/SuccessTraitBase.html' %}
+
+{% block content %}
+
+
+    {% if donnees.SupprBilioEtFin %}
+            en supprimant les bibliographies par leurs coordonnées graphiques et tout ce qui suit la dernière
+    bibliographie d’un article <br>
+        {% else %}
+            sans supprimer les bibliographies par leurs coordonnées graphiques et tout ce qui suit la dernière
+    bibliographie d’un article <br>
+        {% endif %}
+
+
+    avec les mots suivants :<br>
+        {% for mot in ListMots %}
+                - {{ mot }} <br>
+        {% endfor %}
+            <br>
+    en recherchant dans une zone de {{ donnees.zone }} mots avants <br>
+
+
+
+{% endblock %}

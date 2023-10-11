@@ -1,0 +1,14 @@
+body   { font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;}
+
+table.dataframe, .dataframe th, .dataframe td {
+  line-height : 10px;
+  border-collapse: collapse;
+  text-align:center;
+  padding: 10px;
+  font-size: 0.9em;
+}
+
+.dataframe th {
+    background-color: #add8e6;
+    color: black;
+}

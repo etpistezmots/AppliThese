@@ -1,0 +1,12 @@
+psycopg2-binary
+Django==2.1.7
+django-polymorphic==2.0.3
+django-crispy-forms==1.7.2
+pandas==0.23.4
+gensim==3.7.3
+scikit-learn==0.21.2
+python-igraph==0.7.1-post6
+leidenalg==0.7.0
+matplotlib==3.0.3
+lxml==4.4.1
+pycairo==1.18.1

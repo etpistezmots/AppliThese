@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+Elts qui ont été enlevés avec succès !
+
+<ul>
+    {% for elt in success %}
+        <li>{{ elt }}</li>
+    {% endfor %}
+</ul>
+
+<br>
+<br>
+
+Elts dont l'enlèvement a échoué !
+
+<ul>
+    {% for elt in echec %}
+        <li>{{ elt }}</li>
+    {% endfor %}
+</ul>
+
+
+<br>
+<br>
+
+Elts qui sont a priori mal formatés !
+
+<ul>
+    {% for elt in malformat %}
+        <li>{{ elt }}</li>
+    {% endfor %}
+</ul>
+
+
+</body>
+</html>

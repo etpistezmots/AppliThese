@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Comparateur d'expe</title>
+
+    <link rel="stylesheet" href="{% static 'TableauEmb/css/Tableau_style.css' %}">
+    <style>
+
+    .suite {
+            font-style: italic;
+            text-align: right;}
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Create two equal columns that floats next to each other */
+    .column {
+      float: left;
+      width: {{DivisEcran}};
+      padding: 5px;
+      border: solid #5B6DCD 1px;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .page {
+     overflow: scroll;
+    }
+
+    td {
+      white-space: nowrap;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+    }
+
+    #nselect { width: 80px; }
+
+</style>
+</head>
+<body>
+
+    {% if listexpesvisibles == "w3-w4-g1-f1-f2" and listexpesstock == "w3-w4-g1-f1-f2" %}
+        <p class="suite">
+        <a  href="{% url 'TxtTheseConstructResult:home' %}#TableauEmb1"> Retour Texte </a>
+        </p>
+    {% elif listexpesvisibles == "w4-f1" and listexpesstock == "w4-f1" %}
+        <p class="suite">
+        <a  href="{% url 'TxtTheseConstructResult:home' %}#TableauEmb2"> Retour Texte </a>
+        </p>
+    {% elif listexpesvisibles == "w4-g1" and listexpesstock == "w4-g1" %}
+        <p class="suite">
+        <a  href="{% url 'TxtTheseConstructResult:home' %}#TableauEmb2"> Retour Texte </a>
+        </p>
+    {% elif listexpesvisibles == "g1-f1" and listexpesstock == "g1-f1" %}
+        <p class="suite">
+        <a  href="{% url 'TxtTheseConstructResult:home' %}#TableauEmb2"> Retour Texte </a>
+        </p>
+    {% elif listexpesvisibles == "g1-g2-g3-g4" and listexpesstock == "g1-g2-g3-g4" and nselect == 0 %}
+        <p class="suite">
+        <a  href="{% url 'TxtTheseConstructResult:home' %}#TableauEmb3"> Retour Texte </a>
+        </p>
+    {% elif listexpesvisibles == "g1-g2-g3-g4" and listexpesstock == "g1-g2-g3-g4" and nselect == 25 %}
+        <p class="suite">
+        <a  href="{% url 'TxtTheseConstructResult:home' %}#TableauEmb4"> Retour Texte </a>
+        </p>
+    {% elif listexpesvisibles == "g1-g2-g3-g4" and listexpesstock == "g1-g2-g3-g4" and nselect == 75 %}
+        <p class="suite">
+        <a  href="{% url 'TxtTheseConstructResult:home' %}#TableauEmb4"> Retour Texte </a>
+        </p>
+    {% elif listexpesvisibles == "g1-g5-g6-g7" and listexpesstock == "g1-g5-g6-g7" %}
+        <p class="suite">
+        <a  href="{% url 'TxtTheseConstructResult:home' %}#TableauEmb5"> Retour Texte </a>
+        </p>
+    {% elif listexpesvisibles == "g1-g8-g9-g10" and listexpesstock == "g1-g8-g9-g10" %}
+        <p class="suite">
+        <a  href="{% url 'TxtTheseConstructResult:home' %}#TableauEmb6"> Retour Texte </a>
+        </p>
+    {% elif listexpesvisibles == "g1-g11-g12-g13" and listexpesstock == "g1-g11-g12-g13" %}
+        <p class="suite">
+        <a  href="{% url 'TxtTheseConstructResult:home' %}#TableauEmb7"> Retour Texte </a>
+        </p>
+    {% else %}
+        <p class="suite">
+        <a  href="{% url 'TxtTheseConstructResult:home' %}#I2"> Retour Texte </a>
+        </p>
+    {% endif %}
+
+    <form action="" method="post">
+    {% csrf_token %}
+
+
+    <label for="paraselect">Affichage paramètres :</label>
+    <select onchange="location = this.value;" id="paraselect" name="paraselect" >
+        {% for parachoice in parachoices %}
+            {% if parachoice == paraselect %}
+                <option selected>{{ parachoice }}</option>
+            {% else %}
+                <option
+                        value="{% url 'TableauEmb:resultallvisu' listexpesvisibles listexpesstock parachoice revueselect nselect %}">{{ parachoice }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;
+
+    <label for="revueselect">Choix revue :</label>
+    <select onchange="location = this.value;" id="revueselect" name="revueselect">
+        {% for revue in revueschoices %}
+            {% if revue == revueselect %}
+                <option selected>{{ revue }}</option>
+            {% else %}
+                <option
+                        value="{% url 'TableauEmb:resultallvisu' listexpesvisibles listexpesstock paraselect revue nselect %}">{{ revue }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;
+
+
+    <label for="nselect">n :</label>
+    <select onchange="location = this.value;" id="nselect" name="nselect">
+        {% for nchoice in nchoices %}
+            {% if nchoice == nselect %}
+                <option selected>{{ nselect }}</option>
+            {% else %}
+                <option
+                        value="{% url 'TableauEmb:resultallvisu' listexpesvisibles listexpesstock paraselect revueselect nchoice %}">{{ nchoice }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;
+
+    {% if tot > 2 %}
+
+        <label for="numbercompare">Entités comparées :</label>
+        <select onchange="location = this.value;" id="numbercompare" name="numbercompare">
+            <option selected>{{strtot}}</option>
+
+            {% for compteur,concat in MiniZip %}
+            <option
+                    value="{% url 'TableauEmb:resultallvisu' concat listexpesstock paraselect revueselect nselect %}">{{compteur}}</option>
+            {% endfor %}
+        </select>
+
+    {% endif %}
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <input type="submit" name="ColorQuanti" id="ColorQuanti" value="Mode couleur quanti">
+
+</br>
+
+
+<div class="row">
+
+
+    {% for compteur1,compteur2,expe,table,dict,listexpepot,compteurdiv in MegaZipExpeVisibles %}
+
+        <div  class="column">
+            <label for="{{compteur2}}"> Choix de l'expe {{compteur1}} :</label>
+            <select onchange="location = this.value;" id="{{compteur2}}">
+                {% for expepot,concatexpepot in listexpepot %}
+                    {% if expepot == expe %}
+                    <option selected>{{ expe.nomresult }}</option>
+                    {% else %}
+                    <option
+                            value="{% url 'TableauEmb:resultallvisu' concatexpepot listexpesstock paraselect revueselect nselect %}">{{ expepot.nomresult }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+
+            {% if paraselect == "All" or paraselect == "Diff" %}
+                <textarea  rows="3" cols="150">Paramètre de l'expe {{compteur1}} : {{ dict }}</textarea>
+            {% endif %}
+
+
+            <div id="{{compteurdiv}}" class=page> {{ table|safe }} </div>
+
+        </div>
+
+    {% endfor %}
+
+
+</div>
+
+    </form>
+
+
+
+    <script src="{% static 'TableauEmb/js/jquery-3.4.1.min.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+     <script type="text/javascript">
+
+         {% for elt1 in CompteurDiezeDiv %}
+        $("{{elt1}}").scroll(function () {
+        {% for elt2 in CompteurDiezeDiv %}
+            {% if elt2 != elt1 %}
+              $("{{elt2}}").scrollTop($("{{elt1}}").scrollTop());
+              $("{{elt2}}").scrollLeft($("{{elt1}}").scrollLeft());
+            {% endif %}
+        {% endfor %}
+    });
+    {% endfor %}
+
+</script>
+
+</body>
+</html>

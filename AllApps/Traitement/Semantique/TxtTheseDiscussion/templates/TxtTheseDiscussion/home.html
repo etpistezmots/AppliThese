@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+
+    {% load static %}
+
+    <title>Discussion Home</title>
+    <style>
+        .marge {
+            margin-left: 3em;}
+        .marge2 {
+            margin-left: 6em;}
+        .suite {
+            font-style: italic;
+            text-align: right;}
+        .present {
+            text-decoration: underline;
+            font-weight:bold;}
+        .cite {
+            text-align: justify;
+            margin-right: 9em;
+            margin-left: 9em;
+            font-size: 0.9em;}
+        .note {
+            text-decoration: none;
+            }
+        p {
+            text-align: justify;}
+        h1 {
+            text-align: center;}
+        h2 {
+            margin-left: 3em;
+            margin-top: 1.5em;
+            margin-bottom: 1.5em;}
+        h3 {
+            margin-left: 6em;
+            margin-top: 1.5em;
+            margin-bottom: 1.5em;}
+        li {
+            margin-left: 3em;
+            margin-top:15px;
+            text-align: justify;}
+    </style>
+</head>
+<body>
+
+<p class="suite"> Retour :
+    <a  href="{% url 'general:home' %}">Page d'accueil</a>
+</p>
+
+
+    <h1>Chapitre 8 : Discussion élargie à partir des résultats <br>et du processus de leurs productions
+ </h1>
+
+
+<p class="present">Plan du chapitre :</p>
+
+
+<a class="marge" id="I-ref" href="#I">I) Sur le couple réalisme / constructivisme-nominalisme</a>
+<br>
+<br>
+ <a class="marge" id="II-ref" href="#II">II) Jean-Claude Passeron : « un espace non poppérien de
+     l’argumentation » </a>
+<br>
+<br>
+ <a class="marge" id="III-ref"href="#III">III) Une esquive stratégique du « plain-pied »</a>
+<br>
+<br>
+ <a class="marge" id="IV-ref" href="#IV">IV) Plusieurs relectures avec le prisme passeronnien</a>
+<br>
+<br>
+<a class="marge" id="V-ref" href="#V">V) Pour un gradient épistémologique entre sciences formelles,
+    expérimentales et SHS </a>
+
+
+<br>
+<br>
+
+    <p class="present">Texte du chapitre</p>
+
+
+<p class="mypara"> <span class="marge">Mon travail doctoral m’a fait expérimenter le passage d’un
+    constructivisme faible, surtout méthodologique (avec la formulation d’une problématique, la
+    construction de corpus de données, le choix d’une méthode et la production de résultats) à un
+    constructivisme un peu plus avancé, ayant notamment une dimension ontologique (avec une reconnaissance
+    que les résultats ne sont pas univoques, qu’ils comportent des incertitudes et qu’ils dépendent de
+    problématiques, de corpus et de grilles de lecture appliquées). Mon processus de recherche a été marqué
+    plus spécifiquement par une évolution importante quand j’ai compris et accepté que mes résultats
+    quantitatifs ne seraient pas directement conclusifs. Cette reconnaissance et ce choix m’ont permis de
+    rendre compte de manière plus détaillée des difficultés rencontrées. En effet, l’enjeu autour de la
+    partie quantitative est devenu en quelque sorte moindre à partir du moment où je l’ai complétée avec
+    une approche plus qualitative (<em>cf.</em> Manuscrit Part3). La reconnaissance d’une fragilité des
+    résultats quantitatifs ne remettait plus en cause l’ensemble de la thèse.</span></p>
+
+
+<p class="mypara"> <span class="marge">Même avec cette trajectoire scientifique (qui diminue fortement
+    l’attente et la pression sur les résultats quantitatifs obtenus), la présentation des difficultés
+    rencontrées et des points de fragilité a continué de relever de décisions réfléchies de formulation. En
+    effet, il existe toujours une tension avec l’objectif légitime de ne pas dévaloriser les résultats
+    produits. Par conséquent, si le passage d’un constructivisme méthodologique à un constructivisme plus
+    ontologique peut être mis en avant dans la dynamique de ma thèse, il est également nécessaire de
+    prendre en compte la résistance forte d’un pôle que je qualifie volontiers de « réaliste ». En effet,
+    cette tension s’explique par la volonté de montrer que les résultats ne sont pas de purs artifices. Il
+    ne s’agit pas, bien entendu, d’affirmer que les résultats obtenus représentent ce qui est, de manière
+    complète et fidèle. Toutefois, l’objectif reste tout de même de réaliser une construction qui conduit à
+    penser que ces résultats sont au minimum vraisemblables, et au mieux qu’ils comportent un fort niveau
+    de véridicité. Sur ce plan, ma recherche ne me semble pas être une exception par rapport à l’ensemble
+    de la géographie théorico-quantitativiste qui est à mon sens marquée par cette recherche de résultats
+    véridiques et ce pôle « réaliste ».</span></p>
+
+    <div id="Orain1i"><p class="mypara"> Cette tension rentrant en contradiction avec l’idée d’un paradigme
+        réaliste révolu,
+        l’objectif est dans un premier temps de situer la discussion à l’endroit théorique où Olivier Orain
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Orain1">(2003)</a> dans sa thèse place la
+        « révolution scientifique » <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Kuhn1">(Kuhn 2008,
+            1962)</a>, c’est-à-dire sur ce
+        cœur de chauffe entre réalisme et constructivisme-nominalisme. <span class="marge"></span></p></div>
+
+
+<h2 id="I">I) Sur le couple réalisme / constructivisme-nominalisme <a href="#I-ref">&#8617;</a> </h2>
+
+
+    <div id="Hac1"><p class="mypara"> <span class="marge">	Quand Ian Hacking <a
+            href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Hac1">(2008)</a> développe ce qu’il y a
+        derrière le pôle cognitif qu’Olivier Orain qualifie de « réaliste », il préfère le nommer
+        « structurisme-inhérent » <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Hac1">(Hacking 2008,
+            119)</a>. Il le décrit ainsi : « des scientifiques croient que le
+        monde vient à l’existence avec une structure inhérente qu’il est de leur tâche de découvrir »
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Hac1">(<em>Ibid</em> 2008, 118)</a>. Il s’agit là
+            d’une définition ontologique du réalisme à laquelle la « nouvelle
+        géographie » est originellement rattachée puisqu’elle a été initialement marquée par l’importance
+        du structuralisme<sup><a id="fn1-ref" class="note" href="#fn1">1</a></sup>.</span></p></div>
+
+
+
+
+    <div id="Orain1j"><p class="mypara"> <span class="marge">Il existe donc sur ce critère plutôt une
+        continuité avec la géographie post-vidalienne qui est problématique vis-à-vis de la lecture
+        développée par Olivier Orain. Face à cette remarque, il est possible de faire valoir que les formes
+        de réalisme de ces deux géographies sont différentes. De plus, il est bien entendu possible de
+        rappeler qu’Olivier Orain reconnaît que les principaux théoriciens de la « nouvelle géographie »
+        (Roger Brunet, Philippe Pinchemel et Henri Reymond) sont des réalistes
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Orain1">(Orain, 2003, 292)</a>. Enfin, il est
+        également vrai que la thèse du plain-pied n’affirme pas complètement l’existence d’un nouveau
+        paradigme. Toutes ces remarques ne me semblent toutefois pas lever l’ambiguïté ici soulignée : le
+        développement d’une lecture kuhnienne alors que la principale caractéristique de ce qui est
+        considéré comme l’ancien paradigme n’est pas révolue et que, par conséquent, l’existence de deux
+        mondes incommensurables est très discutable.</span></p></div>
+
+
+
+    <div id="Lei1"><p class="mypara"> <span class="marge">	Dans sa réponse à Isabelle Lefort
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Lef1">(2011)</a> et
+    Caroline Leininger-Freyzal <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Lei1">(2011)</a>, Olivier
+        Orain reconnaît l’importance du maintien d’un pôle « réaliste »
+    dans la géographie française : « Il me semble que les géographes contemporains ne démarquent pas encore
+    suffisamment la question du « réel » de celle de la construction de l’objectivité, question connexe
+    plus fréquente chez les sociologues » <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Orain4">(Orain,
+            2011, 241)</a>. S’il est possible en effet de dissocier les
+        deux<sup><a id="fn2-ref" class="note" href="#fn2">2</a></sup>,
+        la réalisation de cette thèse me conduit à penser que sous la construction de l’objectivité,
+        la question du réalisme n’est jamais bien loin.</span></p></div>
+
+
+    <div id="Gra1"><p class="mypara"> <span class="marge">	Les analyses de Gilles Gaston Granger dans
+    <em>Science et réalité</em> <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Gra1">(2001)</a>
+    permettent de développer cette réflexion. Cet auteur montre qu’il faut plutôt parler de réalités
+    scientifiques au pluriel car suivant les domaines, les critères de validité des connaissances sont
+    variables. Ceci amène à distinguer le concept de réel (dont Gilles Gaston Granger montre une partie des
+    évolutions dans l’histoire de la philosophie et fait remonter sa conception moderne à Leibniz) de celui
+    de réalité. Un des caractères du réel est son « unicité » et son « autonomie »
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Gra1">(Granger, 2001, 42)</a>. Cette
+    affirmation se retrouve également chez Clément Rosset : <em>Le réel, Traité de l’idiotie</em>
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Ros1">(2012)</a>. Les
+    réalités ne sont que des saisies particulières, toujours partielles de ce réel. Les réalités
+        scientifiques ne sont alors que des types de réalité parmi d’autres.</span></p> </div>
+
+    <p class="mypara"> <span class="marge">	Cette distinction s’inscrit certes dans une orientation
+    nominalo-constructiviste puisque ce n’est plus le réel qui est visé mais une réalité, une construction
+    parmi d’autres. Toutefois, l’objectif global de la science reste de viser au minimum une réalité. Il s’agit d’obtenir
+        une représentation qui fasse sens mais aussi qui présente une adéquation avec un ou des éléments du monde. Cela
+        amène Gilles Gaston Granger à plaider dans sa conclusion « pour un réalisme bien tempéré »
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Gra1">(Granger 2001)</a>. Cette
+        réflexion permet de penser les changements mis en avant par Olivier Orain dans sa thèse plutôt sous
+        la forme d’une « tempérance » que d’une révolution. Il me semble en effet exact que pôle
+        « réaliste » n'est globalement
+        le même dans la « nouvelle géographie » que dans la géographie post-vidalienne. Ce pôle est d’ailleurs marqué
+        par une indéniable diversité suivant les auteurs. L’hypothèse ici que je défends, est que pôle réaliste est loin d’être révolu.
+        La géographie théorico-quantitativisme est marquée par de nouvelles forme de réalisme</span></p>
+
+    <p class="mypara"> <span class="marge"> La conclusion d’Olivier Orain n’élude pas complètement les
+        difficultés que pose l’affirmation d’une fin du réalisme et de l’avènement du constructivisme
+    </span></p>
+
+    <div id="Orain3"><p class="mypara cite"> <span class="marge">« Demeure un invariant : quand une volonté
+    d’articulation
+    théorie/empirie est manifestée, le résultat est trop souvent incertain, préliminaire, essentiellement
+    programmatique. Cela signifie peut-être que le constructivisme géographique reste pour partie à
+    imaginer ? ».<a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Orain3">(Orain, 2009, 375)</a>.</span></p></div>
+
+    <div id="Pas1a"><p class="mypara"> <span class="marge">  Cette conclusion repousse la rupture à plus tard. Il
+    est intéressant à ce propos de rappeler les réflexions de Jean-Claude Passeron dans <em>Le raisonnement
+        sociologique</em> <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Pas1">(2006)</a>. Cet auteur
+        montre bien comment la grille de lecture kuhnienne projetée sur les
+    sciences sociales tend à les lire au travers d’un mode de scientificité qui n’est pas le leur, et
+        conduit souvent à les penser par l’intermédiaire du motif récurent d’une science encore imparfaite
+        mais qui va advenir (illusion de Merton). Olivier Orain ne peut pas être suspecté de projeter le
+        mode de scientificité des sciences dures sur l’ensemble de la géographie française, mais il est
+        particulièrement intéressant de remarquer que son travail fin d’adaptation du modèle kuhnien en
+        vient à repousser la discontinuité à plus tard et à une formulation semblable à ce motif de la
+        science à venir.</span></p></div>
+
+    <p class="mypara"> <span class="marge">	La fixation d’un point de rupture si éloigné pose un problème important. Pour
+        prendre une analogie imparfaite, c’est comme si les continuités et discontinuités de l’histoire informatique du
+        XX<sup>ème</sup> siècle étaient jugées à l’aune du développement généralisé de l’ordinateur quantique. Il
+               n’est pas alors étonnant,
+        que ce qui est analysé avant, semble continu. Cette analogie permet de cerner une partie importante du problème
+        mais elle est à mon avis très trompeuse car elle entretient l’illusion que la révolution scientifique est à venir.
+        Il me semble important ici de développer les réflexions de Jean-Claude Passeron pour bien saisir la difficulté
+        d’une telle révolution et  répondre à cette question embarrassante : Pourquoi plus d’un siècle après l’institutionnalisation
+        de la géographie et plus de 40 ans après l’avènement de la « nouvelle géographie »,
+        un historien de la géographie non-hétérodoxe en vient à ce constat de résultats souvent incertains, préliminaires,
+        essentiellement programmatiques dès qu’il y a une volonté d’articulation théorie/empirie ? </span></p>
+
+
+<h2 id="II">II) Jean-Claude Passeron : « un espace non poppérien de
+    l’argumentation »<sup><a id="fn3-ref" class="note" href="#fn3">3</a></sup> <a href="#II-ref">&#8617;</a> </h2>
+
+
+    <div id="Pas1b"><p class="mypara"> <span class="marge">	Pour Jean-Claude Passeron, les constructions
+    théoriques dans les SHS qui tentent de monter en généralité doivent toujours composer à partir
+    d’empiries spécifiques et hétérogènes. Il est tentant pour un chercheur qui a essayé de construire ses
+    propres définitions et l’ensemble d’un système conceptuel de croire « toucher à la terre promise d’une
+    langue protocolarisée qui aurait enfin les vertus d’un paradigme durable »
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Pas1">(Passeron, 2006, 564)</a>. Toutefois, les
+    SHS repose avant tout sur l’élasticité du « langage naturel » qui leur est indispensable pour
+    rapprocher des situations empiriques hétérogènes et créer des intelligibilités du réel. « Ce ne sont
+    pas les liens logiques qui nouent l’essentiel de la connaissance mais les liens typologiques »
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Pas1">(Passeron, 2006, 589)</a>
+        qui rapprochent des cas de manière toujours imparfaite. </span></p></div>
+
+    <div id="Lep1"><p class="mypara"> <span class="marge">	Il existe des intelligibilités multiples et dans
+    beaucoup de cas, à la différence des sciences expérimentales, il n’y a pas de réfutabilité possible au
+    sens poppérien du terme. Au-delà de tout le travail jusqu’ici présenté, les analyses par exemple de
+    Bernard Lepetit <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Lep1">(1993)</a> sur le modèle de
+    « l’économie-monde »  montre l’impossibilité d’une falsification. Cette situation provient de plusieurs
+    raisons. Tout d’abord, à la différence des sciences expérimentales, la formule qui consiste à raisonner
+        « Toute chose égale par ailleurs » est encore plus difficilement applicable dans les SHS. Ensuite, à la
+        différence des mathématiques, il existe très rarement des formalisations complètes reposant sur la seule logique.</span></p></div>
+
+    <p class="mypara"> <span class="marge">	Après avoir rappelé qu’une démonstration ne vaut réellement que par ce qui se
+        constitue son maillon le plus faible, il est certain que des petites parties formalisées et/ou quantitatives ne
+        sont en rien décisives pour juger de la pertinence d’un travail. Quand une méthode quantitative est mobilisée,
+        il faut rappeler qu’en amont, il y a toujours une transformation discutable du monde en données. En aval, dans
+        l’interprétation des résultats, il y a toujours des processus de re-traduction dans un langage non formalisé. Un
+        raisonnement statistique n’énonce rien en lui-même comme le souligne Jean-Claude Passeron. Dès qu’il est traduit
+        en mots, du sens et du contexte sont ajoutés.</span></p>
+
+    <p class="mypara"> <span class="marge">	Dans cette perspective, toute tentative d’axiomatisation ou de
+        chorématisation<sup><a id="fn4-ref" class="note" href="#fn4">4</a></sup> du monde, par son
+        caractère universel,
+        est condamné à être remise en cause. Il est possible d’objecter que cette
+        situation est finalement identique à celle des sciences dures puisque, selon le modèle kuhnien, tout paradigme est
+        appelé à être remplacé par un autre. La différence essentielle réside dans l’espace non poppérien qui caractérise
+        les SHS pour Jean-Claude Passeron. C’est bien plus la véridicité d’un énoncé étayé par des exemples qui est atteint
+        plutôt que la vérité d’une proposition. Certes, la loi de chute des corps, considérée un moment comme universelle,
+        se trouve après un changement de paradigme n’être qu’un cas local non généralisable. Toutefois, il est remplacé
+        par une loi jugée plus universelle (qui sera à son tour remis en question par une nouvelle loi plus universelle).
+        Les SHS ne repose pas sur cette dynamique de connaissances caractérisé par l’énonciation de lois de plus en plus universelles.</span></p>
+
+    <p class="mypara"> <span class="marge">	Leurs modes de scientificités sont situés pour Jean-Claude
+        Passeron entre deux pôles. D’un côté, le pôle historique et herméneutique qui renvoie à l’objectif
+        de compréhension fine de chaque empirie spécifique. De l’autre, la recherche de régularités, de
+        types, de structures transverses à plusieurs empiries, renvoyant à un pôle plus expérimental et
+        nomologique. Aucun de ces deux pôles ne peut être suffisant à lui seul. Par exemple, l’apport
+        constitué uniquement par des « monographies » ;
+        des « idiographies »<sup><a id="fn5-ref" class="note" href="#fn5">5</a></sup> est jugé comme minime
+        par Jean-Claude Passeron. Les rapprochements de cas qui apportent de nouvelles
+        compréhensions<sup><a id="fn6-ref" class="note" href="#fn6">6</a></sup> ont bien
+        plus de valeur. Symétriquement, une théorie qui ne ferait pas l’objet de mises à l’épreuve
+        empirique, aurait un intérêt minime. Le processus d’enquête ne doit pas être restreint sous
+        prétexte qu’il n’existe pas de possibilité de réfutation et de validation au sens fort du terme.
+        Les résultats acquis doivent être considérés dans une perspective critique, notamment en prenant en
+        compte toutes leurs limites intrinsèquement liées à leurs productions.</span></p>
+
+
+    <p class="mypara"> <span class="marge">	Toute cette réflexion sur le raisonnement sociologique est ici transférée
+        au raisonnement géographique. Ce transfert permet de comprendre l’affirmation précédente d’Olivier Orain, à savoir
+        le constat que les résultats sont « souvent incertains, préliminaires, essentiellement programmatiques »
+        dès qu’il y a une volonté d’articulation théorie/empirie. En effet, la composition d’une théorie à partir
+        d’ancrages empiriques hétérogènes, est toujours une opération complexe. Il est possible d’objecter qu’une théorie
+        peut être conçue en dehors de toute référence à un ou plusieurs terrains. Dans la pratique, si de telles théories
+        « hors sol » existent, il est facilement compréhensible qu’elles rencontrent par la suite également des
+        difficultés dans leurs mises en correspondance avec des situations empiriques spécifiques et hétérogènes.</span></p>
+
+    <p class="mypara"> <span class="marge">	Ainsi, l’affirmation précédente d’Olivier
+        Orain, à savoir le constat que les résultats sont « souvent incertains, préliminaires,
+        essentiellement programmatiques dès qu’il y a une volonté d’articulation théorie/empirie », se
+        comprend aisément. En effet, la composition d’une théorie à partir d’ancrages empiriques
+        hétérogènes est toujours une opération complexe. De plus, la reprise d’une théorie déjà construite
+        pour l’appliquer à de nouveaux éléments est rarement simple du fait des différences entre les
+        situations empiriques originelles (celles qui ont servi à élaborer la théorie) et celles
+        nouvellement étudiées. Il est certes possible d’objecter qu’une théorie peut être conçue en dehors
+        de toute référence à un ou plusieurs terrains. Dans la pratique, si de telles théories « hors sol »
+        existent, il est facilement compréhensible qu’elles rencontrent par la suite également des
+        difficultés dans leurs mises en correspondance avec des situations empiriques spécifiques et
+        hétérogènes.</span></p>
+
+    <p class="mypara"> <span class="marge">	Cette conception conduit Jean-Claude Passeron à développer une
+        forte opposition à toute lecture paradigmatique des SHS du fait de leurs modes de scientificités
+        qui diffèrent de ceux des sciences expérimentales et formelles. Il ne s’agit pas de nier les
+        expérimentations et les modélisations dans les SHS, mais leurs espaces sont in fine non poppériens
+        car basés en dernière instance sur l’importance du langage naturel avec des agencements
+        argumentatifs pouvant toujours être discutés (relevant plus de la typologie que de la logique). Il
+        arrive bien entendu que dans un domaine donné, à une époque donnée, un type d’approche domine, mais
+        ce phénomène est plus conjoncturel que structurel. Du fait de cette dimension non popperienne, il
+        existe souvent des réactivations intellectuelles d’héritages anciens sous des formes renouvelées.
+        De telles réactivations n’ont pas lieu dans les changements de paradigme tels que Thomas Kuhn les a
+        conçus et présentés. En effet, dans son schéma, les paradigmes révolus sont abandonnés.
+     </span></p>
+
+    <p class="mypara"> <span class="marge">Il est nécessaire de préciser ici que Jean-Claude Passeron, en
+        tant que sociologue, développe surtout son argumentaire autour de ce qu’il appelle le
+        « raisonnement sociologique ». C’est par conséquent un transfert de ses réflexions qui est ici
+        effectué à un raisonnement au-delà de sa discipline d’origine. Pour la géographie, le transfert
+        peut être directement justifié par le fait que les empiries spécifiques et hétérogènes qui sont à
+        la base de l’élaboration théorique de Jean-Claude Passeron se caractérisent, entre autres, par des
+        références spatio-temporelles. Cette référence au spatial permet de faire un lien évident avec la
+        géographie.
+     </span></p>
+
+    <p class="mypara"> <span class="marge">	En continuant ce transfert disciplinaire, il est certain que la
+        « nouvelle géographie » a promu et développé le pôle expérimental et nomologique, mais elle n’a pas
+        aboli le pôle historique et herméneutique. Les avancées du pôle expérimental n’ont pas mis fin à
+        l’utilisation du langage naturel. La mise en avant de constructions logiques n’a pas fait rentrer
+        la géographie française dans un espace poppérien. Il est par conséquent ici pertinent et nécessaire
+        de briser l’illusion du motif d’une science à venir<a id="fn7-ref" class="note" href="#fn7">7</a>.
+        Il semble bien plus adéquat de prendre acte que les modes de scientificités de la géographie ne
+        peuvent pas et n’ont pas, à se conformer, ou même à devoir ressembler, à ceux des sciences dites
+        dures.</span></p>
+
+
+    <p class="mypara"> <span class="marge">	Comme les réflexions de Jean-Claude Passeron ont été publiées initialement
+        en 1991, une question légitime est celle de leur prise en charge par la thèse d’Olivier Orain. La partie
+        suivante développe l’idée d’une esquive stratégique.</span></p>
+
+
+<h2 id="III">III) Une esquive stratégique du « plain-pied » <a href="#III-ref">&#8617;</a> </h2>
+
+
+   <p class="mypara"> <span class="marge">Jean Claude Passeron n’est pas cité une seule
+    fois dans la thèse d’Olivier Orain : ni dans le texte, ni dans la bibliographie. Il est utile ici de
+       présenter un autre texte présenté par Olivier Orain pour le colloque <em>Géopoint</em> 2004, c’est-à-dire
+           un an après sa soutenance de thèse. Il le présente dans son blog : </span></p>
+
+
+    <div id="Orain2"><p class="mypara cite"> <span class="marge">« Sur un autre plan, le thème proposé pour
+        le colloque <em>Géopoint</em> 2004, <em>la forme en géographie</em>, m’a suggéré un réemploi de certaines
+    réflexions que je n’avais pas voulu développer dans ma thèse. J’en ai tiré une contribution qui essaie
+    de sortir des schèmes épistémologiques traditionnels (mais aussi du cadre discontinuiste de mes
+    recherches antérieures) et de montrer, dans une conceptualisation proche de celle de Jean-Claude
+    Passeron, que l’une des opérations les plus usitées en géographie serait la <em>clinique</em>,
+    opération visant à identifier des cas en combinant des références universelles, une attention à la
+    particularité et une indispensable (mais souvent peu consciente) interprétation »
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Orain2">(Orain, 2007)</a></span></p></div>
+
+
+    <div id="Pas2"><p class="mypara"> <span class="marge">	Par rapport à cette présentation, il m’importe de
+    souligner, tout
+    d’abord, que l’approche de Jean-Claude Passeron met bien en valeur une approche par cas mais que la
+    mention « en combinant des références universelles » est
+    impropre<sup><a id="fn8-ref" class="note" href="#fn8">8</a></sup>. Cette précision est importante car
+        elle explique
+    une distance des réflexions de Jean-Claude Passeron par rapport aux postulats structuralistes de la
+    « nouvelle géographie », beaucoup plus grande que ce que cette présentation d’Olivier Orain ne le
+    laisse penser. Une lecture attentive de Jean-Claude Passeron me conduit plutôt à penser qu’il se
+    rapproche d’un positionnement proche des sémantiques différentielles : «  Or, le " contexte " pertinent
+    d’une assertion de science sociale, ne peut jamais être défini <em>a priori</em> : c’est l’ensemble
+    potentiellement infini de ses pertinences explicatives que ne peut épuiser aucune liste finie de
+    propriétés susceptibles de " descriptions entièrement définies " »
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Pas2">(Passeron, 2020)</a>. Derrière la
+        complexité de la formulation, une proximité forte peut être établie avec la « non-clôture du sens »
+        mis en avant par François Rastier (2001). Faire le saut d’une approche structuraliste à un tel
+        positionnement n’a rien d’évident. Cette tension est ici occultée par Olivier Orain.</span></p></div>
+
+    <div id="Orain1d"><p class="mypara cite"> <span class="marge">« Alors que le couple expérimentation/prédiction fonde en
+        théorie
+        la légitimation des sciences naturelles, il n’y a que très peu de champs des sciences sociales (et
+        « humaines » en général, fussent-elles quantitativistes) qui se prêtent complètement à ce type de
+        protocoles, ne serait-ce qu’en raison de leur impossibilité structurelle (notamment lorsqu’on
+        raisonne sur le passé) » <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Orain1">(Orain 2003,
+            137)</a>.</span></p></div>
+
+
+    <p class="mypara"> <span class="marge">	Cet extrait est indéniablement marqué par une approche
+        passeronienne. La parenthèse « (notamment lorsqu’on raisonne sur le passé) » renvoie au pôle
+        historique et herméneutique. Toutefois, l’argumentaire d’Olivier Orain ne développe pas plus cette
+        réflexion alors que ses implications sur la pertinence d’une lecture kuhnienne des sciences
+        sociales (et a fortiori de la géographie française) sont majeures. La thèse du plain-pied
+        revendique plutôt la nécessité de prendre en compte et de développer un facteur externe
+        d’explication (la révolution de mai 68) comme conséquence de ce passage reconnaissant la
+        spécificité des SHS. Cette affirmation interroge d’autant plus que le prisme kuhnien accepte
+        originellement des explications externes sans avoir à recourir à un tel détour par les SHS. Cette
+        réflexion m’a conduit in fine à formuler et approfondir un questionnement : alors qu’une grande
+        partie de la postérité du schéma kuhnien est due au fait qu’il a ouvert la voie des lectures
+        externalistes des sciences dites dures, Olivier Orain ne se sert-il pas de cet outillage pour
+        internaliser une grande partie de l’explication du changement scientifique ?</span></p>
+
+    <div id="Orain1k"><p class="mypara"> <span class="marge">	La très faible importance des explications
+        externalistes dans
+        la lecture d’Olivier Orain (mise à part cette exception de mai 68) est en effet à mon avis
+        problématique. Par exemple, le peu de poids accordé à l’importance de l’économie spatiale ou à la
+        géographie anglophone est flagrant alors que l’article de Paul Claval (1972) inaugurant L’Espace
+        Géographique ne laisse pas beaucoup de doutes à ce propos. Sur ce sujet, dans sa justification du
+        choix du modèle kuhnien, Olivier Orain défend dans sa thèse une prééminence des explications
+        internalistes tout en reconnaissant la nécessité de « se doter de références hybrides si l’on veut
+        sortir du cognitif et avancer des explications sociologiques »
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Orain1">(Orain 2003, 115)</a>. Si les noms de
+        Bruno Latour et Michel Callon sont alors cités, leurs travaux ne sont pas développés. L’hybridation
+        est par conséquent réduite dans la thèse du plain-pied. Elle passe indirectement que par quelques
+        propositions sans être véritablement analysée.</span></p></div>
+
+    <div id="Mas1"><p class="mypara"> <span class="marge">Par exemple, la proposition suivante correspond à
+        mon sens à une hybridation : « Et cette idée d’une matrice
+        implicite<sup><a id="fn9-ref" class="note" href="#fn9">9</a></sup>, pour peu qu’on reprenne à
+        frais nouveaux la question de son incarnation, est capitale si l’on veut comprendre la pérennité de
+        l’école vidalienne » <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Orain3">(Orain 2009, 108)</a>.
+            Cette idée de l’incarnation introduit en effet un élément
+        externe non négligeable par rapport au modèle kuhnien. Elle est pertinente, à mon avis, autant pour
+        l’époque vidalienne que pour la « nouvelle géographie » avec la figure de Roger Brunet qui a joué
+        un rôle central <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Mas1">(Massardier ,1996)</a>. Cet
+        ajout est important puisque c’est autant, ou même
+        davantage<sup><a id="fn10-ref" class="note" href="#fn10">10</a></sup> une personne qui rassemble,
+        qu’une matrice intellectuelle. Cela
+    pose le problème de la rupture entre les vidaliens et les post-vidaliens sachant que la même figure est
+    restée. Il y a eu certes incontestablement des évolutions mais aucune redéfinition matricielle. De
+    plus, comme le met en avant Olivier Soubeyran, la relation des géographes à Paul Vidal de la Blache est
+    « moins distante que, par exemple, celle des physiciens à l’égard des Ptolémée, Kepler, Galilée… »
+    <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Sou1">(Soubeyran, 1997, p.24)</a>. Dans les facteurs
+        d’explication de cette situation, Olivier Soubeyran met en
+    avant « l’évolution fantastique des connaissances » permettant aux physiciens de prendre plus de
+    distance par rapport à ces hommes. L’idée d’une matrice évoluant sans véritable révolution est
+    sous-jacente à de telle réflexions.</span></p></div>
+
+
+    <p class="mypara"> <span class="marge">	Pour poursuivre sur cet objectif de la prise en compte des
+        réflexions de
+        Jean-Claude Passeron, il me semble important de proposer plusieurs relectures de différents travaux à l’aune de
+        ses propositions. L’objectif est d’avoir une approche moins théorique que la première partie qui lui a été
+        consacrée (<em>cf.</em> section <a href="{% url 'TxtTheseDiscussion:home'%}#II">Part2.II.2</a>). Il
+        s’agit
+        également par rapport à ce qui vient d’être développé d’avoir une perspective moins axée sur des points de
+        détails de la thèse d’Olivier Orain. Il s’agit de comprendre plus globalement ce qu’apporte ce prisme passseronien
+        à travers la relecture de plusieurs travaux.</span></p>
+
+
+<h2 id="IV">IV) Plusieurs relectures avec le prisme passeronnien <a href="#IV-ref">&#8617;</a> </h2>
+
+
+    <div id="Mas2"><p class="mypara"> <span class="marge">	Tout d’abord, les réflexions de Jean-Claude
+    Passeron permettent de
+    comprendre une partie de la construction kuhnienne. En effet, les études de cas sont déterminantes dans
+    son élaboration théorique. La plasticité du langage naturel a incontestablement servi pour rapprocher
+    les différents cas <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Mas2">(Masterman 1970)</a>. Il
+        n’existe pas de critère déterminant permettant de juger si un
+    courant intellectuel est un paradigme ou non, si une évolution cognitive est un changement de paradigme
+    ou non. Il est pertinent de penser que Jean-Claude Passeron apporte alors des éléments complémentaires
+    à ceux de Thomas Khun pour comprendre pour la relative stabilité des sciences naturelles par rapport à
+    l’instabilité plus grande des SHS<sup><a id="fn11-ref" class="note" href="#fn11">11</a></sup>.</span></p></div>
+
+    <p class="mypara"> <span class="marge">	La thèse d’Olivier Orain multiplie les études de cas et tente de les faire
+        correspondre du mieux possible avec le système sémantique créé par Thomas Kuhn. Il utilise également la
+        plasticité du langage naturel. Par exemple, comme le montre la partie suivante
+        (<em>cf.</em> Manuscrit Part3), plusieurs éléments
+        de la matrice kuhnienne comme les généralisations symboliques ou les exemples-types n’ont pas le même sens chez
+        Thomas Kuhn et Olivier Orain. De plus, le besoin de compléter le pôle historique et herméneutique par un pôle
+        expérimental est patent dans la thèse du plain-pied. Tout d’abord avec la petite partie quantitative réalisée
+        et présentée par Olivier Orain. Ensuite, par le chantier empirique ouvert sur la base de la conjecture
+        socio-linguistique pris en en charge par cette thèse.</span></p>
+
+    <p class="mypara"> <span class="marge">Dans cette perspective, le travail jusqu’ici réalisé, avec la
+        mise en évidence d’une insuffisance du seul pôle expérimental pour administrer la preuve, est en
+        concordance avec les réflexions de Jean-Claude Passeron. Si l’absence de paradigme est justifiée
+        ici par une réflexion épistémologique, il faut mentionner qu’historiquement elle a été intuitée et
+        formulée par quelques tenants de la « nouvelle géographie » comme en témoigne cette citation
+        d’Antoine Bailly et Jean-Bernard Racine : </span></p>
+
+
+    <div id="Bai1"><p class="mypara"> <span class="marge">« Comment ne pas remarquer, à travers l'analyse des
+        pratiques,
+        l'imprécision des raisonnements, l'absence d'épistémologie propre ? En fait, pragmatique par
+        essence, notre discipline ne s'est pas encore développée comme une activité scientifique "normale",
+        puisque, après les phases empiriques et inductives, elle n'est pas arrivée aux phases théoriques,
+        déductives et axiomatiques. Cet arrêt dans l’évolution est-il inévitable, fondé sur la nature de la
+        discipline ? Ce serait alors à la réflexion épistémologique d’en rendre compte, et de le
+        légitimer »
+        <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Bai1">(Bailly et Racine 1978, 7‑8)</a>.</span></p></div>
+
+
+    <div id="Pas1f"> <p class="mypara"> <span class="marge"> L’épistémologie développée par Jean-Claude
+        Passeron permet de comprendre ces constats et ces questionnements historiques. L’essentiel des
+        raisonnements des SHS ne peut « aligner ses opérations sur des modèles discursifs qui lui sont
+        inaccessibles, comme ceux de la déduction et de l’induction » <a
+                href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Pas1">(Passeron 2006, 365)</a>. Or, ce qui a
+        été revendiqué historiquement par les acteurs de la « nouvelle géographie, ce n’est pas tant la
+        dichotomie mise en avant par Olivier Orain (réalisme/ constructivisme-nominalisme) que celle entre
+        approches inductives et déductives. En rendant cette dichotomie partielle et assez caduque dans les
+        SHS, c’est l’argument central et initial de ceux qui ont revendiqué une « révolution scientifique »
+        dans la géographie française des années 1970 qui est battu en brèche.</span></p></div>
+
+
+    <p class="mypara"> <span class="marge">Concrètement, le fait que la géographie post-vidalienne n’ait
+    pas explicité de manière forte ses cadres théoriques ne veut pas dire qu’elle ait été effectuée sans
+    préconception théorique. À l’inverse, le fait que la « nouvelle géographie » ait revendiqué comme
+    injonction l’explicitation de ses cadres théorique, ne veut pas dire que les formulations de ses
+    problématiques étaient exemptes de connaissances issues d’observations de terrain. Ces affirmations
+    peuvent être rapprochées de celle du cercle herméneutique. Cette notion a été développée principalement
+    par des philologues (Friedrich Ast…) et des philosophes (Martin Heidegger…). Elle permet de mettre en
+    avant que la compréhension d’un texte passe par celles d’ensembles plus grands (œuvre entière de
+    l’auteur, courant littéraire) et, dans le même temps, la compréhension de ces ensembles plus grands
+    passe par celle des textes. Il n’est pas possible de sortir du cercle, de la même manière que les
+        problématiques, les théories et les terrains sont intimement intriqués.</span></p>
+
+
+    <div id="Bor1"><p class="mypara"> <span class="marge">Sur ce sujet, il est possible de se demander si la situation est
+        fondamentalement différente dans les sciences dites dures. Dans Qu’est-ce que le travail
+        scientifique des données, Christine L Borgman <a
+            href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Bor1">(2020)</a> répond par la négative quand elle
+    reprend
+        l’analogie rapprochant la construction d’un article d’astronomie de celle d’une maison :</span></div>
+
+
+    <p class="mypara cite"> <span class="marge">« Le point de
+    départ est rarement clair : les habitants rénovent et agrandissent une maison sur des années, voire des
+    décennies. Même quand une famille part d’un terrain vague, il peut y avoir eu une structure à cet
+    endroit par le passé. Si on remonte encore le temps, quelqu’un a décidé de comment le terrain serait
+    loti, ce qui a déterminé les possibilités pour la taille et l’orientation de la maison, et ainsi de
+    suite » <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Bor1">(Borgman, 2020)</a></span></p>
+
+    <p class="mypara"> <span class="marge">Cette perspective affirme l’importance du contexte dans les
+    productions des sciences expérimentales. Les résultats sont loin de n’être que des lois formulées comme
+    universelles au moment où elles sont produites. Cette reconnaissance remet-elle en cause toutes les
+    réflexions de Jean-Claude Passeron ? Ce questionnement m’a conduit à réfléchir et à proposer une
+    approche moins dichotomique que celle de cet auteur mais ne remettant pas en cause ses réflexions
+    .</span></p>
+
+<h2 id="V">V) Pour un gradient épistémologique entre sciences formelles, expérimentales et SHS
+    <a href="#V-ref">&#8617;</a> </h2>
+
+
+    <div id="Lad1"><p class="mypara"> <span class="marge">	Même si les exemples pris par Thomas Kuhn relève
+    pour la plupart de
+    la physique et non directement du champ mathématique, il s’agit d’affirmer en se basant sur les
+    réflexions précédemment développées qu’une science formelle reposant sur des liens logiques, est le
+    plus susceptible d’accoucher de paradigme profond. Quand Kurt Gödel prouve le théorème d’incomplétude,
+    il met certes un coup fatal au programme de Hilbert mais cela marque aussi la fin d’une forme idéale de
+    paradigme. En effet, la volonté de créer un système axiomatique complet qui puisse décrire
+    l’arithmétique, s’effondre. Le monde des Principa Mathematica, porté par Alfred North Whitehead et
+    Bertrand Russel, disparaît. Le monde qui le remplace reconnaît que tout système axiomatique cohérent
+    pour les mathématiques est nécessairement incomplet. Le mirage d’un système complètement formalisé,
+    totalement logique et complet tombe <a href="{% url 'Biblio:ViewBiblioInterface' 0  %}#Lad1">(Ladrière,
+            1957)</a>.</span></p></div>
+
+    <p class="mypara"> <span class="marge">	Sans répondre à cette forme idéale inatteignable, l’idéal type du
+    paradigme, tel que défini par Thomas Kuhn repose sur un niveau de formalisation important. Les
+    généralisations symboliques sont un pilier de la matrice disciplinaire définie dans la postface de la
+    <em>Structure des révolutions scientifiques</em>. Cette formalisation est importante car elle permet de
+    sortir d’une partie des ambiguïtés du langage naturel tel que les décrit Thomas Kuhn. Par exemple, le
+    terme « planète » peut avoir facilement des significations différentes selon les paradigmes alors que
+    les concepts de poids et de masse définis à travers la formule P=mg sont plus difficiles à interpréter
+    de manière ambigüe L’universalité présumée d’une loi permet une très forte domination du pôle
+    expérimental. Il faut que les résultats obtenus semblent en adéquation avec la nature jusqu’à la
+    survenue d’une anomalie kunhienne<sup><a id="fn12-ref" class="note" href="#fn12">12</a></sup>.</span>
+
+    <p class="mypara"> <span class="marge">	Par rapport à cet idéal type, d’autres situations existent. Il est
+    possible que les sciences expérimentales construisent des paradigmes à partir d’études de cas. Par
+    exemple, pour la théorie de la tectonique des plaques, différentes recherches sur la topographie des
+    fonds marins ont joué un rôle crucial dans son élaboration. Il est vrai qu’il existe maintenant des
+    « modèles numériques complexes du fonctionnement du
+    manteau »<sup><a id="fn13-ref" class="note" href="#fn13">13</a></sup>. Toutefois, avant cette
+    formalisation avancée, le
+    paradigme avait déjà été accepté sur la base de modèles plus simples et faisant appel à des degrés de
+    généralisation symbolique bien moindres. Le rapprochement entre les études de cas est d’autant plus
+    fort qu’il peut faire appel à un modèle commun et à des mesures montrant la validité de ce dernier
+    .</span></p>
+
+    <p class="mypara"> <span class="marge"> Il peut exister en SHS des modèles ayant un pouvoir explicatif, et
+        même dans certains cas, donnant lieu à des prédictions valables. Toutefois, le pouvoir de ces
+        modèles par rapport aux lois de la physique ou aux grandes théories de la biologie est réduit, car
+        toute société est toujours marquée par de l’imprévisibilité. Pour approfondir ce sujet, il faut
+        souligner qu’il existe en SHS une grande diversité de modèles avec des degrés de formalisation très
+        variables. Plus le modèle repose sur le langage naturel, plus il me semble souvent qu’il est
+        difficile de déterminer vraiment un critère de réfutabilité. S’il est possible de tester sur
+        différentes situations empiriques les résultats des multiples modèles, des comparaisons peuvent
+        être effectuées et il est alors possible de sélectionner le ou les modèles les plus performants. Il
+        est fréquent que plusieurs modèles co-existent : chacun étant adapté à une ou des situations
+        spécifiques, ce qui explique des situations non paradigmatiques.</span></p>
+
+    <p class="mypara"> <span class="marge">À l’autre bout du spectre, il me semble nécessaire de distinguer
+        plus fortement que ne le fait Jean-Claude Passeron, les monographies des recherches ne faisant
+        aucunement l’effort de chercher des points d’appui dans une empirie. En effet, dans le cas des
+        monographies, la volonté d’élaborer un système explicatif cohérent et donnant à comprendre les
+        situations observées, amène déjà une présence implicite du pôle expérimental. Même si elle ne prend
+        pas la forme d’un modèle explicité, cette volonté de correspondance avec les situations observées
+        relève déjà à mon avis d’une forme minimale d’expérimentation. Il est évident que ce pôle
+        expérimental est plus facile à identifier quand il mobilise des outils statistiques.</span></p>
+
+    <p class="mypara"> <span class="marge">Avant de conclure, il est nécessaire de souligner que le risque
+        de cette approche spectrale est de retomber dans une forme de hiérarchie et de penser de nouveau
+        les SHS par rapport à des modèles de scientificités extérieurs à son fonctionnement. Il est certain
+        que l’approche plus dichotomique de Jean-Claude Passeron permet d’éviter ce risque. Toutefois, une
+        fois ce point conscientisé et énoncé, il me semble que cette approche spectrale permet de mieux
+        représenter une diversité de pratiques autant en SHS qu’en sciences expérimentales. Elle est à mon
+        sens moins problématique, notamment vis-à-vis d’une dichotomie qui prend toujours le risque d’être
+        fantasmée et fétichisante.</span></p>
+
+
+
+
+    <br>
+
+    <!-- NOTE DEB -->
+
+<p class="present">Notes du chapitre</p>
+
+<p id="fn1">[1] La proposition la plus célèbre est celle des chorèmes comme structures élémentaires de
+    l’espace géographique. Le terme est construit en 1980 par Roger Brunet par analogie avec les phonèmes
+    de la linguistique structurale. Sur un autre plan, l’emploi du prisme kuhnien pour lire l’histoire de
+    la géographie s’inscrit aussi dans cette importance de la perspective structuraliste (<em>cf.</em>
+    Manuscrit Chap2.II.1.a).
+<a href="#fn1-ref">&#8617;</a></p>
+    <p id="fn2">[2] Historiquement, il est vrai que Durkheim était bien plus avancé que Vidal de la Blache
+        sur la question de la construction de l’objectivité.
+<a href="#fn2-ref">&#8617;</a></p>
+<p id="fn3">[3] Ce titre reprend la formulation du titre secondaire de l’ouvrage de Jean-Claude Passeron <a
+        href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Pas1">(2006)</a> :
+    <em>Le raisonnement sociologique : un espace non-poppérien de l’argumentation</em>. Par rapport à la première édition,
+    il s’agit d’une nouvelle formulation car initialement, l’ouvrage avait été intitulé :
+    <em>Le raisonnement sociologique : un espace non-poppérien du raisonnement naturel</em>.
+    Cette évolution est notable car elle donne moins importance à la notion discutable de « raisonnement naturel ».
+<a href="#fn3-ref">&#8617;</a></p>
+    <p id="fn4">[4] La chorématisation renvoie à la proposition de Roger Brunet des chorèmes, directement
+    inspiré de la linguistique saussurienne. Les chorèmes sont ainsi pensés comme des structures
+    élémentaires de l’espace géographique qu’il suffit de combiner pour décrire et expliquer toute
+    organisation spatiale.
+<a href="#fn4-ref">&#8617;</a></p>
+<p id="fn5">[5]C’est bien entendu l’unicité de chaque cas, l’« idiotie du réel » <a
+        href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Ros1">(Rosset 2012)</a>, qui est en
+    toile de fond dans cette expression.
+<a href="#fn5-ref">&#8617;</a></p>
+<p id="fn6">[6] Les compréhensions sont nouvelles si elles n’existaient pas avant que les cas utilisés soient rapprochés.
+<a href="#fn6-ref">&#8617;</a></p>
+<p id="fn7">[7] Ce motif a été entretenu par plusieurs géographes post-vidaliens comme André Cholley mais
+    aussi par les « nouveaux » géographes <a
+            href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Fer1">(Ferrier,Racine, et Raffestin 1978)</a>.
+<a href="#fn7-ref">&#8617;</a></p>
+<p id="fn8">[8] « Les "faits" sociaux élémentaires ne peuvent être définis univoquement à partir de
+    "monèmes" comme on peut le faire pour les phonèmes d’une langue naturelle par la "commutation" »<a
+            href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Pas1">(Passeron 2006, 573)</a>.
+<a href="#fn8-ref">&#8617;</a></p>
+<p id="fn9">[9] Il est fait référence à la matrice définissant pour Thomas Kuhn un paradigme et étant
+    composée des quatre éléments suivants : généralisations symboliques, la métaphysique, les valeurs et
+    les exemples-types <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Kuhn1">(Kuhn 2008, postface 1969)</a>.
+<a href="#fn9-ref">&#8617;</a></p>
+<p id="fn10">[10] « Cette distinction et question entre « autant » ou « davantage » n’est pas abordée dans
+    la thèse du plain-pied.
+<a href="#fn10-ref">&#8617;</a></p>
+<p id="fn11">[11] Ce qui, pour rappel, est présenté comme point de départ de <em>La Structure des révolutions
+    scientifiques</em> par Thomas Kuhn <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Kuhn1">(2008)</a>
+<a href="#fn11-ref">&#8617;</a></p>
+<p id="fn12">[12] C’est une des définitions de l’anomalie donnée par Thomas Kuhn : « l’impression que la
+    nature, d’une manière ou d’une autre, contredit les résultats attendus dans le cadre du paradigme qui
+    gouverne la science normale » <a href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Kuhn1">(Kuhn, 2008,83)</a>
+<a href="#fn12-ref">&#8617;</a></p>
+<p id="fn13">[13]  <a
+        target="_blank" href="https://planet-terre.ens-lyon.fr/ressource/histoire-tectonique-plaques.xml">https://planet-terre.ens-lyon.fr/ressource/histoire-tectonique-plaques.xml</a> (consulté le 18/09/2023).
+<a href="#fn13-ref">&#8617;</a></p>
+
+
+<!-- NOTE FIN -->
+
+
+<p class="suite"> Suite :
+    <a  href="{% url 'Conclusion:home' %}">Conclusion</a>
+</p>
+<p class="suite"> Retour :
+    <a  href="{% url 'general:home' %}">Page d'accueil</a>
+</p>
+
+
+
+<script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+<script type="text/javascript">
+ EnArrEnAvt("{% url 'TxtTheseConstructResult:home' %}", "{% url 'Conclusion:home' %}");
+</script>
+
+
+</body>
+</html>

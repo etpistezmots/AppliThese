@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Selection résultat à visualiser</title>
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+
+    </style>
+</head>
+<body>
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li class="{{ message.tags }}">{{ message|linebreaks }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+<p class="suite">
+  <a  href="{% url 'TxtTheseConstructResult:home' %}#III2"> Retour Texte </a>
+</p>
+
+
+<form action="" method="post">
+
+    {% csrf_token %}
+
+    {% for mode, result in ZipModeResult %}
+
+        {% if mode == "glove" %}
+
+            <h3> Liste résultats "GloVe" </h3>
+
+            <table border="1" width="1100">
+            <thead>
+                <tr>
+                    <th>select</th>
+                    <th>nom</th>
+                    <th>revue</th>
+                    <th>epoque</th>
+                    <th>embed-size</th>
+                    <th>context-size</th>
+                    <th>min-occur</th>
+                    <th>n_epochs</th>
+                    <th>terme</th>
+                    <th>nresult</th>
+                    <th>méthode clustering</th>
+                    <th>nombre cluster</th>
+                    <th>link</th>
+                    <th>color_singleton</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for expe in result %}
+                <tr>
+                    <td><input type="checkbox" name="selected_glove" value="{{ expe.id }}"></td>
+                    <td> <a href="{% url 'Cluster:result' 'glove' expe.modelc.id expe.id %}"> {{expe.nomresult}}</a> </td>
+                    <td> {{ expe.choixrevue }} </td>
+                    <td> {{ expe.choixepoque }} </td>
+                    <td> {{ expe.modelc.embedding_size }} </td>
+                    <td> {{ expe.modelc.context_size }} </td>
+                    <td> {{ expe.modelc.min_occurrences }} </td>
+                    <td> {{ expe.modelc.num_epochs }} </td>
+                    <td> {{ expe.terme }} </td>
+                    <td> {{ expe.nresult }} </td>
+                    <td> {{ expe.methode_clustering }} </td>
+                    <td> {{ expe.ncluster }} </td>
+                    <td> {{ expe.link }} </td>
+                    <td> {{ expe.color_singleton }} </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+            </table>
+
+    {% endif %}
+
+        {% if mode == "word2vec" %}
+
+            <h3> Liste résultats "Wor2Vec" </h3>
+
+            <table border="1" width="1100">
+            <thead>
+                <tr>
+                    <th>select</th>
+                    <th>nom</th>
+                    <th>architecture</th>
+                    <th>revue</th>
+                    <th>epoque</th>
+                    <th>embed-size</th>
+                    <th>context-size</th>
+                    <th>min-occur</th>
+                    <th>n_epochs</th>
+                    <th>terme</th>
+                    <th>nresult</th>
+                    <th>méthode clustering</th>
+                    <th>nombre cluster</th>
+                    <th>link</th>
+                    <th>color_singleton</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for expe in result %}
+                <tr>
+                    <td><input type="checkbox" name="selected_word2vec" value="{{ expe.id }}"></td>
+                    <td> <a href="{% url 'Cluster:result' 'word2vec' expe.modelc.id expe.id %}"> {{expe.nomresult}}</a> </td>
+                    <td> {{ expe.modelc.architecture}} </td>
+                    <td> {{ expe.choixrevue }} </td>
+                    <td> {{ expe.choixepoque }} </td>
+                    <td> {{ expe.modelc.embedding_size }} </td>
+                    <td> {{ expe.modelc.context_size }} </td>
+                    <td> {{ expe.modelc.min_occurrences }} </td>
+                    <td> {{ expe.modelc.num_epochs }} </td>
+                    <td> {{ expe.terme }} </td>
+                    <td> {{ expe.nresult }} </td>
+                    <td> {{ expe.methode_clustering }} </td>
+                    <td> {{ expe.ncluster }} </td>
+                    <td> {{ expe.link }} </td>
+                    <td> {{ expe.color_singleton }} </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+            </table>
+
+    {% endif %}
+
+        {% if mode == "fasttext" %}
+
+
+            <h3> Liste résultats "FastText" </h3>
+
+            <table border="1" width="1100">
+            <thead>
+                <tr>
+                    <th>select</th>
+                    <th>nom</th>
+                    <th>architecture</th>
+                    <th>revue</th>
+                    <th>epoque</th>
+                    <th>embed-size</th>
+                    <th>context-size</th>
+                    <th>min-occur</th>
+                    <th>n_epochs</th>
+                    <th>min-n</th>
+                    <th>max-n</th>
+                    <th>terme</th>
+                    <th>nresult</th>
+                    <th>méthode clustering</th>
+                    <th>nombre cluster</th>
+                    <th>link</th>
+                    <th>color_singleton</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for expe in result %}
+                <tr>
+                    <td><input type="checkbox" name="selected_fasttext" value="{{ expe.id }}"></td>
+                    <td> <a href="{% url 'Cluster:result' 'fasttext' expe.modelc.id expe.id %}"> {{expe.nomresult}}</a> </td>
+                    <td> {{ expe.modelc.architecture}} </td>
+                    <td> {{ expe.choixrevue }} </td>
+                    <td> {{ expe.choixepoque }} </td>
+                    <td> {{ expe.modelc.embedding_size }} </td>
+                    <td> {{ expe.modelc.context_size }} </td>
+                    <td> {{ expe.modelc.min_occurrences }} </td>
+                    <td> {{ expe.modelc.num_epochs }} </td>
+                    <td> {{ expe.modelc.min_n }} </td>
+                    <td> {{ expe.modelc.max_n }} </td>
+                    <td> {{ expe.terme }} </td>
+                    <td> {{ expe.nresult }} </td>
+                    <td> {{ expe.methode_clustering }} </td>
+                    <td> {{ expe.ncluster }} </td>
+                    <td> {{ expe.link }} </td>
+                    <td> {{ expe.color_singleton }} </td>
+                </tr>
+            {% endfor %}
+
+    </tbody>
+    </table>
+
+    {% endif %}
+
+    {% endfor %}
+
+
+
+    <button  type="submit" name="Comparer" id="Compare"> Comparer les expériences cochées</button>
+
+
+</form>
+
+</body>
+</html>

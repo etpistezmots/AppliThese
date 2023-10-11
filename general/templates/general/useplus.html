@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>UsePlus</title>
+</head>
+    <style>
+    .marge {
+            margin-left: 3em;}
+        .suite {
+            font-style: italic;
+            text-align: right;}
+        .mypara {
+            text-align: justify;}
+    </style>
+
+<body>
+<a class="btn btn-primary" href="{% url 'general:home' %}">Accueil</a>
+&gt;
+<span> 1) Pourquoi ?</span>
+
+<p class="mypara">
+    <span class="marge">
+    Ce système d'inscription et d'identification a été mis en place pour pour essayer de réaliser un
+        objectif qui dépasse la simple présentation des travaux réalisés. Il s’agit d’essayer de permettre
+        à l’utilisateur de refaire le chemin de recherche effectué en ne faisant pas forcément les mêmes
+        choix que ceux réalisés dans cette thèse. Or, ces choix étant multiples et jouant à plusieurs
+        niveaux de la chaîne de production, il est nécessaire de faire des enregistrements à différentes
+        étapes. Ces enregistrements peuvent prendre parfois une place non négligeable. De plus, certains
+        traitements prennent un temps important ce qui pourrait ralentir l’interface. Par conséquent, il a
+        semblé préférable de garder un certain contrôle sur les enregistrements et les traitements réalisés
+        afin d’éviter au maximum de potentiels problèmes techniques. Le système d’enregistrement et
+        d’identification réduit les risques mais ne les suppriment pas. Pour cette raison, même en étant inscrit, certains traitements demandent l’envoi d’un courriel pour
+        être réalisés.
+    </span>
+</p>
+
+    <p class="mypara">
+    <span class="marge">
+    Le système d’inscription et d’enregistrement permet alors d’affecter des données ou des résultats
+        intermédiaires à un ou des utilisateurs particuliers. Ces données ou résultats ne vont alors
+        apparaître que pour les utilisateurs concernés si ceux-ci se sont identifiés. Cette organisation
+        permet une stabilité de l’interface de base tout en laissant la possibilité effective d’autres
+        constructions. Malheureusement, il est vrai aussi que cette manière de faire limite la capacité de
+        production directe de résultats par des utilisateurs externes. Il n’en reste pas moins que cela
+        reste possible après s’être inscrit et avoir envoyé sa demande. Enfin, quelques d’explorations
+        demeurent accessibles sans aucune inscription.
+    </span>
+</p>
+
+
+
+</body>
+</html>

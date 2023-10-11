@@ -1,0 +1,22 @@
+{% extends 'AmeliorText/TraitA/TraitBase/AnnuleTraitBase.html' %}
+
+{% block content %}
+
+    {% if AncienneReductionElt.EssaiHomogeneTitre %}
+            en supprimant les contenus les figures et en essayant de laisser les titres si nécessaire <br>
+        {% else %}
+            sans supprimer les contenus et titres des figures <br>
+        {% endif %}
+
+        {% if ListMots %}
+        et en supprimant les mots suivants dans l'ensemble des textes : <br>
+             {% for mot in ListMots %}
+                - {{ mot }} <br>
+            {% endfor %}
+            <br>
+        {% endif %}
+
+{% endblock %}
+
+
+

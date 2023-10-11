@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    {% load static %}
+
+    <meta charset="UTF-8">
+    <title>Titres Found {{reduction}} {{ revue }}</title>
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+<body>
+
+
+
+
+    <p class="suite">
+            <a  href="{% url 'AmeliorText:home' %}#ExploTitreFound">Retour Texte</a>
+    </p>
+
+    {% if user.is_superuser %}
+    <p class="suite">
+        <a href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Titre' %}"> Retour Interface </a>
+    </p>
+     {% endif %}
+
+<h2>Titres trouvés du corpus {{reduction}} pour la revue {{ revuerealname }}</h2>
+<h3>Nombres d'éléments : {{ NbresResult }}</h3>
+
+    {% if MarqueurLimitePage %}
+    <ul>
+        {% for titresfound in ResultDeb %}
+            {% for elt in titresfound%}
+                {% if forloop.counter0 == 0 %}
+                    <li>{{ elt|safe }}</li>
+                {% else %}
+                    <li>{{ elt }}</li>
+                {% endif %}
+            {% endfor %}
+            <br>
+        {% endfor %}
+    </ul>
+
+    <br>
+    <br>
+    <br>
+    ...
+    <br>
+    <br>
+    <br>
+
+    <ul>
+
+        {% for titresfound in ResultFin %}
+            {% for elt in titresfound%}
+                {% if forloop.counter0 == 0 %}
+                    <li>{{ elt|safe }}</li>
+                {% else %}
+                    <li>{{ elt }}</li>
+                {% endif %}
+            {% endfor %}
+        <br>
+        {% endfor %}
+
+    </ul>
+
+
+    {% else %}
+
+    <ul>
+
+        {% for titresfound in Result %}
+            {% for elt in titresfound %}
+                {% if forloop.counter0 == 0 %}
+                    <li>{{ elt|safe }}</li>
+                {% else %}
+                    <li>{{ elt }}</li>
+                {% endif %}
+            {% endfor %}
+        <br>
+        {% endfor %}
+
+    </ul>
+
+    {% endif %}
+
+
+
+    <p class="suite">
+            <a  href="{% url 'AmeliorText:home' %}#ExploTitreFound">Retour Texte</a>
+    </p>
+
+    {% if user.is_superuser %}
+    <p class="suite">
+        <a href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Titre' %}"> Retour Interface </a>
+    </p>
+     {% endif %}
+
+
+
+    <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+    <script type="text/javascript">
+        EnArrEnAvt("{% url 'AmeliorText:home' %}#ExploTitreFound",
+        "{% url 'AmeliorText:home' %}#ExploTitreFound");
+    </script>
+
+
+</body>
+</html>
+

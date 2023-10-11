@@ -1,0 +1,19 @@
+{% extends 'AmeliorText/TraitA/TraitBase/AnnuleTraitBase.html' %}
+
+{% block content %}
+
+    {% if AncienneReductionElt.suppr %}
+            en enlevant les annexes <br>
+        {% else %}
+            sans enlever les annexes <br>
+        {% endif %}
+
+        <br>
+        et en retirant les mots suivants avant les annexes: <br>
+             {% for mot in ListMots %}
+                - {{ mot }} <br>
+            {% endfor %}
+            <br>
+        en recherchant dans une zone de {{ AncienneReductionElt.zone }} mots avants <br>
+
+{% endblock %}

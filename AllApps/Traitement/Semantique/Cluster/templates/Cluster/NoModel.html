@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+
+
+<head>
+    <meta charset="UTF-8">
+    {% if modeactuel == "glove" %}
+        <title>Home Diachro GloVe</title>
+    {% elif modeactuel == "word2vec" %}
+        <title>Home Word2Vec</title>
+    {% else %}
+        <title>Home FastText</title>
+    {% endif %}
+
+
+</head>
+
+<body>
+
+    <label for="mode">- Choix du mode d'expérimentation :</label>
+        <select onchange="location = this.value;" id="mode">
+            {% for mode in allmodes %}
+                {% if mode == modeactuel %}
+                    <option selected>{{ mode }}</option>
+                {% else %}
+                    <option value="{% url 'Cluster:home' mode %}">{{ mode }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    </br>
+
+        </br>
+        <!-- permission superuser : calcul nouveau resultat-->
+        {% if user.is_superuser %}
+            Il n'existe pas de modèle de plongement calculé pour ce mode. <br>
+            Vous pouvez calculer de nouveaux modèles de plongement dans l'interface Tableau. <br>
+            Suivre le lien suivant pour la création de nouveaux résultat puis revenez dans cette interface.<br>
+            <br>
+            <input class="marge" type="submit" name="Calculer" id="Calculer" value="Calcul nouveau modele">
+        {% else %}
+            Il n'existe pas de modèle de plongement et de résultat pour ce mode. <br>
+            Merci de contacter beligne.max(arobase)gmail(point)com
+            pour la création de tels modèles et résultats.
+            <br>
+        {% endif %}
+
+
+
+</body>
+</html>

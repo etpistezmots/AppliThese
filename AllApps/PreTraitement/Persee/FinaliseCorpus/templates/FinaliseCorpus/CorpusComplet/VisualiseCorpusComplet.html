@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+
+    {% load static %}
+
+    <head>
+        <meta charset="UTF-8">
+        <title>VisualiseCorpusComplet</title>
+            <style>
+        .marge {
+            margin-left: 3em;}
+        .marge2 {
+            margin-left: 6em;}
+	    .suite {
+            font-style: italic;
+            text-align: right;}
+        .mypara {
+            text-align: justify;}
+    </style>
+
+    </head>
+    <body>
+        Le corpus {{ Ccomplet.nom }} a été formé dans l'interface de la manière suivante :
+
+        <form action="" method="post">
+
+            <div class="container">
+                <fieldset class="grisemoi">
+                {{  Form.as_p }}
+                </fieldset>
+            </div>
+        </form>
+
+       <br>
+    <p class="suite">
+            <a  href="{% url 'FinaliseCorpus:AjoutEtRetrait'  %}">Retour : III)1) Ajouts et retraits de documents</a>
+    </p>
+    <br>
+
+
+    <script src="{% static 'Tableau/js/jquery-3.4.1.min.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+    <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+    <script type="text/javascript">
+        EnArrEnAvt("{% url 'FinaliseCorpus:AjoutEtRetrait'  %}",
+        "{% url 'FinaliseCorpus:AjoutEtRetrait' %}");
+
+    window.onload=function() {
+        $(".grisemoi").prop("disabled",true);
+        }
+
+    </script>
+
+    </body>
+</html>

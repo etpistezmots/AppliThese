@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    {% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Interface Mot Avant Annexe</title>
+    <style>
+
+        .suite {
+            font-style: italic;
+            text-align: right;}
+        td {
+          text-align: center;
+          vertical-align: middle;}
+    </style>
+</head>
+
+<body>
+
+
+{% if not PossibleChange %}
+
+    {% if TestPresenceResult %}
+
+        <h2> Résultat avec un seuil de recherche de {{ SeuilEnCours }} sur la revue
+            {% if revue == "geo" %}
+                des <em>Annales de Géographie</em>
+            {% endif %}
+            {% if revue == "spgeo" %}
+                <em>L'Espace Géographique</em>
+            {% endif %}
+             dans le corpus {{ reduction }} </h2>
+
+        <h3> Mots en colonnes, ponctuation en lignes </h3>
+
+        {{ ContenuResult | safe }}
+
+    {% else %}
+
+        <br>
+        <br>
+        Il n'existe pas de résultat actuellement pour ce corpus et cette revue.
+
+    {% endif %}
+
+{% else %}
+
+    {% if TestPresenceResult %}
+
+        <h2> Résultat avec un seuil de recherche de {{ SeuilEnCours }} sur la revue
+            {% if revue == "geo" %}
+                des <em>Annales de Géographie</em>
+            {% endif %}
+            {% if revue == "spgeo" %}
+                <em>L'Espace Géographique</em>
+            {% endif %}
+             dans le corpus {{ reduction }} </h2>
+
+        <h3> Mots en colonnes, ponctuation en lignes </h3>
+
+            {{ ContenuResult | safe }}
+        <br>
+        <br>
+
+        <p class="suite">
+            <a
+                    href="{% url 'AmeliorText:SupprMotAvantObjetResult' reduction revue 'Annexe' %}">Supprimer ces résultats et en régénérer</a>
+        </p>
+
+
+    {% else %}
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li>{% if message.tags %} class="{{ message.tags }}"{% endif %} >{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <h2> Interface de recherche de mots avant les mots clés pour la revue
+            {% if revue == "geo" %}
+                des <em>Annales de Géographie</em>
+            {% endif %}
+            {% if revue == "spgeo" %}
+                <em>L'Espace Géographique</em>
+            {% endif %}
+             dans le corpus {{ reduction }} </h2>
+
+
+         <br>
+        * comme séparateur<br>
+        no pour pas de ponctuation<br>
+        <br>
+
+        <form action="" method="post">
+               {% csrf_token %}
+            Mots cherchés: <input type="text" name="mots"><br>
+            <br>
+            Ponctuations suivant mot: <input type="text" name="ponctuations"><br>
+            <br>
+            Recherche dans les x mot avant les annexes: <input type="number" min="1" max="20"
+                                                               name="seuil"><br>
+            <br>
+            <br>
+
+            <input type="submit" name="Effectuer" id="Effectuer" value="Effectuer">
+
+        </form>
+
+    {% endif %}
+
+{% endif %}
+
+     <br>
+    <br>
+
+
+    <p class="suite">
+            <a  href="{% url 'AmeliorText:home' %}#IV9">Retour Texte</a>
+    </p>
+
+    <p class="suite">
+            <a href="{% url 'AmeliorText:ReDispatch' 'ExplorTrait' 'Annexe' %}">Retour Explorations Annexes
+            </a>
+    </p>
+
+
+      <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+    <script type="text/javascript">
+        EnArrEnAvt("{% url 'AmeliorText:home' %}#IV9","{% url 'AmeliorText:home' %}#IV9");
+    </script>
+
+</body>
+</html>

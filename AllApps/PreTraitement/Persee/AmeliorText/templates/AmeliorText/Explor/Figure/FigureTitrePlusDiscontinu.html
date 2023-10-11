@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    {% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Figure discontinues {{reduction}}</title>
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+
+<body>
+
+
+<h1>Figures les plus discontinues de la réduction : {{reduction}} pour la revue {{ revuerealname }} </h1>
+
+
+    <h2>Nombres d'éléments : {{ NbresResult }}</h2>
+
+
+
+    <ul>
+    {% for R in Result %}
+        {% for elt in R %}
+            {% if forloop.counter0 == 0 %}
+                <li>{{ elt|safe }}</li>
+            {% else %}
+                <li>{{ elt }}</li>
+            {% endif %}
+        {% endfor %}
+
+        <br>
+     {% endfor %}
+        <br>
+    </ul>
+
+
+
+    <br>
+    <br>
+
+    <p class="suite">
+    <a  href="{% url 'AmeliorText:home' %}#FigureTitreDiscon">Retour texte</a>
+    </p>
+    <br>
+
+
+    <p class="suite">
+            <a  href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Figure' %}">Retour explorations figures</a>
+    </p>
+    <br>
+
+    <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+    <script type="text/javascript">
+        EnArrEnAvt("{% url 'AmeliorText:home' %}#FigureTitreDiscon","{% url 'AmeliorText:home' %}#FigureTitreDiscon");
+    </script>
+
+
+</body>
+</html>

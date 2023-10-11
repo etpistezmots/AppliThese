@@ -1,0 +1,23 @@
+{% extends 'AmeliorText/TraitA/TraitBase/AnnuleTraitBase.html' %}
+
+{% block content %}
+
+    {% if AncienneReductionElt.SupprBilioEtFin %}
+            en supprimant les bibliographies par leurs coordonnées graphiques et tout ce qui suit la dernière
+    bibliographie d’un article <br>
+        {% else %}
+            sans supprimer les bibliographies par leurs coordonnées graphiques et tout ce qui suit la dernière
+    bibliographie d’un article <br>
+        {% endif %}
+
+
+    avec les mots suivants :<br>
+        {% for mot in ListMots %}
+                - {{ mot }} <br>
+        {% endfor %}
+            <br>
+    en recherchant dans une zone de {{ AncienneReductionElt.zone }} mots avants <br>
+
+
+
+{% endblock %}

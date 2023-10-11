@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    {% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>BasdePageCombiTextuelles{{reduction}}</title>
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+
+<body>
+
+    <p class="suite">
+        <a  href="{% url 'AmeliorText:home' %}#BasdePageTextualCombi">Retour Texte</a>
+    </p>
+
+    {% if user.is_superuser %}
+    <p class="suite">
+        <a href="{% url 'AmeliorText:ReDispatch' 'Explor' 'BasDePage' %}"> Retour Interface </a>
+    </p>
+    {% endif %}
+
+    <br>
+
+
+    <a class="btn btn-primary marge"
+       href="{% url 'AmeliorText:Download' 'BasdePageCombiText' reduction revue 'txt' %}">Télecharger
+        fichier</a>
+
+
+
+
+
+
+<h1>Bas de page détectés avec combinaisons textuelles de la réduction {{reduction}} de la revue {{revuerealname }} </h1>
+
+{% if MarqueurLimitePage %}
+    <br>
+    En raison de nombre d'éléments : {{ NbresResult }} articles, <br>
+    seulement les bas de page des 100 premier articles <br>
+    et des 100 derniers articles ont été affichés. <br>
+    Vous pouvez télécharger l'ensemble des résultats en fichier .txt <br>
+    dans le lien tout à droite <br>
+    <br>
+    <br>
+
+    Les 100 premiers articles :
+
+    <ul>
+    {% for BasdePagesTextualCombi in ResultDeb %}
+        {% for elt in BasdePagesTextualCombi %}
+            {% if forloop.counter0 == 0 %}
+                    <li>{{ elt|safe }}</li>
+                {% else %}
+                    <li>{{ elt }}</li>
+            {% endif %}
+        {% endfor %}
+        <br>
+    {% endfor %}
+    </ul>
+
+    <br>
+    ...
+    Les 100 derniers articles :
+    <br>
+    <br>
+
+    <ul>
+    {% for BasdePagesTextualCombi in ResultFin %}
+        {% for elt in BasdePagesTextualCombi %}
+            {% if forloop.counter0 == 0 %}
+                    <li>{{ elt|safe }}</li>
+            {% else %}
+                    <li>{{ elt }}</li>
+            {% endif %}
+        {% endfor %}
+        <br>
+    {% endfor %}
+    </ul>
+
+
+
+{% else %}
+
+    <ul>
+    {% for BasdePagesTextualCombi in Result %}
+        {% for elt in BasdePagesTextualCombi %}
+            {% if forloop.counter0 == 0 %}
+                    <li>{{ elt|safe }}</li>
+            {% else %}
+                    <li>{{ elt }}</li>
+            {% endif %}
+        {% endfor %}
+        <br>
+    {% endfor %}
+    </ul>
+
+{% endif %}
+
+    <br>
+    <br>
+
+   <a class="btn btn-primary marge"
+      href="{% url 'AmeliorText:Download' 'BasdePageCombiText' reduction revue 'txt' %}">Télecharger
+       fichier</a>
+
+    <br>
+    <br>
+    <p class="suite">
+        <a  href="{% url 'AmeliorText:home' %}#BasdePageTextualCombi">Retour Texte</a>
+    </p>
+
+    {% if user.is_superuser %}
+    <p class="suite">
+        <a href="{% url 'AmeliorText:ReDispatch' 'Explor' 'BasDePage' %}"> Retour Interface </a>
+    </p>
+    {% endif %}
+
+
+
+    <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+    <script type="text/javascript">
+        EnArrEnAvt("{% url 'AmeliorText:home' %}#BasdePageTextualCombi","{% url 'AmeliorText:home' %}#BasdePageTextualCombi");
+    </script>
+
+
+
+</body>
+</html>

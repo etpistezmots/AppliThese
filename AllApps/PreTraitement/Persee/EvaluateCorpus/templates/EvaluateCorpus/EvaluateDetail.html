@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>EvalDetail</title>
+    <style>
+        .marge {
+            margin-left: 3em;}
+        .suite {
+            font-style: italic;
+            text-align: right;}
+        .mystyle {
+            font-size: 11pt;
+            font-family: Arial;
+            border-collapse: collapse;
+            border: 1px solid silver;
+            text-align:center;
+            }
+
+        .mystyle td, th {
+            padding: 5px;
+            }
+
+        .mystyle thead th {
+            text-align:center;
+            }
+
+        .mystyle tr:nth-child(even) {
+            background: #E0E0E0;
+            }
+
+        .mystyle tr:hover {
+            background: silver;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+L'évaluation réalisée du document {{ doc }} est dans le détail la suivante :
+    <br>
+    <br>
+    {{ tableauhtml|safe }}
+
+    <br>
+    <br>
+
+        <a href="{% url 'FinaliseCorpus:home' %}#fn30">Retour texte</a>
+    <br>
+    <br>
+        <a href="{% url 'EvaluateCorpus:SelectEchantillonEvaluate' corpusfin n_docs n_mots n_eval %}">
+            Retour à l'échantillon du corpus {{ corpusfin }} dont cette évaluation détaillée n'est qu'un
+            élément</a>
+    <br>
+
+
+</body>
+</html>

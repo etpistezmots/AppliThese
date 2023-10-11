@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+<head>
+
+    <meta charset="UTF-8">
+
+    {% if modeactuel == "word2vec" %}
+        <title>Result Word2Vec</title>
+    {% elif modeactuel == "glove" %}
+        <title>Result glove</title>
+    {% elif modeactuel == "fasttext" %}
+        <title>Result FastText</title>
+    {% endif %}
+
+    <style>
+        .asteriskField {
+            display: none;
+        }
+        .marge {
+            margin-left: 1em;
+        }
+        .marge2 {
+            margin-left: 3em;
+        }
+
+        h4 {
+        text-decoration:underline;
+        }
+        .suite {
+            font-style: italic;
+            text-align: right;}
+
+    </style>
+
+    <link rel="stylesheet" href="{% static 'TableauEmb/css/Tableau_style.css' %}">
+    <link rel="stylesheet" href= "{% static 'TableauEmb/css/bootstrap.min.css' %}">
+
+</head>
+
+<body>
+
+    {% if modeactuel == "glove" and idmodeleactuel == 15 and idresultactuel == 11 %}
+        <p class="suite">
+        <a  href="{% url 'TxtTheseConstructResult:home' %}#fn17"> Retour Texte </a>
+        </p>
+    {% elif modeactuel == "glove" and idmodeleactuel == 18 and idresultactuel == 14 %}
+        <p class="suite">
+        <a  href="{% url 'TxtTheseConstructResult:home' %}#fn19"> Retour Texte </a>
+        </p>
+    {% elif modeactuel == "glove" and idmodeleactuel == 19 and idresultactuel == 20 %}
+        <p class="suite">
+        <a  href="{% url 'TxtTheseConstructResult:home' %}#fn22"> Retour Texte </a>
+        </p>
+    {% elif modeactuel == "glove" and idmodeleactuel == 20 and idresultactuel == 17 %}
+        <p class="suite">
+        <a  href="{% url 'TxtTheseConstructResult:home' %}#fn22"> Retour Texte </a>
+        </p>
+    {% elif modeactuel == "glove" and idmodeleactuel == 19 and idresultactuel == 19 %}
+        <p class="suite">
+        <a  href="{% url 'TxtTheseConstructResult:home' %}#TableauEmb8"> Retour Texte </a>
+        </p>
+    {% elif modeactuel == "glove" and idmodeleactuel == 22 and idresultactuel == 21 %}
+        <p class="suite">
+        <a  href="{% url 'TxtTheseConstructResult:home' %}#TableauEmb8"> Retour Texte </a>
+        </p>
+    {% else %}
+        <p class="suite">
+        <a  href="{% url 'TxtTheseConstructResult:home' %}#I2"> Retour Texte </a>
+        </p>
+    {% endif %}
+
+
+    <h4 class=" marge">Générer des résultats :</h4>
+
+
+    <label class="marge2" for="mode">- Choix du mode d'expérimentation :</label>
+    <select onchange="location = this.value;" id="mode">
+        {% for mode in allmodes %}
+            {% if mode == modeactuel %}
+                <option selected>{{ mode }}</option>
+            {% else %}
+                <option value="{% url 'TableauEmb:home' mode %}">{{ mode }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+
+    </br>
+
+
+    {% if user.is_superuser %}
+        <label class="marge2" for="modele">- Nouveau modèle ou partir d'un modèle disponible :</label>
+        <select onchange="location = this.value;" id="modele">
+            <option value="{% url 'TableauEmb:home' modeactuel %}">Nouveau modèle</option>
+            {% for model in models%}
+                {% if model.id == idmodeleactuel %}
+                    <option selected >{{ model.nom }}</option>
+                {% else %}
+                    <option value="{% url 'TableauEmb:modele' modeactuel model.id %}">{{ model.nom }}</option>
+                {% endif %}
+            {% endfor %}
+    </select>
+    </br>
+
+    {% else %}
+            <label class="marge2" for="modele">- Partir d'un modèle disponible :</label>
+            <select onchange="location = this.value;" id="modele">
+                {% for model in models%}
+                    {% if model.id == idmodeleactuel %}
+                        <option selected >{{ model.nom }}</option>
+                    {% else %}
+                        <option value="{% url 'TableauEmb:modele' modeactuel model.id %}">{{ model.nom }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+    {% endif %}
+
+
+    <form action="" method="post">
+
+    {% csrf_token %}
+
+     <div class="container">
+        <fieldset class="grisemoi">
+        {% crispy form %}
+        </fieldset>
+     </div>
+
+    {% if user.is_superuser %}
+    </br>
+    <input class="marge2" type="submit" onclick="return confirm('Confirmer la suppression ?')" name="SupprimerOneModel" id="SupprimerOneModel" value="Supprimer ce modele">
+    <input type="submit" name="SupprimerMultiModels" id="SupprimerMultiModels" value="Supprimer des modeles">
+    {% endif %}
+
+    </br>
+    </br>
+    </br>
+
+
+    <label class="marge2" for="result">- A partir du modèle choisi, nouveau résultat ou afficher résultat
+        disponible :</label>
+    <select onchange="location = this.value;" id="result">
+
+        {% if results %}
+            <option value="{% url 'TableauEmb:modele' modeactuel idmodeleactuel %}"> Nouveau résultat</option>
+            {% for result in results %}
+                {% if result.id == idresultactuel %}
+                    <option selected >{{ result.nomresult }}</option>
+                {% else %}
+                    <option value="{% url 'TableauEmb:result' modeactuel idmodeleactuel result.id %}">{{ result.nomresult }}</option>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <option selected>Pas de résultat disponible</option>
+        {% endif %}
+    </select>
+
+    <div class="container">
+    {% crispy form2 %}
+    </div>
+
+    </br>
+    {% if AccesToCalcul %}
+    <input class="marge2" onclick="degriseField()" type="submit" name="Calculer" id="Calculer" value="Calcul nouveau resultat">
+    {% endif %}
+
+    <input type="hidden" id="termelast" name="termelast" value="{{ form2.terme.value }}">
+    <input type="hidden" id="nresultlast" name="nresultlast" value="{{ form2.nresult.value }}">
+    <input type="hidden" id="table" name="table" value="{{ table }}">
+    {% if user.is_superuser %}
+    <input type="hidden" id="user_restrict2last" name="user_restrict2last" value="{{ form2.user_restrict2.value }}">
+    {% endif %}
+
+    </br>
+
+    <div class="marge2"> {{ table|safe }} </div>
+
+    {% if AccesToSave and user.is_authenticated %}
+        </br>
+        <input class="marge2" id="namesave" name="namesave" value="namesave">
+        <input type="submit" name="Sauver" id="Sauver" value="Sauver">
+    {% endif %}
+
+    </br>
+
+    {% if results and not AccesToSave and not AccesToCalcul %}
+        {% if user.is_superuser %}
+        <input class="marge2" type="submit" name="SupprimerOneResult" id="SupprimerOneResult" value="Supprimer ce résultat">
+        <input type="submit" name="SupprimerMultiResults" id="SupprimerMultiResults" value="Supprimer des résultats">
+        {% else %}
+            {% if ResultSpeUser %}
+                <input class="marge2" type="submit" name="SupprimerOneResult" id="SupprimerOneResult" value="Supprimer ce résultat">
+            {% endif %}
+        {% endif %}
+        </br>
+    {% endif %}
+
+    </br>
+    </br>
+
+
+    <h4 class="marge"> Comparer des résultats déjà existants:</h4>
+       <input class="marge2" type="submit" name="Consulter" id="Consulter" value="Comparateur">
+
+</form>
+
+<script src="{% static 'TableauEmb/js/jquery-3.4.1.min.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+<script type="text/javascript">
+
+    window.onload=function() {
+        {% if not user.is_superuser %}
+            var nom = document.getElementById('div_id_nom');
+            nom.style.display = 'none';
+            var userrestrict = document.getElementById('div_id_user_restrict');
+            userrestrict.style.display = 'none';
+            var path = document.getElementById('div_id_CorpusFinRef');
+            path.style.display = 'none';
+            var userrestrict2 = document.getElementById('div_id_user_restrict2');
+            userrestrict2.style.display = 'none';
+
+        {% endif %}
+
+        $(".grisemoi").prop("disabled",true)
+
+        }
+
+    function degriseField(){
+
+        $(".grisemoi").prop("disabled",false)
+    }
+
+
+</script>
+
+</body>
+</html>

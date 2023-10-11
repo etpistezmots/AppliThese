@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    {% load crispy_forms_tags %}
+    {% load static %}
+
+    <head>
+        <meta charset="UTF-8">
+
+        {% if mode == 'Simple' %}
+            <title>CountOccInterface</title>
+        {% else %}
+            <title>InterfaceOccAuteur</title>
+        {% endif %}
+
+        <style>
+
+        .asteriskField {
+            display: none;
+        }
+        .marge {
+                margin-left: 1em;
+            }
+        .marge2 {
+            margin-left: 3em;
+        }
+        .marge3 {
+            margin-left: 6em;
+        }
+        h3 {
+            text-decoration:underline;
+            }
+
+        </style>
+
+        <link rel="stylesheet" href="{% static 'TableauEmb/css/Tableau_style.css' %}">
+        <link rel="stylesheet" href= "{% static 'TableauEmb/css/bootstrap.min.css' %}">
+
+    </head>
+
+    <body>
+        <br>
+
+         <label class="marge" for="mode">- Mode comptage des occurences :</label>
+           <select onchange="location = this.value;" id="mode">
+               {% if mode == 'Simple' %}
+                <option selected>Simple</option>
+                <option value="{% url 'TableauOcc:Interface' 'Auteur' %}">Par auteurs</option>
+              {% else %}
+                <option selected>Par auteurs</option>
+                <option value="{% url 'TableauOcc:Interface' 'Simple' %}">Simple</option>
+              {% endif %}
+          </select>
+
+         <br>
+         <br>
+
+        {% if mode == 'Simple' %}
+            <h3 class="marge">Interface pour le compte d'occurences d'un terme (ou de plusieurs) par revues et époques</h3>
+        {% else %}
+            <h3 class="marge">Interface pour le compte d'occurences d'un terme (ou de plusieurs) par revues, époques et
+                auteurs</h3>
+        {% endif %}
+
+         <br>
+
+        <form action="" method="post">
+
+            {% csrf_token %}
+
+            <div class="container">
+            {% crispy form %}
+            </div>
+            <br>
+            <br>
+            <p class="marge3"> Pour une utilisation multi-termes, il faut séparer ceux-ci par des virgules.
+                Ex : espace,spatial </p>
+
+            <button class="marge3" type="submit" name="calcul">Calculer</button>
+
+            {% if results %}
+                <br>
+                <br>
+                <label class="marge2" for="result">- Résultats déja disponibles :</label>
+                    <select onchange="location = this.value;" id="result">
+                        <option selected > choix ci-dessous</option>
+                            {% for result in results %}
+                                 <option value="{% url 'TableauOcc:Result' mode result.id %}">
+                                     {{ result.nomresult }}</option>
+                            {% endfor %}
+                    </select>
+            {% endif %}
+
+
+
+
+            {% if PresenceNewResult %}
+                <input type="hidden" id="corpuslast" name="corpuslast" value="{{ corpus }}">
+                <input type="hidden" id="termelast" name="termelast" value="{{ termelast }}">
+                <input type="hidden" id="revuelast" name="revuelast" value="{{ revuelast }}">
+                <input type="hidden" id="epoquelast" name="epoquelast" value="{{ epoquelast }}">
+                <input type="hidden" id="idlast" name="idlast" value="{{ idlast }}">
+                <input type="hidden" id="tablelast" name="tablelast" value="{{ table }}">
+
+
+                <br>
+                <br>
+
+                <div class="marge2">
+                {{ table|safe }}
+                </div>
+
+                <br>
+                <br>
+                {% if PossibleSave %}
+                    <input  class="marge2" id="namesave" name="namesave" value="namesave">
+                    <button type="submit" name="save">Sauver</button>
+                {% endif %}
+
+
+            {% endif %}
+
+        </form>
+
+
+        <script type="text/javascript">
+
+    window.onload=function() {
+        {% if not user.is_superuser %}
+            var userrestrict = document.getElementById('div_id_user_restrict');
+            userrestrict.style.display = 'none';
+        {% endif %}
+        }
+
+        </script>
+
+    </body>
+</html>

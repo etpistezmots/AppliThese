@@ -1,0 +1,35 @@
+from django.urls import path
+from AllApps.PreTraitement.Persee.AmeliorText import views
+
+app_name = 'AmeliorText'
+urlpatterns = [
+    path('home', views.home, name='home'),
+    path('redispatch/<str:mode>/<str:objet>', views.ReDispatch, name='ReDispatch'),
+    path('ExplorHome/<str:objet>', views.ExplorHome, name='ExplorHome'),
+    path('ExplorTraitHome/<str:objet>/<int:reduction_id>', views.ExplorTraitHome, name='ExplorTraitHome'),
+    path('TraitHome/<str:objet>/<int:reduction_id>', views.TraitHome, name='TraitHome'),
+    path('Download/<str:sujet>/<str:reduction>/<str:revue>/<str:extension>', views.Download, name='Download'),
+    path('FontionGeneralExplor/<str:reduction>/<str:revue>/<str:ref>', views.FontionGeneralExplor, name='FontionGeneralExplor'),
+    path('AfficheTitreTrait/<str:reduction>/<str:revue>', views.AfficheTitreTrait, name='AfficheTitreTrait'),
+    path('ExceptHome/<str:objet>', views.ExceptHome, name='ExceptHome'),
+    path('RemoveTransformer/<str:reduction>/<str:objet>', views.RemoveTransformer, name='RemoveTransformer'),
+    path('AddTransformer/<str:reduction>/<str:objet>', views.AddTransformer, name='AddTransformer'),
+    path('RemoveDoc/<str:reduction>/<str:objet>', views.RemoveDoc, name='RemoveDoc'),
+    path('ConsultEltExcept/<str:reduction>/<str:objet>', views.ConsultEltExcept, name='ConsultEltExcept'),
+    path('ConsultDocExcept/<str:reduction>/<str:objet>', views.ConsultDocExcept, name='ConsultDocExcept'),
+    path('PresenceMotAvantObjetInterface/<str:reduction>/<str:revue>/<str:objet>', views.PresenceMotAvantObjetInterface, name='PresenceMotAvantObjetInterface'),
+    path('PresenceMotAvantObjetResult/<str:reduction>/<str:revue>/<str:number>/<str:objet>', views.PresenceMotAvantObjetResult,
+         name='PresenceMotAvantObjetResult'),
+    path('SupprMotAvantObjetResult/<str:reduction>/<str:revue>/<str:objet>', views.SupprMotAvantObjetResult,
+         name='SupprMotAvantObjetResult'),
+    path('AfficheNoteDiscontinu/<str:reduction>/<str:revue>', views.AfficheNoteDiscontinu,
+         name='AfficheNoteDiscontinu'),
+    path('LastPageCenter/<str:reduction>/<str:revue>', views.LastPageCenter, name='LastPageCenter'),
+    path('DetectDebutLigne/<str:reduction>/<str:revue>', views.DetectDebutLigne, name='DetectDebutLigne'),
+    path('AfficheMotCedilleAvtApres', views.AfficheMotCedilleAvtApres, name='AfficheMotCedilleAvtApres'),
+    path('DownloadDico/<str:fichier>', views.DownloadDico, name='DownloadDico'),
+    path('SyntheseHome', views.SyntheseHome, name='SyntheseHome'),
+    path('RechercheSeqDansFichier', views.RechercheSeqDansFichier, name='RechercheSeqDansFichier'),
+    path('SyntheseTraitement/<str:reduction>', views.SyntheseTraitement, name='SyntheseTraitement'),
+    path('Suppr/<str:reduction>/<str:objet>', views.Suppr,name='Suppr'),
+]

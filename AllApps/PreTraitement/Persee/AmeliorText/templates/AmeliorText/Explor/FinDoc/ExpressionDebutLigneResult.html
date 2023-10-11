@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    {% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>ChercheExpressionDebutLigne</title>
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+<body>
+
+
+<h1> Ligne commençant par  "Manuscrit" dans le corpus : {{reduction}}</h1>
+<br>
+<h2>Nombres docs concernés : {{ NbresDocConcerne }}</h2>
+<br>
+{% for article, elts in mylist %}
+{{ article | safe }}
+<ul>
+    {% for sselt in elts%}
+    <li>{{ sselt  }}</li>
+    {% endfor %}
+</ul>
+{% endfor %}
+    <br>
+    <br>
+
+    <p class="suite">
+    <a  href="{% url 'AmeliorText:home' %}#FinDocDebutLigne">Retour texte</a>
+    </p>
+    <br>
+
+
+    <p class="suite">
+            <a  href="{% url 'AmeliorText:ReDispatch' 'Explor' 'FinDoc' %}">Retour Explorations fin de
+                documents </a>
+    </p>
+    <br>
+
+    <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+    <script type="text/javascript">
+        EnArrEnAvt("{% url 'AmeliorText:home' %}#FinDocDebutLigne","{% url 'AmeliorText:home' %}#FinDocDebutLigne");
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li{
+        margin-top: 30px;
+        display: inline-block;
+    }
+
+    </style>
+</head>
+<body>
+
+  <ul>
+    {% for a,b,c,d,e in Result %}
+		<li>
+           {{ a }} <b>{{ b }}</b> {{ c }} <a href="{% url d %}#{{e}}">Vers Texte interface</a>
+        </li>
+
+	{% endfor %}
+  </ul>
+
+
+
+</body>
+</html>

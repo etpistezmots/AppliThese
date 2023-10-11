@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    {% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>AprèsDernièreBiblio{{reduction}}</title>
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+<body>
+
+
+<h1>Ligne centrée trouvées dernière page dans le corpus : {{reduction}}</h1>
+<h2>Nombres docs concernés : {{NbresDocsAvecLigneCenterLastPage}}</h2>
+<br>
+{% for item1, item2 in mylist %}
+{{item1|safe}}
+<ul>
+    {% for sselt in item2%}
+    <li>{{ sselt  }}</li>
+    {% endfor %}
+</ul>
+{% endfor %}
+    <br>
+    <br>
+
+
+    <p class="suite">
+    <a  href="{% url 'AmeliorText:home' %}#IV12a">Retour texte</a>
+    </p>
+    <br>
+
+
+    <p class="suite">
+            <a  href="{% url 'AmeliorText:ReDispatch' 'Explor' 'FinDoc' %}">Retour Explorations fin de documents </a>
+    </p>
+    <br>
+
+    <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+    <script type="text/javascript">
+        EnArrEnAvt("{% url 'AmeliorText:ReDispatch' 'Explor' 'FinDoc' %}",
+        "{% url 'AmeliorText:ReDispatch' 'Explor' 'FinDoc' %}");
+    </script>
+
+
+
+
+</body>
+</html>

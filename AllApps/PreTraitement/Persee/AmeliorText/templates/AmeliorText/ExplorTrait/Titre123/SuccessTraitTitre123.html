@@ -1,0 +1,12 @@
+{% extends 'AmeliorText/TraitA/TraitBase/SuccessTraitBase.html' %}
+
+{% block content %}
+ <br>
+
+    {% if donnees.remplace %}
+            en remplaçant les titres secondaires par leurs corrections <br>
+    {% else %}
+            sans remplacer les titres secondaires par leurs corrections <br>
+    {% endif %}
+
+{% endblock %}

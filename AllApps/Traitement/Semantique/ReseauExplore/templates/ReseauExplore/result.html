@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+
+    {% if modeactuel == "word2vec" %}
+        <title>Result Word2Vec</title>
+    {% elif modeactuel == "glove" %}
+        <title>Result glove</title>
+    {% elif modeactuel == "fasttext" %}
+        <title>Result FastText</title>
+    {% endif %}
+
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+
+        .asteriskField {
+            display: none;
+        }
+        .marge {
+            margin-left: 1em;
+        }
+        .marge2 {
+            margin-left: 3em;
+        }
+        h4 {
+        text-decoration:underline;
+        }
+
+    </style>
+
+    <link rel="stylesheet" href= "{% static 'TableauEmb/css/bootstrap.min.css' %}">
+
+</head>
+
+<body>
+     <p class="suite">
+      <a  href="{% url 'TxtTheseConstructResult:home' %}#III1"> Retour Texte </a>
+    </p>
+
+    <h4 class=" marge">Générer des résultats :</h4>
+
+    <label class="marge2" for="mode">- Choix du mode d'expérimentation :</label>
+    <select onchange="location = this.value;" id="mode">
+        {% for mode in allmodes %}
+            {% if mode == modeactuel %}
+                <option selected>{{ mode }}</option>
+            {% else %}
+                <option value="{% url 'ReseauExplore:home' mode %}">{{ mode }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+
+    </br>
+
+    </br>
+
+        <label class="marge2" for="modele">- Partir d'un modèle disponible :</label>
+        <select onchange="location = this.value;" id="modele">
+            {% for model in models%}
+                {% if model.id == idmodeleactuel %}
+                    <option selected >{{ model.nom }}</option>
+                {% else %}
+                    <option value="{% url 'ReseauExplore:modele' modeactuel model.id %}">{{ model.nom }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    </br>
+
+
+    <form action="" method="post">
+
+    {% csrf_token %}
+
+    <div class="container">
+        <fieldset class="grisemoi">
+        {% crispy form %}
+        </fieldset>
+     </div>
+
+
+    </br>
+    </br>
+
+
+    <input type="hidden" id="nomlast" name="nomlast" value="{{ form.nom.value }}">
+    <input type="hidden" id="revuelast" name="revuelast" value="{{ form.revue.value }}">
+    <input type="hidden" id="epoquelast" name="epoquelast" value="{{ form.epoque.value }}">
+
+
+
+
+    <label class="marge2" for="result">A partir modèle choisi, nouveau résultat ou afficher résultat
+        disponible :</label>
+    <select onchange="location = this.value;" id="result">
+
+        {% if results %}
+            <option value="{% url 'ReseauExplore:modele' modeactuel idmodeleactuel %}"> Nouveau
+                résultat</option>
+            {% for result in results %}
+                {% if result.id == idresultactuel %}
+                    <option selected >{{ result.nomresult }}</option>
+                {% else %}
+                    <option value="{% url 'ReseauExplore:result' modeactuel idmodeleactuel result.id result.oriented %}">{{ result.nomresult }}</option>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <option selected>Pas de résultat disponible</option>
+        {% endif %}
+    </select>
+
+
+    <div class="container">
+    {% crispy form2 %}
+    </div>
+
+    </br>
+
+    {% if AccesToCalcul %}
+    <input class="marge2" type="submit" onclick="degriseField()" name="CalculerGraphOrienté"
+           id="CalculerGraphOrienté" value="graph orienté">
+    <input type="submit" onclick="degriseField()" name="CalculerGraphNonOrienté" id="CalculerGraphNonOrienté" value="graph non orienté">
+    {% endif %}
+
+    <input type="hidden" id="pathlast" name="pathlast" value="{{ request.get_full_path }}">
+    <input type="hidden" id="termelast" name="termelast" value="{{ form2.terme.value }}">
+    <input type="hidden" id="nresultlast" name="nresultlast" value="{{ form2.nresult.value }}">
+    <input type="hidden" id="revuechoixlast" name="revuechoixlast" value="{{ revuechoixlast }}">
+    <input type="hidden" id="epoquechoixlast" name="epoquechoixlast" value="{{ epoquechoixlast }}">
+    {% if user.is_superuser %}
+    <input type="hidden" id="user_restrict2last" name="user_restrict2last" value="{{ form2.user_restrict2.value }}">
+    {% endif %}
+    <input type="hidden" id="IndexNode" name="IndexNode" value="{{ IndexNode }}">
+    <input type="hidden" id="IndexEdge" name="IndexEdge" value="{{ IndexEdge }}">
+    <input type="hidden" id="dejaouvert" name="dejaouvert" value="{{ dejaouvert }}">
+    <input type="hidden" id="dejaouvertindex" name="dejaouvertindex" value="{{ dejaouvertindex }}">
+    <input type="hidden" id="allactions" name="allactions" value="{{ allactions }}">
+    <input type="hidden" id="testnoderecup" name="testnoderecup" value="{{ nodes_list|safe }}">
+    <input type="hidden" id="testedgerecup" name="testedgerecup" value="{{ edges_list|safe }}">
+    <input type="hidden" id="oriented" name="oriented" value="{{ oriented }}">
+
+
+    </br>
+
+    {% if AccesToSave %}
+        voir graph ci dessous. Clic sur un noeud pour ouvrir ou pour fermer. Pour sauver, encore en dessous:
+    {% endif %}
+
+
+    <input type="hidden" name="graph" id="graph" value="{{ graph }}">
+
+    <div id="mynetwork"></div>
+
+    {% if AccesToSave and user.is_authenticated %}
+        </br>
+        <input class="marge2" id="namesave" name="namesave" value="namesave">
+        <input type="submit" name="Sauver" id="Sauver" value="Sauver">
+    {% endif %}
+
+    {% if results and not AccesToSave and not AccesToCalcul %}
+        {% if user.is_superuser %}
+        <input class="marge2" type="submit" name="SupprimerOneResult" id="SupprimerOneResult" value="Supprimer ce résultat">
+        <input type="submit" name="SupprimerMultiResults" id="SupprimerMultiResults" value="Supprimer des résultats">
+        {% else %}
+            {% if ResultSpeUser %}
+                <input class="marge2" type="submit" name="SupprimerOneResult" id="SupprimerOneResult" value="Supprimer ce résultat">
+            {% endif %}
+        {% endif %}
+        </br>
+    {% endif %}
+
+    </br>
+    </br>
+
+    <h4 class="marge">Comparer des résultats déjà existants:</h4>
+       <input class="marge2" type="submit" name="Consulter" id="Consulter" value="Comparateur">
+
+</form>
+
+
+
+<script src="{% static 'TableauEmb/js/jquery-3.4.1.min.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+<script src="{% static 'ReseauExplore/js/vis.min.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+<script type="text/javascript">
+
+    window.onload=function() {
+        {% if not user.is_superuser %}
+            var userrestrict = document.getElementById('div_id_user_restrict');
+            userrestrict.style.display = 'none';
+            var userrestrict2 = document.getElementById('div_id_user_restrict2');
+            userrestrict2.style.display = 'none';
+        {% endif %}
+
+        $(".grisemoi").prop("disabled",true)
+
+        }
+
+    function degriseField(){
+
+        $(".grisemoi").prop("disabled",false)
+        }
+
+
+    var graphvar = document.getElementById('graph').value;
+    var modele = document.getElementById('modele').value;
+    var numberopen = document.getElementById('nresultlast').value;
+    var oriented = document.getElementById('oriented').value;
+
+
+    if (graphvar == "yes") {
+
+        nodes = new vis.DataSet({{ nodes_list|safe }});
+        edges = new vis.DataSet({{ edges_list|safe }});
+        var container = document.getElementById('mynetwork');
+        //console.log(edges.get());
+
+        var data = {
+                nodes: nodes,
+                edges: edges
+            };
+
+        if(oriented=="no") {
+         var options = {
+             height: '800px',
+             width: '1000px',
+             nodes: {
+                 size:15,
+                 font:{strokeWidth: 1.5, "size": 20},
+                   },
+             edges: {
+                  color: {
+                     inherit: "both"
+                         }
+                     }
+             };
+         } else {
+         var options = {
+             height: '800px',
+             width: '1000px',
+             nodes: {
+                 size:15,
+                 font:{strokeWidth: 1.5, "size": 20},
+                   },
+             edges: {
+                  arrows: {
+                            to: {enabled: true, scaleFactor:0.5, type:'arrow'}
+                          },
+                  color: {
+                     inherit: "both"
+                         }
+                     }
+             };
+         };
+
+        network = new vis.Network(container, data, options);
+
+        $.ajaxSetup({
+        headers: { "X-CSRFToken": '{{csrf_token}}' }
+        });
+
+        if(oriented=="no") {
+        network.on( 'click', function(params) {
+            if (params.nodes.length > 0) {
+                var modele = document.getElementById('modele').value;
+                var numberopen = document.getElementById('nresultlast').value;
+                var modeencours = document.getElementById('mode').value;
+                var nomencours = document.getElementById('nomlast').value;
+                var epoqueencours = document.getElementById('epoquelast').value;
+                var revueencours = document.getElementById('revuelast').value;
+                var choixepoqueencours = document.getElementById('id_choixepoque').value;
+                var choixrevueencours = document.getElementById('id_choixrevue').value;
+                var revueencours = document.getElementById('revuelast').value;
+                var nodeId = params.nodes[0];
+                var nodelabel = nodes.get(nodeId).label;
+                var indexnode = document.getElementById('IndexNode').value;
+                var indexedge = document.getElementById('IndexEdge').value;
+                var dejaouvert = document.getElementById('dejaouvert').value;
+                var dejaouvertindex = document.getElementById('dejaouvertindex').value;
+                var allactions = document.getElementById('allactions').value;
+            $.ajax({
+                 type:"POST",
+                 url:"/semreseauexplo/graphnonoriente",
+                 data: {'modeencours': modeencours,
+                        'nomencours': nomencours,
+                        'epoqueencours': epoqueencours,
+                        'revueencours': revueencours,
+                        'choixepoqueencours': choixepoqueencours,
+                        'choixrevueencours': choixrevueencours,
+                        'nodeId': nodeId,
+                        'nodelabel': nodelabel,
+                        'modele' : modele,
+                        'numberopen' : numberopen,
+                        'indexnode' : indexnode,
+                        'indexedge' : indexedge,
+                        'dejaouvert' : dejaouvert,
+                        'dejaouvertindex' : dejaouvertindex,
+                        'allactions' : allactions,
+                        // peut porter a confusion : renvoie au data du network (var data)
+                        'testdata' : JSON.stringify(data)
+                        },
+                 success: function(datat){
+                     console.log(datat['marqueurafermer']);
+                     if (datat['marqueurafermer']==true) {
+                        nodes.remove(datat['nodes_test']);
+                        edges.remove(datat['edges_test']);
+                     } else {
+                        nodes.add(datat['nodes_test']);
+                        edges.add(datat['edges_test']);
+                     }
+                     $('#IndexNode').val(datat['indexnode']);
+                     $('#IndexEdge').val(datat['indexedge']);
+                     $('#dejaouvert').val(datat['dejaouvert']);
+                     $('#dejaouvertindex').val(datat['dejaouvertindex']);
+                     $('#allactions').val(datat['allactions']);
+                     $('#testnoderecup').val(JSON.stringify(data.nodes._data));
+                     $('#testedgerecup').val(JSON.stringify(data.edges._data));
+                    }
+            });
+         };
+       });
+
+    } else {
+
+        network.on( 'click', function(params) {
+            if (params.nodes.length > 0) {
+                var modele = document.getElementById('modele').value;
+                var numberopen = document.getElementById('nresultlast').value;
+                var modeencours = document.getElementById('mode').value;
+                var nomencours = document.getElementById('nomlast').value;
+                var epoqueencours = document.getElementById('epoquelast').value;
+                var revueencours = document.getElementById('revuelast').value;
+                var choixepoqueencours = document.getElementById('id_choixepoque').value;
+                var choixrevueencours = document.getElementById('id_choixrevue').value;
+                var nodeId = params.nodes[0];
+                var nodelabel = nodes.get(nodeId).label;
+                var indexnode = document.getElementById('IndexNode').value;
+                var indexedge = document.getElementById('IndexEdge').value;
+                var dejaouvert = document.getElementById('dejaouvert').value;
+                var dejaouvertindex = document.getElementById('dejaouvertindex').value;
+                var allactions = document.getElementById('allactions').value;
+            $.ajax({
+                 type:"POST",
+                 url:"/semreseauexplo/graphoriente",
+                 data: {'modeencours': modeencours,
+                        'nomencours': nomencours,
+                        'epoqueencours': epoqueencours,
+                        'revueencours': revueencours,
+                        'choixepoqueencours': choixepoqueencours,
+                        'choixrevueencours': choixrevueencours,
+                        'nodeId': nodeId,
+                        'nodelabel': nodelabel,
+                        'modele' : modele,
+                        'numberopen' : numberopen,
+                        'indexnode' : indexnode,
+                        'indexedge' : indexedge,
+                        'dejaouvert' : dejaouvert,
+                        'dejaouvertindex' : dejaouvertindex,
+                        'allactions' : allactions,
+                        // peut porter a confusion : renvoie au data du network (var data)
+                        'testdata' : JSON.stringify(data)
+                        },
+                 success: function(datat){
+                     console.log(datat['marqueurafermer']);
+                     if (datat['marqueurafermer']==true) {
+                        nodes.remove(datat['nodes_test']);
+                        edges.remove(datat['edges_test']);
+                     } else {
+                        nodes.add(datat['nodes_test']);
+                        edges.add(datat['edges_test']);
+                     }
+                     $('#IndexNode').val(datat['indexnode']);
+                     $('#IndexEdge').val(datat['indexedge']);
+                     $('#dejaouvert').val(datat['dejaouvert']);
+                     $('#dejaouvertindex').val(datat['dejaouvertindex']);
+                     $('#allactions').val(datat['allactions']);
+                     $('#testnoderecup').val(JSON.stringify(data.nodes._data));
+                     $('#testedgerecup').val(JSON.stringify(data.edges._data));
+                    }
+            });
+         };
+       });
+    };
+}
+
+</script>
+
+</body>
+</html>

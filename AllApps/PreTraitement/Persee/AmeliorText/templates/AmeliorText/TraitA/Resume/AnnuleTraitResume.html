@@ -1,0 +1,18 @@
+{% extends 'AmeliorText/TraitA/TraitBase/AnnuleTraitBase.html' %}
+
+{% block content %}
+
+    avec le seuil : {{ AncienneReductionElt.seuil }}<br>
+    avec les mots suivants : {{ AncienneReductionElt.mots }} <br>
+    en recherchant dans une zone de {{ AncienneReductionElt.zone }} mots avants <br>
+
+    {% if AncienneReductionElt.AjoutResumeFr%}
+        et en ajoutant les résumés en français dans le texte final <br>
+    {% else %}
+        et en retirant les résumés dans le texte final <br>
+    {% endif %}
+
+
+{% endblock %}
+
+

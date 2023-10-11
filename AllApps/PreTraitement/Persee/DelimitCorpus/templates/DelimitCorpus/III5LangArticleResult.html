@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>LangDocArticle de la revue : {{revueperseeref}}</title>
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+<body>
+
+
+    <br>
+
+    <h3>Langues des documents "Article" pour la revue : {{revuerealname}}</h3>
+    <ul>
+    {% for langue in Result %}
+        <li>{{ langue }}</li>
+    {% endfor %}
+    </ul>
+
+
+   <p class="suite">
+    <a  href="{% url 'DelimitCorpus:home' %}#III5">Retour texte : Chap4)III)5)</a>
+    </p>
+    <br>
+
+
+
+</body>
+</html>

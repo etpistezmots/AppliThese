@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    {% load static %}
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mots clés de la réduction: {{reduction}}</title>
+    <style>
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+
+<body>
+
+
+    <p class="suite">
+            <a  href="{% url 'AmeliorText:home' %}#ExploMotCleAll">Retour Texte</a>
+    </p>
+
+    {% if user.is_superuser %}
+    <p class="suite">
+        <a href="{% url 'AmeliorText:ReDispatch' 'Explor' 'MotCle' %}"> Retour Interface </a>
+    </p>
+        {% endif %}
+
+
+
+
+    <h2>Mots clés en français de la réduction {{reduction}} pour la revue {{revuerealname}}</h2>
+    <h3>Nombres d'éléments : {{ NbresResult }}</h3>
+
+
+    <ul>
+    {% for motcle in Result %}
+        {% for elt in motcle %}
+            {% if forloop.counter0 == 0 %}
+                <li>{{ elt|safe }}</li>
+            {% else %}
+                <li>{{ elt }}</li>
+            {% endif %}
+        {% endfor %}
+        <br>
+    {% endfor %}
+    </ul>
+
+
+     <br>
+    <br>
+      <p class="suite">
+            <a  href="{% url 'AmeliorText:home' %}#ExploMotCleAll">Retour Texte</a>
+    </p>
+
+    {% if user.is_superuser %}
+    <p class="suite">
+        <a href="{% url 'AmeliorText:ReDispatch' 'Explor' 'MotCle' %}"> Retour Interface </a>
+    </p>
+        {% endif %}
+
+
+    <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+    <script type="text/javascript">
+        EnArrEnAvt("{% url 'AmeliorText:home' %}#ExploMotCleAll",
+        "{% url 'AmeliorText:home' %}#ExploMotCleAll");
+    </script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    {% load static %}
+
+    <meta charset="UTF-8">
+    <title>ArtSuspicNotFr : {{reduction}}</title>
+    <style>
+
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+<body>
+
+
+    <h2>Documents de {{reduction}} suspectés comme étant écrits en langue étrangère <br>
+    alors qu'ils ont été annotés comme étant en français par l'UAR <em>Persée</em></h2>
+
+    <ul>
+   {% for art in ArtSuspicNotFr %}
+       {% if forloop.counter0 == 0 %}
+          <li>{{ art }}</li>
+           <br>
+       {% else %}
+          <li>{{ art|safe }}</li>
+       {% endif %}
+   {% endfor %}
+
+    </ul>
+
+
+
+
+    <br>
+    <br>
+    <p class="suite">
+            <a  href="{% url 'FinaliseCorpus:home' %}#languedetect">Retour texte</a>
+    </p>
+    <br>
+
+
+
+    <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+    <script type="text/javascript">
+        EnArrEnAvt("{% url 'FinaliseCorpus:home' %}#languedetect",
+        "{% url 'FinaliseCorpus:home' %}#languedetect");
+    </script>
+
+
+</body>
+</html>

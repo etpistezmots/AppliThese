@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    {% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Notes discontinues{{reduction}}</title>
+    <style>
+
+        .suite {
+            font-style: italic;
+            text-align: right;}
+    </style>
+</head>
+
+<body>
+
+    <p class="suite">
+        <a  href="{% url 'AmeliorText:home' %}#NoteBioDiscon">Retour Texte</a>
+    </p>
+
+    {% if user.is_superuser %}
+    <p class="suite">
+        <a href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Note' %}"> Retour Interface </a>
+    </p>
+    {% endif %}
+
+
+<h1>Notes discontinues de la réduction : {{reduction}}</h1>
+<h2>Nombres d'éléments : {{ NbreNotes }}</h2>
+
+<h2>Pourcentage par rapport au total : {{PourcentDiscon}}</h2>
+
+{% if MarqueurLimitePage %}
+ <br>
+    Seulement les bas de page des 100 premier articles concernés <br>
+    et des 100 derniers articles concernés ont été affichés. <br>
+    Vous pouvez télécharger l'ensemble des résultats en fichier .txt <br>
+    dans le lien tout à droite <br>
+    <br>
+    <br>
+
+    Les 100 premiers articles :
+
+    <ul>
+    {% for elt in RefNotesDeb %}
+        {% for elt1 in elt %}
+            {% if forloop.counter0 == 0 %}
+                    <li>{{ elt1|safe }}</li>
+                {% else %}
+                    <li>{{ elt1 }}</li>
+                {% endif %}
+        {% endfor %}
+        <br>
+    {% endfor %}
+    </ul>
+
+    <br>
+    ...
+    Les 100 derniers articles :
+    <br>
+    <br>
+
+    <ul>
+    {% for elt in RefNotesFin %}
+        {% for elt1 in elt %}
+            {% if forloop.counter0 == 0 %}
+                    <li>{{ elt1|safe }}</li>
+                {% else %}
+                    <li>{{ elt1 }}</li>
+                {% endif %}
+        {% endfor %}
+        <br>
+    {% endfor %}
+    </ul>
+
+
+
+{% else %}
+
+    <ul>
+    {% for elt in RefNotes %}
+        {% for elt1 in elt %}
+            {% if forloop.counter0 == 0 %}
+                    <li>{{ elt1|safe }}</li>
+                {% else %}
+                    <li>{{ elt1 }}</li>
+                {% endif %}
+        {% endfor %}
+        <br>
+    {% endfor %}
+    </ul>
+
+{% endif %}
+
+
+<br>
+<br>
+<p class="suite">
+        <a  href="{% url 'AmeliorText:home' %}#NoteBioDiscon">Retour Texte</a>
+    </p>
+
+    {% if user.is_superuser %}
+    <p class="suite">
+        <a href="{% url 'AmeliorText:ReDispatch' 'Explor' 'Note' %}"> Retour Interface </a>
+    </p>
+    {% endif %}
+
+
+    <script src="{% static 'Introduction/js/ArrAvt.js' %}" type="text/javascript"
+                charset="utf-8"></script>
+
+    <script type="text/javascript">
+        EnArrEnAvt("{% url 'AmeliorText:home' %}#NoteBioDiscon","{% url 'AmeliorText:home' %}#NoteBioDiscon";
+    </script>
+
+
+</body>
+</html>
