@@ -1,9 +1,9 @@
-Code application Web Thèse Max Beligné
+Code de l'application Web de la Thèse de Max Beligné
 
-Marche sous framework Django
+Utilise le framework Django
 
 Install sous python3.5   
-Attention en amont, il faut installer aussi python3.5-dev et ussi python-tk  
+Attention en amont, il faut installer aussi python3.5-dev et python-tk  
 
 Install des librairies avec requirement.txt  
 dans un environnement virtuel  
