@@ -6,4 +6,6 @@ app_name = 'Introduction'
 urlpatterns = [
     path('', views.home, name='home'),
     path('VersTheseMBeligne', views.VersTheseMBeligne, name='VersTheseMBeligne'),
+    path('AfficheEx/<str:option>', views.AfficheEx, name='AfficheEx'),
+    path('DownloadEx/<str:fichierspe>/<str:revue>', views.DownloadEx, name='DownloadEx')
 ]

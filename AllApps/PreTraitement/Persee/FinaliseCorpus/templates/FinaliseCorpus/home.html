@@ -157,7 +157,7 @@
 
     <p class="mypara">
     <span class="marge">
-    Cette étape de finalisation des corpus est constituée de deux moments :
+    L'étape de finalisation des corpus est constituée de deux moments :
     </span>
     </p>
 
@@ -173,8 +173,8 @@
     <p class="mypara"> <span class="marge">	Cette phase de travail est due tout d’abord à la volonté d’intégrer
     les quelques documents dont l’UAR <em>Persée</em> a limité l’accès (<em>cf.</em> section <a
             href="{% url 'DelimitCorpus:home' %}#III6">Chap4.III.6</a>). Ces documents
-    ont été scannés et océrisés avec l’aide de la Maison des Sciences de l’Homme (MSH) Lyon St-Étienne. Ils
-    ont été ensuite corrigés et compilés dans deux fichiers : un premier pour compléter le corpus
+    ont été scannés et océrisés avec l’aide de la MSH Lyon St-Étienne, puis corrigés et compilés dans deux
+        fichiers : un premier pour compléter le corpus
     « Article »<sup><a id="fn1-ref" class="note" href="#fn1">1</a></sup>, un deuxième pour le corpus
     « ArticlePlusCr »<sup><a id="fn2-ref" class="note" href="#fn2">2</a></sup>. Les textes obtenus sont de
         meilleure qualité que ceux issus de l’UAR <em>Persée</em> car ils ont été océrisés avec un logiciel
@@ -201,13 +201,9 @@
         présentent tous les cas où la langue détectée par l’algorithme n’est
     pas le français. Une vérification manuelle a permis de confirmer que les résultats obtenus étaient
     exacts. Il y a donc des erreurs sur la métadonnée « Langue » renseignée par l’UAR <em>Persée</em> pour
-    ces documents. À la suite de cette exploration, j’ai décidé d’exclure tous ces documents des corpus
-    créés.</span></p></div>
+    ces documents. À la suite de cette exploration, ils ont été retirés des corpus créés.</span></p></div>
 
-    <div id="addremove"><p class="mypara"> <span class="marge">	Par conséquent, une étape a été créée dans
-        l’application pour
-    modifier les corpus existants en donnant la possibilité d’ajouter des nouveaux documents à partir de
-    fichiers externes et de retirer des documents existants à partir de leurs références. Les deux corpus
+    <div id="addremove"><p class="mypara"> <span class="marge">	Les deux corpus
     « ArticleComplet » et « ArticlePlusCrComplet » ont été ainsi
         constitués<sup><a id="fn6-ref" class="note" href="#fn6">6</a></sup>.</span></p>
 
@@ -222,9 +218,11 @@
 <h4 id="I2a">a) Réflexions et choix des prétraitements <a href="#I2a-ref">&#8617;</a> </h4>
 
 
-    <div id="Laf1"><p class="mypara"> <span class="marge">	Pour commencer, il faut rappeler que pour
+    <div id="Laf1"><p class="mypara"> <span class="marge">	Pour
     chaque prétraitement, le choix à réaliser ne se résume pas à une alternative entre deux possibilités mais présente de
-    multiples variantes. Il existe par exemple plusieurs niveaux de segmentation : la forme
+    multiples variantes. Par exemple, la segmentation des
+textes en unités distinctes (servant ensuite comme base dans les traitements) est réalisable à
+différents niveaux : la forme
     graphique<sup><a id="fn7-ref" class="note" href="#fn7">7</a></sup>, le mot, le mot composé (avec des
         différences existantes de degrés entre ceux se limitant aux composés à
         apostrophe<sup><a id="fn8-ref" class="note" href="#fn8">8</a></sup>
@@ -268,7 +266,7 @@
 
     <p class="mypara"> <span class="marge">	Ces lectures m’ont conduit à adopter une position très pragmatique
     consistant à penser que les prétraitements les plus adaptés dépendent avant tout des objectifs fixés et
-    des corpus en entrée. La théorie et l’état des lieux ne permettent pas de déterminer les prétraitements
+    des corpus. La théorie et l’état des lieux ne permettent pas de déterminer les prétraitements
     à privilégier. Pour faire face à cette difficulté, j’ai construit à partir du corpus « Article » deux
     corpus : un lemmatisé et un non lemmatisé. Il aurait été certes possible de construire de nombreux
     autres corpus avec tout le panel des prétraitements possibles. Cela n’a pas été réalisé pour des
@@ -291,17 +289,17 @@
             .</em> section <a href="{% url 'AmeliorText:home' %}">Chap5</a>), il reste une hétérogénéité liée à des qualités inégales d’océrisation.
     Ces prétraitements permettent de lisser une partie de ces différences. Si la ponctuation et les
     mots-outils sont éliminés, toutes les erreurs liées à ces contenus spécifiques le sont aussi. Cette
-    technique permet de produire une homogénéisation des textes.</li>
+    technique permet donc de produire une homogénéisation des textes.</li>
 
     <li>Le choix de la lemmatisation est aussi lié à une problématique de
-    visualisation des résultats. Quand il est possible de ne mettre sur une figure qu’un nombre limité de
-    termes, il m’est apparu plus intéressant de mettre un ensemble de lemmes différents plutôt que
+    visualisation des résultats. Devant la contrainte de ne pouvoir faire apparaitre qu’un nombre
+limité de termes sur une figure, il m’a très souvent semblé plus intéressant de
+faire apparaitre des lemmes différents plutôt que
     plusieurs termes pouvant être proches car appartenant au même
         lemme<sup><a id="fn19-ref" class="note" href="#fn19"> 19</a></sup>.
         Cette réflexion explique pourquoi un statut privilégié a été accordé au corpus
     lemmatisé. Le corpus non lemmatisé sert de point de comparaison pour évaluer si les résultats obtenus
-    dépendent ou non d’un tel prétraitement. Il a ainsi le même statut que le corpus composé par les
-    articles et les comptes-rendus.</li>
+    dépendent ou non d’un tel prétraitement.</li>
 
     <li> Plus spécifiquement, le choix du logiciel <em>IRaMuTeQ</em> avait été effectué après une comparaison avec le
         lemmatiseur <em>TreeTagger</em>. Ce dernier peut être facilement appelé à partir d’un programme <em>Python</em> mais ne peut pas
@@ -309,8 +307,7 @@
         dictionnaires<sup><a id="fn20-ref" class="note" href="#fn20">20</a></sup> utilisé par le logiciel
         <em>Iramuteq</em> laisse la possibilité de facilement corriger la lemmatisation si nécessaire. Cette potentialité a
         paru d’autant plus intéressante ici qu’elle permettait de réinvestir une partie du travail sur les
-        dictionnaires précédemment réalisé dans le cadre des améliorations textuelles résultant de l’examen
-        des mots (<em>cf.</em> section <a href="{% url 'AmeliorText:home' %}#V1">Chap5.V.1</a>).</li>
+        dictionnaires précédemment réalisé (<em>cf.</em> section <a href="{% url 'AmeliorText:home' %}#V1">Chap5.V.1</a>).</li>
     </ul>
 
 
@@ -331,7 +328,7 @@
         (<a href="{% url 'FinaliseCorpus:FNROrderResult' '2' '3' '3' %}" >@FNR1</a>) permet d’identifier
     différents cas de formes non reconnues : des chiffres, des mots coupés malgré le travail réalisé sur
     les fins de ligne, des erreurs d’OCR ou encore des mots existants mais non recensés dans les
-    dictionnaires utilisés. Ces identifications ont eu pour conséquence plusieurs actions.</span></p>
+    dictionnaires utilisés. Ces identifications ont eu pour conséquence plusieurs actions :</span></p>
 
     <ul>
     <li>Les dictionnaires ont été complétés pour prendre en compte une
@@ -357,8 +354,8 @@
     si elle peut provoquer quelques agrégations
         erronées<sup><a id="fn23-ref" class="note" href="#fn23">23</a></sup>.</li>
 
-    <li>Au niveau des quelques erreurs d’OCR qui peuvent se reproduire au
-    point d’apparaître dans les formes non reconnues les plus fréquentes, il est possible d’en corriger une
+    <li>Au niveau des quelques erreurs d’OCR qui apparaissent dans les formes non
+reconnues les plus fréquentes, il est possible d’en corriger une
     grande partie par l’ajout de la forme corrigée dans le
         dictionnaire<sup><a id="fn24-ref" class="note" href="#fn24">24</a></sup>.</li>
 
@@ -375,11 +372,13 @@
 <h4 id="I2c">c) Réalisation et limite des prétraitements effectués <a href="#I2c-ref">&#8617;</a> </h4>
 
 
-    <p class="mypara"> <span class="marge">	En plus du choix des dictionnaires (mots/lemmes, expression) et de
-    la liste de « fin de mots », l’application permet de choisir d’effectuer (ou non) un premier ensemble
-    de transformations. Les textes sont alors convertis entièrement en minuscule. Les caractères non
-    conventionnels sont enlevés. La liste de « fin de mots » est utilisée pour reconstituer les mots
-    coupés. Les expressions sont identifiées à l’aide du dictionnaire correspondant. Le deuxième grand
+    <p class="mypara"> <span class="marge">	En plus du choix des dictionnaires (mots/lemmes, expression) et de la liste de « fin de
+mots », l’application permet de choisir d’effectuer (ou non) un premier ensemble de
+transformations. Les textes sont alors convertis entièrement en minuscule. Les caractères
+non conventionnels sont enlevés. La liste de « fin de mots » est utilisée pour reconstituer les
+mots coupés. Les expressions sont identifiées à l’aide du dictionnaire correspondant.</span></p>
+
+      <p class="mypara"> <span class="marge">Le second grand
     choix que permet l’application porte sur la réalisation (ou non) de la lemmatisation. Concernant le
     corpus d’articles non lemmatisés, intitulé « ArticleNonLem », le choix réalisé a été d’effectuer tout
     de même le premier ensemble de transformation. La différence avec le corpus d’articles lemmatisés,
@@ -393,10 +392,10 @@
 </span></p>
 
     <p class="mypara"> <span class="marge">	Par rapport à la lemmatisation, il faut reconnaître que la méthode
-    utilisée par le logiciel Iramuteq n’est pas optimale du fait du mécanisme assez basique de dictionnaire
+    utilisée par le logiciel <em>IRaMuTeQ</em> n’est pas optimale du fait du mécanisme assez basique de dictionnaire
     qui attribue un lemme à un mot sans tenir compte du contexte. Par exemple, le mot « porte » peut
     renvoyer au lemme « porte » correspond au nom commun correspondant, mais aussi au lemme « porter »
-    suivant les situations. Le fonctionnement du logiciel Iramuteq privilégie une seule solution, toujours
+    suivant les situations. Le fonctionnement du logiciel <em>IRaMuTeQ</em> privilégie une seule solution, toujours
     la même, ce qui engendre inévitablement quelques erreurs. Il n’y a pas eu d’amélioration implémentée
     pour faire face à ce problème pour des raisons de temps. Il s’agit évidemment d’un axe d’amélioration
     possible par rapport au travail mené dans le cadre de cette thèse. Comme cela a été précédemment dit,
@@ -404,7 +403,7 @@
     améliorations mais ces dernières restent limitées.</span></p>
 
     <p class="mypara"> <span class="marge">	Suite à cette étape, les corpus définitifs sont construits. Une
-    partie d’évaluation a été alors effectuée pour avoir un aperçu plus précis de la qualité des données
+        évaluation a été alors effectuée pour avoir un aperçu plus précis de la qualité des données
     utilisées.</span></p>
 
 
@@ -502,12 +501,12 @@ du texte de référence</td>
         supérieure en valeur absolue
     des corpus lemmatisés provient d’un nombre moindre de mots omis (suppression). En effet, plusieurs
     documents non lemmatisés présentent plusieurs formes de ponctuation ou des petits articles (à, de, l’…)
-    oubliés par l’OCR. Dans le détail<sup><a id="fn30-ref" class="note" href="#fn30">30</a></sup>, il y a
-        une certaine
-    hétérogénéité entre des textes sans erreurs (ou presque) et d’autres qui peuvent présenter jusqu’à deux
-    fois plus d’erreurs que la moyenne. La lemmatisation permet de réduire une partie de cette
-    hétérogénéité en supprimant la ponctuation et ces petits articles. Toutefois, elle est à l’origine
-    aussi de nouvelles erreurs.</span></p>
+    oubliés par l’OCR. Dans le détail<sup><a id="fn30-ref" class="note" href="#fn30">30</a></sup>,
+        il y a une certaine hétérogénéité entre des textes sans
+erreur (ou presque) et d’autres qui peuvent présenter jusqu’à deux fois plus d’erreurs que la
+moyenne. La lemmatisation permet de réduire une partie de cette hétérogénéité en
+supprimant la ponctuation et ces petits articles. Toutefois, elle est à l’origine aussi de
+nouvelles erreurs.</span></p>
 
     <p class="mypara"> <span class="marge">	Une quantification des causes d’erreurs a été réalisée. Trois
     causes principales ont été identifiées :
@@ -577,9 +576,9 @@ du texte de référence</td>
     par rapport à la problématique de détection de changement sémantique majeur, ces mots rares jouent un
     rôle assez secondaire. Quelques erreurs de lemmatisation apparaissent toutefois comme problématique.
     Par exemple, quand le terme « sens » est transformé en verbe « sentir » alors qu’il est utilisé dans sa
-    forme nominale, ou encore quand la ville « Paris » devient « pari ». Même si la lemmatisation a été
+    forme nominale. Même si la lemmatisation a été
     déjà été reconnue comme imparfaite, cette évaluation vient confirmer qu’il s’agit d’un important axe
-    d’amélioration par rapport au travail qui a été effectué.</span></p>
+    d’amélioration par rapport au travail effectué.</span></p>
 
     <div id="ArticlePlusCrLem2"><p class="mypara"> <span class="marge">	Enfin, la catégorie
     « Autre » présente un score plus élevé pour le

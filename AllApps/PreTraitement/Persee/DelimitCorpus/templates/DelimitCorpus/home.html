@@ -232,9 +232,7 @@
         chaque mot proviennent d’un temps d’échange en amont qui a permis à l’UAR <em>Persée</em> de
         générer des données leur semblant les plus appropriées par rapport aux objectifs poursuivis par
         cette recherche. D’habitude, les fichiers XML-TEI de cet organisme contiennent seulement le contenu
-        textuel de l’OCR. Les coordonnées graphiques des mots sont stockées dans des fichiers à part. Ce
-        travail fait en amont par l’UAR <em>Persée</em> a permis de faciliter les premières réflexions et
-        réalisations.</span></p>
+        textuel de l’OCR. Les coordonnées graphiques des mots sont stockées dans des fichiers à part.</span></p>
     <p class="mypara"> <span class="marge">	Par rapport au travail d’amélioration des contenus textuels réalisé
     ensuite (<em>cf.</em> <a href="{% url 'AmeliorText:home'%}">Chap5</a>), un point important à
     souligner est que les informations de documentation infrapaginaire sont présentes à la fin de chaque
@@ -310,11 +308,12 @@
     </a> </h2>
 
 
-<div id="Pinc1"> <p class="mypara"> <span class="marge">	Cette opération de délimitation s’inscrit dans un
-    processus connu dans le domaine de l’analyse textuelle.
-    Bénédicte Pincemin parle à ce propos d’« emboîtements » <a
-            href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Pinc1">(Pincemin, 1999, p. 420)</a> entreplusieurs
-    corpus : le corpus existant, le corpus de référence, le corpus d’étude et les corpus distingués.
+<div id="Pinc1"> <p class="mypara"> <span class="marge">Cette opération de délimitation s’inscrit dans un
+    processus connu en analyse textuelle.
+    Bénédicte Pincemin parle à ce propos d’« emboîtements » entre plusieurs
+    corpus : « le corpus existant », « le corpus de référence », « le corpus d’étude » et « les corpus
+    distingués »<a
+            href="{% url 'Biblio:ViewBiblioInterface' 0 %}#Pinc1">(Pincemin 1999a, 420)</a>.
     Par exemple, dans cette recherche, le corpus existant peut être considéré comme composé de toutes les
     revues de géographie française disponibles sous forme numérique. Le corpus de référence peut renvoyer
     aux deux revues, les <em>Annales de Géographie</em> et <em>L’Espace Géographique</em>, choisies en
@@ -372,8 +371,8 @@ pour délimiter les corpus d’étude.</div>
     « DateMax », dans la classe « Vers Corpus Etude » est nécessaire en amont. Pour le corpus d’étude de
     cet utilisateur, les deux critères « DateMin » et « DateMax » prennent alors respectivement comme
     valeur 1910 et 1980. Au-delà de cet exemple basiqye, ce système permet de retrouver
-    facilement l’ensemble<sup><a id="fn15-ref" class="note" href="#fn15">15</a></sup>
-    des critères utilisés pour construire chaque corpus d’étude. De plus, il laisse la possibilité de
+    facilement<sup><a id="fn15-ref" class="note" href="#fn15">15</a></sup> l’ensemble des critères utilisés
+    pour construire chaque corpus d’étude. De plus, il laisse la possibilité de
     construire de nouveaux corpus en choisissant des valeurs différentes pour les critères définis.
     </span></p>
 
@@ -395,12 +394,11 @@ pour délimiter les corpus d’étude.</div>
     construire en question est exécuté. Ce système permet à l’utilisateur d’afficher rapidement les
     résultats créés tout en ayant la possibilité de reprendre le code qui a permis de les
             créer<sup><a id="fn16-ref" class="note" href="#fn16">16</a></sup>. La première exploration proposée réalise
-            un affichage de tous les numéros de la revue sélectionnée dans l’ordre chronologique.</span></p>
+            un affichage dans l’ordre chronologique de tous les numéros de la revue sélectionnée.</span></p>
 
 
         <h3 id="III1">1) Afficher les numéros par ordre chronologique <a href="#III1-ref">&#8617;
     </a></h3>
-
 
 
     <p class="mypara"> <span class="marge">	L'UAR <em>Persée</em> classant ses données à l’intérieur de chaque
@@ -412,11 +410,21 @@ pour délimiter les corpus d’étude.</div>
         Ces résultats bruts permettent de détecter facilement une syntaxe commune. Elle
     est ici décryptée à partir du premier numéro de <em>L’Espace Géographique</em> :
     « spgeo_0003-4010_1972_num_1_1 ». L’indication « spgeo » renvoie à la
-        revue<sup><a id="fn17-ref" class="note" href="#fn17">17</a></sup>. «0003-4010 » est un numéro de
+    revue<sup><a id="fn17-ref" class="note" href="#fn17">17</a></sup>. « 0003-4010 » est un numéro de
         version interne à l’UAR
-        <em>Persée</em>. Cette indication peut paraître un détail sans importance mais cela renvoie au fait qu’il a existé auparavant d’autres versions. Il en existera également dans le futur de nouvelles, du fait des modifications et des améliorations à venir apportées par l’UAR <em>Persée</em>. Ces données ne sont pas immuables mais en évolution. « 1972 » est la date de ce premier numéro de <em>L’Espace Géographique</em>. « num » est un code servant à spécifier que c’est un numéro « normal ». Un examen rapide des résultats obtenus permet de remarquer qu’il existe une exception en 1993 avec un numéro « hos ». Enfin « 1_1 » renvoie au fait que c’est la première année de publication et le premier numéro de cette année.</span></p>
-<p class="mypara"> <span class="marge">	Il est facile de détecter à partir des résultats des exceptions et
-    de comprendre à quoi elles correspondent en explorant les numéros concernés. Ainsi, le numéro « hos »
+        <em>Persée</em>. Cette indication peut paraître un détail sans importance mais cela renvoie au fait
+        qu’il a existé auparavant d’autres versions. Il en existera également dans le futur de nouvelles,
+        du fait des modifications et des améliorations à venir apportées par l’UAR <em>Persée</em>.
+        Ces données ne sont pas immuables mais en évolution. Le travail de cette thèse a été effectué
+        sur cette version « 0003-4010 » des données </span></p>
+
+        <p class="mypara"> <span class="marge">« 1972 » est la date de ce premier numéro de
+            <em>L’Espace Géographique</em>. « num » est un code servant à spécifier que c’est un numéro
+            « normal ». Un examen rapide des résultats obtenus permet de remarquer qu’il existe une exception en 1993
+            avec un numéro « hos ». Enfin « 1_1 » renvoie au fait que c’est la première année de publication
+            et le premier numéro de cette année. Il est facile de détecter à partir des résultats des exceptions et
+    de comprendre à quoi elles correspondent en explorant les numéros concernés.</span></p>
+	 <p class="mypara"> <span class="marge"> Ainsi, le numéro « hos »
     pour <em>L’Espace Géographique</em> renvoie à un hors-série tout en anglais publié en 1993. Pour
     <em>Les Annales de Géographie</em>, il faut souligner que de nombreux numéros surtout dans les
     premières années sont marqués « bib ». Cette situation s’explique par le fait qu'historiquement la
@@ -426,13 +434,13 @@ pour délimiter les corpus d’étude.</div>
     n’est pas une problématique prise en charge par cette étude. Pour les numéros « bib », les
     bibliographies ne sont pas des éléments les plus pertinents à prendre en compte pour faire des analyses
     textuelles et mettre à jour un changement sémantique.</span></p>
-<p class="mypara"> <span class="marge">	Une différence peut être observée entre les deux revues : les
+<p class="mypara"> <span class="marge">	De plus, une différence peut être observée entre les deux revues : les
     numéros des <em>Annales de Géographie</em> vont jusqu’en 2006 alors que les numéros de <em>L’Espace
         Géographique</em> s’arrêtent à la fin des années 2000. Cette différence provient du fait que
     <em>L’Espace Géographique</em> a été numérisée après les<em> Annales de Géographie</em> et que ces
     numéros sont disponibles sur le portail <em>Cairn</em> depuis 2001. En raison de cette asymétrie dans
     les données, la partie 2001-2006 des <em>Annales de Géographie </em>n’a pas été prise en compte dans
-    les corpus d’études construits. Cette première fonction aboutit donc à mettre à jour deux critères
+    les corpus d’études. Cette première fonction aboutit donc à mettre à jour deux critères
     importants dans la délimitation des corpus d’étude : le premier s’appuie sur la composition de la
     dénomination des numéros et le deuxième sur la date maximale prise en compte.</span></p>
 <p class="mypara"> <span class="marge">	Le deuxième module proposé réalise un affichage non plus des
@@ -468,7 +476,8 @@ pour délimiter les corpus d’étude.</div>
     pour<em> L'Espace Géographique</em>
         (<a href="{% url 'DelimitCorpus:DocHorsNormeResult' 'spgeo' %}" >@EspDocHorsNorme</a>).
         Or, les structures très répétitives permettent de faire des premières
-    analyses. Il y a deux types d’exceptions : des documents qui commencent encore par "article" alors que
+    analyses.</span></p>
+    <p class="mypara"> <span class="marge">Il y a deux types d’exceptions : des documents qui commencent encore par "article" alors que
     d’autres commencent au contraire par "corpus". Les "corpus" correspondent à des recensions des
     documents composant à chaque fois un numéro. Ils ne sont pas intéressants à traiter dans le cadre des
     analyses ici réalisés. Les exceptions "article" correspondent à des documents dont la forme ou le
@@ -511,8 +520,9 @@ pour délimiter les corpus d’étude.</div>
     allemand<sup><a id="fn20-ref" class="note" href="#fn20">20</a></sup>. Dans le cas des corpus d’études
     créés pour cette thèse, le choix a été de garder uniquement les articles en français comme cela a été justifié
     précédemment. De manière plus générale, cette exploration permet de comprendre la présence d’un critère
-    sur cette métadonnée « Langue » renseignée par l’UAR <em>Persée</em> pour délimiter les corpus d’étude.
-    Le travail réalisé a permis aussi de constater que plusieurs articles n’avaient pas de contenu textuel.
+    sur cette métadonnée « Langue » renseignée par l’UAR <em>Persée</em> pour délimiter les corpus d’étude.</span></p>
+    <p class="mypara"> <span class="marge">Par ailleurs, le travail réalisé a permis aussi de constater que
+    plusieurs articles n’avaient pas de contenu textuel.
     Une sixième exploration a été menée pour mieux préciser ce phénomène.</span></p>
 
 
@@ -543,8 +553,8 @@ pour délimiter les corpus d’étude.</div>
         entre catégories peuvent parfois être floues. Il n’y a pas de critères définitifs pour départager
         un article, un compte-rendu et une note critique. Enfin, il peut y avoir des erreurs de
         classification. Pour mieux cerner ce problème, une exploration a été menée par l’intermédiaire
-        d’une fonction capable d’afficher les catégories dans lesquelles les revues ont classé,
-        elles-mêmes, les articles.</span></p>
+        d’une fonction capable d’afficher les catégories dans lesquelles les revues ont,
+        elles-mêmes, classé les articles.</span></p>
 
 
 <h3 id="III7">7) Afficher les catégories des articles <a href="#III7-ref">&#8617;
@@ -582,7 +592,8 @@ pour délimiter les corpus d’étude.</div>
     <em>Persée</em> dans la catégorie « article ». De plus, certaines catégories comme « Dans l'air du temps »
     laissent davantage penser à des essais qu’à des articles.</span></p>
 
-    <p class="mypara"> <span class="marge">	Dans un premier temps, le choix a été fait de garder seulement
+    <p class="mypara"> <span class="marge">	Conjointement, le choix a été fait dans un premier temps de
+        garder seulement
         les articles de plus de trois pages. En effet, beaucoup de catégories relevant plutôt de l’essai
         que de l’article présentaient des moyennes et des médianes inférieures ou égales à trois pages.
         Après la première rencontre avec Olivier Orain, ce seuil a été quelque peu remis en question. Il
@@ -592,8 +603,7 @@ pour délimiter les corpus d’étude.</div>
         ailleurs, une page ne signifie pas exactement la même chose pour <em>L'Espace Géographique</em> et
         les <em>Annales de Géographie.</em> Suite à ces remarques, ce seuil des trois pages n'a pas été
         gardé. Une possibilité de choisir un seuil par nombre de mots et non plus par nombre de pages, a
-        été implémenté. Conjointement, un autre critère a été ajouté de telle sorte qu’un utilisateur
-        puisse exclure certaines catégories de son choix dans la construction d’un corpus d’étude.</span></p>
+        été implémenté.</span></p>
 
 <h3 id="III8">8) Synthèse et choix des critères <a href="#III8-ref">&#8617;
     </a></h3>
@@ -627,7 +637,9 @@ pour délimiter les corpus d’étude.</div>
     XML-TEI). Même si aucune autre option n’est disponible, j’ai ajouté cet attribut pour signifier que d’autres méthodes
     d’extraction des mots sont techniquement possibles. En utilisant par exemple directement les fichiers
     d’OCR de l’UAR <em>Persée</em>, quelques problèmes rencontrés notamment au moment du traitement des
-    bibliographies (cf. section <a href="{% url 'AmeliorText:home'%}#IV8">Chap5.IV.8</a>) auraient pu être évités. Pour des raisons de temps et de priorités, cette solution n’a pas été implémentée mais cet attribut permet de pas oublier cette réflexion et cette piste de travail.</li>
+    bibliographies (<em>cf.</em> section <a href="{% url 'AmeliorText:home'%}#IV8">Chap5.IV.8</a>) auraient pu
+        être évités. Pour des raisons de temps et de priorités, cette solution n’a pas été implémentée
+    mais cet attribut permet de pas oublier cette réflexion et cette piste de travail.</li>
 </ul>
 
 
@@ -697,9 +709,8 @@ pour créer et enregistrer de nouveaux corpus d’étude dans la base de donnée
     relevant de petites formes et les articles plus longs. Dans le même temps, il est possible de penser
     que des variations de cette limite ne provoquent que l’ajout ou le retrait de petits textes sans
     vraiment d’impact sur les résultats du fait même de la masse de données textuelles. Ceci est bien sûr
-    une hypothèse qu’il conviendrait de tester. Toutefois, il est apparu plus important d’étudier une
-    décision qui reste discutable et qui crée sans conteste un changement beaucoup plus important par
-    rapport à un futur corpus d’étude.</span></p>
+    une hypothèse qu’il conviendrait de tester. Toutefois, il est apparu plus important de mettre en avant
+        une autre décision qui est plus impactante au niveau de la constitution des corpus d'étude.</span></p>
 <p class="mypara"> <span class="marge">	En effet, la réflexion initiale avait précédemment conduit à
     privilégier plutôt les articles et à exclure les comptes-rendus pour des raisons d’homogénéité. Il est
     évident qu’il est possible pour soutenir un tel choix d’arguer que le compte-rendu est un genre textuel
@@ -709,8 +720,11 @@ pour créer et enregistrer de nouveaux corpus d’étude dans la base de donnée
     textuelle importante<sup><a id="fn28-ref" class="note" href="#fn28">28</a></sup>. Il peut y avoir
     certes des comptes-rendus qui ne reflètent pas le contenu
     scientifique d’une revue mais globalement le choix de « ce dont une revue rend compte » peut être aussi
-    considéré comme intimement lié à un positionnement intellectuel. Pour cette raison, il a été décidé
-    finalement de faire deux corpus d’étude : un premier ne prenant en compte que les articles en français
+    considéré comme intimement lié à un positionnement intellectuel.</span></p>
+
+    <p class="mypara"> <span class="marge">Pour cette raison, il a été décidé
+    finalement de construire deux corpus d’étude : un premier ne prenant en compte que les articles en
+        français
     avec le seuil minimum de 1000 mots, un deuxième qui inclue aussi les comptes-rendus en français sans
     limite pour le nombre minimal de mots<sup><a id="fn29-ref" class="note" href="#fn29">29</a></sup>. Le
     premier corpus nommé « Article » est considéré comme le corpus d’étude principal. C’est sur celui-ci
@@ -820,7 +834,10 @@ pour créer et enregistrer de nouveaux corpus d’étude dans la base de donnée
     Géographique</em> dans la codification de l’UAR <em>Persée</em>, qui est également reprise dans l’application créée.
 <a href="#fn17-ref">&#8617;</a></p>
 <p id="fn18">[18] Voici l’expression régulière utilisée :"article_" + revue +
-    "_[0-9]{4}-[0-9]{4}_[0-9]{4}_num_[0-9]{1,4}_[0-9]{1,4}_[0-9]{1,8}_tei\.xml". Revue est une variable : soit "geo" pour les <em>Annales de Géographie</em>, soit "spgeo" pour <em>L’Espace Géographique</em>. Pour les non-connaisseurs des expressions régulières, une syntaxe du type [0-9]{4} signifie qu’une suite de quatre chiffres entre 0 et 9 est attendue.
+    "_[0-9]{4}-[0-9]{4}_[0-9]{4}_num_[0-9]{1,4}_[0-9]{1,4}_[0-9]{1,8}_tei\.xml". Revue est une variable :
+    soit "geo" pour les <em>Annales de Géographie</em>, soit "spgeo" pour <em>L’Espace Géographique</em>.
+    Pour les non-connaisseurs des expressions régulières, une syntaxe du type [0-9]{4} signifie qu’une suite
+    de quatre chiffres entre 0 et 9 est attendue.
 <a href="#fn18-ref">&#8617;</a></p>
 <p id="fn19">[19] Les résultats obtenus peuvent être consultés avec les liens suivants
     (<a href ="{% url 'DelimitCorpus:TypeDocArticleResult' 'geo' %}">@AnnTypeDocArt</a> et
@@ -851,10 +868,14 @@ pour créer et enregistrer de nouveaux corpus d’étude dans la base de donnée
 <p id="fn25">[25] Un projet <em>Django</em> permet de créer directement une base de données. Le code
     correspondant à
     cette création est situé dans le fichier AllApps/PreTraitement/Persee/AmelioText/models.py. La base de
-    données  générée à partir de ce fichier est hébergée par <em>Huma-Num</em> et utilise <em>PostgreSQL</em>.
+    données  générée à partir de ce fichier est hébergée par l'infrastructure de recherche <em>Huma-Num</em>
+    dans <em>PostgreSQL</em>.
 <a href="#fn25-ref">&#8617;</a></p>
 <p id="fn26">[26] La fonction « InsertMesDonneesPersee » dans le fichier « views.py » du dossier
-    « AllApps/Pretraitement/Persee/DelimitCorpus ». D’un point de vue technique, la fonction en amont est construite ainsi : « Si les deux revues utilisées pour cette recherche ne sont pas dans la base de données, alors la fonction qui réalise toute l’insertion des données initiales est effectuée. Sinon, l’indication ‘Insertion déjà réalisée’ est marquée ».
+    « AllApps/Pretraitement/Persee/DelimitCorpus ». D’un point de vue technique, la fonction en amont est
+    construite ainsi : « Si les deux revues utilisées pour cette recherche ne sont pas dans la base de données,
+    alors la fonction qui réalise toute l’insertion des données initiales est effectuée.
+    Sinon, l’indication ‘Insertion déjà réalisée’ est marquée ».
 <a href="#fn26-ref">&#8617;</a></p>
 <p id="fn27">[27] Voir la fonction « reduction » dans le fichier « views.py » du dossier
     « AllApps/PreTraitement/Persee/DelimitCorpus ».
